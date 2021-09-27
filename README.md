@@ -45,7 +45,7 @@ crontab -l
 
 <p><h1>RPi Projects</h1><p>
 
-<h2>TailScale VPN setup</h1>
+<h2>TailScale VPN setup</h2>
 
 <p>sudo apt-get install apt-transport-https
 <p>curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.gpg | sudo apt-key add -
@@ -69,3 +69,11 @@ crontab -l
 <p>With this final command, the Rpi will be an exit node:
 
 <p>sudo tailscale up --advertise-exit-node
+
+ 
+ <h2>Install GIT and sync your repos</h2>
+ 
+ sudo apt install git
+ git clone https://github.com/reisikei/RPi.git
+ cd RPi
+ git pull #to make sure its up to date (a cron task could be scheduled)
