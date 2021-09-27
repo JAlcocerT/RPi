@@ -1,11 +1,23 @@
 <h1>RPi Firmware update</h1>
 
+OPTION 1:
 <p>sudo apt update<p>
 <p>sudo apt full-upgrade<p>
 
 <p>Now restart Raspberry Pi using:<p>
 
 <p>sudo shutdown - r now<p>
+  
+  <p>Check firmware version:<p>
+  <p>sudo rpi-eeprom-update<p>
+   
+    OPTION 2:
+    <p>sudo apt update && sudo apt upgrade -y<p>
+    sudo apt install rpi-eeprom rpi-eeprom-images
+    
+    Instalar rpi-eeprom:  sudo apt install rpi-eeprom rpi-eeprom-images
+Actualizar Firmware: sudo rpi-eeprom-update -a
+
 
   
 <h1>TailScale VPN setup</h1>
