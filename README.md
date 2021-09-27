@@ -1,26 +1,33 @@
 <p><h1>RPi A-Z Configuration</h1><p>
 
-<p><h1>RPi Firmware update</h1><p>
+<p><h2>RPi Firmware update</h1><p>
 
 OPTION 1:
+ ```javascript
 <p>sudo apt update<p>
 <p>sudo apt full-upgrade<p>
-
+```
+  
 <p>Now restart Raspberry Pi using:<p>
 
+  ```javascript 
 <p>sudo shutdown - r now<p>
+ ```
   
-  <p>Check firmware version:<p>
+  <p>Check firmware version with :<p>
+  ```javascript
   <p>sudo rpi-eeprom-update<p>
-   
-    OPTION 2:
-    <p>sudo apt update && sudo apt upgrade -y<p>
-    sudo apt install rpi-eeprom rpi-eeprom-images
+   ```
     
+    OPTION 2:
+```javascript 
+<p>sudo apt update && sudo apt upgrade -y<p>
+ sudo apt install rpi-eeprom rpi-eeprom-images
+```    
     Instalar rpi-eeprom:  sudo apt install rpi-eeprom rpi-eeprom-images
 Actualizar Firmware: sudo rpi-eeprom-update -a
 
-<h1>Schedule Crontab for checking and installing updates daily/once its rebooted</h1>
+<h2>Schedule Crontab for checking and installing updates daily/once its rebooted</h1>
 
  open crontab:
 
@@ -34,9 +41,9 @@ If you wish to view your scheduled tasks without editing you can use the command
 
 crontab -l 
 
+<p><h1>RPi Projects</h1><p>
 
-
-<h1>TailScale VPN setup</h1>
+<h2>TailScale VPN setup</h1>
 
 <p>sudo apt-get install apt-transport-https
 <p>curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.gpg | sudo apt-key add -
