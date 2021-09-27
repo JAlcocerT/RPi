@@ -1,4 +1,6 @@
-# RPi<h1>RPi Firmware update</h1>
+<p><h1>RPi A-Z Configuration</h1><p>
+
+<p><h1>RPi Firmware update</h1><p>
 
 OPTION 1:
 <p>sudo apt update<p>
