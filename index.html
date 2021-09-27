@@ -18,8 +18,22 @@ OPTION 1:
     Instalar rpi-eeprom:  sudo apt install rpi-eeprom rpi-eeprom-images
 Actualizar Firmware: sudo rpi-eeprom-update -a
 
+<h1>Schedule Crontab for checking and installing updates daily/once its rebooted</h1>
 
-  
+ open crontab:
+
+crontab -e
+
+If your script isn't executing, check the system log for cron events:
+
+grep cron /var/log/syslog
+
+If you wish to view your scheduled tasks without editing you can use the command:
+
+crontab -l 
+
+
+
 <h1>TailScale VPN setup</h1>
 
 <p>sudo apt-get install apt-transport-https
