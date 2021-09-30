@@ -39,7 +39,7 @@ Update it every midnight and every restart:
 ```
 0 0 * * * sudo apt update && sudo apt upgrade
 @reboot sudo apt update && sudo apt upgrade
-
+```
 If your script isn't executing, check the system log for cron events:
 grep cron /var/log/syslog
 
