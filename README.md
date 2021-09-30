@@ -90,11 +90,13 @@ sudo tailscale up --advertise-exit-node
 
 
  <h2>Create custom aliases</h2>
-Lets edit this file
+ 
+Lets edit this file:
 ```
 nano ~/.bash_aliases
 ```
-Add this line
+
+Add this line:
 ```
 alias temp='/opt/vc/bin/vcgencmd measure_temp' ### TEMP RPi
 ```
