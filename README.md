@@ -48,7 +48,7 @@ crontab -l
 
 <p><h1>RPi Projects</h1><p>
 
-<h2>TailScale VPN setup</h2>
+<h2>TailScale VPN setup (:heavy_check_mark: Sept 2021)</h2>
 
 ```
 sudo apt-get install apt-transport-https &&
@@ -89,7 +89,7 @@ sudo tailscale up --advertise-exit-node
 
 
 
- <h2>Create custom aliases</h2>
+ <h2>Create custom aliases (:heavy_check_mark: Sept 2021)</h2>
  
 Lets edit this file:
 ```
@@ -110,7 +110,7 @@ Use this command to be able to use the new alias in the current session
 source ~/.bashrc
 ```
 
- <h2>Setup fail2ban</h2>
+ <h2>Setup fail2ban (:heavy_check_mark: Sept 2021)</h2>
  
  ```
  #fail2ban
@@ -143,7 +143,7 @@ sudo service fail2ban restart &&
 sudo nano /var/log/fail2ban.log
  ```
 
- <h2>firewall setup (ufw)</h2>
+ <h2>firewall setup (ufw) (:heavy_check_mark: Sept 2021)</h2>
  
 sudo ss -tupln #ports in use
 
