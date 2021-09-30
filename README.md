@@ -103,5 +103,13 @@ alias temp='/opt/vc/bin/vcgencmd measure_temp' ### TEMP RPi
 
 Add this line to know your public ip address by typing myip on the terminal:
 ```
-alias myip='curl ipinfo.io/ip'
+alias myip='curl ipinfo.io/ip' #public ip address
 ```
+Use this command to be able to use the new alias in the current session
+```
+source ~/.bashrc
+```
+
+ <h2>Setup fail2ban</h2>
+ 
+ 
