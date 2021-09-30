@@ -96,7 +96,7 @@ Lets edit this file:
 nano ~/.bash_aliases
 ```
 
-Add this line:
+Add this line to know the Rpi temperature by typing 'temp' on the terminal:
 ```
 alias temp='/opt/vc/bin/vcgencmd measure_temp' ### TEMP RPi
 ```
