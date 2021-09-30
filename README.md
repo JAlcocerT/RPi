@@ -46,38 +46,7 @@ grep cron /var/log/syslog
 If you wish to view your scheduled tasks without editing you can use the command:
 crontab -l 
 
-<p><h1>RPi Projects</h1><p>
 
-<h2>TailScale VPN setup (:heavy_check_mark: Sept 2021)</h2>
-
-```
-sudo apt-get install apt-transport-https &&
-curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.gpg | sudo apt-key add - &&
-curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.list | sudo tee /etc/apt/sources.list.d/tailscale.list &&
-sudo apt-get update &&
-sudo apt-get install tailscale &&
-sudo tailscale up &&
-tailscale ip -4 #get the ip 
-
-#sudo tailscale logout
-#sudo tailscale down
- ```
- 
-#To force all the traffic to go through the Rpi, Port forwarding is needed:
-
-```
-echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf &&
-echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf &&
-sudo sysctl -p /etc/sysctl.conf &&
-sudo tailscale down
-```
-
-With this final command, the Rpi will be an exit node:
-
-```
-sudo tailscale up --advertise-exit-node
-```
- 
  <h2>Install GIT and sync your repos</h2>
  
  ```
@@ -158,3 +127,37 @@ sudo ufw reload #restart it
 
 sudo ufw allow 717 #example to allow conexion
 
+
+
+<p><h1>RPi Projects</h1><p>
+
+<h2>TailScale VPN setup (:heavy_check_mark: Sept 2021)</h2>
+
+```
+sudo apt-get install apt-transport-https &&
+curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.gpg | sudo apt-key add - &&
+curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.list | sudo tee /etc/apt/sources.list.d/tailscale.list &&
+sudo apt-get update &&
+sudo apt-get install tailscale &&
+sudo tailscale up &&
+tailscale ip -4 #get the ip 
+
+#sudo tailscale logout
+#sudo tailscale down
+ ```
+ 
+#To force all the traffic to go through the Rpi, Port forwarding is needed:
+
+```
+echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf &&
+echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf &&
+sudo sysctl -p /etc/sysctl.conf &&
+sudo tailscale down
+```
+
+With this final command, the Rpi will be an exit node:
+
+```
+sudo tailscale up --advertise-exit-node
+```
+ 
