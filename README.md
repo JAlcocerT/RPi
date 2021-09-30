@@ -4,7 +4,7 @@
 
 OPTION 1:
  ```javascript
-sudo apt update
+sudo apt update \
 sudo apt full-upgrade
 ```
 
