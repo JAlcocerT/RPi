@@ -100,3 +100,8 @@ Add this line to know the Rpi temperature by typing 'temp' on the terminal:
 ```
 alias temp='/opt/vc/bin/vcgencmd measure_temp' ### TEMP RPi
 ```
+
+Add this line to know your public ip address by typing myip on the terminal:
+```
+alias myip='curl ipinfo.io/ip'
+```
