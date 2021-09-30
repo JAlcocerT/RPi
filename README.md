@@ -31,16 +31,19 @@ Actualizar Firmware: sudo rpi-eeprom-update -a
 
 <h2>Schedule Crontab for checking and installing updates daily/once its rebooted</h1>
 
- open crontab:
-
+ Open crontab:
+ ```
 crontab -e
+```
+Update it every midnight and every restart:
+```
+0 0 * * * sudo apt update && sudo apt upgrade
+@reboot sudo apt update && sudo apt upgrade
 
 If your script isn't executing, check the system log for cron events:
-
 grep cron /var/log/syslog
 
 If you wish to view your scheduled tasks without editing you can use the command:
-
 crontab -l 
 
 <p><h1>RPi Projects</h1><p>
