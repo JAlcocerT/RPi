@@ -5,20 +5,20 @@
 OPTION 1:
  ```javascript
 sudo apt update
-sudo apt full-upgrade<p>
+sudo apt full-upgrade
 ```
 
  HEADER 1: aaa
  
-<p>Now restart Raspberry Pi using:<p>
+Now restart Raspberry Pi using:
 
   ```javascript 
-<p>sudo shutdown - r now<p>
+sudo shutdown - r now
  ```
   
-  <p>Check firmware version with :<p>
+  Check firmware version with :
   ```javascript
-  <p>sudo rpi-eeprom-update<p>
+  sudo rpi-eeprom-update
    ```
     
     OPTION 2:
