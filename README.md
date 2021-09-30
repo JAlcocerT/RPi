@@ -112,4 +112,33 @@ source ~/.bashrc
 
  <h2>Setup fail2ban</h2>
  
- 
+ ```
+ #fail2ban
+sudo apt-get install -y \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg2 \
+vim \
+fail2ban \
+ntfs-3g
+```
+
+#sudo nano /etc/fail2ban/jail.conf
+```
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local && #copying it to edit
+sudo nano /etc/fail2ban/jail.local
+```
+
+Add this to the file to ban for 24h if retry +3 times:
+
+bantime = 86400
+port    = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+maxretry = 3
+
+```
+sudo service fail2ban restart &&
+sudo nano /var/log/fail2ban.log
+ ```
