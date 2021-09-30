@@ -1,6 +1,6 @@
-<p><h1>RPi A-Z Configuration</h1><p>
+<h1>RPi A-Z Configuration</h1>
 
-<p><h2>RPi Firmware update</h1><p>
+<h2>RPi Firmware update</h1>
 
 OPTION 1:
  ```javascript
@@ -8,8 +8,6 @@ sudo apt update &&
 sudo apt full-upgrade
 ```
 
- HEADER 1: aaa
- 
 Now restart Raspberry Pi using:
 
  ```javascript 
@@ -21,18 +19,18 @@ sudo shutdown - r now
   sudo rpi-eeprom-update
    ```
     
-    OPTION 2:
-```javascript 
-<p>sudo apt update && sudo apt upgrade -y<p>
+ OPTION 2:
+``` 
+sudo apt update && sudo apt upgrade -y
  sudo apt install rpi-eeprom rpi-eeprom-images
 ```    
-    Instalar rpi-eeprom:  sudo apt install rpi-eeprom rpi-eeprom-images
+Instalar rpi-eeprom:  sudo apt install rpi-eeprom rpi-eeprom-images
 Actualizar Firmware: sudo rpi-eeprom-update -a
 
 <h2>Schedule Crontab for checking and installing updates daily/once its rebooted</h1>
 
  Open crontab:
- ```
+```
 crontab -e
 ```
 Update it every midnight and every restart:
