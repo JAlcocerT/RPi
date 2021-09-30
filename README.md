@@ -150,7 +150,7 @@ sudo ss -tupln #ports in use
 ```
 sudo apt install ufw && #ufw
 sudo ufw status &&
-sudo ufw allow 22 #allow ssh
+sudo ufw allow 22 && #allow ssh
 sudo ufw enable &&
 sudo ufw status &&
 sudo ufw reload #restart it
