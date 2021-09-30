@@ -142,3 +142,19 @@ maxretry = 3
 sudo service fail2ban restart &&
 sudo nano /var/log/fail2ban.log
  ```
+
+ <h2>firewall setup (ufw)</h2>
+ 
+sudo ss -tupln #ports in use
+
+```
+sudo apt install ufw && #ufw
+sudo ufw status &&
+sudo ufw allow 22 #allow ssh
+sudo ufw enable &&
+sudo ufw status &&
+sudo ufw reload #restart it
+```
+
+sudo ufw allow 717 #example to allow conexion
+
