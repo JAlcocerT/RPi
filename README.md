@@ -4,8 +4,8 @@
 
 OPTION 1:
  ```javascript
-<p>sudo apt update<p>
-<p>sudo apt full-upgrade<p>
+sudo apt update
+sudo apt full-upgrade<p>
 ```
 
  HEADER 1: aaa
