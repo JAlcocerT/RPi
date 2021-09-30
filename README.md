@@ -12,7 +12,7 @@ sudo apt full-upgrade
  
 Now restart Raspberry Pi using:
 
-  ```javascript 
+ ```javascript 
 sudo shutdown - r now
  ```
   
@@ -47,33 +47,39 @@ crontab -l
 
 <h2>TailScale VPN setup</h2>
 
-<p>sudo apt-get install apt-transport-https
-<p>curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.gpg | sudo apt-key add -
-<p>curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.list | sudo tee /etc/apt/sources.list.d/tailscale.list
-<p>sudo apt-get update
-<p>sudo apt-get install tailscale
-<p>sudo tailscale up
-<p>tailscale ip -4 #get the ip
+```
+sudo apt-get install apt-transport-https &&
+curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.gpg | sudo apt-key add - &&
+curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.list | sudo tee /etc/apt/sources.list.d/tailscale.list &&
+sudo apt-get update &&
+sudo apt-get install tailscale &&
+sudo tailscale up &&
+tailscale ip -4 #get the ip 
 
-<p>#sudo tailscale logout
-<p>#sudo tailscale down
-  
-<p>To force all the traffic to go through the Rpi, Port forwarding is needed:
+#sudo tailscale logout
+#sudo tailscale down
+ ```
+ 
+#To force all the traffic to go through the Rpi, Port forwarding is needed:
 
-<p>echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf
-<p>echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf
-<p>sudo sysctl -p /etc/sysctl.conf
+```
+echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf &&
+echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf &&
+sudo sysctl -p /etc/sysctl.conf &&
+sudo tailscale down
+```
 
-<p>sudo tailscale down
+With this final command, the Rpi will be an exit node:
 
-<p>With this final command, the Rpi will be an exit node:
-
-<p>sudo tailscale up --advertise-exit-node
-
+```
+sudo tailscale up --advertise-exit-node
+```
  
  <h2>Install GIT and sync your repos</h2>
  
- sudo apt install git
- git clone https://github.com/reisikei/RPi.git
- cd RPi
+ ```
+ sudo apt install git &&
+ git clone https://github.com/reisikei/RPi.git &&
+ cd RPi &&
  git pull #to make sure its up to date (a cron task could be scheduled)
+```
