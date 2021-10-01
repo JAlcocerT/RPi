@@ -2,6 +2,12 @@
 
 <h2>RPi Firmware update</h1>
 
+
+  Check firmware version with :
+  ```javascript
+  sudo rpi-eeprom-update
+   ```
+
 OPTION 1:
  ```javascript
 sudo apt update &&
@@ -14,10 +20,7 @@ Now restart Raspberry Pi using:
 sudo shutdown - r now
  ```
   
-  Check firmware version with :
-  ```javascript
-  sudo rpi-eeprom-update
-   ```
+
     
  OPTION 2:
 ``` 
@@ -29,7 +32,7 @@ Actualizar Firmware: sudo rpi-eeprom-update -a
 
 <h2>Schedule Crontab for checking and installing updates daily/once its rebooted</h1>
 
- Open crontab:
+Open crontab:
 ```
 crontab -e
 ```
@@ -42,8 +45,9 @@ If your script isn't executing, check the system log for cron events:
 grep cron /var/log/syslog
 
 If you wish to view your scheduled tasks without editing you can use the command:
+```
 crontab -l 
-
+```
 
  <h2>Install GIT and sync your repos</h2>
  
@@ -110,7 +114,7 @@ sudo service fail2ban restart &&
 sudo nano /var/log/fail2ban.log
  ```
 
- <h2>firewall setup (ufw) (:heavy_check_mark: Sept 2021)</h2>
+ <h2>Firewall setup (ufw) (:heavy_check_mark: Sept 2021)</h2>
  
 sudo ss -tupln #ports in use
 
