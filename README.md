@@ -161,5 +161,6 @@ With this final command, the Rpi will be an exit node:
 
 ```
 sudo tailscale up --advertise-exit-node
+sudo tailscale up --exit-node=<exit-node-ip>
 ```
  
