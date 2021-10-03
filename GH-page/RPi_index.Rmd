@@ -1,5 +1,5 @@
 ---
-title: "RPi A-Z Configuration and Projects"
+title: "RPi A-Z Setup and Projects"
 author: "JAT"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
@@ -63,6 +63,12 @@ sudo apt install rpi-eeprom rpi-eeprom-images
 ```    
 Install rpi-eeprom:  sudo apt install rpi-eeprom rpi-eeprom-images
 Update the Firmware: sudo rpi-eeprom-update -a
+
+```{r, echo=FALSE} 
+knitr::asis_output("Last time tested on Sept 2021 \U2714")
+```
+
+Roses are <span style="color:red">red</span>
 
 ## Schedule Crontab tasks
 
@@ -222,7 +228,10 @@ sudo tailscale up --exit-node=<exit-node-ip>
 
 ## Install Docker
 
-### TOrrents within Docker
+Since raspberry OS is another linux distribution (Debian based), the Docker installation and containers listed in the following github page:
+<https://reisikei.github.io/Linux/> are completely functional on the RPi as it would be, for example in Ubuntu.
+
+### Torrents within Docker
 
 #### Qbittorrent
 
