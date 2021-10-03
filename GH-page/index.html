@@ -269,7 +269,6 @@ sudo apt full-upgrade</code></pre>
 sudo apt install rpi-eeprom rpi-eeprom-images</code></pre>
 <p>Install rpi-eeprom: sudo apt install rpi-eeprom rpi-eeprom-images Update the Firmware: sudo rpi-eeprom-update -a</p>
 <p>Last time tested on Sept 2021 ✔</p>
-<p>Roses are <span style="color:red">red</span></p>
 </div>
 </div>
 <div id="schedule-crontab-tasks" class="section level2">
@@ -282,6 +281,7 @@ sudo apt install rpi-eeprom rpi-eeprom-images</code></pre>
 <p>If your script isn’t executing, check the system log for cron events: grep cron /var/log/syslog</p>
 <p>If you’d wish to view your scheduled tasks without editing you can use the command:</p>
 <pre><code>crontab -l </code></pre>
+<p>Last time tested on Sept 2021 ✔</p>
 </div>
 <div id="setup-fail2ban" class="section level2">
 <h2>Setup fail2ban</h2>
@@ -305,6 +305,7 @@ backend = %(sshd_backend)s
 maxretry = 3</code></pre>
 <pre><code>sudo service fail2ban restart &amp;&amp;
 sudo nano /var/log/fail2ban.log</code></pre>
+<p>Last time tested on Sept 2021 ✔</p>
 </div>
 <div id="firewall-setup-ufw" class="section level2">
 <h2>Firewall setup (ufw)</h2>
@@ -317,6 +318,7 @@ sudo ufw status &amp;&amp;
 sudo ufw reload #restart it</code></pre>
 <p>sudo ufw allow 717 #example to allow conexion</p>
 <p>Typical ports that are used: 22 for ssh, 443 for https, 80 for http</p>
+<p>Last time tested on Sept 2021 ✔</p>
 </div>
 <div id="create-custom-aliases" class="section level2">
 <h2>Create custom aliases</h2>
@@ -328,6 +330,7 @@ sudo ufw reload #restart it</code></pre>
 <pre><code>alias myip=&#39;curl ipinfo.io/ip&#39; #public ip address</code></pre>
 <p>Use this command to be able to use the new alias already in the current session</p>
 <pre><code>source ~/.bashrc</code></pre>
+<p>Last time tested on Sept 2021 ✔</p>
 </div>
 <div id="install-git-and-sync-your-repos" class="section level2">
 <h2>Install GIT and sync your repos</h2>
@@ -335,6 +338,7 @@ sudo ufw reload #restart it</code></pre>
 git clone https://github.com/reisikei/RPi.git &amp;&amp;
 cd RPi &amp;&amp;
 git pull #to make sure its up to date (a cron task could be scheduled)</code></pre>
+<p>Last time tested on Sept 2021 ✔</p>
 </div>
 </div>
 <div id="rpi-projects" class="section level1">
@@ -359,10 +363,11 @@ sudo tailscale down</code></pre>
 <p>With this final command, the RPi will be an exit node:</p>
 <pre><code>sudo tailscale up --advertise-exit-node
 sudo tailscale up --exit-node=&lt;exit-node-ip&gt;</code></pre>
+<p>Last time tested on Sept 2021 ✔</p>
 </div>
 <div id="install-docker" class="section level2">
 <h2>Install Docker</h2>
-<p>Since raspberry OS is another linux distribution (Debian based), the Docker installation and containers listed in the following github page: <a href="https://reisikei.github.io/Linux/" class="uri">https://reisikei.github.io/Linux/</a> are completely functional on the RPi as it would be, for example in Ubuntu.</p>
+<p>Since raspberry OS is another linux distribution (Debian based), the Docker installation and containers listed in the following github page: <a href="https://reisikei.github.io/Linux/#Install_Docker" class="uri">https://reisikei.github.io/Linux/#Install_Docker</a> are completely functional on the RPi as it would be, for example in Ubuntu.</p>
 <div id="torrents-within-docker" class="section level3">
 <h3>Torrents within Docker</h3>
 <div id="qbittorrent" class="section level4">

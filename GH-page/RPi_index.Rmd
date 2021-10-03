@@ -68,7 +68,6 @@ Update the Firmware: sudo rpi-eeprom-update -a
 knitr::asis_output("Last time tested on Sept 2021 \U2714")
 ```
 
-Roses are <span style="color:red">red</span>
 
 ## Schedule Crontab tasks
 
@@ -94,7 +93,9 @@ If you'd wish to view your scheduled tasks without editing you can use the comma
 crontab -l 
 ```
 
-
+```{r, echo=FALSE} 
+knitr::asis_output("Last time tested on Sept 2021 \U2714")
+```
 
 
 ## Setup fail2ban
@@ -132,7 +133,9 @@ sudo service fail2ban restart &&
 sudo nano /var/log/fail2ban.log
  ```
  
- 
+ ```{r, echo=FALSE} 
+knitr::asis_output("Last time tested on Sept 2021 \U2714")
+```
  
  
  
@@ -154,7 +157,9 @@ sudo ufw allow 717 #example to allow conexion
 
 Typical ports that are used: 22 for ssh, 443 for https, 80 for http
 
-
+```{r, echo=FALSE} 
+knitr::asis_output("Last time tested on Sept 2021 \U2714")
+```
 
 ## Create custom aliases 
  
@@ -178,6 +183,9 @@ Use this command to be able to use the new alias already in the current session
 source ~/.bashrc
 ```
 
+```{r, echo=FALSE} 
+knitr::asis_output("Last time tested on Sept 2021 \U2714")
+```
 
 ## Install GIT and sync your repos
  
@@ -188,7 +196,9 @@ source ~/.bashrc
  git pull #to make sure its up to date (a cron task could be scheduled)
 ```
 
-
+```{r, echo=FALSE} 
+knitr::asis_output("Last time tested on Sept 2021 \U2714")
+```
 
 
 
@@ -226,10 +236,14 @@ sudo tailscale up --advertise-exit-node
 sudo tailscale up --exit-node=<exit-node-ip>
 ```
 
+```{r, echo=FALSE} 
+knitr::asis_output("Last time tested on Sept 2021 \U2714")
+```
+
 ## Install Docker
 
 Since raspberry OS is another linux distribution (Debian based), the Docker installation and containers listed in the following github page:
-<https://reisikei.github.io/Linux/> are completely functional on the RPi as it would be, for example in Ubuntu.
+<https://reisikei.github.io/Linux/#Install_Docker> are completely functional on the RPi as it would be, for example in Ubuntu.
 
 ### Torrents within Docker
 
