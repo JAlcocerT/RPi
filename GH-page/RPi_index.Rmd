@@ -254,3 +254,13 @@ Since raspberry OS is another linux distribution (Debian based), the Docker inst
 ## Install Nextcloud
 
 ## Install a NAS (OMV)
+
+## Install your own email server
+
+<https://github.com/lukesmithxyz/emailwiz>
+
+## Install your own messaging platform
+
+<https://matrix.org/>
+
+<https://xmpp.org/>
