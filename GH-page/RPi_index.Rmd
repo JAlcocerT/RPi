@@ -233,8 +233,9 @@ With this final command, the RPi will be an exit node:
 
 ```
 sudo tailscale up --advertise-exit-node
-sudo tailscale up --exit-node=<exit-node-ip>
 ```
+
+Remember to allow as admin in the tailscale network this machine as exit node as well. In review route settings -> use as exit node.
 
 ```{r, echo=FALSE} 
 knitr::asis_output("Last time tested on Sept 2021 \U2714")
@@ -252,6 +253,14 @@ Since raspberry OS is another linux distribution (Debian based), the Docker inst
 #### Transmission Telegram Bot
 
 ## Install Nextcloud
+
+To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors)
+
+```
+
+docker
+
+```
 
 ## Install a NAS (OMV)
 

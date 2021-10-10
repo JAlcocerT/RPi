@@ -243,7 +243,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">RPi A-Z Setup and Projects</h1>
 <h4 class="author">JAT</h4>
-<h4 class="date">03 octubre 2021</h4>
+<h4 class="date">10 octubre 2021</h4>
 
 </div>
 
@@ -361,8 +361,8 @@ echo &#39;net.ipv6.conf.all.forwarding = 1&#39; | sudo tee -a /etc/sysctl.conf &
 sudo sysctl -p /etc/sysctl.conf &amp;&amp;
 sudo tailscale down</code></pre>
 <p>With this final command, the RPi will be an exit node:</p>
-<pre><code>sudo tailscale up --advertise-exit-node
-sudo tailscale up --exit-node=&lt;exit-node-ip&gt;</code></pre>
+<pre><code>sudo tailscale up --advertise-exit-node</code></pre>
+<p>Remember to allow as admin in the tailscale network this machine as exit node as well. In review route settings -&gt; use as exit node.</p>
 <p>Last time tested on Sept 2021 ✔</p>
 </div>
 <div id="install-docker" class="section level2">
@@ -377,6 +377,25 @@ sudo tailscale up --exit-node=&lt;exit-node-ip&gt;</code></pre>
 <h4>Transmission Telegram Bot</h4>
 </div>
 </div>
+</div>
+<div id="install-nextcloud" class="section level2">
+<h2>Install Nextcloud</h2>
+<p>To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors)</p>
+<pre><code>
+docker
+</code></pre>
+</div>
+<div id="install-a-nas-omv" class="section level2">
+<h2>Install a NAS (OMV)</h2>
+</div>
+<div id="install-your-own-email-server" class="section level2">
+<h2>Install your own email server</h2>
+<p><a href="https://github.com/lukesmithxyz/emailwiz" class="uri">https://github.com/lukesmithxyz/emailwiz</a></p>
+</div>
+<div id="install-your-own-messaging-platform" class="section level2">
+<h2>Install your own messaging platform</h2>
+<p><a href="https://matrix.org/" class="uri">https://matrix.org/</a></p>
+<p><a href="https://xmpp.org/" class="uri">https://xmpp.org/</a></p>
 </div>
 </div>
 
