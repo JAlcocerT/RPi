@@ -10,7 +10,7 @@ rmarkdown::render('RPi_index.Rmd',
 
 
 #Get the destination to the previous folder
-RPi = substring(wd,1, nchar(wd)-8)
+#RPi = substring(wd,1, nchar(wd)-8)
 
 #Copy the newest html file
-file.copy(from = gsub(" ", "", paste(wd,"/index.html")),RPi, overwrite = T)
+#file.copy(from = gsub(" ", "", paste(wd,"/index.html")),RPi, overwrite = T)

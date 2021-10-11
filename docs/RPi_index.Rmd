@@ -1,7 +1,7 @@
 ---
 title: "RPi A-Z Setup and Projects"
 author: "JAT"
-date: "`r format(Sys.time(), '%d %B %Y')`"
+date: "Updated on: `r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
     css: styles.css
@@ -13,6 +13,11 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+```{r, echo=FALSE} 
+a = knitr::asis_output("\U2714")
+```
+
 
 ```{r clipboard, include=FALSE}
 
@@ -64,9 +69,7 @@ sudo apt install rpi-eeprom rpi-eeprom-images
 Install rpi-eeprom:  sudo apt install rpi-eeprom rpi-eeprom-images
 Update the Firmware: sudo rpi-eeprom-update -a
 
-```{r, echo=FALSE} 
-knitr::asis_output("Last time tested on Sept 2021 \U2714")
-```
+##### Last time tested on Sept 2021 `r a`
 
 
 ## Schedule Crontab tasks
@@ -93,9 +96,7 @@ If you'd wish to view your scheduled tasks without editing you can use the comma
 crontab -l 
 ```
 
-```{r, echo=FALSE} 
-knitr::asis_output("Last time tested on Sept 2021 \U2714")
-```
+##### Last time tested on Sept 2021 `r a`
 
 
 ## Setup fail2ban
@@ -157,9 +158,7 @@ sudo ufw allow 717 #example to allow conexion
 
 Typical ports that are used: 22 for ssh, 443 for https, 80 for http
 
-```{r, echo=FALSE} 
-knitr::asis_output("Last time tested on Sept 2021 \U2714")
-```
+##### Last time tested on Sept 2021 `r a`
 
 ## Create custom aliases 
  
@@ -183,9 +182,7 @@ Use this command to be able to use the new alias already in the current session
 source ~/.bashrc
 ```
 
-```{r, echo=FALSE} 
-knitr::asis_output("Last time tested on Sept 2021 \U2714")
-```
+##### Last time tested on Sept 2021 `r a`
 
 ## Install GIT and sync your repos
  
@@ -196,9 +193,7 @@ knitr::asis_output("Last time tested on Sept 2021 \U2714")
  git pull #to make sure its up to date (a cron task could be scheduled)
 ```
 
-```{r, echo=FALSE} 
-knitr::asis_output("Last time tested on Sept 2021 \U2714")
-```
+##### Last time tested on Sept 2021 `r a`
 
 
 
@@ -237,9 +232,7 @@ sudo tailscale up --advertise-exit-node
 
 Remember to allow as admin in the tailscale network this machine as exit node as well. In review route settings -> use as exit node.
 
-```{r, echo=FALSE} 
-knitr::asis_output("Last time tested on Sept 2021 \U2714")
-```
+##### Last time tested on Sept 2021 `r a`
 
 ## Install Docker
 

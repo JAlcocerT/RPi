@@ -61,7 +61,7 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="data:text/css,%3Cstyle%3E%23TOC%20%7Bcolor%3A%20%23708090%3Bfont%2Dfamily%3A%20Calibri%3Bfont%2Dsize%3A%2016px%3B%20border%2Dcolor%3A%20%23708090%3B%7Dh1%2Etitle%20%7Bcolor%3A%20%23F08080%3Bbackground%2Dcolor%3A%20%23F5F5F5%3Bopacity%3A%200%2E6%3Bfont%2Dfamily%3A%20Calibri%3Bfont%2Dsize%3A%2020px%3B%7Dh4%2Eauthor%20%7Bcolor%3A%20%23708090%3Bfont%2Dfamily%3A%20Calibri%3Bbackground%2Dcolor%3A%20%23F5F5F5%3B%7Dh4%2Edate%20%7Bcolor%3A%20%23708090%3B%20font%2Dfamily%3A%20Calibri%3Bbackground%2Dcolor%3A%20%23F5F5F5%3B%7Dbody%20%7Bcolor%3A%20%23708090%3Bfont%2Dfamily%3A%20Calibri%3Bbackground%2Dcolor%3A%20%23e6f1fa%7Dpre%20%7Bcolor%3A%20%23708090%3Bbackground%2Dcolor%3A%20%23F8F8FF%3B%7D%3C%2Fstyle%3E" type="text/css" />
+<link rel="stylesheet" href="data:text/css,%3Cstyle%3E%23TOC%20%7Bcolor%3A%20%236cf542%3Bfont%2Dfamily%3A%20Calibri%3Bfont%2Dsize%3A%2026px%3B%20border%2Dcolor%3A%20%23e6f1fa%3B%7Dh1%2Etitle%20%7Bcolor%3A%20%230f03ab%3Bbackground%2Dcolor%3A%20%23e6f1fa%3Bopacity%3A%200%2E6%3Bfont%2Dfamily%3A%20Calibri%3Bfont%2Dsize%3A%2040px%3Btext%2Dalign%3A%20center%3B%7Dh4%2Eauthor%20%7Bcolor%3A%20%230f03ab%3Bfont%2Dfamily%3A%20Calibri%3Bbackground%2Dcolor%3A%20%23e6f1fa%3Btext%2Dalign%3A%20center%3B%7Dh4%2Edate%20%7Bcolor%3A%20%2302c73a%3B%20font%2Dfamily%3A%20Calibri%3Bbackground%2Dcolor%3A%20%23e6f1fa%3Btext%2Dalign%3A%20center%3B%7Dbody%20%7Bcolor%3A%20%23708090%3Bfont%2Dfamily%3A%20Calibri%3Bbackground%2Dcolor%3A%20%23e6f1fa%7Dpre%20%7Bcolor%3A%20%23708090%3Bbackground%2Dcolor%3A%20%23e6f1fa%3B%7Dh5%20%7Bcolor%3A%20%2302c73a%3B%7D%3C%2Fstyle%3E" type="text/css" />
 
 
 
@@ -243,7 +243,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">RPi A-Z Setup and Projects</h1>
 <h4 class="author">JAT</h4>
-<h4 class="date">10 octubre 2021</h4>
+<h4 class="date">Updated on: 11 octubre 2021</h4>
 
 </div>
 
@@ -268,7 +268,9 @@ sudo apt full-upgrade</code></pre>
 <pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y \
 sudo apt install rpi-eeprom rpi-eeprom-images</code></pre>
 <p>Install rpi-eeprom: sudo apt install rpi-eeprom rpi-eeprom-images Update the Firmware: sudo rpi-eeprom-update -a</p>
-<p>Last time tested on Sept 2021 ✔</p>
+<div id="last-time-tested-on-sept-2021" class="section level5">
+<h5>Last time tested on Sept 2021 ✔</h5>
+</div>
 </div>
 </div>
 <div id="schedule-crontab-tasks" class="section level2">
@@ -281,7 +283,9 @@ sudo apt install rpi-eeprom rpi-eeprom-images</code></pre>
 <p>If your script isn’t executing, check the system log for cron events: grep cron /var/log/syslog</p>
 <p>If you’d wish to view your scheduled tasks without editing you can use the command:</p>
 <pre><code>crontab -l </code></pre>
-<p>Last time tested on Sept 2021 ✔</p>
+<div id="last-time-tested-on-sept-2021-1" class="section level5">
+<h5>Last time tested on Sept 2021 ✔</h5>
+</div>
 </div>
 <div id="setup-fail2ban" class="section level2">
 <h2>Setup fail2ban</h2>
@@ -318,7 +322,9 @@ sudo ufw status &amp;&amp;
 sudo ufw reload #restart it</code></pre>
 <p>sudo ufw allow 717 #example to allow conexion</p>
 <p>Typical ports that are used: 22 for ssh, 443 for https, 80 for http</p>
-<p>Last time tested on Sept 2021 ✔</p>
+<div id="last-time-tested-on-sept-2021-2" class="section level5">
+<h5>Last time tested on Sept 2021 ✔</h5>
+</div>
 </div>
 <div id="create-custom-aliases" class="section level2">
 <h2>Create custom aliases</h2>
@@ -330,7 +336,9 @@ sudo ufw reload #restart it</code></pre>
 <pre><code>alias myip=&#39;curl ipinfo.io/ip&#39; #public ip address</code></pre>
 <p>Use this command to be able to use the new alias already in the current session</p>
 <pre><code>source ~/.bashrc</code></pre>
-<p>Last time tested on Sept 2021 ✔</p>
+<div id="last-time-tested-on-sept-2021-3" class="section level5">
+<h5>Last time tested on Sept 2021 ✔</h5>
+</div>
 </div>
 <div id="install-git-and-sync-your-repos" class="section level2">
 <h2>Install GIT and sync your repos</h2>
@@ -338,7 +346,9 @@ sudo ufw reload #restart it</code></pre>
 git clone https://github.com/reisikei/RPi.git &amp;&amp;
 cd RPi &amp;&amp;
 git pull #to make sure its up to date (a cron task could be scheduled)</code></pre>
-<p>Last time tested on Sept 2021 ✔</p>
+<div id="last-time-tested-on-sept-2021-4" class="section level5">
+<h5>Last time tested on Sept 2021 ✔</h5>
+</div>
 </div>
 </div>
 <div id="rpi-projects" class="section level1">
@@ -363,7 +373,9 @@ sudo tailscale down</code></pre>
 <p>With this final command, the RPi will be an exit node:</p>
 <pre><code>sudo tailscale up --advertise-exit-node</code></pre>
 <p>Remember to allow as admin in the tailscale network this machine as exit node as well. In review route settings -&gt; use as exit node.</p>
-<p>Last time tested on Sept 2021 ✔</p>
+<div id="last-time-tested-on-sept-2021-5" class="section level5">
+<h5>Last time tested on Sept 2021 ✔</h5>
+</div>
 </div>
 <div id="install-docker" class="section level2">
 <h2>Install Docker</h2>
