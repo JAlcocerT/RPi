@@ -19,17 +19,12 @@ a = knitr::asis_output("\U2714")
 ```
 
 
-```{r clipboard, include=FALSE}
+```{r klippy, echo=FALSE, include=TRUE}
+#It allows the clipboard button to be available in the html output
+klippy::klippy()
 
-#```{r klippy, echo=FALSE, include=TRUE}
-#It allow the clipboard button to be available in the html output
-#klippy::klippy()
-
-
-## install.packages("remotes")
+#install.packages("remotes")
 #remotes::install_github("rlesur/klippy")
-#```
-
 ```
 
 
@@ -71,25 +66,26 @@ Please feel free to copy, modify, distribute and suggest any further improvement
 
 Check firmware version with :
 
-  ``` 
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
   sudo rpi-eeprom-update
-   ```
+```
    
 Option 1:
 
- ``` 
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 sudo apt update &&
 sudo apt full-upgrade
 ```
 
 Now restart Raspberry Pi by using:
 
- ```  
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 sudo shutdown - r now
- ```
+```
  
 Option 2:
-``` 
+
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"} 
 sudo apt update && sudo apt upgrade -y \
 sudo apt install rpi-eeprom rpi-eeprom-images
 ```    
@@ -125,17 +121,17 @@ Be sure to leave open only the ports that your services need and again, we can f
  
 Lets edit this file:
 
-```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 nano ~/.bash_aliases
 ```
 
 Add this line to know the RPi's temperature by typing 'temp' on the terminal:
-```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 alias temp='/opt/vc/bin/vcgencmd measure_temp' ### TEMP RPi
 ```
 
 Use this command to be able to use the new alias already in the current session
-```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 source ~/.bashrc
 ```
 
@@ -145,7 +141,7 @@ Other aliases that can be used indistinctely in any other linux distro, can be f
 
 ## Install GIT and sync your repos
  
- ```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
  sudo apt install git &&
  git clone https://github.com/reisikei/RPi.git &&
  cd RPi &&
@@ -161,7 +157,7 @@ Other aliases that can be used indistinctely in any other linux distro, can be f
 
 ## TailScale VPN setup
 
-```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 sudo apt-get install apt-transport-https &&
 curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.gpg | sudo apt-key add - &&
 curl -fsSL https://pkgs.tailscale.com/stable/raspbian/buster.list | sudo tee /etc/apt/sources.list.d/tailscale.list &&
@@ -172,11 +168,11 @@ tailscale ip -4 #get the ip
 
 #sudo tailscale logout
 #sudo tailscale down
- ```
+```
  
 #To force all the traffic to go through the Rpi, Port forwarding is needed:
 
-```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf &&
 echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf &&
 sudo sysctl -p /etc/sysctl.conf &&
@@ -185,7 +181,7 @@ sudo tailscale down
 
 With this final command, the RPi will be an exit node:
 
-```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 sudo tailscale up --advertise-exit-node
 ```
 
@@ -211,7 +207,7 @@ Since raspberry OS is another linux distribution (Debian based), the Docker inst
 
 To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors)
 
-```
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 
 docker
 
