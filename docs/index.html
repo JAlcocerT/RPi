@@ -1743,11 +1743,7 @@ sudo apt install rpi-eeprom rpi-eeprom-images</code></pre>
 <div id="install-git-and-sync-your-repos" class="section level2">
 <h2>Install GIT and sync your repos</h2>
 <pre class="r TheCode"><code> sudo apt install git &amp;&amp; sudo mkdir GITHUB_SYNC &amp;&amp; cd GITHUB_SYNC &amp;&amp;
- git clone `web_repo`/RPi.git &amp;&amp; git pull #to make sure its up to date (a cron task could be scheduled)
-
-# 0 0 * * * cd ~/GITHUB_SYNC/RPi &amp;&amp; git pull #example cron task</code></pre>
-<pre class="r TheCode"><code> sudo apt install git &amp;&amp; sudo mkdir GITHUB_SYNC &amp;&amp; cd GITHUB_SYNC &amp;&amp;
- git clone https://github.com/reisikei/RPi.git &amp;&amp; git pull #to make sure its up to date (a cron task could be scheduled)
+ git clone https://github.com/jalcocert/RPi.git &amp;&amp; git pull #to make sure its up to date (a cron task could be scheduled)
 
 # 0 0 * * * cd ~/GITHUB_SYNC/RPi &amp;&amp; git pull #example cron task</code></pre>
 <div id="last-time-tested-on-sept-2021-1" class="section level5">
@@ -1780,8 +1776,8 @@ curl -sL https://install.raspap.com | bash</code></pre>
 </div>
 <div id="rpi-self-hosting" class="section level1">
 <h1><strong>RPi Self-Hosting</strong></h1>
-<div id="install-docker" class="section level2">
-<h2>Install Docker</h2>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
 <p>Self - hosting can be simplified with Docker, thanks to the great work of the community that bundles a lot of services into docker images and make them available with their code.</p>
 <p>To install docker in the RPI, we need a different installation since their processors are ARM:</p>
 <pre class="r TheCode"><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade &amp;&amp; curl -fsSL https://get.docker.com -o get-docker.sh</code></pre>
@@ -1794,8 +1790,8 @@ curl -sL https://install.raspap.com | bash</code></pre>
 <h2>Your Cloud</h2>
 <div id="install-nextcloud" class="section level4">
 <h4>Install Nextcloud</h4>
-<p>To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors)</p>
-<p>Also, a review on external drives file system is beneficial, since the NTFS system is quite usual and its not fully compatible with linux (Kernels after 5.15 will solve this problem), if you are running a machine below that version, please check <a href="https://reisikei.github.io/Linux/#Create_your_own_mount_points" class="uri">https://reisikei.github.io/Linux/#Create_your_own_mount_points</a></p>
+<p>To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors, not like mysql)</p>
+<p>Also, a review on external drives file system is beneficial, since the NTFS system is quite usual and its not fully compatible with linux (Kernels after 5.15 will solve this problem), if you are running a machine below that version, please check &lt;<code>web_hosted</code>/Linux/#Create_your_own_mount_points&gt;</p>
 </div>
 <div id="install-filerun" class="section level4">
 <h4>Install FileRun</h4>
@@ -1804,8 +1800,8 @@ curl -sL https://install.raspap.com | bash</code></pre>
 <h4>Install PhotoPrism</h4>
 </div>
 </div>
-<div id="torrents" class="section level2">
-<h2>Torrents</h2>
+<div id="media" class="section level2">
+<h2>Media</h2>
 <div id="qbittorrent" class="section level4">
 <h4>Qbittorrent</h4>
 </div>
@@ -1813,19 +1809,67 @@ curl -sL https://install.raspap.com | bash</code></pre>
 <h4>Transmission Telegram Bot</h4>
 </div>
 </div>
-<div id="email-server" class="section level2">
-<h2>Email Server</h2>
-<p><a href="https://github.com/lukesmithxyz/emailwiz" class="uri">https://github.com/lukesmithxyz/emailwiz</a></p>
+<div id="iot" class="section level2">
+<h2>IoT</h2>
+<div id="internet-monitoring" class="section level3">
+<h3>Internet Monitoring</h3>
+</div>
+<div id="home-automation" class="section level3">
+<h3>Home Automation</h3>
+</div>
+</div>
+<div id="privacy" class="section level2">
+<h2>Privacy</h2>
+<div id="whoogle" class="section level3">
+<h3>Whoogle</h3>
+</div>
+<div id="pihole" class="section level3">
+<h3>Pihole</h3>
+</div>
+<div id="watchyourlan" class="section level3">
+<h3>Watchyourlan</h3>
+</div>
+<div id="unbound" class="section level3">
+<h3>Unbound</h3>
+</div>
+</div>
+<div id="management" class="section level2">
+<h2>Management</h2>
+<div id="leantime" class="section level3">
+<h3>LeanTime</h3>
+</div>
+</div>
+<div id="communication" class="section level2">
+<h2>Communication</h2>
 </div>
 <div id="messaging" class="section level2">
 <h2>Messaging</h2>
+<div id="matrix-chat" class="section level3">
+<h3>Matrix Chat</h3>
 <p><a href="https://matrix.org/" class="uri">https://matrix.org/</a></p>
-<p><a href="https://xmpp.org/" class="uri">https://xmpp.org/</a></p>
+</div>
+<div id="email" class="section level3">
+<h3>Email</h3>
+<p><a href="https://github.com/lukesmithxyz/emailwiz" class="uri">https://github.com/lukesmithxyz/emailwiz</a> <a href="https://xmpp.org/" class="uri">https://xmpp.org/</a></p>
+</div>
 </div>
 <div id="web-hosting" class="section level2">
 <h2>Web Hosting</h2>
-<div id="host-your-wordpress-page" class="section level3">
-<h3>Host your wordpress page</h3>
+<div id="wordpress" class="section level3">
+<h3>Wordpress</h3>
+<p>Host your wordpress page</p>
+</div>
+<div id="ghost" class="section level3">
+<h3>Ghost</h3>
+</div>
+</div>
+<div id="web-analytics" class="section level2">
+<h2>Web Analytics</h2>
+<div id="plausible" class="section level3">
+<h3>Plausible</h3>
+</div>
+<div id="umami" class="section level3">
+<h3>Umami</h3>
 </div>
 </div>
 </div>

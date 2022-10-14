@@ -153,18 +153,11 @@ Other aliases that can be used indistinctely in any other linux distro, can be f
 
 ## Install GIT and sync your repos
  
-```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
-
- sudo apt install git && sudo mkdir GITHUB_SYNC && cd GITHUB_SYNC &&
- git clone `web_repo`/RPi.git && git pull #to make sure its up to date (a cron task could be scheduled)
-
-# 0 0 * * * cd ~/GITHUB_SYNC/RPi && git pull #example cron task
-```
 
 ```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
 
  sudo apt install git && sudo mkdir GITHUB_SYNC && cd GITHUB_SYNC &&
- git clone https://github.com/reisikei/RPi.git && git pull #to make sure its up to date (a cron task could be scheduled)
+ git clone https://github.com/jalcocert/RPi.git && git pull #to make sure its up to date (a cron task could be scheduled)
 
 # 0 0 * * * cd ~/GITHUB_SYNC/RPi && git pull #example cron task
 ```
@@ -172,9 +165,9 @@ Other aliases that can be used indistinctely in any other linux distro, can be f
 ```{r, include=FALSE, eval=FALSE, class.source=".TheCode"}
 
  cd GITHUB_SYNC &&
- git clone https://github.com/reisikei/Linux.git && git pull
- git clone https://github.com/reisikei/Financial_analysis_R.git && git pull
- git clone https://github.com/reisikei/MultiBodySystemDynamics-MBSD-.git && git pull
+ git clone https://github.com/jalcocert/Linux.git && git pull
+ git clone https://github.com/jalcocert/Financial_analysis_R.git && git pull
+ git clone https://github.com/jalcocert/MultiBodySystemDynamics-MBSD-.git && git pull
 ```
 
 ##### **Last time tested on Sept 2021 `r a`**
@@ -213,7 +206,7 @@ Since raspberry OS is another linux distribution (Debian based), the Tailscale i
 # **RPi Self-Hosting**
 
 
-## Install Docker
+## Prerequisites
 
 Self - hosting can be simplified with Docker, thanks to the great work of the community that bundles a lot of services into docker images and make them available with their code.
 
@@ -234,7 +227,7 @@ sudo sh get-docker.sh && docker version
 
 #### Install Nextcloud
 
-To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors)
+To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors, not like mysql)
 
 ```{r, include=FALSE, eval=FALSE, class.source=".TheCode"}
 
@@ -250,33 +243,69 @@ sudo chmod -R 777 /media/pi/ELEMENTARY/nextcloud_data
 
 ```
 
-Also, a review on external drives file system is beneficial, since the NTFS system is quite usual and its not fully compatible with linux (Kernels after 5.15 will solve this problem), if you are running a machine below that version, please check <https://reisikei.github.io/Linux/#Create_your_own_mount_points>
+Also, a review on external drives file system is beneficial, since the NTFS system is quite usual and its not fully compatible with linux (Kernels after 5.15 will solve this problem), if you are running a machine below that version, please check <`web_hosted`/Linux/#Create_your_own_mount_points>
 
 #### Install FileRun
 
 #### Install PhotoPrism
 
-## Torrents
+## Media
 
 #### Qbittorrent
 
 #### Transmission Telegram Bot
 
+## IoT
 
+### Internet Monitoring
 
-## Email Server
+### Home Automation
 
-<https://github.com/lukesmithxyz/emailwiz>
+## Privacy
+
+### Whoogle 
+
+### Pihole 
+
+### Watchyourlan 
+
+### Unbound 
+
+## Management
+
+### LeanTime
+
+## Communication
+
 
 ## Messaging
 
+### Matrix Chat
+
 <https://matrix.org/>
 
+### Email
+
+<https://github.com/lukesmithxyz/emailwiz>
 <https://xmpp.org/>
 
 ## Web Hosting
 
-### Host your wordpress page
+### Wordpress
+
+Host your wordpress page
+
+### Ghost
+
+## Web Analytics
+
+### Plausible
+
+### Umami
+
+
+
+
 
 
 [^1]: You can get one [here ](https://www.amazon.es/Waveshare-Completely-Multi-Media-Capability-Networking/dp/B089DGSLZW/ref=sr_1_8?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=raspberry%2Bpi%2B4&qid=1634023704&sr=8-8&th=1)
