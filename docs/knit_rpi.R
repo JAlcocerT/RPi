@@ -1,4 +1,14 @@
-#RPi
+#RPi Rmd web generator
+
+ 
+
+#install.packages("htmltools")
+# install.packages("remotes")
+# remotes::install_github("rlesur/klippy")
+#library(klippy)
+
+web_repo <- 'https://github.com/JAlcocerT'
+web_hosted <- 'https://jalcocert.github.io'
 
 #Get the current wd as the directory of this file
 wd<-dirname(rstudioapi::getActiveDocumentContext()$path)
