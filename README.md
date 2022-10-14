@@ -1,4 +1,4 @@
-Public repository for the github page: <https://reisikei.github.io/RPi/>
+Public repository for the github page: <https://JAlcocerT.github.io/RPi/>
 
 ### RaspAP
 
