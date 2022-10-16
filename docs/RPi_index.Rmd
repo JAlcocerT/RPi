@@ -243,7 +243,47 @@ sudo chmod -R 777 /media/pi/ELEMENTARY/nextcloud_data
 
 ```
 
+
+In linux systems it is as simple as running the following commands in the terminal after having installed docker:
+
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
+sudo docker run -d -v ~/nextcloud:/var/www/html -p 8080:80 --name nextcloud_container nextcloud 
+
+```
+
+Remember to update the list of trusted domains so that other devices can log, we can see the current list with:
+
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
+sudo docker exec --user www-data nextcloud_container php occ config:system:get trusted_domains
+```
+
+To add a new domain/ internal ip, simply:
+
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
+sudo docker exec --user www-data nextcloud_container php occ config:system:set trusted_domains 7 --value 192.168.1.30:8080
+
+```
+
+You can check your device internal IP adress with:
+
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"}
+hostname -I
+```
+
+To access nextcloud while being out of home, simply configure your VPN, for example with tailscale, and add the internal Ip address assign by tail scale as shown two commands before.
+
+As this would fall under general linux systems, the guide sits on: <https://jalcocert.github.io/Linux/#Tailscale>
+
+
+
+
+
 Also, a review on external drives file system is beneficial, since the NTFS system is quite usual and its not fully compatible with linux (Kernels after 5.15 will solve this problem), if you are running a machine below that version, please check <`web_hosted`/Linux/#Create_your_own_mount_points>
+
+
+
+
+
 
 #### Install FileRun
 
@@ -262,6 +302,11 @@ Also, a review on external drives file system is beneficial, since the NTFS syst
 ### Home Automation
 
 ## Privacy
+
+
+### Wireguard
+
+### OpenVPN
 
 ### Whoogle 
 
