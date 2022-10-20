@@ -35,7 +35,7 @@ klippy::klippy()
 
 The Raspberry Pi is a tiny and affordable computer, low power consumption (ARM based) that you can use to learn programming through fun, practical projects and also allow us to have our own server to run 24/7 tasks that don't require the expensive hardware of a PC. [^1]
 
-It can run Linux distros like: Debian, OpenMediaVault or most commonly Raspbian OS.
+It can run Linux distributions like: Debian, OpenMediaVault or most commonly Raspbian OS.
 
 
 All of the services/projects that we can make the RPi to run, can be easily ported to some cloud service, VPS and so on. So it serves as an entry point to learn also about that as well.
@@ -45,11 +45,12 @@ Due to the compatibility between raspbian and most debian based linux, most of t
 As of today, the total compatibility with linux would be on the following topics:
 
 - [ ] RPi Firmware update
+- [ ] Not all Docker images are ARM compatible, check in the tags
 - [x] Schedule Crontab tasks
 - [x] Setup fail2ban
 - [x] Firewall setup (UFW)
 - [x] Create custom aliases
-- [x] Install GIT and sync your repos
+- [x] Install GIT and sync your repositories
 
 With Docker containers, due to the nature of the ARM processors that the RPi includes, we might need as well some changes from an usual .yml configuration for X86 processors. When pulling the images, docker will find the one that suits your machine (if no specific version is specified)
 
@@ -282,18 +283,14 @@ Also, a review on external drives file system is beneficial, since the NTFS syst
 
 
 
-
-
+## Media
 
 #### Install FileRun
 
 #### Install PhotoPrism
 
-## Media
-
 #### Qbittorrent
 
-#### Transmission Telegram Bot
 
 ## IoT
 
@@ -303,10 +300,7 @@ Also, a review on external drives file system is beneficial, since the NTFS syst
 
 ## Privacy
 
-
 ### Wireguard
-
-### OpenVPN
 
 ### Whoogle 
 
@@ -320,19 +314,12 @@ Also, a review on external drives file system is beneficial, since the NTFS syst
 
 ### LeanTime
 
-## Communication
-
 
 ## Messaging
 
 ### Matrix Chat
 
 <https://matrix.org/>
-
-### Email
-
-<https://github.com/lukesmithxyz/emailwiz>
-<https://xmpp.org/>
 
 ## Web Hosting
 
@@ -353,5 +340,5 @@ Host your wordpress page
 
 
 
-[^1]: You can get one [here ](https://www.amazon.es/Waveshare-Completely-Multi-Media-Capability-Networking/dp/B089DGSLZW/ref=sr_1_8?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=raspberry%2Bpi%2B4&qid=1634023704&sr=8-8&th=1)
-[^2]: Check out other projects from [my main page](`r web_hosted`/JAlcocerT/)
+[^1]: You can get one [here ](https://www.raspberrypi.com/products/)
+[^2]: Check out other projects from [my main page](`r web_hosted`/JAlcocerT/projects/index.html)
