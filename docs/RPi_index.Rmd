@@ -108,7 +108,14 @@ hostnamectl
 
 ##### **Last time tested on `format(Sys.time(), '%b %Y')` `r a`**
 
+RPi Signal too weak for some TV's
 
+```{r, include=TRUE, eval=FALSE, class.source=".TheCode"} 
+sudo cp /boot/config.txt /boot/backupconfig.txt #make a backup
+sudo nano /boot/config.txt
+
+hdmi_force_hotplug=1 ##edit the file to include this line, then save and reboot
+```
 
 ## Schedule Crontab tasks
 
