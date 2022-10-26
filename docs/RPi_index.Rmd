@@ -33,10 +33,9 @@ klippy::klippy()
 
 
 
-The Raspberry Pi is a tiny and affordable computer, low power consumption (ARM based) that you can use to learn programming through fun, practical projects and also allow us to have our own server to run 24/7 tasks that don't require the expensive hardware of a PC. [^1]
+The Raspberry Pi is a tiny computer, with low power consumption (ARM based) that you can use to learn programming through fun, practical projects and also allow us to have our own server to run 24/7 tasks that don't require the expensive hardware of a PC. [^1]
 
 It can run Linux distributions like: Debian, OpenMediaVault or most commonly Raspbian OS.
-
 
 All of the services/projects that we can make the RPi to run, can be easily ported to some cloud service, VPS and so on. So it serves as an entry point to learn also about that as well.
 
