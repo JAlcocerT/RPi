@@ -1,9 +1,8 @@
 ---
-title: "Nextcloud instance"
+title: "Nextcloud with Docker"
 date: 2022-10-30T23:20:21+01:00
 draft: false
-tags: ["Self-Hosting","Projects"]
- 
+tags: ["Self-Hosting","Projects","Docker"]
 ---
 
 To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors, not like mysql)
