@@ -11,5 +11,6 @@ The RPi svg have been downloaded from <https://www.svgrepo.com/svg/314524/raspbe
 
 Due to the increasing importance of containerized application running on Docker, there will be several mentions on this page to my guides on:
 
-* Docker: <https://github.com/JAlcocerT/Docker>.
-* Linux: <https://jalcocert.github.io/Linux/>.
+* Docker: <https://github.com/JAlcocerT/Docker>
+* Linux: <https://jalcocert.github.io/Linux/>
+* Self-Hosting guides on my blog <https://fossengineer.com/tags/self-hosting/>
