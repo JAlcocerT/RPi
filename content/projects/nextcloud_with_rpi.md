@@ -10,8 +10,8 @@ To install nextcloud in RPi, we need to include MariaDB in the installation (it 
 
 Let's use **Docker-Compose** to have it installed with Docker:
 
-{{< gist JAlcocerT cf73aed383470d8764642499f034d5dc#file-docker-backups-nextcloud-rpi-yml>}}
-
+{{< gist jalcocert cf73aed383470d8764642499f034d5dc
+"Docker-Backups-nextcloud-RPi.yml">}}
 
 Remember to update the list of trusted domains so that other devices can log, we can see the current list with:
 
