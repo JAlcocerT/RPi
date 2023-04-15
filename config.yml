@@ -17,15 +17,15 @@ menu:
     - name: Home
       url: /
       weight: 1
-    - name: First Steps
-      url: /post/
+    - name: RPi Setup
+      url: /guides/
       weight: 2
     - name: Projects
       url: /projects/
       weight: 3
-    - name: Tags
-      url: /tags/
-      weight: 4            
+    # - name: Tags
+    #   url: /tags/
+    #   weight: 4            
     - name: About
       url: /about/
       weight: 5          

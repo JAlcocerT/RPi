@@ -1,5 +1,5 @@
 ---
-title: "RPi as router - RaspAP"
+title: "RPi as Portable Router - RaspAP"
 date: 2022-10-30T23:20:21+01:00
 draft: false
 tags: ["Networking"] 

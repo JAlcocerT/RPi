@@ -1,5 +1,5 @@
 ---
-title: "Adjust HDMI signal"
+title: "Adjust HDMI Signal"
 date: 2022-10-30T23:20:21+01:00
 draft: false
 tags: ["Setup"] 
