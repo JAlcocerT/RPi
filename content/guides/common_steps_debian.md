@@ -13,6 +13,18 @@ tags: ["Setup"]
 
 ## Create custom aliases
 
+## 
+
+## VNC Server
+
+{{< cmd >}}sudo apt-get install tightvncserver{{< /cmd >}}
+
+Start it with: vncserver
+
+Remember that VNC default port is 5901.
+
+
+
 ### Checking the Raspberry Pi's Temperature
 
 Lets edit this file:
@@ -26,3 +38,5 @@ Add this line to know the RPi’s temperature by typing ‘temp’ on the termin
 Use this command to be able to use the new alias already in the current session
 
 {{< cmd >}}source ~/.bashrc{{< /cmd >}}
+
+

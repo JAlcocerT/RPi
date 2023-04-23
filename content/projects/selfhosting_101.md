@@ -25,9 +25,7 @@ sudo sh get-docker.sh && docker version
 ### Install Docker-Compose
 
 ```
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-sudo chmod +x /usr/local/bin/docker-compose
+sudo apt install docker-compose -y
 ```
 
 Check the version with:
@@ -36,7 +34,12 @@ Check the version with:
 docker-compose --version
 {{< /cmd >}}
 
+#### Installing Portainer
 
+
+{{< cmd >}}
+sudo docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+{{< /cmd >}}
 
 ## Trying a *Containerized* App
 
