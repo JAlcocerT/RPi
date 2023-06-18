@@ -15,7 +15,7 @@ To install docker in the RPI, we need a different installation since their proce
 
 {{< cmd >}}sudo apt-get update && sudo apt-get upgrade && curl -fsSL https://get.docker.com -o get-docker.sh{{< /cmd >}}
 
-```
+```sh
 sudo sh get-docker.sh && docker version
 
 #Test that docker works with this image:
@@ -24,7 +24,7 @@ sudo sh get-docker.sh && docker version
 
 ### Install Docker-Compose
 
-```
+```sh
 sudo apt install docker-compose -y
 ```
 

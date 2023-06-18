@@ -15,21 +15,21 @@ Let's use **Docker-Compose** to have it installed with Docker:
 
 Remember to update the list of trusted domains so that other devices can log, we can see the current list with:
 
-```
+```sh
 sudo docker exec --user www-data nextcloud_container php occ config:system:get trusted_domains
 ```
 
 To add a new domain/internal/local ip, simply pass it in the end of this CLI command:
 
 
-```
+```sh
 sudo docker exec --user www-data nextcloud_container php occ config:system:set trusted_domains 7 --value 192.168.1.22:8080
 ```
 
 Remember that you can check your device (the RPi here) internal IP adress with:
 
 
-```
+```sh
 hostname -I
 ```
 
