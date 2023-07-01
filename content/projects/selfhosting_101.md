@@ -13,25 +13,35 @@ Self - hosting can be simplified with Docker, thanks to the great work of the co
 
 To install docker in the RPI, we need a different installation since their processors are ARM based.
 
-{{< cmd >}}sudo apt-get update && sudo apt-get upgrade && curl -fsSL https://get.docker.com -o get-docker.sh{{< /cmd >}}
+{{< cmd >}}sudo apt-get update && sudo apt-get upgrade && curl -fsSL https://get.docker.com -o get-docker.sh
+{{< /cmd >}}
 
-```sh
+{{< cmd >}}
 sudo sh get-docker.sh && docker version
 
 #Test that docker works with this image:
 #sudo docker run hello-world
-```
+{{< /cmd >}}
 
 ### Install Docker-Compose
 
-```sh
+{{< cmd >}}
 sudo apt install docker-compose -y
-```
+{{< /cmd >}}
 
 Check the version with:
 
 {{< cmd >}}
 docker-compose --version
+{{< /cmd >}}
+
+And check the status with:
+
+{{< cmd >}}
+sudo systemctl status docker
+#sudo systemctl start docker #if it is not running
+#systemctl list-units --type=service
+#systemctl list-units --type=service --state=running
 {{< /cmd >}}
 
 #### Installing Portainer
@@ -54,5 +64,5 @@ When pulling the images, docker will find the one that suits your machine (if no
 
 ## **Looking Forward to Self-Host other Apps?
 
-* I have been consolidating a list of docker-compose files to deploy in my Docker repository: <https://github.com/JAlcocerT/Docker>
+* I have been consolidating a list of docker-compose files to deploy in [my Docker repository](https://github.com/JAlcocerT/Docker)
 * Also, I have created detailed guides of some of them in my blog: <https://fossengineer.com/tags/self-hosting/>

@@ -13,16 +13,16 @@ Check firmware version with :
 
 {{< expandable label="Option 1" level="2" >}}
 
-```sh
+{{< cmd >}}
 sudo apt update &&
 sudo apt full-upgrade
-```
+{{< /cmd >}}
 
 Now restart Raspberry Pi by using:
 
-```sh
+{{< cmd >}}
 sudo shutdown - r now
-```
+{{< /cmd >}}
 
 {{< /expandable >}}
 
@@ -30,22 +30,22 @@ Or try:
 
 {{< expandable label="Option 2" level="2" >}}
 
-```sh
+{{< cmd >}}
 sudo apt update && sudo apt upgrade -y \
 sudo apt install rpi-eeprom rpi-eeprom-images
-```
+{{< /cmd >}}
 
 Install rpi-eeprom:
 
-```sh
+{{< cmd >}}
 sudo apt install rpi-eeprom rpi-eeprom-images
-```
+{{< /cmd >}}
 
 Update the Firmware:
 
-```sh
+{{< cmd >}}
 sudo rpi-eeprom-update -a
-```
+{{< /cmd >}}
 
 
 {{< /expandable >}}
