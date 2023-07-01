@@ -19,9 +19,9 @@ I was inspired by the awsome work of **[William Halley in his blog](https://www.
 
 ### Initial Setup: Option 2 - Separate Subnet
 
-The script that is provided is this one (again, credits to William)
+The script that is provided is this one (again, credits to William):
 
-```sh
+```
 #!/usr/bin/env bash
 
 set -e
@@ -80,9 +80,9 @@ systemctl mask networking.service
 
 * **Remember**, the names of wlan0 and eth0 used, can be different in other devices, check it with:
 
-```sh
+{{< cmd >}}
 ifconfig
-```
+{{< /cmd >}}
 
 The end result is that **the Raspberry Pi will act as a bridge between the WiFi connection and the Ethernet connection**, providing Internet access to devices connected via Ethernet- to the RPi.
 
@@ -98,42 +98,42 @@ I decided to try with **Wireguard** (you will need a working VPN server that gen
 
 1) First, we need to have wireguard installed:
 
-```sh
+{{< cmd >}}
 sudo apt install wireguard
 cp /home/Downloads/your_vpn_wireguard_configuration.conf /etc/wireguard #download the wireguard config: account-wireguard configuration
 sudo wg-quick your_vpn_wireguard_configuration #the name of the .conf file that you have downloaded
-```
+{{< /cmd >}}
 
 This will make your wireguard client to be connected to the server. Do you want to check your public IP?
 
-```sh
+{{< cmd >}}
 curl -sS https://ipinfo.io/json #the command to use
-```
+{{< /cmd >}}
 
 And if you need, to disconnect from Wireguard, just:
 
-```sh
+{{< cmd >}}
 wg-quick down <name>
 sudo wg-quick down your_vpn_wireguard_configuration
 #sudo nano /etc/resolv.conf #to check/adapt DNS name (optional)
 #sudo reboot (optional)
-```
+{{< /cmd >}}
 
 2) Use this command to check which network interface your wireguard VPN has:
 
-```sh
+{{< cmd >}}
 ifconfig
-```
+{{< /cmd >}}
 
 3) This will be our new **bridge_wireguard.sh** script to route the WIFI to ethernet and provide VPN connection at the same time:
 
 
 
-```sh
+{{< cmd >}}
 sudo nano bridge_wireguard.sh
-```
+{{< /cmd >}}
 
-```sh
+```
 #!/usr/bin/env bash
 
 set -e
@@ -176,10 +176,11 @@ EOF
 systemctl mask networking.service
 ```
 
-```sh
+{{< cmd >}}
 sudo bash bridge_wireguard.sh
 sudo reboot
-```
+{{< /cmd >}}
+
 <!-- 
 ## with Tailscale VPN  -->
 
