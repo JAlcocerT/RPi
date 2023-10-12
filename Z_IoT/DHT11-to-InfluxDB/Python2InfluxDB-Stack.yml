@@ -1,0 +1,80 @@
+version: "3"
+services:
+  python_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - INFLUXDB_HOST= influxdb.yourdomain.com #influxdb to use the local one like before 
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_DBNAME=sensor_data
+      - INFLUXDB_USER=admin
+      - INFLUXDB_PASSWORD=mysecretpassword
+    command: ["python", "your_python_script.py"]
+    command: tail -f /dev/null #keep it running
+
+###################################
+
+version: "3"
+services:
+
+  python_dht:
+    container_name: python_dht
+    image: dht11_python_to_influxdb  # Use the name of your pre-built Python image
+    privileged: true
+    environment:
+      - INFLUXDB_HOST=influxdb
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_DBNAME=sensor_data
+      - INFLUXDB_USER=admin
+      - INFLUXDB_PASSWORD=mysecretpassword
+    command: ["python", "your_python_script.py"]
+
+    # depends_on:
+    #   - influxdb
+
+  # influxdb: #this is running in other device, so make sure that the container is running before executing the python one
+  #   image: influxdb:latest
+  #   environment:
+  #     - INFLUXDB_DB=sensor_data
+  #     - INFLUXDB_ADMIN_USER=admin
+  #     - INFLUXDB_ADMIN_PASSWORD=adminpass
+  #     - INFLUXDB_USER=user
+  #     - INFLUXDB_USER_PASSWORD=userpass    
+
+##############################################
+
+# version: '3'
+# services:
+#   dht_sensor_app:
+#     image: dht_sensor_app_influxdb
+#     container_name: dht_sensor_app
+#     privileged: true
+#     depends_on:
+#       - influxdb
+
+#   influxdb:
+#     image: influxdb #:1.8 for arm32
+#     container_name: influxdb
+#     ports:
+#       - "8086:8086"
+#     volumes:
+#       - influxdb_data:/var/lib/influxdb
+#     environment:
+#       - INFLUXDB_DB=sensor_data
+#       - INFLUXDB_ADMIN_USER=admin
+#       - INFLUXDB_ADMIN_PASSWORD=mysecretpassword
+
+#   grafana:
+#     image: grafana/grafana #:9.5.7 was using this one instead of latest for stability
+#     container_name: grafana
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - influxdb
+#     volumes:
+#       - grafana_data:/var/lib/grafana  # Add this line to specify the volume
+
+# volumes:
+#   influxdb_data:
+#   grafana_data:  # Define the volume for Grafana

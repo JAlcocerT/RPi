@@ -1,0 +1,92 @@
+version: '3'
+services:
+  mlx_sensor:
+    image: mlx_sensor_to_influxdb
+    container_name: mlx_sensor_app
+    privileged: true
+    #command: tail -f /dev/null #keep it running for testing
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4    
+    depends_on:
+      - influxdb
+    environment:
+      - INFLUX_HOST=yourduckdns.duckdns.org
+      - INFLUX_PORT=8086
+      - DATABASE_NAME=sensor_data
+      - MEASUREMENT=mlx_sensor_sec
+      - SLEEP_TIME=1
+
+  influxdb:
+    image: influxdb:1.8 #for arm32
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=sensor_data
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=mysecretpassword
+
+
+  # grafana:
+  #   image: grafana/grafana:9.5.7 #was using this one instead of latest for stability
+  #   container_name: grafana3
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - influxdb
+  #   volumes:
+  #     - grafana_data:/var/lib/grafana  # Add this line to specify the volume
+  #   dns:
+  #     - 8.8.8.8
+  #     - 8.8.4.4   
+
+volumes:
+  influxdb_data:
+  # grafana_data:  # Define the volume for Grafana
+
+
+############################
+## InfluxDB in the Cloud ###
+############################
+
+# version: '3'
+# services:
+#   mlx_sensor:
+#     image: mlx_sensor_app_influxdb
+#     container_name: mlx_sensor_app
+#     privileged: true
+#     dns:
+#       - 8.8.8.8
+#       - 8.8.4.4
+#     # depends_on: #make sure influxdb its ready
+#     #   - influxdb
+#     environment:
+#       - INFLUX_HOST=yourduckdns.duckdns.org
+#       - INFLUX_PORT=8086
+#       - DATABASE_NAME=sensor_data
+#       - MEASUREMENT=mlx_sensor_sec
+#       - SLEEP_TIME=1
+#     #command: tail -f /dev/null #keep it running for testing
+#     restart: unless-stopped      
+
+
+#   grafana:
+#     image: grafana/grafana:9.5.7 #was using this one instead of latest for stability
+#     container_name: grafana3
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - influxdb
+#     volumes:
+#       - grafana_data:/var/lib/grafana  # Add this line to specify the volume
+#     dns:
+#       - 8.8.8.8
+#       - 8.8.4.4
+#     restart: unless-stopped      
+
+
+# volumes:
+#   grafana_data:  # Define the volume for Grafana
