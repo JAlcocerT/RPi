@@ -11,6 +11,7 @@ render_with_liquid: false
 
 https://fossengineer.com/selfhosting-PiHole-docker/
 
+{% include gist-embed.html username="JAlcocerT" gist_id="302f787db6f6d75e978674e0e18d1185" %}
 
 ## Unbound DNS
 <https://github.com/JAlcocerT/Docker/blob/main/Security/unbound_docker-compose.yml>
