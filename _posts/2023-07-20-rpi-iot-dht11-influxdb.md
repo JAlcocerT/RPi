@@ -5,12 +5,16 @@ date: 2023-07-20 14:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors,Python,InfluxDB]
 render_with_liquid: false
+image:
+  path: /img/RPi-HomeAssistant-DHT11.JPG
+  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
+  alt: IoT Project with Python, InfluxDB, Home Assistant and a DHT11.
 ---
 
 
-We are going to read Temperature and Humidity data from the sensor, save it into an InfluxDB (*say Hi to time-series DBs*) and display the output in Grafana (*Because terminal is great, but we want to make a cool end to end project*).
+We are going to read Temperature and Humidity data from the DHT11 sensor, save it into an InfluxDB (*say Hi to time-series DBs*) and display the output in Grafana (*Because terminal is great, but we want to make a cool end to end project*).
 
-And docker? Yes, let's put everything together and create a reliable Stack that we can share across any other RPi and forget about dependencies. Lets get started.
+And docker as well? Yes, let's put everything together and create a reliable Stack that we can share across any other RPi and forget about dependencies. Lets get to works.
 
 ## Before Starting
 
@@ -97,38 +101,40 @@ DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 4
 
 # Configure InfluxDB connection
-influx_client = InfluxDBClient(host='influxdb', port=8086)
+#influx_client = InfluxDBClient(host='influxdb', port=8086)
 
 # Try to create the database, or use it if it already exists
-database_name = 'sensor_data'
-existing_databases = influx_client.get_list_database()
+# database_name = 'sensor_data'
+# existing_databases = influx_client.get_list_database()
 
-if {'name': database_name} not in existing_databases:
-    influx_client.create_database(database_name)
-    print(f"Database '{database_name}' created.")
+# if {'name': database_name} not in existing_databases:
+#     influx_client.create_database(database_name)
+#     print(f"Database '{database_name}' created.")
 
-influx_client.switch_database(database_name)
+#influx_client.switch_database(database_name)
 
 while True:
     humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
     if humidity is not None and temperature is not None:
-        data = [
-            {
-                "measurement": "dht_sensor",
-                "tags": {},
-                "time": time.strftime('%Y-%m-%dT%H:%M:%SZ'),
-                "fields": {
-                    "temperature": temperature,
-                    "humidity": humidity
-                }
-            }
-        ]
-        influx_client.write_points(data)
-        print("Data sent to InfluxDB")
+        # data = [
+        #     {
+        #         "measurement": "dht_sensor",
+        #         "tags": {},
+        #         "time": time.strftime('%Y-%m-%dT%H:%M:%SZ'),
+        #         "fields": {
+        #             "temperature": temperature,
+        #             "humidity": humidity
+        #         }
+        #     }
+        # ]
+        # influx_client.write_points(data)
+        print("Data sent to InfluxDB:",humidity," ",temperature)
     else:
         print("Sensor failure. Check wiring.")
     time.sleep(3)
 ```
+
+You can also check (uncommenting the influxDB part) if a local instance of the DB is recognizing the input data.
 
 ## Pushing Data from Python to InfluxDB
 
@@ -171,6 +177,40 @@ We have 2 options for this to work:
 * Option 2b: optional, just if you want to replicate the docker build process of my container
     * The [Dockerfile](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/Dockerfile)
 
+
+### Quick Setup
+
+You have everything connected and want just a quick setup? Simply use this [docker-compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/Python2InfluxDB-Stack.yml) below:
+
+```yml
+version: "3"
+services:
+
+  python_dht:
+    container_name: python_dht
+    image: fossengineer/dht11_python_to_influxdb  # Use the name of your pre-built Python image
+    privileged: true
+    environment:
+      - INFLUXDB_HOST=influxdb
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_DBNAME=sensor_data
+      - INFLUXDB_USER=admin
+      - INFLUXDB_PASSWORD=mysecretpassword
+    command: ["python", "your_python_script.py"]
+
+    depends_on:
+      - influxdb
+
+  influxdb: #this is running in other device, so make sure that the container is running before executing the python one
+    image: influxdb:latest
+    environment:
+      - INFLUXDB_DB=sensor_data
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=adminpass
+      - INFLUXDB_USER=user
+      - INFLUXDB_USER_PASSWORD=userpass    
+```
+
 ## FAQ
 
 ### How can I Query InfluxDBs with SQL?
@@ -191,6 +231,34 @@ Then, query your InfluxDB with:
 SELECT * FROM dht_sensor
 SELECT * FROM dht_sensor ORDER BY time DESC LIMIT 10
 ```
+
+### How can I install Home Assistant?
+
+InfluxBD plays great with HomeAssistant, you can spin it with this [Docker-Compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml):
+
+```yml
+---
+version: "2.1"
+services:
+  homeassistant:
+    image: lscr.io/linuxserver/homeassistant:latest
+    container_name: homeassistant
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Rome
+    volumes:
+      - ~/Docker/HomeAssistant:/config
+    ports:
+      - 8123:8123 #optional
+    #devices:
+    #  - /path/to/device:/path/to/device #optional
+    restart: unless-stopped
+```
+
+> The container will be exposed on port 8123, so you can access the Home Assistant web interface at http://localhost:8123
+{: .prompt-info }
 
 ### Why priviledge flag?
 
