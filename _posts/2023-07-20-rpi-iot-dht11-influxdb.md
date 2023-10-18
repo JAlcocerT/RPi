@@ -12,9 +12,9 @@ image:
 ---
 
 
-We are going to read Temperature and Humidity data from the DHT11 sensor, save it into an InfluxDB (*say Hi to time-series DBs*) and display the output in Grafana (*Because terminal is great, but we want to make a cool end to end project*).
+We are going to read Temperature and Humidity data from the DHT11 sensor, save it into an InfluxDB (*say Hi to time-series DBs*). With that, you can feed the information to Home Assistant and let go your imagination.
 
-And docker as well? Yes, let's put everything together and create a reliable Stack that we can share across any other RPi and forget about dependencies. Lets get to works.
+All of this with docker as well? Yes, let's put everything together and create a **[reliable Stack]()** that we can share across any other RPi and forget about dependencies. Lets get to works.
 
 ## Before Starting
 
@@ -259,6 +259,41 @@ services:
 
 > The container will be exposed on port 8123, so you can access the Home Assistant web interface at http://localhost:8123
 {: .prompt-info }
+
+### Integrating Home Assistant with InfluxDB
+
+We can try: Settings - Devices and Services -> [Add Integration -> InfluxDB](https://www.home-assistant.io/integrations/influxdb)
+
+But in the latest versions of HA, you will get 'This device cannot be added from the UI'.
+
+Acces the HA container -> cd config -> cat configuration.yaml and you will have a look of its current content. We are going to modify with: vi configuration.yaml
+
+Make it look like this one below (we are adding our influxDB credentials):
+
+```yml
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+influxdb:
+  host: YOUR_INFLUXDB_HOST
+  port: YOUR_INFLUXDB_PORT
+  username: YOUR_INFLUXDB_USERNAME
+  password: YOUR_INFLUXDB_PASSWORD
+  database: YOUR_INFLUXDB_DATABASE #sensor_data
+```
+{: file='configuration.yml'}
+
+
+> To apply: Esc + :w to save Esc + :q to exit
+{: .prompt-info }
+
 
 ### Why priviledge flag?
 
