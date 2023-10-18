@@ -15,7 +15,7 @@ The guides are available in Web version on: <https://jalcocert.github.io/RPi/>, 
 ## Powered Thanks To :heart:
 
 * [Jekyll](https://github.com/jekyll/jekyll)
-* [Jekyll Theme Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy/).
+* [Jekyll Theme Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy/)
 * [Github Actions](https://fossengineer.com/docker-github-actions-cicd/)
 
 * The fantastic community on the internet from where I learn the foundations to create all of this.

@@ -1,5 +1,5 @@
 ---
-title: RPi Monitoring - Quality of Internet
+title: RPi Monitoring - Quality of our Internet
 author: JAlcocerT
 date: 2022-11-10 14:10:00 +0800
 categories: [Networking]
@@ -7,18 +7,49 @@ tags: [Self-Hosting,Docker,Networking]
 render_with_liquid: false
 ---
 
-
-
-## Uptime Kuma
-
-<https://fossengineer.com/selfhosting-uptime-Kuma-docker/>
+Some services that we can use in our Raspberry Pi's (or any computer) to monitor our internet Status and Speed:
 
 
 ## WhatchYourLan
 
-https://fossengineer.com/selfhosting-WatchYourLAN-docker/
+```yml
+---
+version: "3"
+services:
+  wyl:
+    image: aceberg/watchyourlan
+    container_name: watchyourlan	
+    network_mode: "host"        
+    restart: unless-stopped
+    volumes:
+    - /home/your_user/Docker/watchyourlan/wyl:/data
+    environment:
+      TZ: Europe/Paris              # required: needs your TZ for correct time
+      IFACE: "eth0"                     # required: 1 or more interface, use the command 'ip link conf' and use the second entry
+      DBPATH: "/data/db.sqlite"         # optional, default: /data/db.sqlite
+      GUIIP: "0.0.0.0"                  # optional, default: localhost
+      GUIPORT: "8840"                   # optional, default: 8840
+      TIMEOUT: "120"                    # optional, time in seconds, default: 60
+      SHOUTRRR_URL: ""                  # optional, set url to notify
+      THEME: "darkly"                   # optional
+```
 
+## OpenSpeedTest
 
-## InternetSpeedTracker
+```yml
+version: '3'
+services:
+  openspeedtest:
+    image: openspeedtest/latest
+    container_name: openspeedtest
+    ports:
+      - "6040:3000"
+      - "6041:3001"
+    restart: unless-stopped
+```
 
-https://fossengineer.com/selfhosting-internet-speed-tracker-with-docker/
+>  Remember to have Docker installed and use Portainer or to apply:
+```sh
+docker-compose up -d
+```
+{: .prompt-info }

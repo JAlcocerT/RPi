@@ -50,6 +50,7 @@ I prefer to use the 3.3V for the DHT22, and yet it will work perfectly with 5V a
 pinout
 ```
 {: .prompt-info }
+
 ### Why ElasticSearch?
 
 Elasticsearch is a distributed, RESTful search and analytics engine built on top of Apache Lucene. It allows you to store, search, and analyze large volumes of data in real-time. Elasticsearch is known for its speed, scalability, and powerful search capabilities, making it suitable for a wide range of use cases, from full-text search to log and event data analysis.
@@ -102,6 +103,7 @@ except KeyboardInterrupt:
 {: file='/Z_IoT/dht22.py'}
 
 And you can run it by executing: **[python dht22.py](https://github.com/JAlcocerT/RPi/Z_IoT/DHT22-to-ElasticSearch/dht22.py)**
+
 ### Python to ES
 
 
