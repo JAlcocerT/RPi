@@ -14,7 +14,7 @@ image:
 
 We are going to read Temperature and Humidity data from the DHT11 sensor, save it into an InfluxDB (*say Hi to time-series DBs*). With that, you can feed the information to Home Assistant and let go your imagination.
 
-All of this with docker as well? Yes, let's put everything together and create a **[reliable Stack]()** that we can share across any other RPi and forget about dependencies. Lets get to works.
+All of this with docker as well? Yes, let's put everything together and create a **[reliable Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml)** that we can share across any other RPi and forget about dependencies. Lets get to works.
 
 ## Before Starting
 
@@ -237,7 +237,6 @@ SELECT * FROM dht_sensor ORDER BY time DESC LIMIT 10
 InfluxBD plays great with HomeAssistant, you can spin it with this [Docker-Compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml):
 
 ```yml
----
 version: "2.1"
 services:
   homeassistant:
