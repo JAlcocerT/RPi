@@ -14,9 +14,6 @@ The data store will be ElasticSearch, which will live in a Docker container.
 ## Before Starting
 
 
-
-
-
 | Hardware             | Code                  | Data Analytics Stack |
 |---------------------|:---------------------------------:|:-----------:|
 | `Raspberry Pi 4`  ✓  | Python           | Elastic Search        |
