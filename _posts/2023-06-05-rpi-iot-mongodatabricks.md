@@ -11,7 +11,7 @@ render_with_liquid: false
 
 - [ ] Job
   + [x] The Python Script
-  + [] MongoDB Cloud Setup
+  + [ ] MongoDB Cloud Setup
   + [ ] Databricks
 
 
@@ -105,8 +105,7 @@ db.dht_sensor.findOne();
 
 ## Databricks
 
-
-<https://community.cloud.databricks.com/>
+The unified Analytics platform: <https://community.cloud.databricks.com/>
 
 
 ```py

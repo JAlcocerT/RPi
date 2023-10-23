@@ -138,7 +138,7 @@ You can also check (uncommenting the influxDB part) if a local instance of the D
 
 ## Pushing Data from Python to InfluxDB
 
-The Python code and the InfluxDB can be running directly in our Raspberry Pi, but I prefer to use Docker containers when possible to isolate dependencies and make the projects more resilient and easier to debug.
+The [Python code](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/Python2InfluxDB.py) and the InfluxDB can be running directly in our Raspberry Pi, but I prefer to use Docker containers when possible to isolate dependencies and make the projects more resilient and easier to debug.
 
 * We will be using these base containers:
     * The image to have our own InfluxDB in a container: <https://hub.docker.com/_/influxdb/tags>
