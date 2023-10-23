@@ -265,8 +265,8 @@ i7
 ### Performance
 
 
-<!-- 
-https://cpu.userbenchmark.com/Compare/Intel-Core-i7-1185G7-vs-AMD-Ryzen-5-4600G/m1268967vsm1344633 -->
+
+https://cpu.userbenchmark.com/Compare/Intel-Core-i7-1185G7-vs-AMD-Ryzen-5-4600G/m1268967vsm1344633 
 
 ### CPU Consumption
 

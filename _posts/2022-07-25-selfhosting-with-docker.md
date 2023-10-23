@@ -15,11 +15,11 @@ Self-Hosting can be simplified with Docker, thanks to the great work of the comm
 To install docker in the RPI, we need a different installation since their processors are ARM based.
 
 ```sh
-sudo apt-get update && sudo apt-get upgrade && curl -fsSL https://get.docker.com -o get-docker.sh
+apt-get update && sudo apt-get upgrade && curl -fsSL https://get.docker.com -o get-docker.sh
 ```
 
 ```sh
-sudo sh get-docker.sh && docker version
+sh get-docker.sh && docker version
 
 #Test that docker works with this image:
 #sudo docker run hello-world
@@ -27,7 +27,7 @@ sudo sh get-docker.sh && docker version
 ### Install Docker-Compose
 
 ```sh
-sudo apt install docker-compose -y
+apt install docker-compose -y
 ```
 Check the version with:
 
@@ -37,7 +37,7 @@ docker-compose --version
 And check the status with:
 
 ```sh
-sudo systemctl status docker
+systemctl status docker
 #sudo systemctl start docker #if it is not running
 #systemctl list-units --type=service
 #systemctl list-units --type=service --state=running
@@ -46,7 +46,7 @@ sudo systemctl status docker
 
 
 ```sh
-sudo docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 ```
 
 
@@ -63,8 +63,8 @@ When pulling the images, docker will find the one that suits your machine (if no
 ## Example: deploying several Apps at once with Docker-Compose
 
 ### One App - Whoogle
-```yml
 
+```yml
 ---
 version: "2"
 services:
@@ -214,7 +214,13 @@ volumes:
   db:    
 ```
 
-## Looking Forward to Self-Host other Apps?
+## FAQ
+
+### Looking Forward to Self-Host other Apps?
 
 * I have been consolidating a list of docker-compose files to deploy several F/OSS Apps in [my Docker repository](https://github.com/JAlcocerT/Docker)
 * Also, I have created **detailed guides** of some of them in my Tech blog: <https://fossengineer.com/tags/self-hosting/>
+
+### Monitoring the server performance?
+
+You can have a look on how the things are going with [Netdata and Docker](https://fossengineer.com/selfhosting-server-monitoring-with-netdata-and-docker/).
