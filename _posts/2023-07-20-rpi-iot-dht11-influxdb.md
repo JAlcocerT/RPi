@@ -6,7 +6,7 @@ categories: [IoT & Data Analytics]
 tags: [Sensors,Python,InfluxDB]
 render_with_liquid: false
 image:
-  path: /img/RPi-HomeAssistant-DHT11.JPG
+  path: /img/RPi-HomeAssistant-DHT11.png #If you want to add an image at the top of the post, please provide an image with a resolution of 1200 x 630.
   lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
   alt: IoT Project with Python, InfluxDB, Home Assistant and a DHT11.
 ---

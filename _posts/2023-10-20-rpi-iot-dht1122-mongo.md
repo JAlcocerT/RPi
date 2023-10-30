@@ -5,7 +5,7 @@ date: 2023-10-20 00:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors,Python,MongoDB]
 image:
-  path: /img/metabase.JPG
+  path: /img/metabase.png
   alt: IoT Project with Python, MongoDB, DHT11/22 sensors and Metabase.
 render_with_liquid: false
 ---

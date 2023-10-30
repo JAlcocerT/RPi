@@ -41,7 +41,14 @@ $ apt upgrade
 > There are [other Single Board Computers](https://fossengineer.com/testing-performance-orange-pi5-versus-raspberry-pi4/) out there that you can use to do similar projects.
 {: .prompt-info }
 
+## Android in a Raspberry Pi?
 
+### Lineage OS
+
+* Visit: <https://konstakang.com/devices/rpi4/>
+* Download the latest version: <https://konstakang.com/devices/rpi4/LineageOS20/>
+* Create a bootable SD card with the image and boot it
+* Download the MindTheGapps file that matches your Lineage version and reboot into recovery mode, then load that file and Google Play Store will be ready to use.
 
 <!-- 
 ![img-description](https://pbs.twimg.com/media/FJAFshwXoAEf9HV?format=jpg&name=large)

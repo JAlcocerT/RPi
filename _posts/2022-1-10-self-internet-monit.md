@@ -53,3 +53,25 @@ services:
 docker-compose up -d
 ```
 {: .prompt-info }
+
+## SpeedTest Tracker
+
+A self-hosted [internet performance tracking](https://github.com/alexjustesen/speedtest-tracker) application that runs speedtest checks against Ookla's Speedtest service.
+
+
+```yml
+version: '3.3'
+services:
+    speedtest-tracker:
+        container_name: speedtest-tracker
+        ports:
+            - '8080:80'
+            - '8443:443'
+        environment:
+            - PUID=1000
+            - PGID=1000
+        volumes:
+            - '/path/to/directory:/config'
+        image: 'ghcr.io/alexjustesen/speedtest-tracker:latest'
+        restart: unless-stopped
+```

@@ -14,7 +14,6 @@ A collection of some of the checks that I needed to do regarding Linux and Firmw
 ## Firmware version
 
 
-
 ### EEPROM
 
 This command is used to update the Raspberry Pi's bootloader and EEPROM (Electrically Erasable Programmable Read-Only Memory) firmware.
@@ -25,14 +24,21 @@ It's a more focused update for the bootloader and EEPROM and is less likely to i
 
 * Check firmware version with :
 
-```console
+```sh
 $sudo rpi-eeprom-update
 ```
   
 * Update it with:
 
-```console
+```sh
 $sudo rpi-eeprom-update
+```
+
+Recommended: 
+
+```sh
+#shutdown -r now
+reboot -r now
 ```
 
 ### Regular Firmware
@@ -45,15 +51,15 @@ While it can bring new features and improvements, it has a greater potential to 
 
 * Check current version:
 
-```console
-$vcgencmd version
+```sh
+vcgencmd version
 ```
 
 * or alternatively with:
 
 
-```console
-$hostnamectl
+```sh
+hostnamectl
 ```
 
 
@@ -61,9 +67,9 @@ $hostnamectl
 * Update it with:
 
 
-```console
-$sudo apt install rpi-update
-$sudo rpi-update
+```sh
+sudo apt install rpi-update
+sudo rpi-update
 ```
 
 
@@ -75,18 +81,33 @@ $sudo rpi-update
 The Linux kernel receives important updates regularly, you can check its version with:
 
 
-```console
-$uname --kernel-release
+```sh
+uname --kernel-release
 ```
 
 And to update it:
 
-```console
-$sudo apt update
+```sh
+sudo apt update
 #sudo apt full-upgrade
 ```
 
+## Checking Rpi's Architechture
 
+There are few alternatives:
+
+```sh
+dpkg --print-architecture
+```
+
+```sh
+cat /proc/cpuinfo 
+```
+
+
+```sh
+uname -a
+```
 
 ## Installed Packages
 
@@ -138,4 +159,27 @@ Use this command to be able to use the new alias already in the current session:
 ```sh
 $ source ~/.bashrc
 $ temp
+```
+
+
+
+### Checking Performance and Temp - HTOP
+
+
+A simple, yet useful CLI tool to check how well our RPi is doing:
+
+```sh
+apt install -y htop
+#htop --v
+
+htop
+```
+
+### Stress Test - STUI
+
+
+```sh
+sudo apt install python3-pip
+sudo pip install s-tui
+#s-tui
 ```
