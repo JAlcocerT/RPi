@@ -19,5 +19,7 @@ Please feel free to copy, modify, distribute and suggest any further improvement
     * Docker: <https://github.com/JAlcocerT/Docker>
 
 
-> If you found any of the content useful and want to **support this project**, you can do it [here](https://www.buymeacoffee.com/fossengineer).
+> If you found any of the content useful and want to **support this project**, you can do it [here](https://ko-fi.com/jalcocertech).
 {: .prompt-tip }
+
+Want to take your IoT Knowledge to the next level? You can also get my [**IoT in Data Analytics eBook**](https://ko-fi.com/s/86175d7928)

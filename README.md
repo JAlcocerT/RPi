@@ -28,4 +28,4 @@ Please feel free to fork the repository - try it out the projects for yourself a
 
 * Support extra evenings of tinkering and sharing Raspberry Pi stuff:
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/FossEngineer)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z1QPGUM)
