@@ -50,6 +50,22 @@ $ apt upgrade
 * Create a bootable SD card with the image and boot it
 * Download the MindTheGapps file that matches your Lineage version and reboot into recovery mode, then load that file and Google Play Store will be ready to use.
 
+## Analytical Software for IoT Projects
+
+| Tool | FOSS | Pros | Cons |
+|------|------|------|------|
+| **KNIME** | Yes | User-friendly, visual data pipeline design. Extensive plugin ecosystem. Good for non-programmers. Strong in data preprocessing and analysis | Can be less intuitive for complex, custom data analysis. Performance issues with very large datasets |
+| **Tableau** | No | Exceptional data visualization capabilities. Intuitive and user-friendly. Strong in business intelligence | Expensive. Not open source. More focused on visualization than data modeling |
+| **Alteryx** | No | Strong in data blending and preparation. Advanced analytics capabilities. Good integration with other tools | Expensive. Not open source. Steeper learning curve |
+| **RapidMiner** | No | Comprehensive data science platform. Good for machine learning and predictive modeling. User-friendly with a visual approach | Free version is limited. Can be expensive for the full version. Steep learning curve for advanced features |
+| **QlikView/Qlik Sense** | No | Powerful for interactive data discovery and BI. Flexible and customizable. Good data integration | Can be expensive. Steeper learning curve compared to some competitors. Not open source |
+| **Python Libraries** (e.g., pandas, scikit-learn) | Yes | Highly flexible and powerful. Huge ecosystem and community. Ideal for custom, complex analysis | Requires programming knowledge. Steeper learning curve for non-programmers |
+| **R Libraries** (e.g., ggplot2, dplyr) | Yes | Excellent for statistical analysis and data visualization. Large number of packages for various analyses. Strong academic and research community support | Requires programming knowledge. Less intuitive for those unfamiliar with R |
+| **Metabase** | Yes | Easy to use for creating dashboards and reports. Strong in data visualization and business intelligence. Supports a wide range of databases | Limited in advanced analytics capabilities. Not as flexible for custom data processing as some other tools |
+| **Apache Superset** | Yes | Open-source data visualization and data exploration platform. Supports SQL querying. Customizable and extensible | Requires technical knowledge for setup and customization. May have performance issues with very large datasets |
+| **Kibana** | Yes | Part of the Elastic Stack, excellent for visualizing Elasticsearch data. Great for log and time-series analytics. Real-time data visualization | Primarily tailored to Elasticsearch data. Can be complex to configure and optimize. Less versatile for non-Elasticsearch data |
+
+
 <!-- 
 ![img-description](https://pbs.twimg.com/media/FJAFshwXoAEf9HV?format=jpg&name=large)
 
