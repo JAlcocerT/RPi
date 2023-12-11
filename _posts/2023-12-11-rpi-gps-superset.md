@@ -170,3 +170,9 @@ volumes:
 
 * Data Sources: <https://superset.apache.org/docs/databases/db-connection-ui>
 * API info: <https://superset.apache.org/docs/api>
+
+### PhyPhox
+
+* You can also save GPS data thanks to the [F/OSS PhyPhox](https://github.com/phyphox/phyphox-android) - An app that allow us to use phone's sensors for physics experiments:
+  * Also available for [ESP32 with micropython](https://github.com/phyphox/phyphox-micropython)
+  * And [also for Arduino](https://github.com/phyphox/phyphox-arduino)
