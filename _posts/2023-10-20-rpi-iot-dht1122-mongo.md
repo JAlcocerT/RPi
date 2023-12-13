@@ -14,8 +14,6 @@ In this project we will be collecting **Temperature and Humidity Data** from a D
 
 The data store will be in MongoDB, which will live in a Docker container.
 
-
-
 ## Before Starting
 
 
@@ -24,6 +22,9 @@ The data store will be in MongoDB, which will live in a Docker container.
 | `Raspberry Pi 4`  ✓  | Python           | MongoDB        |
 | `DHT11` or `DHT22`     ✓  | Dockerfile    | Metabase        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
+
+![Desktop View](/img/RPi4-DHT22-FlowChart.png){: width="972" height="589" }
+_From DHT sensor to Metabase - Our Workflow_
 
 >  We can use Raspberry Pi 64 bits for this project. Or to run the Python script in a 32bits RPi and Mongo Docker image in ARM64/X86.
 We can use unofficial apcheamitru/arm32v7-mongo image as well
