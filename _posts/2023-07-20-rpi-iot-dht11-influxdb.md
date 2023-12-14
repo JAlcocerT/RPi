@@ -234,7 +234,7 @@ SELECT * FROM dht_sensor ORDER BY time DESC LIMIT 10
 
 ### How can I install Home Assistant?
 
-InfluxBD plays great with HomeAssistant, you can spin it with this [Docker-Compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml):
+InfluxBD plays great with HomeAssistant, you can spin HA with this [Docker-Compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml):
 
 ```yml
 version: "2.1"
@@ -255,6 +255,8 @@ services:
     #  - /path/to/device:/path/to/device #optional
     restart: unless-stopped
 ```
+
+*You can also install [HA as an OS](https://www.home-assistant.io/installation/raspberrypi) in a RaspberryPi*
 
 > The container will be exposed on port 8123, so you can access the Home Assistant web interface at http://localhost:8123
 {: .prompt-info }
@@ -294,7 +296,7 @@ influxdb:
 {: .prompt-info }
 
 
-### Why priviledge flag?
+#### Why priviledge flag?
 
 The container needs access to the GPIO port, otherwise, you will observe this error in the container:
 
@@ -316,3 +318,54 @@ Traceback (most recent call last):
 
 RuntimeError: Error accessing GPIO.
 ```
+
+
+### HA Integrations
+
+You can check more HA integrations in the [official page](https://www.home-assistant.io/integrations/).
+
+We have used the [InfluxDB integration](https://www.home-assistant.io/integrations/influxdb/) in this post, but there are [much more](https://analytics.home-assistant.io/integrations/):
+
+* ESPHome: <https://www.home-assistant.io/integrations/esphome>
+* Zigbee: <https://www.home-assistant.io/integrations/zha>
+* MQTT: <https://www.home-assistant.io/integrations/mqtt/>
+
+* <https://www.home-assistant.io/docs/automation/trigger/#webhook-trigger>
+
+* <https://www.home-assistant.io/integrations/openweathermap>
+* <https://www.home-assistant.io/integrations/forecast_solar>
+
+* Syncthing: <https://www.home-assistant.io/integrations/syncthing/>
+* <https://www.home-assistant.io/integrations/qbittorrent/>
+* <https://www.home-assistant.io/integrations/sonarr/>
+* <https://www.home-assistant.io/integrations/transmission/>
+
+* <https://www.home-assistant.io/integrations/upnp>
+
+* Smart Home devices: <https://www.home-assistant.io/integrations/tplink/>
+
+* Torque: <https://www.home-assistant.io/integrations/torque/>
+  * Engine Performance & Diagnostic: <https://torque-bhp.com/>
+* Crypto: <https://www.home-assistant.io/integrations/etherscan/>
+
+> When buyind Iot devices, check that their integration is [classified as local push or local polling](https://www.home-assistant.io/blog/2016/02/12/classifying-the-internet-of-things/#classifiers) to avoid dependencies with 3rd Party clouds.
+
+* You might be interested to look for **[Tasmota compatible devices](https://templates.blakadder.com/sensors.html)** *- a firmware for micro-controllers*.
+* Or to any device compatible with **[ESPHome](<https://devices.esphome.io/)**
+* Also, **Zegbee** will be useful: <https://www.zigbee2mqtt.io/>
+
+Both are great to create a fully local IoT Home.
+{: .prompt-info }
+
+#### HACS - Non Official Integrations
+
+You can find them here: <https://hacs.xyz/>
+
+### HA add-ons
+
+[HA Add-ons](https://www.home-assistant.io/addons/) are different concept than integrations.
+
+Check them here: <https://community.home-assistant.io/tag/hassio-repository>
+
+> Remember that Add-ons are only available if you've used the Home Assistant Operating System or Home Assistant Supervised installation method. 
+{: .prompt-info }
