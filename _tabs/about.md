@@ -35,7 +35,7 @@ Internet is a great place to learn for free.
 But even better is to create projects with what you learn, specially if you start creating new puzzles with separate piezes of information.
 
 I have taken many ideas from the following sources (and many more):
-
+<!-- 
 * <https://ugeek.github.io/>
 * <https://www.youtube.com/@DBTechYT>
 * <https://www.youtube.com/@TechWithTim>
@@ -45,4 +45,4 @@ I have taken many ideas from the following sources (and many more):
 * <https://www.youtube.com/@AwesomeOpenSource>
 * <https://www.youtube.com/@ProgramarfacilArduino> - Great for HA, ESP
     * <https://wiki.opensourceisawesome.com/>
-* <https://www.linuxfordevices.com/>
+* <https://www.linuxfordevices.com/> -->
