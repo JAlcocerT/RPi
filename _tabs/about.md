@@ -43,5 +43,10 @@ I have taken many ideas from the following sources (and many more):
 * <https://www.youtube.com/@TechWorldwithNana>
 * <https://www.youtube.com/@Jims-Garage>
 * <https://www.youtube.com/@AwesomeOpenSource>
+* <https://www.youtube.com/@ProgramarfacilArduino> - Great for HA, ESP
     * <https://wiki.opensourceisawesome.com/>
 * <https://www.linuxfordevices.com/>
+
+* <https://github.com/veggiemonk/awesome-docker>
+* <https://github.com/awesome-foss/awesome-sysadmin#dns---servers>
+* <https://github.com/awesome-selfhosted/awesome-selfhosted>

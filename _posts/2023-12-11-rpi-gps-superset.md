@@ -20,6 +20,7 @@ render_with_liquid: false
   + [ ] Hardware Checks
   + [ ] Connecting everything
 
+<https://www.youtube.com/watch?v=Z7cJ59sixpk>
 
 ## Apache Superset Setup
 
