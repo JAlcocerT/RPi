@@ -8,9 +8,10 @@ image:
   path: /img/superset.png
   alt: IoT Project with Python, MongoDB, DHT11/22 sensors and Metabase.
 render_with_liquid: false
-
 ---
 
+* <https://www.youtube.com/watch?v=Z7cJ59sixpk&t=197s>
+<https://www.youtube.com/watch?v=3ysOqliO6F8>
 
 ## ToDo list
 
