@@ -19,3 +19,32 @@ render_with_liquid: false
 ### ESP32 HA w ESPHome
 
 <https://www.youtube.com/watch?v=pBT5p5XaWNE>
+
+
+## SelfHosting 101
+
+With cosmos
+
+```yml
+version: '3'
+services:
+  cosmos-server:
+    image: azukaar/cosmos-server:latest
+    container_name: cosmos-server
+    hostname: cosmos-server
+    privileged: true
+    restart: always
+    ports:
+      - "800:80"
+      - "4433:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/mnt/host
+      - /var/lib/cosmos:/config
+    networks:
+      - default
+
+networks:
+  default:
+
+```

@@ -56,7 +56,7 @@ $ apt upgrade
 
 Get ready RPi Imager and Select: Other Speficic Purpose OS -> HA and Home Automation.
 
-Make sure your Pi is connected to ethernet when booting and you will get a local IP with port 8123 to see the **UI of the installation**
+Make sure your Pi is connected to ethernet when booting and you will get a local IP with **port 8123** to see the **UI of the installation**
 
 ![Desktop View](/img/ha-installation.jpeg){: width="972" height="589" }
 
