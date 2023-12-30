@@ -65,14 +65,14 @@ Make sure your Pi is connected to ethernet when booting and you will get a local
 
 After a while, this will be saying Hi to you:
 
-![Desktop View](/img/ha.jpeg){: width="972" height="589" }
+![Desktop View](/img/ha.png){: width="772" height="389" }
 
 
 You can give **HA a try with Docker** as well.
 
 But you wont see these:
 
-![Desktop View](/img/ha-addons.jpeg){: width="972" height="589" }
+![Desktop View](/img/ha-addons.png){: width="772" height="489" }
 
 ```sh
 ha --help
