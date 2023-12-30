@@ -41,14 +41,47 @@ $ apt upgrade
 > There are [other Single Board Computers](https://fossengineer.com/testing-performance-orange-pi5-versus-raspberry-pi4/) out there that you can use to do similar projects.
 {: .prompt-info }
 
-## Android in a Raspberry Pi?
+### Other OS's
 
-### Lineage OS
+### Android in a Raspberry Pi?
+
+#### Lineage OS
 
 * Visit: <https://konstakang.com/devices/rpi4/>
 * Download the latest version: <https://konstakang.com/devices/rpi4/LineageOS20/>
 * Create a bootable SD card with the image and boot it
 * Download the MindTheGapps file that matches your Lineage version and reboot into recovery mode, then load that file and Google Play Store will be ready to use.
+
+### Home Assistant OS
+
+Get ready RPi Imager and Select: Other Speficic Purpose OS -> HA and Home Automation.
+
+Make sure your Pi is connected to ethernet when booting and you will get a local IP with port 8123 to see the **UI of the installation**
+
+![Desktop View](/img/ha-installation.jpeg){: width="972" height="589" }
+
+>  [Add-ons](https://www.home-assistant.io/addons) are only available with the Home Assistant Operating System.
+{: .prompt-info }
+
+After a while, this will be saying Hi to you:
+
+![Desktop View](/img/ha.jpeg){: width="972" height="589" }
+
+
+You can give **HA a try with Docker** as well.
+
+But you wont see these:
+
+![Desktop View](/img/ha-addons.jpeg){: width="972" height="589" }
+
+```sh
+ha --help
+```
+
+#### Other Home Automations / IoT OS
+
+Homebridge, OpenHAB... (you can also install them with Rpi Imager).
+
 
 ## Analytical Software for IoT Projects
 
