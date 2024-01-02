@@ -40,3 +40,31 @@ https://forocoches.com/foro/showthread.php?t=6655749
 
 * https://forocoches.com/foro/showthread.php?t=7806376
 * https://rpi.uroboros.es/docker.html
+
+## SelfHosting 101
+
+With cosmos
+
+```yml
+version: '3'
+services:
+  cosmos-server:
+    image: azukaar/cosmos-server:latest
+    container_name: cosmos-server
+    hostname: cosmos-server
+    privileged: true
+    restart: always
+    ports:
+      - "800:80"
+      - "4433:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/mnt/host
+      - /var/lib/cosmos:/config
+    networks:
+      - default
+
+networks:
+  default:
+
+```
