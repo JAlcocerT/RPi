@@ -1,0 +1,42 @@
+---
+version: "2.1"
+services:
+  homeassistant:
+    image: lscr.io/linuxserver/homeassistant:latest
+    container_name: homeassistant
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ~/Docker/HomeAssistant:/config
+    ports:
+      - 8123:8123 #optional
+    #devices:
+    #  - /path/to/device:/path/to/device #optional
+    restart: unless-stopped
+
+  python_dht:
+    container_name: python_dht
+    image: fossengineer/dht11_python_to_influxdb  # Use the name of your pre-built Python image
+    privileged: true
+    environment:
+      - INFLUXDB_HOST=influxdb
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_DBNAME=sensor_data
+      - INFLUXDB_USER=admin
+      - INFLUXDB_PASSWORD=mysecretpassword
+    command: ["python", "your_python_script.py"]
+
+    depends_on:
+      - influxdb
+
+  influxdb: #this is running in other device, so make sure that the container is running before executing the python one
+    image: influxdb:latest #1.8
+    environment:
+      - INFLUXDB_DB=sensor_data
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=adminpass
+      - INFLUXDB_USER=user
+      - INFLUXDB_USER_PASSWORD=userpass        

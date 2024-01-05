@@ -27,7 +27,7 @@ The data store will be in MongoDB, which will live in a Docker container.
 _From DHT sensor to Metabase - Our Workflow_
 
 >  We can use Raspberry Pi 64 bits for this project. Or to run the Python script in a 32bits RPi and Mongo Docker image in ARM64/X86.
-We can use unofficial apcheamitru/arm32v7-mongo image as well
+We can use unofficial **apcheamitru/arm32v7-mongo** image as well
 {: .prompt-info }
 
 ### The Sensor: DHT11 or DHT22

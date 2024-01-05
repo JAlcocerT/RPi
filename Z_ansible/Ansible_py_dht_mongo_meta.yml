@@ -1,0 +1,38 @@
+---
+- name: Install Docker on Ubuntu's
+  hosts: localhost
+  become: yes
+  vars:
+    username: jalcocert  # Replace with your username
+    target_folder: /home/jalcocert/RPi/Z_IoT/DHT-to-MongoDB  # Replace with the actual path
+    custom_compose_file: Ansible_py_dht_mongo_meta.yml  # Replace with your custom filename    
+  tasks:
+    - name: Download and install Docker
+      shell: |
+        curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+        sh /tmp/get-docker.sh        
+
+    - name: Install docker-compose
+      apt:
+        name: docker-compose
+        state: present
+        update_cache: yes
+
+    - name: Run Portainer Docker container
+      docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        ports:
+          - "8000:8000"
+          - "9000:9000"
+        restart_policy: always
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - portainer_data:/data
+
+    # Start the Docker Compose stack
+    - name: Start Docker Compose stack
+      command: docker-compose -f "{{ target_folder }}/{{ custom_compose_file }}" up -d
+      become_user: "{{ username }}"
+      environment:
+        HOME: "/home/{{ username }}"  # Set the HOME environment variable

@@ -4,8 +4,8 @@
   become: yes
   vars:
     username: jalcocert  # Replace with your username
-    target_folder: /home/jalcocert/Z_IoT  # Replace with the actual path
-    custom_compose_file: Ansible_py_dht_mongo_meta.yml  # Replace with your custom filename    
+    target_folder: /home/jalcocert/RPi/Z_IoT/DHT11-to-InfluxDB  # Replace with the actual path
+    custom_compose_file: Ansible_py_dht_influx.yml  # Replace with your custom filename    
   tasks:
     - name: Download and install Docker
       shell: |

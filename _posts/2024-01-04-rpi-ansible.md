@@ -27,6 +27,17 @@ sudo apt install ansible
 git clone https://github.com/JAlcocerT/RPi ./RPi
 #cd ./RPi/Z_ansible
 
-ansible-playbook ./RPi/Z_ansible/install_docker.yml -i inventory.ini #execute our playbook
 
+```
+
+### Mongo Project
+
+```sh
+ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_mongo_meta.yml -i inventory.ini #execute Meta Project Playbook
+```
+
+### Influx Project
+
+```sh
+ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_influx_grafana.yml -i inventory.ini #execute Influx Project Playbook
 ```

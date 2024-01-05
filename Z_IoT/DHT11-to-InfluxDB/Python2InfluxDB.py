@@ -3,7 +3,8 @@ import time
 from influxdb import InfluxDBClient
 import os
 
-DHT_SENSOR = Adafruit_DHT.DHT11
+DHT_SENSOR = Adafruit_DHT.DHT22
+#DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 4
 
 # Get InfluxDB credentials from environment variables
