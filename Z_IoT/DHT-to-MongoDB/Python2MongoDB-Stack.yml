@@ -40,41 +40,41 @@ volumes:
 
 ### Only MongoDB ###
 
-version: '3'
-services:
-  mongodb:
-    image: mongo:latest
-    container_name: mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: yourusername
-      MONGO_INITDB_ROOT_PASSWORD: yourpassword
-      MONGO_INITDB_DATABASE: test
-    volumes:
-      - mongodb_data:/data/db
-    ports:
-      - "27017:27017"
-    restart: always
+# version: '3'
+# services:
+#   mongodb:
+#     image: mongo:latest
+#     container_name: mongodb
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: yourusername
+#       MONGO_INITDB_ROOT_PASSWORD: yourpassword
+#       MONGO_INITDB_DATABASE: test
+#     volumes:
+#       - mongodb_data:/data/db
+#     ports:
+#       - "27017:27017"
+#     restart: always
 
-volumes:
-  mongodb_data:
+# volumes:
+#   mongodb_data:
 
 ### Only Python Script ###
 
-version: '3'
-services:
-  dht_sensor_mongo:
-    image: dht_sensor_mongo:latest  # Use the name of your custom image
-    container_name: dht_sensor_mongo
-    privileged: true
-    environment:
-      MONGODB_HOST: 192.168.3.200
-      MONGODB_PORT: 27017  # Specify the MongoDB port
-      MONGO_INITDB_ROOT_USERNAME: yourusername  # Specify the MongoDB root username
-      MONGO_INITDB_ROOT_PASSWORD: yourpassword  # Specify the MongoDB root password
-      MONGO_DB_NAME: sensor_data  # Specify the MongoDB database name
-      MONGO_COLLECTION_NAME: dht_sensor  # Specify the MongoDB collection name
-      DHT_SENSOR_TYPE: DHT22  # Set the DHT sensor type here (DHT11 or DHT22)
-      DHT_PIN: 4  # Set the DHT sensor pin here      
+# version: '3'
+# services:
+#   dht_sensor_mongo:
+#     image: dht_sensor_mongo:latest  # Use the name of your custom image
+#     container_name: dht_sensor_mongo
+#     privileged: true
+#     environment:
+#       MONGODB_HOST: 192.168.3.200
+#       MONGODB_PORT: 27017  # Specify the MongoDB port
+#       MONGO_INITDB_ROOT_USERNAME: yourusername  # Specify the MongoDB root username
+#       MONGO_INITDB_ROOT_PASSWORD: yourpassword  # Specify the MongoDB root password
+#       MONGO_DB_NAME: sensor_data  # Specify the MongoDB database name
+#       MONGO_COLLECTION_NAME: dht_sensor  # Specify the MongoDB collection name
+#       DHT_SENSOR_TYPE: DHT22  # Set the DHT sensor type here (DHT11 or DHT22)
+#       DHT_PIN: 4  # Set the DHT sensor pin here      
 
 
 ### Building dht_sensor_mongo ###
@@ -95,16 +95,16 @@ services:
 #     networks:
 #       - mynetwork
 
-#   dht_sensor_mongo:
-#     build:
-#       context: ./Python2MongoDB.py  #./path/to/your/python/code
-#       dockerfile: Dockerfile
-#     container_name: dht_sensor_mongo
-#     depends_on:
-#       - mongodb
-#     networks:
-#       - mynetwork
-#     privileged: true
+  # dht_sensor_mongo:
+  #   build:
+  #     context: ./Python2MongoDB.py  #./path/to/your/python/code
+  #     dockerfile: Dockerfile
+  #   container_name: dht_sensor_mongo
+  #   depends_on:
+  #     - mongodb
+  #   networks:
+  #     - mynetwork
+  #   privileged: true
   
 
 # networks:

@@ -12,7 +12,7 @@ To install nextcloud in RPi, we need to include MariaDB in the installation (it 
 
 ## Installing Docker Stuff
 
-First things first. [Get Docker](http://localhost:4000/chirpy/posts/selfhosting-with-docker/#install-docker) and Docker-Compose ready in your Rpi.
+First things first. [Get Docker](https://fossengineer.com/docker-first-steps-guide-for-data-analytics/) and Docker-Compose ready in your Rpi.
 
 ## Deploy Nextcloud with Docker
 
@@ -87,4 +87,4 @@ Remember that you can check your device (the RPi here) internal IP adress with:
 hostname -I
 ```
 
-To access nextcloud while being out of home, simply [configure your VPN, for example with tailscale](https://jalcocert.github.io/Linux/debian/ubuntu/linux_vpn_setup/), and add the internal Ip address assign by tail scale as shown two commands before.
+To access nextcloud while being out of home, simply [configure your VPN, for example with tailscale](https://jalcocert.github.io/Linux/debian/ubuntu/linux_vpn_setup/), and add the internal Ip address assign by tailscale as shown two commands before.
