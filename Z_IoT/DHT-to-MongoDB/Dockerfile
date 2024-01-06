@@ -18,8 +18,11 @@ COPY PyToMongoDB.py /app/
 #### to work with RPI 32bits / for 64 use the latest ~4.5.0
 RUN pip install pymongo==3.6.0 
 
+RUN pip3 install RPi.GPIO
+
 RUN pip3 install adafruit-circuitpython-dht==4.0.4
 RUN pip3 install board==1.0
+
 
 
 #RUN pip3 install --install-option="--force-pi" Adafruit_DHT
@@ -32,8 +35,7 @@ RUN pip3 install board==1.0
 #WORKDIR Adafruit_Python_DHT
 #RUN python3 setup.py install --force-pi
 
-
-WORKDIR /app
+#WORKDIR /app
 
 # Run the Python script
 CMD ["python", "Python2MongoDB.py"]

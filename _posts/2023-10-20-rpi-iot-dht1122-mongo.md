@@ -424,10 +424,10 @@ Mongo Express allows us to interact with MongoDB database through the browser.
 
 
 
-> More About [Adafruit_DHT](https://pypi.org/project/Adafruit-DHT/#description) and in [Github](https://github.com/adafruit/Adafruit_Python_DHT). Replaced with [Adafruit_CircuitPython_DHT](https://github.com/adafruit/Adafruit_CircuitPython_DHT).
+> More About [Adafruit_DHT](https://pypi.org/project/Adafruit-DHT/#description) and in [Github](https://github.com/adafruit/Adafruit_Python_DHT). **Replaced with** [Adafruit_CircuitPython_DHT](https://github.com/adafruit/Adafruit_CircuitPython_DHT).
 {: .prompt-info }
 
-If you are getting problems to install Adafuit_DHT, you can try to do it from source:
+If you are getting problems to install the old Adafuit_DHT, you can try to do it from source:
 
 
 ```sh
@@ -438,12 +438,8 @@ python3 setup.py install --force-pi
 #This will bypass any issues you may encounter when doing pip install Adafuit_DHT==1.4.0
 ```
 
-See that it works with:
+Generally, you should just switch to the [Adafruit DHT Circuit Python](https://docs.circuitpython.org/projects/dht/en/latest/examples.html)
 
-```sh
-export DHT_SENSOR_TYPE=DHT22  # Replace 'DHT22' with your desired sensor type
-python3 Python2MongoDB.py
-```
 
 #### Testing pymongo
 
