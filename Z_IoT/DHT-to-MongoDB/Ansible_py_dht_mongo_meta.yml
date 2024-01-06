@@ -1,3 +1,6 @@
+#docker-compose -f ./RPi/Z_IoT/DHT-to-MongoDB/Ansible_py_dht_mongo_meta.yml up -d
+#docker-compose -f ./Ansible_py_dht_mongo_meta.yml up -d
+
 version: '3'
 services:
   mongodb:

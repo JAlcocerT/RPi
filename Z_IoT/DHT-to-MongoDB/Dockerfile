@@ -13,7 +13,17 @@ RUN apt-get update && \
 COPY Python2MongoDB.py /app/
 
 # Install additional dependencies
-RUN pip install Adafruit_DHT==1.4.0 pip install pymongo==4.5.0
+RUN pip install pymongo==4.5.0
+
+#RUN pip install Adafruit_DHT==1.4.0 #not working
+# Building it from source
+RUN git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+
+# Navigate into the cloned directory and install
+WORKDIR Adafruit_Python_DHT
+RUN python3 setup.py install --force-pi
+
+WORKDIR /app
 
 # Run the Python script
-CMD ["python", "Python2MongoDB.py"]m
+CMD ["python", "Python2MongoDB.py"]

@@ -87,6 +87,11 @@ pip install Adafruit_DHT
 pip show Adafruit_DHT
 ```
 
+> More About [Adafruit_DHT](https://pypi.org/project/Adafruit-DHT/#description) and in [Github](https://github.com/adafruit/Adafruit_Python_DHT)
+{: .prompt-info }
+
+
+
 We will be using the pymongo client to push the Data that Python reads from the Sensor to MongoDB.
 
 ```sh
@@ -403,3 +408,15 @@ This approach allows you to combine static content with dynamic Metabase dashboa
 Mongo Express allows us to interact with MongoDB database through the browser.
 
 * <https://github.com/mongo-express/mongo-express>
+
+
+### Installing Adafruit_DHT
+
+If you are getting problems to install Adafuit_DHT, you can try to do it from source:
+
+
+```sh
+git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+cd Adafruit_Python_DHT
+python3 setup.py install --force-pi
+```

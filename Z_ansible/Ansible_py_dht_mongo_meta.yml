@@ -31,7 +31,7 @@
           - portainer_data:/data
 
     # Start the Docker Compose stack
-    - name: Start Docker Compose stack
+    - name: Start IoT DHT to Mongo - Docker Compose stack
       command: docker-compose -f "{{ target_folder }}/{{ custom_compose_file }}" up -d
       become_user: "{{ username }}"
       environment:
