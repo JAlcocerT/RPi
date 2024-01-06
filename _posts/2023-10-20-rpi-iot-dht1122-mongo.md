@@ -215,8 +215,15 @@ volumes:
 
 > Start a new mongosh shell: To start a new mongosh shell, run the following command:
 ```sh
-#docker exec -it mongodb sh
-mongosh --username yourusername --password yourpassword --authenticationDatabase admin
+docker exec -it mongodb sh #get inside mongo container
+
+mongo -u yourusername -p yourpassword --authenticationDatabase admin #start MongoDB Shell with credentials
+#mongosh --username yourusername --password yourpassword --authenticationDatabase admin
+
+show dbs
+use sensor_data
+show collections
+
 ```
 {: .prompt-info }
 
@@ -419,4 +426,18 @@ If you are getting problems to install Adafuit_DHT, you can try to do it from so
 git clone https://github.com/adafruit/Adafruit_Python_DHT.git
 cd Adafruit_Python_DHT
 python3 setup.py install --force-pi
+
+#This will bypass any issues you may encounter when doing pip install Adafuit_DHT==1.4.0
+```
+
+#### Testing in Python venv
+
+You can always [test Python libraries](https://fossengineer.com/guide-python/#how-to-install-python-dependencies) in a virtual environment:
+
+```sh
+python3 -m venv my_virtual_env
+source my_virtual_env/bin/activate
+
+pip install Adafruit_DHT==1.4.0
+#deactivate
 ```

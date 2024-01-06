@@ -36,6 +36,9 @@ services:
       DHT_SENSOR_TYPE: DHT22  # Set the DHT sensor type here (DHT11 or DHT22)
       DHT_PIN: 4  # Set the DHT sensor pin here        
     privileged: true 
+    #command: python3 /app/Python2MongoDB.py
+    command: tail -f /dev/null #keep it running
+
 
   # dht_sensor_mongo:
   #   image: dht_sensor_mongo:latest  # Use the name of your custom image

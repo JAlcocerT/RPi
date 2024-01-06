@@ -9,6 +9,8 @@ RUN apt-get update && \
     apt-get install -y python3-dev python3-pip && \
     python3 -m pip install --upgrade pip setuptools wheel
 
+RUN apt-get install -y git
+
 # Copy the local code to the container
 COPY Python2MongoDB.py /app/
 
