@@ -12,7 +12,7 @@ RUN apt-get update && \
 RUN apt-get install -y git libgpiod2
 
 # Copy the local code to the container
-COPY Python2MongoDB.py /app/
+COPY PyToMongoDB.py /app/
 
 # Install additional dependencies
 #### to work with RPI 32bits / for 64 use the latest ~4.5.0
