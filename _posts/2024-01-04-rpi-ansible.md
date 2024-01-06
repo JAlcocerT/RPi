@@ -35,9 +35,11 @@ So you want to have the project that pulls data from DHT11 or DHT22, sends it fr
 No issues, just execute:
 
 ```sh
-ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_mongo_meta.yml -i inventory.ini #execute Meta Project Playbook
+ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_mongo_arm32.yml -i inventory.ini #execute Meta Project Playbook
+#ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_mongo_arm64.yml -i inventory.ini #execute Meta Project Playbook
 
-#docker-compose -f ./RPi/Z_IoT/DHT-to-MongoDB/Ansible_py_dht_mongo_meta.yml up -d # Basically it spins up Docker and This Stack
+
+#docker-compose -f ./RPi/Z_IoT/DHT-to-MongoDB/Ansible_py_dht_mongo_arm64.yml up -d # Basically it spins up Docker and This Stack
 ```
 
 

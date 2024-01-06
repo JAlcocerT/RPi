@@ -5,7 +5,7 @@ import adafruit_dht
 from pymongo import MongoClient
 
 # Get the DHT sensor type from environment variable
-dht_sensor_type = os.environ.get('DHT_SENSOR_TYPE', 'DHT11')
+dht_sensor_type = os.environ.get('DHT_SENSOR_TYPE', 'DHT22')
 
 # Initialize the DHT sensor
 if dht_sensor_type == 'DHT11':
@@ -14,7 +14,7 @@ elif dht_sensor_type == 'DHT22':
     dhtDevice = adafruit_dht.DHT22(board.D4, use_pulseio=False)
 else:
     print(f"Invalid DHT sensor type '{dht_sensor_type}'. Defaulting to DHT11.")
-    dhtDevice = adafruit_dht.DHT11(board.D4, use_pulseio=False)
+    dhtDevice = adafruit_dht.DHT22(board.D4, use_pulseio=False)
 
 # Configure MongoDB connection parameters
 mongo_host = os.environ.get('MONGODB_HOST', 'localhost')  # Default to 'localhost' if not set
