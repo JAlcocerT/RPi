@@ -87,7 +87,9 @@ pip install Adafruit_DHT
 pip show Adafruit_DHT
 ```
 
-> More About [Adafruit_DHT](https://pypi.org/project/Adafruit-DHT/#description) and in [Github](https://github.com/adafruit/Adafruit_Python_DHT)
+
+
+> More About [Adafruit_CircuitPython_DHT](https://pypi.org/project/adafruit-circuitpython-dht/) and in [Github](https://github.com/adafruit/Adafruit_CircuitPython_DHT)
 {: .prompt-info }
 
 
@@ -213,7 +215,8 @@ volumes:
   mongodb_data:
 ```
 
-> Start a new mongosh shell: To start a new mongosh shell, run the following command:
+Start a new mongosh shell and check everything works:
+
 ```sh
 docker exec -it mongodb sh #get inside mongo container
 
@@ -222,10 +225,10 @@ mongo -u yourusername -p yourpassword --authenticationDatabase admin #start Mong
 
 show dbs
 use sensor_data
-show collections
-
+db.dht_sensor.find().sort({timestamp: -1}).limit(5)
+#show collections
 ```
-{: .prompt-info }
+
 
 
 
@@ -418,6 +421,11 @@ Mongo Express allows us to interact with MongoDB database through the browser.
 
 
 ### Installing Adafruit_DHT
+
+
+
+> More About [Adafruit_DHT](https://pypi.org/project/Adafruit-DHT/#description) and in [Github](https://github.com/adafruit/Adafruit_Python_DHT). Replaced with [Adafruit_CircuitPython_DHT](https://github.com/adafruit/Adafruit_CircuitPython_DHT).
+{: .prompt-info }
 
 If you are getting problems to install Adafuit_DHT, you can try to do it from source:
 
