@@ -7,10 +7,21 @@ tags: [Sensors,Python,MongoDB]
 render_with_liquid: false
 ---
 
+## Raspberry Pi - Mongo and Databricks
+
+Raspberry Pi Project to collect and then send IoT Sensor Data to Mongo and use Analyze it with Databricks.
+
+```mermaid
+sequenceDiagram
+    Job --> The Python Script
+    Job --> MongoDB Cloud Setup
+    Job --> Databricks
+```
+
 ### ToDo list
 
 - [ ] Job
-  + [x] The Python Script
+  + [x] The Python Script - Pushing Data from Python to Mongo is Done already - From [Project: Py to Mongo To Metabase](https://jalcocert.github.io/RPi/posts/rpi-iot-dht1122-mongo/)
   + [ ] MongoDB Cloud Setup
   + [ ] Databricks
 
@@ -70,7 +81,7 @@ services:
 ```
 
 
-## Checking that it works
+### Checking that MongoDB works
 
 Get an interactive terminal of your MongoDB container and login to the Mongo Shell:
 

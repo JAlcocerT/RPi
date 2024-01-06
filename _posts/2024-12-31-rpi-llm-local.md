@@ -1,7 +1,7 @@
 ---
-title: RPi IoT Project - SimpleCV and OpenCV + Scrypted & HA
+title: LLMs
 author: JAlcocerT
-date: 2024-01-01 00:10:00 +0800
+date: 2024-12-31 00:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors,Python,MongoDB]
 image:

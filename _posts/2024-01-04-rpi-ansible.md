@@ -1,9 +1,9 @@
 ---
-title: Adjust HDMI Signal
+title: IoT Projects with Ansible and Raspberry Pi
 author: JAlcocerT
 date: 2024-01-04 00:34:00 +0800
-categories: [RPi Setup]
-tags: [RPi 101]
+categories: [IoT & Data Analytics]
+tags: [Self-Hosting]
 ---
 
 

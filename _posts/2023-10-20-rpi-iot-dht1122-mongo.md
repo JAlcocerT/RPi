@@ -10,11 +10,15 @@ image:
 render_with_liquid: false
 ---
 
-In this project we will be collecting **Temperature and Humidity Data** from a DHT11 or a DHT22 Sensor working together with a Raspberry Pi.
+## Raspberry IoT with MongoDB and Metabase
+
+In this IoT Project we will be collecting **Temperature and Humidity Data** from a DHT11 or a DHT22 Sensor working together with a Raspberry Pi.
 
 The data store will be in MongoDB, which will live in a Docker container.
 
-## Before Starting
+Then, we will visualize the IoT data with Metabase.
+
+### Before Starting
 
 
 | Hardware             | Code                  | Data Analytics Stack |
