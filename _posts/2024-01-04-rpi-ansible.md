@@ -24,10 +24,8 @@ sudo apt install ansible
 3. Clone this Repo
 
 ```sh
-git clone https://github.com/JAlcocerT/RPi ./RPi1
+git clone https://github.com/JAlcocerT/RPi ./RPi2
 #cd ./RPi/Z_ansible
-
-
 ```
 
 ### Mongo Project
@@ -38,10 +36,24 @@ No issues, just execute:
 
 ```sh
 ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_mongo_meta.yml -i inventory.ini #execute Meta Project Playbook
+
+#docker-compose -f ./RPi/Z_IoT/DHT-to-MongoDB/Ansible_py_dht_mongo_meta.yml up -d # Basically it spins up Docker and This Stack
 ```
 
 
 > Im Talking about: [Raspberry Pi - DHT to MongoDB](https://jalcocert.github.io/RPi/posts/rpi-iot-dht1122-mongo/)
+{: .prompt-info }
+
+
+You can always get inside the created containers with:
+
+```sh
+docker exec -it mongodb sh
+docker exec -it dht_sensor_mongo sh
+```
+
+
+> Working for me on [RaspiOS Bullseye](https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-2023-05-03/), not in Bookworm due to Adafruit not detecting the platform properly.
 {: .prompt-info }
 
 
@@ -53,3 +65,7 @@ ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_influx_grafana.yml -i inventory.
 
 > This is the one: [Raspberry Pi - DHT to InfluxDB](https://jalcocert.github.io/RPi/posts/rpi-iot-dht11-influxdb/)
 {: .prompt-info }
+
+
+## FAQ
+

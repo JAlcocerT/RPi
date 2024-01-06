@@ -430,6 +430,21 @@ python3 setup.py install --force-pi
 #This will bypass any issues you may encounter when doing pip install Adafuit_DHT==1.4.0
 ```
 
+See that it works with:
+
+```sh
+export DHT_SENSOR_TYPE=DHT22  # Replace 'DHT22' with your desired sensor type
+python3 Python2MongoDB.py
+```
+
+#### Testing pymongo
+
+With the latest pip version, you can try:
+
+```sh
+apt install python3-pymongo
+```
+
 #### Testing in Python venv
 
 You can always [test Python libraries](https://fossengineer.com/guide-python/#how-to-install-python-dependencies) in a virtual environment:
