@@ -1,5 +1,5 @@
 ---
-- name: Install Docker on Ubuntu's
+- name: Raspberry IoT DHT and MongoDB
   hosts: localhost
   become: yes
   vars:
@@ -31,8 +31,13 @@
           - portainer_data:/data
 
     # Start the Docker Compose stack
+    # - name: Start IoT DHT to Mongo - Docker Compose stack
+    #   command: docker-compose -f "{{ target_folder }}/{{ custom_compose_file }}" up -d
+    #   become_user: "{{ username }}"
+    #   environment:
+    #     HOME: "/home/{{ username }}"  # Set the HOME environment variable
     - name: Start IoT DHT to Mongo - Docker Compose stack
-      command: docker-compose -f "{{ target_folder }}/{{ custom_compose_file }}" up -d
+      shell: docker-compose -f /RPi/Z_IoT/DHT-to-MongoDB/Ansible_py_dht_mongo_meta.yml up -d
       become_user: "{{ username }}"
       environment:
         HOME: "/home/{{ username }}"  # Set the HOME environment variable

@@ -24,7 +24,7 @@ sudo apt install ansible
 3. Clone this Repo
 
 ```sh
-git clone https://github.com/JAlcocerT/RPi ./RPi2
+git clone https://github.com/JAlcocerT/RPi ./RPi
 #cd ./RPi/Z_ansible
 ```
 

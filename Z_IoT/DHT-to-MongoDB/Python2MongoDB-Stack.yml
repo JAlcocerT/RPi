@@ -5,7 +5,7 @@
 version: '3'
 services:
   mongodb:
-    image: mongo:latest
+    image: mongo:latest #apcheamitru/arm32v7-mongo #mongo:latest
     container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: yourusername
@@ -32,6 +32,9 @@ services:
       MONGO_COLLECTION_NAME: dht_sensor  # Specify the MongoDB collection name
       DHT_SENSOR_TYPE: DHT22  # Set the DHT sensor type here (DHT11 or DHT22)
       DHT_PIN: 4  # Set the DHT sensor pin here      
+    #command: python3 Python2MongoDB.py
+    #command: tail -f /dev/null #keep it running
+
 
 volumes:
   mongodb_data:
