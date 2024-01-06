@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongodb:
-    image: mongo:latest #apcheamitru/arm32v7-mongo
+    image: apcheamitru/arm32v7-mongo #mongo:latest #apcheamitru/arm32v7-mongo
     container_name: mongodb
     environment:
       MONGO_INITDB_ROOT_USERNAME: yourusername
@@ -16,7 +16,7 @@ services:
 
   dht_sensor_mongo:
     build:
-      context: ./Python2MongoDB.py  #./path/to/your/python/code
+      context: . #./Python2MongoDB.py  #./path/to/your/python/code
       dockerfile: Dockerfile
     container_name: dht_sensor_mongo
     depends_on:

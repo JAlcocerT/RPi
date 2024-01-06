@@ -26,8 +26,10 @@ The data store will be in MongoDB, which will live in a Docker container.
 ![Desktop View](/img/RPi4-DHT22-FlowChart.png){: width="972" height="589" }
 _From DHT sensor to Metabase - Our Workflow_
 
->  We can use Raspberry Pi 64 bits for this project. Or to run the Python script in a 32bits RPi and Mongo Docker image in ARM64/X86.
-We can use unofficial **apcheamitru/arm32v7-mongo** image as well
+>  We can use Raspberry Pi 64 bits for this project.
+ Or to run the Python script in a 32bits RPi and Official Mongo with Docker image in ARM64/X86.
+We can use unofficial **apcheamitru/arm32v7-mongo** image as well.
+For Metabase visualization, we need x86.
 {: .prompt-info }
 
 ### The Sensor: DHT11 or DHT22
@@ -267,7 +269,7 @@ _Sending Temp and Humidity data successfully from a Raspberry Pi 4 and DHT senso
 
 What about the visualization? Let's give it a try to [Metabase](https://www.metabase.com/)
 
-We can install it with Docker by using this configuration below:
+We can install it with Docker by using [this configuration](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT-to-MongoDB) below:
 
 ```yml
 version: '3'
@@ -358,7 +360,9 @@ Metabase provides an embedding code snippet that you can use to include a Metaba
 
 ### Metabase and Satic Web Pages?
 
-Yes, you can use the **Metabase embedding feature in a static webpage**. The static webpage will remain static, and you can embed a Metabase dashboard within it. The embedded dashboard will be loaded dynamically into the static page, allowing you to display live data and visualizations without the need for server-side scripting.
+Yes, you can use the **Metabase embedding feature in a [Static Web Page](https://fossengineer.com/tags/web/)**.
+
+The static webpage will remain static (*yeah*), and you can embed a Metabase dashboard within it. The embedded dashboard will be loaded dynamically into the static page, allowing you to display live data and visualizations without the need for server-side scripting.
 
 To achieve this, follow the steps mentioned earlier to generate the embedding code from Metabase. You will receive an HTML code snippet that you can include in your static webpage's source code.
 
