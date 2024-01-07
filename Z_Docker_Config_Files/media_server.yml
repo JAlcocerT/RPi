@@ -1,0 +1,42 @@
+version: "2.1"
+services:
+
+  kodi:
+    container_name: kodi
+    image: linuxserver/kodi-headless
+    restart: always
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ~/Docker/kodi:/config/.kodi
+    ports:
+      - 8088:8080
+      - 9098:9090
+      - "9777:9777/udp"
+
+version: "3"
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    ports:
+      - "4533:4533"
+    environment:
+      # Optional: put your config options customization here. Examples:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info  
+      ND_BASEURL: ""
+    volumes:
+      - "~/Docker/navidrome/data:/data"
+      - "~/Docker/Syncthing/config/Aficiones/Musica:/music:ro"      
+
+  filebrowser:
+    image: filebrowser/filebrowser #https://github.com/filebrowser/filebrowser
+    container_name: filebrowser
+    ports:
+      - 8080:80
+    volumes:
+      - /home/Docker/FileBrowser/config:/config
+      - /home/Downloads:/srv
+    restart: unless-stopped   

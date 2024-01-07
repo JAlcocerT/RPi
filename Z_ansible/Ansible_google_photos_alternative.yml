@@ -1,0 +1,44 @@
+---
+- name: Raspberry IoT - Quick Photo Sync
+  hosts: localhost
+  become: yes
+  vars:
+      username: jalcocert  # Replace with your username
+      target_folder: /home/jalcocert/RPi/Z_IoT/Z_Docker_Config_Files  # Replace with the actual path
+      custom_compose_file: google_photos_alternative.yml  # Replace with your custom filename      
+  tasks:
+    # - name: Download and install Docker
+    #   shell: |
+    #     curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+    #     sh /tmp/get-docker.sh        
+
+    # - name: Install docker-compose
+    #   apt:
+    #     name: docker-compose
+    #     state: present
+    #     update_cache: yes
+
+    # - name: Run Portainer Docker container
+    #   docker_container:
+    #     name: portainer
+    #     image: portainer/portainer-ce
+    #     ports:
+    #       - "8000:8000"
+    #       - "9000:9000"
+    #     restart_policy: always
+    #     volumes:
+    #       - /var/run/docker.sock:/var/run/docker.sock
+    #       - portainer_data:/data
+
+    - name: Copy custom Docker Compose file to the target folder
+      copy:
+        src: "{{ custom_compose_file }}"
+        dest: "{{ target_folder }}/{{ custom_compose_file }}"
+      when: not ansible_check_mode  # Skip copying in check mode
+
+    - name: Run docker-compose up -d
+      command: docker-compose -f "{{ target_folder }}/{{ custom_compose_file }}" up -d
+      args:
+        chdir: "{{ target_folder }}"    
+
+### ansible-playbook ./RPi/Z_ansible/Ansible_google_photos_alternative.yml -i inventory.ini

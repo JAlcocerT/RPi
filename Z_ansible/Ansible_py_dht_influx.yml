@@ -36,3 +36,5 @@
       become_user: "{{ username }}"
       environment:
         HOME: "/home/{{ username }}"  # Set the HOME environment variable
+
+### ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_influx.yml -i inventory.ini

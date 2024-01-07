@@ -1,0 +1,77 @@
+version: "2.1"
+services:
+
+  rutorrent:
+    image: linuxserver/rutorrent #https://hub.docker.com/r/linuxserver/rutorrent/tags
+    container_name: rutorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /home/Docker/rutorrent/config:/config
+      - /home/Downloads:/downloads
+    network_mode: "container:your_gluetun_container_name" #change gluetun to your VPN container name   
+    #network_mode: "service:your_gluetun_service_name" #change gluetun to your VPN service name  
+    # ports: #included in Gluetun container
+    restart: unless-stopped
+    ports: #make sure to include these for qbittorrent to work
+      - 8090:80    
+      - 6881:6881/udp
+      - 5000:5000  
+      - 51413:51413   
+
+  gluetun:
+    image: qmcgaw/gluetun #https://github.com/qdm12/gluetun
+    container_name: your_gluetun_container_name    
+    cap_add:
+      - NET_ADMIN
+    ports: #make sure to include these for rutorrent to work
+      - 8090:80    
+      - 6881:6881/udp
+      - 5000:5000  
+      - 51413:51413      
+    environment:
+      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=you_will_need_this_input_from_the_vpn_config_file
+      - WIREGUARD_ADDRESSES=and_also_the_ipv4_version
+      - SERVER_CITIES=New York NY #choose any available city
+    volumes:
+      - /Home/Docker/Gluetun:/gluetun
+    restart: unless-stopped    
+
+  filebrowser:
+    image: filebrowser/filebrowser #https://github.com/filebrowser/filebrowser
+    container_name: filebrowser
+    ports:
+      - 8080:80
+    volumes:
+      - /home/Docker/FileBrowser/config:/config
+      - /home/Downloads:/srv
+    restart: unless-stopped   
+
+  jdownloader-2:
+    image: jlesage/jdownloader-2
+    ports:
+      - "5800:5800"
+    volumes:
+      - "/home/Docker/jdownloader/appdata/jdownloader-2:/config:rw"
+      - "/home/Downloads:/output:rw"    
+
+  # qbittorrent:
+  #   image: ghcr.io/linuxserver/qbittorrent
+  #   container_name: qbittorrent
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Madrid
+  #     - WEBUI_PORT=6011 
+  #   volumes:
+  #     - /home/Docker/qbittorrent/config:/config
+  #     - /home/Downloads:/downloads
+  #   ports:
+  #     - 6081:6881
+  #     - 6081:6881/udp
+  #     - 6011:6011  # UI PORT
+  #   restart: unless-stopped    
