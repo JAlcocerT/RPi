@@ -3,7 +3,7 @@ title: Raspberry Pi - Self-Hosting anything with Docker
 author: JAlcocerT
 date: 2022-07-25 14:10:00 +0800
 categories: [RPi Setup]
-tags: [Self-Hosting, Docker]
+tags: [Self-Hosting, Docker, RPi 101]
 render_with_liquid: false
 ---
 

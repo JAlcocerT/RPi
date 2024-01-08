@@ -2,7 +2,7 @@
 title: Raspberry Pi as your Cloud Storage -  with Nextcloud & Docker
 author: JAlcocerT
 date: 2022-09-01 14:10:00 +0800
-categories: [RPi Setup]
+categories: [Make your Raspberry Useful]
 tags: [Self-Hosting, Docker]
 render_with_liquid: false
 ---

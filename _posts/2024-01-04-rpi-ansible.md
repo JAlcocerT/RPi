@@ -3,7 +3,7 @@ title: IoT Projects with Ansible and Raspberry Pi
 author: JAlcocerT
 date: 2024-01-04 00:34:00 +0800
 categories: [IoT & Data Analytics]
-tags: [Self-Hosting]
+tags: [Self-Hosting, Docker]
 ---
 
 So you have a Raspberry Pi and want to get started with IoT Project.
