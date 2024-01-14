@@ -108,6 +108,68 @@ If you are using unbound DNS as your DNS server, you may need to flush the DNS c
 dscacheutil -flushcache
 ```
 
+Wait, what's occupying already my port 53?
+
+```sh
+sudo netstat -tuln | grep :53
+
+
+sudo lsof -i :53
+sudo systemctl stop systemd-resolved
+#sudo systemctl disable systemd-resolved
+#sudo systemctl enable systemd-resolved
+
+
+#systemctl list-units --type=service | grep 'running'
+```
+
+### Deploy PiHole with Unbound
+
+```yml
+version: '3'
+
+networks:
+  dns_net:
+    driver: bridge
+    ipam:
+        config:
+        - subnet: 172.16.0.0/16 #check in portainer Nenwork Tab which one you have available (sort and see)
+
+services:
+  pihole:
+    container_name: pihole
+    hostname: pihole
+    image: pihole/pihole:latest
+    networks:
+      dns_net:
+        ipv4_address: 172.16.0.7
+    ports:
+    - "53:53/tcp"
+    - "53:53/udp"
+    - "85:80/tcp"
+    #- "443:443/tcp"
+    environment:
+      TZ: 'Europe/London'
+      WEBPASSWORD: 'password'
+      PIHOLE_DNS_: '172.23.0.8#5053'
+    volumes:
+    - '/home/ubuntu/docker/pihole/etc-pihole/:/etc/pihole/'
+    - '/home/ubuntu/docker/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    restart: unless-stopped
+  unbound:
+    container_name: unbound #https://github.com/MatthewVance/unbound-docker/issues/58
+    image: mvance/unbound-rpi #mvance/unbound:latest
+    networks:
+      dns_net:
+        ipv4_address: 172.16.0.8
+    volumes:
+    - /home/ubuntu/docker/unbound:/opt/unbound/etc/unbound
+    ports:
+    - "5053:53/tcp"
+    - "5053:53/udp"
+    restart: unless-stopped
+```
+
 
 ## SearXNG
 

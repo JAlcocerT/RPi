@@ -10,7 +10,9 @@ So you have a Raspberry Pi and want to get started with IoT Project.
 
 But let me guess, you dont have time to read all the Docs, you just want to connect the wirings and get the Data Flowing.
 
-If that resonates with you, keep reading - I will show you how to **leverage Ansible**, an automation tool to Spin up in few IoT Projects with the RPi.
+If that resonates with you, keep reading - I will show you how to **leverage Ansible**.
+
+[Ansible is an automation tool](https://jalcocert.github.io/Linux/docs/linux__cloud.md/ansible/) that Pros are using all around and it can Spin up with one liners your IoT Projects with the RPi.
 
 > Yep, still, you will have to connect the cables 😝
 {: .prompt-info }

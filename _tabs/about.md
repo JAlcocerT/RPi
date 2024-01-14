@@ -49,11 +49,13 @@ Some YT channels:
 
 * <https://www.linuxfordevices.com/>
 * <https://ugeek.github.io/>
+* <https://pi-hosted.com/>
 
 Great Github repos:
 
 * <https://github.com/veggiemonk/awesome-docker>
 * <https://github.com/awesome-foss/awesome-sysadmin#dns---servers>
+* <https://github.com/anderspitman/awesome-tunneling>
 
 
 These particularly are great to discover new Services:
