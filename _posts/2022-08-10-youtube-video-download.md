@@ -68,8 +68,9 @@ docker compose up -d
 ```
 
 
-The project: <https://github.com/TeamPiped/Piped>
+The project is public at Github: <https://github.com/TeamPiped/Piped>
 
+---
 
 ## FAQ
 

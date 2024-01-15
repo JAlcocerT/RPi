@@ -123,7 +123,25 @@ sudo systemctl stop systemd-resolved
 #systemctl list-units --type=service | grep 'running'
 ```
 
+And what's my current DNS?
+
+```sh
+ip a #get netwk interface to check, something like eth0, wlan...
+nmcli device show <your_netwk_interface> | grep IP4.DNS
+
+#sudo nmcli connection modify <your_connection_name> ipv4.dns "192.168.3.200 9.9.9.9"
+```
+
+```sh
+cat /etc/resolv.conf
+```
+
+* <https://dnscheck.tools/>
+* <https://cmdns.dev.dns-oarc.net/>
+
 ### Deploy PiHole with Unbound
+
+Go to: `http://192.168.3.200:85/admin/login.php`
 
 ```yml
 version: '3'
@@ -158,6 +176,52 @@ services:
     restart: unless-stopped
   unbound:
     container_name: unbound #https://github.com/MatthewVance/unbound-docker/issues/58
+    image: mvance/unbound-rpi #mvance/unbound:latest
+    networks:
+      dns_net:
+        ipv4_address: 172.16.0.8
+    volumes:
+    - /home/ubuntu/docker/unbound:/opt/unbound/etc/unbound
+    ports:
+    - "5053:53/tcp"
+    - "5053:53/udp"
+    restart: unless-stopped
+```
+
+
+```yml
+version: '3'
+
+networks:
+  dns_net:
+    driver: bridge
+    ipam:
+        config:
+        - subnet: 172.16.0.0/16 #check in portainer Nenwork Tab which one you have available (sort and see)
+
+services:
+  pihole:
+    container_name: pihole
+    hostname: pihole
+    image: pihole/pihole:latest
+    networks:
+      dns_net:
+        ipv4_address: 172.16.0.7
+    ports:
+    - "53:53/tcp"
+    - "53:53/udp"
+    - "85:80/tcp"
+    #- "443:443/tcp"
+    environment:
+      TZ: 'Europe/London'
+      WEBPASSWORD: 'password'
+      PIHOLE_DNS_: '172.23.0.8#5053'
+    volumes:
+    - '/home/ubuntu/docker/pihole/etc-pihole/:/etc/pihole/'
+    - '/home/ubuntu/docker/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    restart: unless-stopped
+  unbound:
+    container_name: unbound
     image: mvance/unbound-rpi #mvance/unbound:latest
     networks:
       dns_net:

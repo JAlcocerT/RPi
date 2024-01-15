@@ -311,6 +311,9 @@ Acces it at: http://localhost:3000
 ![Desktop View](/img/metabase-mongoDB.JPG){: width="972" height="589" }
 _Metabase Ready to Roll_
 
+
+---
+
 ## FAQ
 
 
@@ -460,3 +463,7 @@ source my_virtual_env/bin/activate
 pip install Adafruit_DHT==1.4.0
 #deactivate
 ```
+
+Thanks to: <https://pimylifeup.com/raspberry-pi-humidity-sensor-dht22/> for inspiration of this project.
+
+And to: <https://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/python-setup>
