@@ -1,0 +1,589 @@
+---
+title: "Raspberry Pi: Temp and Humidity with DHT11 and MongoDB"
+date: 2023-08-29T23:20:21+01:00
+draft: true
+tags: ["Self-Hosting"]
+---
+
+# Raspberry Pi together with: Dht11, Python and Docker
+
+With MongoDB -> requires ARM64/x86 version <https://github.com/mongodb/mongo/blob/master/docs/building.md>
+
+https://www.dcddcc.com/blog/2018-06-09-building-mongodb-for-32-bit-ARM-on-debian-ubuntu.html
+
+<https://hub.docker.com/r/arm7/mongo/tags>
+
+<https://hub.docker.com/r/apcheamitru/arm32v7-mongo>
+https://hub.docker.com/r/apcheamitru/arm32v7-mongo
+
+docker build -t mongo_db .
+
+GND
+5v (or 3v3)
+GPIO4
+
+## Python
+
+### Simple print
+
+```py
+import Adafruit_DHT
+import time
+
+# Set the DHT sensor type (DHT22 or DHT11)
+sensor_type = Adafruit_DHT.DHT22
+
+# Set the GPIO pin where the sensor is connected
+gpio_pin = 4  # Change this to the actual GPIO pin number
+
+try:
+    while True:
+        # Read temperature and humidity from the sensor
+        humidity, temperature = Adafruit_DHT.read_retry(sensor_type, gpio_pin)
+
+        if humidity is not None and temperature is not None:
+            # Print the values
+            print(f'Temperature: {temperature:.2f}°C')
+            print(f'Humidity: {humidity:.2f}%')
+        else:
+            print('Failed to retrieve data from the sensor')
+
+        # Delay for a while (in seconds) before the next reading
+        time.sleep(2)
+
+except KeyboardInterrupt:
+    print('Program terminated by user')
+
+```
+
+### With MariaDB
+
+
+```yml
+
+version: '3'
+services:
+  mariadb:
+    image: linuxserver/mariadb:arm32v7-10.6.13 #arm32v7-latest but wrong arch
+    container_name: my-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password_here
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: your_username_here
+      MYSQL_PASSWORD: your_password_here
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mariadb_data:
+
+
+
+# CREATE TABLE sensor_data (
+#     id INT AUTO_INCREMENT PRIMARY KEY,
+#     timestamp DATETIME NOT NULL,
+#     temperature DECIMAL(5, 2) NOT NULL,
+#     humidity DECIMAL(5, 2) NOT NULL
+# );
+
+
+#mysql -u root -p
+#use mydatabase
+#SHOW TABLES;
+#DESCRIBE sensor_data;
+#SELECT * from sensor_data;
+#SELECT * FROM sensor_data ORDER BY timestamp DESC;
+
+```
+
+pip install mysql-connector-python
+
+
+**THIS BELOW WORKS AND PUSHES FROM RPI TO DOCKER CONTAINER MARIADB WITHOUT ISSUES< BUT NOT WORKING INSIDE THE CONTAINER**
+
+```py
+import Adafruit_DHT
+import time
+import mysql.connector
+
+# Set the DHT sensor type (DHT22 or DHT11)
+sensor_type = Adafruit_DHT.DHT22
+
+# Set the GPIO pin where the sensor is connected
+gpio_pin = 4  # Change this to the actual GPIO pin number
+
+# Database connection configuration
+db_config = {
+    "user": "your_username_here",
+    "password": "your_password_here",
+    "host": "localhost",  # Change if your MariaDB is on a different host
+    "database": "mydatabase",  # Change to your database name
+}
+
+try:
+    # Connect to the MariaDB database
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+
+    while True:
+        # Read temperature and humidity from the sensor
+        humidity, temperature = Adafruit_DHT.read_retry(sensor_type, gpio_pin)
+
+        if humidity is not None and temperature is not None:
+            # Print the values
+            print(f'Temperature: {temperature:.2f}°C')
+            print(f'Humidity: {humidity:.2f}%')
+
+            # Get the current timestamp
+            current_time = time.strftime('%Y-%m-%d %H:%M:%S')
+
+            # Insert sensor data into the database with timestamp
+            insert_query = "INSERT INTO sensor_data (timestamp, temperature, humidity) VALUES (%s, %s, %s)"
+            data = (current_time, temperature, humidity)
+            cursor.execute(insert_query, data)
+            connection.commit()
+        else:
+            print('Failed to retrieve data from the sensor')
+
+        # Delay for a while (in seconds) before the next reading
+        time.sleep(2)
+
+except KeyboardInterrupt:
+    print('Program terminated by user')
+finally:
+    # Close the database connection when done
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
+
+```
+
+
+```py
+
+import os
+import Adafruit_DHT
+import time
+import mysql.connector
+
+# Set the DHT sensor type (DHT22 or DHT11)
+sensor_type = Adafruit_DHT.DHT22
+
+# Set the GPIO pin where the sensor is connected
+gpio_pin = 4  # Change this to the actual GPIO pin number
+
+# Read database connection details and table name from environment variables
+db_config = {
+    "user": os.getenv("DB_USER", "default_username"),
+    "password": os.getenv("DB_PASSWORD", "default_password"),
+    "host": os.getenv("DB_HOST", "localhost"),
+    "database": os.getenv("DB_NAME", "mydatabase"),
+}
+table_name = os.getenv("TABLE_NAME", "sensor_data")
+
+try:
+    # Connect to the MariaDB database
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+
+    # Create the table if it doesn't exist
+    create_table_query = f"""
+    CREATE TABLE IF NOT EXISTS {table_name} (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        timestamp DATETIME NOT NULL,
+        temperature DECIMAL(5, 2) NOT NULL,
+        humidity DECIMAL(5, 2) NOT NULL
+    )
+    """
+    cursor.execute(create_table_query)
+
+    while True:
+        # Read temperature and humidity from the sensor
+        humidity, temperature = Adafruit_DHT.read_retry(sensor_type, gpio_pin)
+
+        if humidity is not None and temperature is not None:
+            # Print the values
+            print(f'Temperature: {temperature:.2f}°C')
+            print(f'Humidity: {humidity:.2f}%')
+
+            # Get the current timestamp
+            current_time = time.strftime('%Y-%m-%d %H:%M:%S')
+
+            # Insert sensor data into the database with timestamp
+            insert_query = f"INSERT INTO {table_name} (timestamp, temperature, humidity) VALUES (%s, %s, %s)"
+            data = (current_time, temperature, humidity)
+            cursor.execute(insert_query, data)
+            connection.commit()
+        else:
+            print('Failed to retrieve data from the sensor')
+
+        # Delay for a while (in seconds) before the next reading
+        time.sleep(2)
+
+except KeyboardInterrupt:
+    print('Program terminated by user')
+finally:
+    # Close the database connection when done
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
+```
+
+
+```py
+import Adafruit_DHT
+import time
+import mysql.connector
+import os  # Import the os module
+
+# Set the DHT sensor type (DHT22 or DHT11)
+sensor_type = Adafruit_DHT.DHT22
+
+# Set the GPIO pin where the sensor is connected
+gpio_pin = 4  # Change this to the actual GPIO pin number
+
+# Read database connection details and table name from environment variables
+db_config = {
+    "user": os.getenv("DB_USER", "default_username"),
+    "password": os.getenv("DB_PASSWORD", "default_password"),
+    "host": os.getenv("DB_HOST", "localhost"),
+    "database": os.getenv("DB_NAME", "mydatabase"),
+}
+table_name = os.getenv("TABLE_NAME", "sensor_data")
+
+try:
+    # Connect to the MariaDB database
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+
+    # Create the table if it doesn't exist
+    create_table_query = f"""
+    CREATE TABLE IF NOT EXISTS {table_name} (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        timestamp DATETIME NOT NULL,
+        temperature DECIMAL(5, 2) NOT NULL,
+        humidity DECIMAL(5, 2) NOT NULL
+    )
+    """
+    cursor.execute(create_table_query)
+
+    while True:
+        # Read temperature and humidity from the sensor
+        humidity, temperature = Adafruit_DHT.read_retry(sensor_type, gpio_pin)
+
+        if humidity is not None and temperature is not None:
+            # Print the values
+            print(f'Temperature: {temperature:.2f}°C')
+            print(f'Humidity: {humidity:.2f}%')
+
+            # Get the current timestamp
+            current_time = time.strftime('%Y-%m-%d %H:%M:%S')
+
+            # Insert sensor data into the database with timestamp
+            insert_query = f"INSERT INTO {table_name} (timestamp, temperature, humidity) VALUES (%s, %s, %s)"
+            data = (current_time, temperature, humidity)
+            cursor.execute(insert_query, data)
+            connection.commit()
+        else:
+            print('Failed to retrieve data from the sensor')
+
+        # Delay for a while (in seconds) before the next reading
+        time.sleep(2)
+
+except KeyboardInterrupt:
+    print('Program terminated by user')
+except mysql.connector.Error as e:
+    print(f"Database error: {e}")
+finally:
+    # Close the database connection when done (if it's defined)
+    if 'connection' in locals() and connection.is_connected():
+        cursor.close()
+        connection.close()
+```
+
+
+**connects to orange**
+
+```py
+
+import os
+import Adafruit_DHT
+import time
+import mysql.connector
+
+# Set the DHT sensor type (DHT22 or DHT11)
+sensor_type = Adafruit_DHT.DHT22
+
+# Set the GPIO pin where the sensor is connected
+gpio_pin = 4  # Change this to the actual GPIO pin number
+
+# Read database connection details and table name from environment variables
+# Database connection configuration
+db_config = {
+    "user": "your_username_here",
+    "password": "your_password_here",
+    "host": "192.168.3.200",      # Updated host IP
+    "port": 3306,                  # Specified port number
+    "database": "mydatabase",     # Change to your database name
+}
+
+table_name = os.getenv("TABLE_NAME", "sensor_data")
+
+try:
+    # Connect to the MariaDB database
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+
+    # Create the table if it doesn't exist
+    create_table_query = f"""
+    CREATE TABLE IF NOT EXISTS {table_name} (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        timestamp DATETIME NOT NULL,
+        temperature DECIMAL(5, 2) NOT NULL,
+        humidity DECIMAL(5, 2) NOT NULL
+    )
+    """
+    cursor.execute(create_table_query)
+
+    while True:
+        # Read temperature and humidity from the sensor
+        humidity, temperature = Adafruit_DHT.read_retry(sensor_type, gpio_pin)
+
+        if humidity is not None and temperature is not None:
+            # Print the values
+            print(f'Temperature: {temperature:.2f}°C')
+            print(f'Humidity: {humidity:.2f}%')
+
+            # Get the current timestamp
+            current_time = time.strftime('%Y-%m-%d %H:%M:%S')
+
+            # Insert sensor data into the database with timestamp
+            insert_query = f"INSERT INTO {table_name} (timestamp, temperature, humidity) VALUES (%s, %s, %s)"
+            data = (current_time, temperature, humidity)
+            cursor.execute(insert_query, data)
+            connection.commit()
+        else:
+            print('Failed to retrieve data from the sensor')
+
+        # Delay for a while (in seconds) before the next reading
+        time.sleep(2)
+
+except KeyboardInterrupt:
+    print('Program terminated by user')
+finally:
+    # Close the database connection when done
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
+
+```
+
+
+```dockerfile
+
+# Use an official Python runtime as the base image
+FROM python:3.8-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install system-level dependencies
+RUN apt-get update && \
+    apt-get install -y python3-dev python3-pip && \
+    python3 -m pip install --upgrade pip setuptools wheel
+
+# Copy the local code to the container
+COPY sensor_data.py /app/
+
+# Install additional dependencies
+RUN pip install Adafruit_DHT mysql-connector-python
+
+# Run the Python script
+CMD ["python", "sensor_data.py"]
+
+
+```
+
+
+docker build -t dht22_sensor_to_mysql .
+
+
+```yml
+
+version: '3'
+services:
+  mariadb:
+    image: linuxserver/mariadb:arm32v7-10.6.13
+    container_name: my-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password_here
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: always
+
+  python-app:
+    build:
+      context: ./  # Specify the path to your Dockerfile and Python script
+    container_name: my-python-app
+    environment:
+      - DB_USER=mydbuser
+      - DB_PASSWORD=mydbpassword
+      - DB_HOST=mariadb  # Use the service name defined above
+      - DB_NAME=mydatabase
+      - TABLE_NAME=sensor_data
+    depends_on:
+      - mariadb
+    restart: always
+    command: tail -f /dev/null #keep it running
+
+
+volumes:
+  mariadb_data:
+
+
+```
+
+
+```yml
+version: '3'
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: my-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password_here
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: always
+
+  python-app:
+    image: dht22_sensor_to_mysql  # Use the name of your existing Docker image
+    container_name: my-python-app
+    environment:
+      - DB_USER=mydbuser
+      - DB_PASSWORD=mydbpassword
+      - DB_HOST=mariadb  # Use the service name defined above
+      - DB_NAME=mydatabase
+      - TABLE_NAME=sensor_data
+    depends_on:
+      - mariadb
+    restart: always
+    command: tail -f /dev/null #keep it running
+
+
+volumes:
+  mariadb_data:
+
+```
+
+
+
+only th py script
+
+
+```yml
+
+version: '3'
+services:
+
+
+  python-app:
+    image: dht22_sensor_to_mysql  # Use the name of your existing Docker image
+    container_name: py-dht22-mariadb
+    privileged: true
+    environment:
+      - DB_USER=mydbuser
+      - DB_PASSWORD=mydbpassword
+      - DB_HOST=mariadb  # Use the service name defined above
+      - DB_NAME=mydatabase
+      - TABLE_NAME=sensor_data
+    restart: always
+    command: tail -f /dev/null #keep it running
+
+```
+
+
+
+### With Mongo
+
+```py
+import Adafruit_DHT
+import time
+from pymongo import MongoClient
+
+DHT_SENSOR = Adafruit_DHT.DHT11
+DHT_PIN = 4
+
+# Configure MongoDB connection
+mongo_client = MongoClient('mongodb://localhost:27017/')
+db = mongo_client['sensor_data']
+collection = db['dht_sensor']
+
+while True:
+    humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+    if humidity is not None and temperature is not None:
+        data = {
+            "timestamp": time.strftime('%Y-%m-%dT%H:%M:%SZ'),
+            "temperature": temperature,
+            "humidity": humidity
+        }
+        collection.insert_one(data)
+        print("Data sent to MongoDB")
+    else:
+        print("Sensor failure. Check wiring.")
+    time.sleep(3)
+```
+
+
+
+
+
+
+
+### Split ARM32 and ARM64/x86 with Cloudflare Tunnels
+
+
+I am a big fan of [Cloudflare Tunnels](https://fossengineer.com/selfhosting-cloudflared-tunnel-docker/) to expose services securely and thought of a solution for the users of RPi 32bits (ARMv7) - Run the python script with the RPi 32 bits and run Mongo DB with a ARM86/x86 device and expose the DB with Cloudflare and a Domain with SSL.
+
+```yml
+version: '3'
+services:
+
+  dht_sensor_mongo:
+    image: dht_sensor_mongo:latest  # Use the name of your custom image
+    container_name: dht_sensor_mongo
+    privileged: true
+
+```
+
+
+```yml
+version: '3'
+services:
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: yourusername
+      MONGO_INITDB_ROOT_PASSWORD: yourpassword
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    restart: always
+    command: ["mongod"]
+
+networks:
+  cloudflare_tunnel:
+    external: true
+volumes:
+  mongodb_data:
+
+```

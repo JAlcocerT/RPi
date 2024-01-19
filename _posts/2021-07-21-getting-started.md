@@ -84,6 +84,14 @@ ha --help
 
 Homebridge, OpenHAB... (you can also install them with Rpi Imager).
 
+You can also use it with the Cloud: 
+
+* Google Pub/Sub: <https://cloud.google.com/free/docs/free-cloud-features#pub-sub>
+
+<https://www.youtube.com/watch?v=jYIgcdIW1yk>
+
+* AWS IoT: <https://www.youtube.com/watch?v=hgQ-Ewrm48c>
+
 
 ## Analytical Software for IoT Projects
 
