@@ -79,6 +79,7 @@ ansible-playbook ./RPi/Z_ansible/Ansible_py_dht_influx_grafana.yml -i inventory.
 > This is the one: [Raspberry Pi - DHT to InfluxDB](https://jalcocert.github.io/RPi/posts/rpi-iot-dht11-influxdb/)
 {: .prompt-info }
 
+---
 
 ## FAQ
 
@@ -88,7 +89,7 @@ Container are a way to encapsule all Software Project dependencies.
 
 For example to encapsule: MongoDB, Influx or the Python Script with all the libraries installed at a specified version.
 
-To run containers, Ansible is actually using Docker.
+To run containers, Ansible is actually using [Docker](https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/).
 
 You can check the installed versions with:
 
@@ -106,3 +107,5 @@ Why shouldnt we do it with our Pi's?
 ### Why Docker for SelfHosting?
 
 <https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/>
+
+You can also try [containers with Podman](https://fossengineer.com/docker-alternatives-for-data-analytics/)
