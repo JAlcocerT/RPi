@@ -25,6 +25,6 @@ while True:
     print(f"Message Published: {message}")
 
     # Wait for 1 second
-    time.sleep(0.1)
+    time.sleep(0.5)
 
 #python3 Python_push_distribution.py

@@ -104,7 +104,7 @@ You can also use it with the Cloud:
 | **Python Libraries** (e.g., pandas, scikit-learn) | Yes | Highly flexible and powerful. Huge ecosystem and community. Ideal for custom, complex analysis | Requires programming knowledge. Steeper learning curve for non-programmers |
 | **R Libraries** (e.g., ggplot2, dplyr) | Yes | Excellent for statistical analysis and data visualization. Large number of packages for various analyses. Strong academic and research community support | Requires programming knowledge. Less intuitive for those unfamiliar with R |
 
-* **Others**: Grafana, Redash, Node-Red
+* **Others**: Grafana, Redash, Node-Red, JS ([Epoch](https://epochjs.github.io/epoch/real-time/), [Plotly](https://plotly.com/javascript/streaming/), [chartjs](https://nagix.github.io/chartjs-plugin-streaming/1.9.0/))
 
 <!-- 
 ![img-description](https://pbs.twimg.com/media/FJAFshwXoAEf9HV?format=jpg&name=large)
