@@ -56,6 +56,7 @@ Great Github repos:
 * <https://github.com/veggiemonk/awesome-docker>
 * <https://github.com/awesome-foss/awesome-sysadmin#dns---servers>
 * <https://github.com/anderspitman/awesome-tunneling>
+* <https://github.com/HQarroum/awesome-iot>
 
 
 These particularly are great to discover new Services:

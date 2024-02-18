@@ -19,6 +19,7 @@ tags: [IoT, Sensors]
 
 We need HACS activated (any of those will be add-ons, so we can use our HA with Docker)
 
+<https://github.com/RomRider/apexcharts-card>
 
 ---
 
