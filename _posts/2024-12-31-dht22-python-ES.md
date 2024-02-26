@@ -1,4 +1,9 @@
-
+---
+title: "Raspberry Pi: Temp and Humidity with DHT11 and MongoDB"
+date: 2024-12-29T23:20:21+01:00
+draft: true
+tags: ["Self-Hosting"]
+---
 
 
 

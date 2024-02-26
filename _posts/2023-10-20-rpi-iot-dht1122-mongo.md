@@ -306,7 +306,7 @@ volumes:
   metabase_data:
 ```
 
-Acces it at: http://localhost:3000 
+Acces it at: `http://localhost:3000` 
 
 ![Desktop View](/img/metabase-mongoDB.JPG){: width="972" height="589" }
 _Metabase Ready to Roll_

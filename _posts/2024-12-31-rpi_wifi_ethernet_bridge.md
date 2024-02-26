@@ -21,7 +21,7 @@ I was inspired by the awsome work of **[William Halley in his blog](https://www.
 
 The script that is provided is this one (again, credits to William):
 
-```
+```sh
 #!/usr/bin/env bash
 
 set -e
@@ -133,7 +133,7 @@ ifconfig
 sudo nano bridge_wireguard.sh
 {{< /cmd >}}
 
-```
+```sh
 #!/usr/bin/env bash
 
 set -e
@@ -391,6 +391,7 @@ sudo bash bridge_docker_mullvad.sh
 sudo reboot
 ``` -->
 
+---
 
 ## FAQ
 

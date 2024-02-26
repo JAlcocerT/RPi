@@ -56,6 +56,7 @@ _DHT22 connection to a Raspberry Pi 4_
 * Columbus V-800 + [gpsd-gps](https://gpsd.io/) client
 * BY-353 USB GPS
 
+---
 
 ## FAQ
 

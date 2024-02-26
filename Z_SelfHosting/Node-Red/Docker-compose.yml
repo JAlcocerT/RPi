@@ -1,0 +1,55 @@
+version: '3'
+services:
+  node-red:
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - myNodeREDdata:/data
+    depends_on:
+      - mqtt-broker
+
+  mqtt-broker:
+    image: emqx/emqx:5.0.0
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "8084:8084"
+      - "8883:8883"
+      - "18083:18083"
+
+volumes:
+  myNodeREDdata:
+
+#sudo docker-compose up -d
+
+#docker run -it -p 1880:1880 -v myNodeREDdata:/data --name mynodered nodered/node-red
+
+#################################
+# version: '3'
+# services:
+#   node-red:
+#     image: nodered/node-red
+#     ports:
+#       - "1880:1880"
+#     environment:
+#       - TZ=UTC  # Optional: Set timezone if needed
+#     volumes:
+#       - ./data:/data  # Optional: Mount a volume to persist data
+
+# version: '3'
+# services:
+#   node-red:
+#     image: nodered/node-red
+#     ports:
+#       - "1880:1880"
+#     environment:
+#       - TZ=UTC  # Optional: Set timezone if needed
+#     volumes:
+#       - ./data:/data  # Optional: Mount a volume to persist data
+
+  # mqtt-broker:
+  #   image: emqx/emqx
+  #   ports:
+  #     - "1883:1883"
+

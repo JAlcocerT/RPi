@@ -1,6 +1,6 @@
 ---
 title: "Raspberry Pi: Sensors with TimescaleDB & Grafana"
-date: 2023-08-30T23:20:21+01:00
+date: 2024-12-30T23:20:21+01:00
 draft: true
 tags: ["Self-Hosting"]
 ---

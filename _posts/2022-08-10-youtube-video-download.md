@@ -50,7 +50,7 @@ services:
             - ./db/:/data/db
 ```
 
-After deployment - just visit: http://localhost:8998.
+After deployment - just visit: `http://localhost:8998`
 
 if you want to get to know more about the project: <https://tzahi12345.github.io/YoutubeDL-Material/>
 
@@ -68,7 +68,13 @@ docker compose up -d
 ```
 
 
-The project is public at Github: <https://github.com/TeamPiped/Piped>
+The project is public at [Github](https://github.com/TeamPiped/Piped).
+
+## My Favourite - MeTube
+
+ANd you can have [MeTube setup on your Raspberry](https://jalcocert.github.io/Linux/docs/linux__cloud.md/ansible/#ansible-like-a-pro) really quick.
+
+I have done it with [Ansible *and Docker*](https://jalcocert.github.io/Linux/docs/linux__cloud.md/ansible/)
 
 ---
 
@@ -77,3 +83,7 @@ The project is public at Github: <https://github.com/TeamPiped/Piped>
 ### How to use RSS to subscribe to YT channels?
 
 <https://fossengineer.com/selfhosting-freshrss-with-docker>
+
+### Other Alternative Youtube Front Ends
+
+You can check other [alternatives to Self-Host your Youtube UI](https://fossengineer.com/youtube-alternative-front-ends), Invidious, YT Downloader...
