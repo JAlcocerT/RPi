@@ -1,0 +1,1 @@
+* <https://f-droid.org/packages/github.umer0586.sensorserver/>
