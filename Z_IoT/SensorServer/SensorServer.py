@@ -1,3 +1,5 @@
+#python3 SensorServer.py
+
 import asyncio
 import websockets
 
@@ -22,8 +24,9 @@ async def websocket_handler(websocket):
             log_file.write(f"{message}\n")
 
 async def main():
-    #uri = "ws://192.168.3.201:8080/sensor/connect?type=android.sensor.linear_acceleration"
-    uri = "ws://192.168.3.201:8080/sensor/connect?type=android.sensor.gravity"
+    uri = "ws://192.168.3.201:8080/sensor/connect?type=android.sensor.linear_acceleration" #without G
+    #uri = "ws://192.168.3.201:8080/sensor/connect?type=android.sensor.gravity"
+    #uri = "ws://192.168.3.201:8080/sensor/connect?type=android.sensor.accelerometer"
     await receive_sensor_data(uri, timeout=5)  # Call with a 5-second timeout
 
 # Replace asyncio.run with an appropriate loop for older Python versions
@@ -43,8 +46,6 @@ asyncio.run(main())
 # # Replace asyncio.run with an appropriate loop for older Python versions
 # asyncio.run(receive_sensor_data())
 
-
-#python3 SensorServer.py
 
 #pip install asyncio
 
