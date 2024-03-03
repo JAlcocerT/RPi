@@ -10,6 +10,10 @@ image:
 render_with_liquid: false
 ---
 
+### Kodi
+
+with kodi adons
+
 * <https://www.youtube.com/@proyectosmicropic/videos>
 
 ### GPS Tracker
