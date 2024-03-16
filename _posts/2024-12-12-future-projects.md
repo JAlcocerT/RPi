@@ -27,11 +27,26 @@ https://github.com/traccar/traccar-docker
 
 ### ESP32 HA w ESPHome
 
+ESPHome is a system to control your microcontrollers by simple yet powerful configuration files and control them remotely through Home Automation systems.
+
+https://github.com/esphome/esphome
+
 <https://www.youtube.com/watch?v=pBT5p5XaWNE>
+
+https://esphome.io/index.html
+
+### pico w web server
+
+pico w web server c - https://www.youtube.com/watch?v=C_O0MXGBHsw
+
 
 ### ESP32 Web
 
 <https://www.youtube.com/watch?v=Ra3iWgOfveQ>
+
+
+Beginner DIY ESPHome mmWave Presence Sensor | HLK-LD2450 + ESP32
+https://www.youtube.com/watch?v=cPac-9K2xEc
 
 ### Pico DHT22
 
@@ -153,3 +168,8 @@ networks:
   default:
 
 ```
+
+
+### RPi weather station
+
+https://www.youtube.com/watch?v=5JfPzvcm0E8

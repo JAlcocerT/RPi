@@ -119,6 +119,8 @@ _RPi 4 - Temperature during Docker Build_
 ![Orange Pi 5 - Temperature during Docker Build](/img/Orange-vs-Pi/orange_docker_build.JPG)
 _Orange Pi 5 - Temperature during Docker Build_
 
+---
+
 ## FAQ 
 
 ### How to Run the Synthetic Benchmarks?

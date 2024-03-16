@@ -23,3 +23,7 @@
 * https://github.com/collin80/esp32_can
     * https://github.com/collin80/can_common
 
+
+### GoPro
+
+goprotelemetryextractor.com (there is free tier) - Extract tge GPS Data stored as metadata in the GOPROvideo

@@ -182,3 +182,10 @@ systemctl mask networking.service
 sudo bash bridge_wireguard.sh
 sudo reboot
 ```
+
+---
+
+## FAQ
+
+
+Thanks also to [Novaspirit Tech](https://www.youtube.com/watch?v=qhe6KUw3D78)

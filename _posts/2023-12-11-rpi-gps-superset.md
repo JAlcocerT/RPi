@@ -178,3 +178,10 @@ volumes:
 * You can also save GPS data thanks to the [F/OSS PhyPhox](https://github.com/phyphox/phyphox-android) - An app that allow us to use phone's sensors for physics experiments:
   * Also available for [ESP32 with micropython](https://github.com/phyphox/phyphox-micropython)
   * And [also for Arduino](https://github.com/phyphox/phyphox-arduino)
+
+
+  https://www.youtube.com/watch?v=LY1thW1N56E
+
+#### Kalman Filter
+
+https://www.youtube.com/watch?v=5HuN9iL-zxU
