@@ -46,7 +46,7 @@ sysbench cpu --threads=4 run #https://github.com/akopytov/sysbench#general-comma
 ```
 
 
-![BMAX B4 - Sysbench Test](/img/minipc-vs-pis/sysbench_bmaxb4.JPG)
+![BMAX B4 - Sysbench Test](/img/minipc-vs-pis/sysbench_bmaxb4.png)
 _BMAX B4 - Sysbench Test_
 
 
@@ -61,12 +61,12 @@ docker build -t pytripplanner .
 It took ~45 seconds - Instead of 3600s and 1700s.
 
 
-![BMAX B4 - Docker Build Test](/img/minipc-vs-pis/buildingtest.JPG)
+![BMAX B4 - Docker Build Test](/img/minipc-vs-pis/buildingtest.png)
 _BMAX B4 - Docker Build Test_
 
 And a max Temp of 64C:
 
-![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/temperature_during_test.JPG)
+![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/temperature_during_test.png)
 _BMAX B4 - Temperature during Docker Build_
 
 And these are the temperatures [registered by NetData](https://fossengineer.com/selfhosting-netdata/)
@@ -93,3 +93,27 @@ That's why I decided to switch to [a lighter Linux Distribution](https://jalcoce
 
 * <https://fossengineer.com/selfhosting-filebrowser-docker/>
 * <https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/>
+
+
+### How to use LLMs in a MiniPC
+
+We can use [Ollama together with Docker](https://fossengineer.com/selfhosting-llms-ollama/) and try one of the small models with the CPU.
+
+```sh
+docker run -d --name ollama -p 11434:11434 -v ollama_data:/root/.ollama ollama/ollama
+#docker exec -it ollama ollama --version #I had 0.1.29
+
+docker exec -it ollama /bin/bash
+ollama run gemma:2b
+```
+
+![BMAX B4 - Trying LLMs with a MiniPC](/img/minipc-vs-pis/minipc-gemma2b.png)
+_BMAX B4 - Trying LLMs with a MiniPC_
+
+The system was using 12/16GB (im running couple other containers) and the replies with Gemma 2B Model were pretty fast.
+
+
+You can see how for the python question, which answer was pretty detailed, took ~30s and a max Temp of ~70C (fan full speed).
+
+![BMAX B4 - MiniPC Performance while LLM inference](/img/minipc-vs-pis/minipc_gemma_temps.png)
+_BMAX B4 - MiniPC Performance while LLM inference_
