@@ -1,0 +1,95 @@
+---
+title: PI's vs MiniPC for Home Server
+author: JAlcocerT
+date: 2024-03-15 00:34:00 +0800
+categories: [Make your Raspberry Useful]
+tags: [Self-Hosting, Docker]
+---
+
+
+## PI's
+
+Some time ago I was making a [performance comparison between 2 popular ARM boards](https://jalcocert.github.io/RPi/posts/pi-vs-orange/).
+
+For benchmarking I used:
+
+* https://github.com/JAlcocerT/Py_Trip_Planner/
+* Sysbench
+* Netdata
+
+> The Orange Pi (8gb) idles ~ and the RPi 4 (2gb) ~
+
+## The Mini PC - BMAX B4
+
+* Intel N95 (4 cores)
+* 16GB RAM 2600mhz
+
+```sh
+lscpu
+```
+
+
+To connect via ssh I needed:
+
+```sh
+sudo apt update
+sudo apt install openssh-server
+sudo ufw allow ssh
+
+#ssh username@<local_minipc_server_ip>
+```
+
+
+```sh
+sudo apt install sysbench 
+sysbench cpu --threads=4 run #https://github.com/akopytov/sysbench#general-command-line-options
+```
+
+
+![BMAX B4 - Sysbench Test](/img/minipc-vs-pis/sysbench_bmaxb4.JPG)
+_BMAX B4 - Sysbench Test_
+
+
+> The BMAX idles around ~9w with Lubuntu 22.4 LTS and the max I observed so far is ~
+
+
+```sh
+git clone https://github.com/JAlcocerT/Py_Trip_Planner/
+docker build -t pytripplanner .
+```
+
+It took ~45 seconds - Instead of 3600s and 1700s.
+
+
+![BMAX B4 - Docker Build Test](/img/minipc-vs-pis/buildingtest.JPG)
+_BMAX B4 - Docker Build Test_
+
+And a max Temp of 64C:
+
+![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/temperature_during_test.JPG)
+_BMAX B4 - Temperature during Docker Build_
+
+And these are the temperatures [registered by NetData](https://fossengineer.com/selfhosting-netdata/)
+
+---
+
+## FAQ
+
+* Now you can have a *[DB Less Cloud](https://fossengineer.com/selfhosting-filebrowser-docker/)*
+
+
+### Why changing the MiniPC to Linux?
+
+In this case, the BMAX B4 came with W11 fully activated by default - which for the price I would say its a pretty good deal.
+
+I tried it and it moved daily tasks fluently, but the task manager was showing quite high CPU loads the next day (just installed docker with couple containers).
+
+That's why I decided to switch to [a lighter Linux Distribution](https://jalcocert.github.io/Linux/docs/#what-is-the-best-linux-for-low-resources) - Lubuntu starts at ~800mb RAM, instead of the 2.8GB of W11.
+
+> The max consumption registered was ~15w in this case
+
+
+### Using a MiniPC as Free Home Cloud
+
+* <https://fossengineer.com/selfhosting-filebrowser-docker/>
+* <https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/>
