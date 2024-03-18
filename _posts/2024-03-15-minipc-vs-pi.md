@@ -71,6 +71,14 @@ _BMAX B4 - Temperature during Docker Build_
 
 And these are the temperatures [registered by NetData](https://fossengineer.com/selfhosting-netdata/)
 
+### BMAX B4 vs Orange Pi 5
+
+![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/n95-cpu-phoronix.png)
+_Intel N95 4 cores with phoronix Open Source Benchmark_
+
+![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/orangepi5-cpu-phoronix.png)
+_The Orange Pi 8 Cores is a beast_
+
 ---
 
 ## FAQ
@@ -87,6 +95,24 @@ I tried it and it moved daily tasks fluently, but the task manager was showing q
 That's why I decided to switch to [a lighter Linux Distribution](https://jalcocert.github.io/Linux/docs/#what-is-the-best-linux-for-low-resources) - Lubuntu starts at ~800mb RAM, instead of the 2.8GB of W11.
 
 > The max consumption registered was ~15w in this case
+
+#### How to Disable Wifi/Bluetooh
+
+To further lower the consumption, you can disable wifi with:
+
+```sh
+nmcli radio wifi off #on
+#nmcli radio help   
+```
+
+> Here you improve by ~10% the power efficiency, aka: -1W 😜
+
+And Bluetooth:
+
+```sh
+sudo service bluetooth stop #start
+#service bluetooth status
+```
 
 
 ### Using a MiniPC as Free Home Cloud
@@ -117,3 +143,24 @@ You can see how for the python question, which answer was pretty detailed, took 
 
 ![BMAX B4 - MiniPC Performance while LLM inference](/img/minipc-vs-pis/minipc_gemma_temps.png)
 _BMAX B4 - MiniPC Performance while LLM inference_
+
+
+### How to Benchmark with Phoronix Test Suite
+
+We can have an idea by being part of [openbenchmarking](https://openbenchmarking.org/) by using the [F/OSS Phoronix Test Suite](https://github.com/phoronix-test-suite/phoronix-test-suite/releases)
+
+```sh
+wget https://github.com/phoronix-test-suite/phoronix-test-suite/releases/download/v10.8.4/phoronix-test-suite_10.8.4_all.deb
+sudo dpkg -i phoronix-test-suite_10.8.4_all.deb
+sudo apt-get install -f
+```
+
+Then, just use:
+
+```sh
+phoronix-test-suite benchmark smallpt
+#phoronix-test-suite system-info
+```
+<!-- 
+https://openbenchmarking.org/result/2403181-NE-TESTBENCH60
+https://openbenchmarking.org/result/2403181-NE-TESTORANG02 -->
