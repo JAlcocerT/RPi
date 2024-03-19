@@ -24,9 +24,8 @@ Migrating from Google Cloud Run to [self-hosting the Python DASH APP](https://fo
 
 Its reliability and energy efficiency make it ideal for running my self-hosted services, offering a reliable and cost-effective alternative to cloud-based solutions.
 
-* Rockchip RK3588S that features eight Arm Cortex-A76 cores running at 2.4GHz plus four 1.8GHz Cortex-A55 cores.
-    * The Rockchip SoC also features a Mali G510 MP4 graphics processor, which has open-source driver hope via the Panfrost driver stack
-    * The Orange Pi 5 utilizes a Mali-G610 GPU, providing solid graphics processing capabilities.
+* Rockchip RK3588S that features eight Arm Cores (4xCortex-A76 @ 2.4GHz plus 4x1.8GHz Cortex-A55).
+    * The Rockchip SoC also features a Mali G510 MP4 graphics processor, which has open-source driver hope via the Panfrost driver stack - providing solid graphics processing capabilities.
 
 ### Orange Pi 5 - CPU Benchmark
 

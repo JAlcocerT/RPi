@@ -1,12 +1,12 @@
 ---
 title: RPi IoT Project - GPS Data (VK-162) with Apache Superset
 author: JAlcocerT
-date: 2023-12-11 00:10:00 +0800
+date: 2024-06-01 00:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors,Python,MongoDB]
-image:
-  path: /img/superset.png
-  alt: IoT Project with Python, MongoDB, DHT11/22 sensors and Metabase.
+# image:
+#   path: /img/superset.png
+#   alt: IoT Project with Python, MongoDB, DHT11/22 sensors and Metabase.
 render_with_liquid: false
 ---
 

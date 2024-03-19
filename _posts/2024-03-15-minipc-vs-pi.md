@@ -11,10 +11,13 @@ tags: [Self-Hosting, Docker]
 
 Some time ago I was making a [performance comparison between 2 popular ARM boards](https://jalcocert.github.io/RPi/posts/pi-vs-orange/).
 
-For benchmarking I used:
+Now, it is the time to see how they stand when compared with a similar in cost mini-PC.
 
-* https://github.com/JAlcocerT/Py_Trip_Planner/
+For benchmarking I've used:
+
+* Docker Building Image time for: <https://github.com/JAlcocerT/Py_Trip_Planner/>
 * Sysbench
+* Phoronix
 * Netdata
 
 > The Orange Pi (8gb) idles ~ and the RPi 4 (2gb) ~
@@ -27,7 +30,6 @@ For benchmarking I used:
 ```sh
 lscpu
 ```
-
 
 To connect via ssh I needed:
 
@@ -50,7 +52,7 @@ sysbench cpu --threads=4 run #https://github.com/akopytov/sysbench#general-comma
 _BMAX B4 - Sysbench Test_
 
 
-> The BMAX idles around ~9w with Lubuntu 22.4 LTS and the max I observed so far is ~
+> The BMAX idles around ~9w with Lubuntu 22.4 LTS and the max I observed so far is ~16W. Wifi/Bluetooh and an additional sata ssd included.
 
 
 ```sh
@@ -58,7 +60,7 @@ git clone https://github.com/JAlcocerT/Py_Trip_Planner/
 docker build -t pytripplanner .
 ```
 
-It took ~45 seconds - Instead of 3600s and 1700s.
+It took ~45 seconds for the N95 - Instead of 3600s and 1700s.
 
 
 ![BMAX B4 - Docker Build Test](/img/minipc-vs-pis/buildingtest.png)
@@ -73,11 +75,17 @@ And these are the temperatures [registered by NetData](https://fossengineer.com/
 
 ### BMAX B4 vs Orange Pi 5
 
+Comparing N95 (x86) with the Rockchip RK3588S (ARM64).
+
+For Synthetic benchmarks I have used [phoronix](#how-to-benchmark-with-phoronix-test-suite):
+
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/n95-cpu-phoronix.png)
 _Intel N95 4 cores with phoronix Open Source Benchmark_
 
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/orangepi5-cpu-phoronix.png)
 _The Orange Pi 8 Cores is a beast_
+
+
 
 ---
 
@@ -145,7 +153,12 @@ You can see how for the python question, which answer was pretty detailed, took 
 _BMAX B4 - MiniPC Performance while LLM inference_
 
 
-### How to Benchmark with Phoronix Test Suite
+### How to Benchmark?
+
+* Using Sysbench
+* [Monitor with Netdata](https://fossengineer.com/selfhosting-netdata/)
+
+#### with Phoronix Test Suite
 
 We can have an idea by being part of [openbenchmarking](https://openbenchmarking.org/) by using the [F/OSS Phoronix Test Suite](https://github.com/phoronix-test-suite/phoronix-test-suite/releases)
 
