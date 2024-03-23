@@ -77,15 +77,27 @@ And these are the temperatures [registered by NetData](https://fossengineer.com/
 
 Comparing N95 (x86) with the Rockchip RK3588S (ARM64).
 
+#### Temperatures
+
+```sh
+sudo stress --cpu  8 --timeout 120
+```
+
+* Orange Pi 5 - 80C & 8w peak power (no fan enabled) and it quickly goes back to the ~45C after the test
+* BMax B4 (N95, fan enabled that goes to full speed) - 66C and 15W peak power
+
+
+#### Phoronix
+
 For Synthetic benchmarks I have used [phoronix](#how-to-benchmark-with-phoronix-test-suite):
 
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/n95-cpu-phoronix.png)
 _Intel N95 4 cores with phoronix Open Source Benchmark_
 
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/orangepi5-cpu-phoronix.png)
-_The Orange Pi 8 Cores is a beast_
+_The Orange Pi 8 Cores is a beast scoring 38s_
 
-
+For reference, I [benchmarked *bigger* CPUs here](https://jalcocert.github.io/Linux/docs/linux__cloud/benchmark/). Plot twist, both CPUs (specially the Rockchip, has nothing to envy)
 
 ---
 

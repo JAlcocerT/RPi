@@ -271,6 +271,8 @@ https://cpu.userbenchmark.com/Compare/Intel-Core-i7-1185G7-vs-AMD-Ryzen-5-4600G/
 
 ### CPU Consumption
 
+The orange idles ~2W
+
 
 ### Build Consumption
 
