@@ -8,6 +8,12 @@ tags: [Self-Hosting, Docker]
 
 ## Best Performing LLMs for a RPi
 
+* For code: https://ollama.com/library/deepseek-coder
+    * https://ollama.com/library/phind-codellama
+* Daily: https://ollama.com/library/gemma
+https://ollama.com/library/orca-mini
+https://ollama.com/library/tinyllama
+
 ---
 
 ## FAQ

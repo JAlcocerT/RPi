@@ -28,3 +28,10 @@ We need HACS activated (any of those will be add-ons, so we can use our HA with 
 ### Thanks to
 
 https://www.youtube.com/watch?v=r9BshEzz4bo
+
+### HA OS vs HA Docker
+
+* [Home Assistant add-ons](https://www.home-assistant.io/addons/) are compatible with both options ☑️ 
+* [Home Assistant Integrations](https://www.home-assistant.io/integrations/#all) can be used just with Home Assistant OS 📌
+
+### 
