@@ -56,6 +56,7 @@ _DHT22 connection to a Raspberry Pi 4_
 * Columbus V-800 + [gpsd-gps](https://gpsd.io/) client
 * BY-353 USB GPS
 
+---
 
 ## FAQ
 
@@ -185,3 +186,12 @@ volumes:
 #### Kalman Filter
 
 https://www.youtube.com/watch?v=5HuN9iL-zxU
+
+
+### Other Projects
+
+* https://awweso.me/maps-and-global-positioning-system-gps/
+
+* https://github.com/owntracks/recorder
+
+* https://github.com/traccar
