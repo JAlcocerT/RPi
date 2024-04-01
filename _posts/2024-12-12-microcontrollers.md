@@ -38,6 +38,17 @@ Ideas for Readme's - https://github.com/STJRush/handycode/tree/master/Raspi%20Pi
 
 The chip: RP2040
 
+```sh
+lsusb #Bus 003 Device 010: ID XYZ MicroPython Board in FS (File System) mode
+
+#ls /dev/tty*
+
+
+sudo apt-get install picocom
+sudo picocom -b 115200 /dev/ttyACM0
+
+```
+
 The schema: <https://docs.micropython.org/en/latest/rp2/quickref.html>
 
 W version (wifi): <https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh>
