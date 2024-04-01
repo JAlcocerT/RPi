@@ -56,117 +56,34 @@ _DHT22 connection to a Raspberry Pi 4_
 * Columbus V-800 + [gpsd-gps](https://gpsd.io/) client
 * BY-353 USB GPS
 
+* GPS GNSS GPS MTK3333 adafruit 4279
+* https://www.reddit.com/r/robotics/comments/18jgsmr/rtk_gps_lap_timing/
+* https://www.reddit.com/r/UAVmapping/comments/10utv7b/cheapest_way_to_get_cmlevel_gps/
+* ublox f9p
+
+* Neo 6M GPS Sensor
+  * https://www.youtube.com/watch?v=N8fH0nc9v9Q
+
+## Comercial Sensors
+
+* mychron 5s gos
+& mylaps transponders
+* tag heuer transponders
+
+* https://www.reddit.com/r/rccars/comments/15iukhz/made_my_own_lap_timer_that_reads_mylaps/
+
+## Software
+
+https://github.com/GPSBabel/gpsbabel
+
 ---
 
 ## FAQ
 
-### Apache SupetSet with Portainer
+### Apache SuperSet with Portainer
 
-This is the Stack in case that you can to deploy Superset with Portainer:
+This is the [Stack to deploy Superset] with Docker.
 
-```yml
-#
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-x-superset-image: &superset-image apachesuperset.docker.scarf.sh/apache/superset:${TAG:-latest-dev}
-x-superset-depends-on: &superset-depends-on
-  - db
-  - redis
-x-superset-volumes:
-  &superset-volumes # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
-  - ./docker:/app/docker
-  - superset_home:/app/superset_home
-
-version: "3.7"
-services:
-  redis:
-    image: redis:7
-    container_name: superset_cache
-    restart: unless-stopped
-    volumes:
-      - redis:/data
-
-  db:
-    env_file: docker/.env-non-dev
-    image: postgres:14
-    container_name: superset_db
-    restart: unless-stopped
-    volumes:
-      - db_home:/var/lib/postgresql/data
-      - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-
-  superset:
-    env_file: docker/.env-non-dev
-    image: *superset-image
-    container_name: superset_app
-    command: ["/app/docker/docker-bootstrap.sh", "app-gunicorn"]
-    user: "root"
-    restart: unless-stopped
-    ports:
-      - 8088:8088
-    depends_on: *superset-depends-on
-    volumes: *superset-volumes
-
-  superset-init:
-    image: *superset-image
-    container_name: superset_init
-    command: ["/app/docker/docker-init.sh"]
-    env_file: docker/.env-non-dev
-    depends_on: *superset-depends-on
-    user: "root"
-    volumes: *superset-volumes
-    healthcheck:
-      disable: true
-
-  superset-worker:
-    image: *superset-image
-    container_name: superset_worker
-    command: ["/app/docker/docker-bootstrap.sh", "worker"]
-    env_file: docker/.env-non-dev
-    restart: unless-stopped
-    depends_on: *superset-depends-on
-    user: "root"
-    volumes: *superset-volumes
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "celery -A superset.tasks.celery_app:app inspect ping -d celery@$$HOSTNAME",
-        ]
-
-  superset-worker-beat:
-    image: *superset-image
-    container_name: superset_worker_beat
-    command: ["/app/docker/docker-bootstrap.sh", "beat"]
-    env_file: docker/.env-non-dev
-    restart: unless-stopped
-    depends_on: *superset-depends-on
-    user: "root"
-    volumes: *superset-volumes
-    healthcheck:
-      disable: true
-
-volumes:
-  superset_home:
-    external: false
-  db_home:
-    external: false
-  redis:
-    external: false
-```
 
 
 ### Apache Supserset DS's and API

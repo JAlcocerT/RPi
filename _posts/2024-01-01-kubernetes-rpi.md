@@ -32,8 +32,6 @@ We just need to [have Docker installed](https://jalcocert.github.io/RPi/posts/se
 
 ### Master Node
 
-
-
 ```yml
 version: '3'
 services:
@@ -74,6 +72,8 @@ kubectl exec -it <pod_name> -- /bin/bash: Executes a command, like opening a bas
 
 
 ## FAQ
+
+https://anthonynsimon.com/blog/kubernetes-cluster-raspberry-pi/
 
 ### What are K8s PODs?
 

@@ -82,7 +82,8 @@ ha --help
 
 #### Other Home Automations / IoT OS
 
-Homebridge, OpenHAB... (you can also install them with Rpi Imager).
+* [Homebridge](https://github.com/homebridge/docker-homebridge)
+* OpenHAB... (you can also install them with Rpi Imager).
 
 You can also use it with the Cloud: 
 
@@ -106,7 +107,17 @@ You can also use it with the Cloud:
 
 * **Others**: Grafana, Redash, Node-Red, JS ([Epoch](https://epochjs.github.io/epoch/real-time/), [Plotly](https://plotly.com/javascript/streaming/), [chartjs](https://nagix.github.io/chartjs-plugin-streaming/1.9.0/))
 
+### Light OS for Raspberry Pi
+
+* Raspberry Pi OS Lite
+* DietPi
+
+### How to BackUP a RPi
+
+* https://www.reddit.com/r/selfhosted/comments/1advwg7/best_way_to_backup_everything_from_raspberry_pi/
+
 <!-- 
+
 ![img-description](https://pbs.twimg.com/media/FJAFshwXoAEf9HV?format=jpg&name=large)
 
 ## Video

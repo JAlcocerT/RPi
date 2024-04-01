@@ -141,6 +141,8 @@ https://forocoches.com/foro/showthread.php?t=6655749
 * https://forocoches.com/foro/showthread.php?t=7806376
 * https://rpi.uroboros.es/docker.html
 
+* Contenedores docker utilizas - https://forocoches.com/foro/showthread.php?t=7806376
+
 ## SelfHosting 101
 
 With cosmos
