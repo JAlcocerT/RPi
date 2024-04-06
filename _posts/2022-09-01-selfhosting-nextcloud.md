@@ -78,6 +78,7 @@ To add a new domain/internal/local ip, simply pass it in the end of this CLI com
 
 ```sh
 sudo docker exec --user www-data nextcloud_container php occ config:system:set trusted_domains 7 --value 192.168.1.22:8080
+#sudo docker exec --user www-data nextcloud_container php occ config:system:set trusted_domains 7 --value nextcloud.yourgreatname.duckdns.org
 ```
 
 Remember that you can check your device (the RPi here) internal IP adress with:
@@ -88,3 +89,14 @@ hostname -I
 ```
 
 To access nextcloud while being out of home, simply [configure your VPN, for example with tailscale](https://jalcocert.github.io/Linux/debian/ubuntu/linux_vpn_setup/), and add the internal Ip address assign by tailscale as shown two commands before.
+
+You can also see your files with the WebDav, just add in your file manager:
+
+```sh
+davs://example.com/nextcloud/remote.php/dav/files/USERNAME/
+davs://nextcloud.yourgreatname.duckdns.org/nextcloud/remote.php/dav/files/USERNAME/
+```
+
+> If your server connection is not HTTPS-secured, use dav:// instead of davs://.
+
+Alternatively - you can [try FileBrowser](https://fossengineer.com/selfhosting-filebrowser-docker/)

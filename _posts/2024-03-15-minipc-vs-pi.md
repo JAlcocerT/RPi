@@ -189,3 +189,9 @@ phoronix-test-suite benchmark smallpt
 <!-- 
 https://openbenchmarking.org/result/2403181-NE-TESTBENCH60
 https://openbenchmarking.org/result/2403181-NE-TESTORANG02 -->
+
+
+### Bmax B4 vs Laptop
+
+![BMAX B4 - Performance vs i5 gen 11](/img/minipc-vs-pis/i5-1135g7.png)
+_Performance of i51135g7 with same Benchmark_

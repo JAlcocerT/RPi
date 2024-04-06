@@ -44,6 +44,7 @@ services:
     restart: unless-stopped
 ```
 
+> Add ipv6 support with: https://danielrampelt.com/blog/install-pihole-raspberry-pi-docker-ipv6/
 
 
 ## Pi-Alert
