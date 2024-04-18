@@ -235,7 +235,31 @@ See with this command that they are actually out:
 
 ```sh
 sudo du -sh /var/log/sysstat | sort -hr
+#sudo shutdown -h now "System is shutting down. Please save your work."
 ```
+<!-- 
+sudo du -sh /var/log/* | sort -hr
+sudo du -sh /var/log/sysstat | sort -hr
+
+ls /var/log/sysstat
+
+journalctl --vacuum-time=10d
+
+
+#sudo rm -f $(ls -t /var/log/sysstat | tail -n +6)
+sudo find /var/log/sysstat -type f -printf '%T+ %p\n' | sort | head -n -5 | awk '{print $2}' | xargs sudo rm
+
+
+su -
+crontab -e
+@reboot bash /usr/lib/armbian/armbian-truncate-logs
+
+
+ls -rt /var/log/sysstat/sa*
+
+remove the 5 oldest: ls -rt /var/log/sysstat/sa* | head -5 | sudo xargs rm
+then see with this that they are out: sudo du -sh /var/log/sysstat | sort -hr
+ -->
 
 
 #### Using NVMe with the Orange Pi 5
