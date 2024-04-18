@@ -76,7 +76,7 @@ Execute this code (it prints the values as well) to know that everything works f
 
 I have adapted it so that instead of printing the values, it will push the Temperature and Humidity to an InfluxDB that we are going to self-host as well.
 
-* We need to install the Adafruit_DHT library:
+* We need to install the [Adafruit_DHT](https://github.com/adafruit/Adafruit_Blinka) library:
 
 ```py
 pip install Adafruit_DHT
