@@ -239,6 +239,14 @@ curl -sS https://ipinfo.io/json #the command to use
 #powershell -Command "(Invoke-WebRequest -Uri https://ipinfo.io/json).Content"
 ```
 
+You can have a quick look to the [quality of your internet](#how-to-monitor-internet-quality) when routing the traffic with the VPN with:
+
+```sh
+#sudo apt update
+sudo apt install speedtest-cli
+speedtest-cli
+```
+
 > You can try similar project with a [RPi and RaspAP](https://jalcocert.github.io/RPi/posts/rpi-raspap/)
 
 ---
@@ -254,6 +262,8 @@ Original idea from [William Halley in his blog](https://www.willhaley.com/blog/r
   * How to SelfHost your [VPN with Docker and Gluetun](https://fossengineer.com/gluetun-vpn-docker/)
 
 ### VPN Providers
+
+> These VPN Providers can also be used with Docker
 
 * https://mullvad.net/en/account
 * **ProtonVPN** https://account.protonvpn.com
@@ -351,6 +361,8 @@ echo "Revert completed."
 
 ```
 
+Once saved, execute:
+
 ```sh
 sudo bash revert_bridge.sh
 
@@ -359,3 +371,10 @@ sudo iptables -t nat -F
 
 sudo reboot
 ```
+
+
+
+### How to Monitor Internet Quality
+
+* https://jalcocert.github.io/RPi/posts/self-internet-monit/
+* https://jalcocert.github.io/RPi/posts/selfh-grafana-monit/
