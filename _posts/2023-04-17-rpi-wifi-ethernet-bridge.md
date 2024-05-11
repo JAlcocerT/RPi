@@ -117,7 +117,7 @@ I decided to try with **Wireguard** (you will need a working VPN server that gen
 
 * This approach will work for any Wireguard protocol compatible VPNs like Mullvad or ProtonVPN
   * Mullvad -> 
-  * ProtonVPN ->
+  * ProtonVPN -> I got `proton` same as the conf used
   * YOur own Wireguard VPN Server somwhere in the world
 * If you are using NordVPN, which just allow OpenVPN protocol, you can use [NordVPN propietary VPN App](#vpn-providers) in the RPi (and you can skip installing the Wireguard Client below - All steps are valid, just use whatever VPN Internet configuration name you are getting with ifconfig)
   * I got `nordlynx`
@@ -125,17 +125,20 @@ I decided to try with **Wireguard** (you will need a working VPN server that gen
 
 ```sh
 sudo apt install wireguard #The wireguard client
+sudo apt install resolvconf #required
+
 cp /home/Downloads/your_vpn_wireguard_configuration.conf /etc/wireguard #download the wireguard config: account-wireguard configuration
 sudo wg-quick your_vpn_wireguard_configuration #the name of the .conf file that you have downloaded
+#sudo wg-quick up proton #the file name would be proton.conf
 ```
 
 This made your wireguard client **(RPi) to be connected to the VPN server**.
 
 Do you want to check your RPi public IP? Just do:
 
-
 ```sh
-curl -sS https://ipinfo.io/json #the command to use
+sudo wg #ensure the wireguard interface is running
+curl -sS https://ipinfo.io/json #the command to use to check the IP of your RPi
 ```
 
 And if you need, to disconnect from Wireguard, just:
@@ -144,6 +147,7 @@ And if you need, to disconnect from Wireguard, just:
 ```sh
 wg-quick down <name>
 sudo wg-quick down your_vpn_wireguard_configuration
+
 #sudo nano /etc/resolv.conf #to check/adapt DNS name (optional)
 #sudo reboot (optional)
 ```
@@ -152,9 +156,20 @@ sudo wg-quick down your_vpn_wireguard_configuration
 
 ```sh
 ifconfig
+#ip a
 ```
 
 > Remember to be connected to either Wireguard or any other VPN Client in the RPi **before using this command**, as before that the network interface
+
+And if you want that the RPi connects automatically to this Wireguard Server, just do:
+
+```sh
+sudo systemctl status wg-quick@your_vpn_wireguard_configuration
+#sudo systemctl status wg-quick@proton
+
+sudo systemctl enable wg-quick@your_vpn_wireguard_configuration
+#sudo systemctl enable wg-quick@proton
+```
 
 3) This will be our new **bridge_wireguard.sh** script to route the WIFI to ethernet and provide VPN connection at the same time:
 
@@ -177,7 +192,7 @@ apt update && \
 
 # Create and persist iptables rule.
 # The change: we're using the WireGuard interface (your_vpn_wireguard_netw_interface) instead of the WiFi interface (wlan0).
-iptables -t nat -A POSTROUTING -o your_vpn_wireguard_netw_interface -j MASQUERADE
+iptables -t nat -A POSTROUTING -o proton -j MASQUERADE
 netfilter-persistent save
 
 # Enable ipv4 forwarding.
