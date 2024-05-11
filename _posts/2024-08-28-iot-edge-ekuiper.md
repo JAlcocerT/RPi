@@ -1,7 +1,7 @@
 ---
 title: Edge Analytics with Raspberry Pi
 author: JAlcocerT
-date: 2024-02-28 00:34:00 +0800
+date: 2024-08-28 00:34:00 +0800
 categories: [Make your Raspberry Useful]
 tags: [IoT, Sensors]
 ---

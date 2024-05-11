@@ -13,9 +13,15 @@ render_with_liquid: false
 
 I was inspired by the awsome work of **[William Halley in his blog](https://www.willhaley.com/blog/raspberry-pi-wifi-ethernet-bridge/)**, where I was able to follow succesfully the option 2 that it is proposed: *to share Wifi through Ethernet on a separated subnet*.
 
+- [ ] What do we need? 🎯
+  + [x] A Raspberry Pi (Im using a Pi4 2gb, ARM32)
+  + [ ] A Wireguard Server: You can use any provider like [Mullvad VPN](https://fossengineer.com/selfhosting-qBittorrent-with-docker-and-VPN/), [Proton VPN](https://fossengineer.com/transmission-with-vpn-torrent/), NordVPN...or **create your own VPN Server**
+  + [ ] An Ethernet Cable - Most likely you Router brought some
+  + [ ] (Optional) USB-C to Ethernet or some HUB with multiple ports if your device does not have Ethernet
+
 ### Initial Setup: Option 2 - Separate Subnet
 
-The script that is provided is this one (again, credits to William):
+The script that is provided is this one (again, [credits to](#aknowledgments) William):
 
 ```sh
 #!/usr/bin/env bash
@@ -187,7 +193,12 @@ sudo reboot
 
 ## FAQ
 
+### Aknowledgments
 
-Thanks also to [Novaspirit Tech](https://www.youtube.com/watch?v=qhe6KUw3D78)
+Original idea from [William Halley in his blog](https://www.willhaley.com/blog/raspberry-pi-wifi-ethernet-bridge/)
 
-* How to SelfHost your [VPN with Docker and Gluetun](https://fossengineer.com/gluetun-vpn-docker/)
+* Thanks also to:
+  * [Novaspirit Tech](https://www.youtube.com/watch?v=qhe6KUw3D78)
+  * How to SelfHost your [VPN with Docker and Gluetun](https://fossengineer.com/gluetun-vpn-docker/)
+
+### How to Run your Wireguard VPN Server
