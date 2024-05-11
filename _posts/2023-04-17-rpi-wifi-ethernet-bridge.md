@@ -105,14 +105,23 @@ I decided to try with **Wireguard** (you will need a working VPN server that gen
 
 1) First, we need to have wireguard installed:
 
+* This approach will work for any Wireguard protocol compatible VPNs like Mullvad or ProtonVPN
+  * Mullvad -> 
+  * ProtonVPN ->
+  * YOur own Wireguard VPN Server somwhere in the world
+* If you are using NordVPN, which just allow OpenVPN protocol, you can use [NordVPN propietary VPN App](#vpn-providers) in the RPi (and you can skip installing the Wireguard Client below - All steps are valid, just use whatever VPN Internet configuration name you are getting with ifconfig)
+  * I got `nordlynx`
+
 
 ```sh
-sudo apt install wireguard
+sudo apt install wireguard #The wireguard client
 cp /home/Downloads/your_vpn_wireguard_configuration.conf /etc/wireguard #download the wireguard config: account-wireguard configuration
 sudo wg-quick your_vpn_wireguard_configuration #the name of the .conf file that you have downloaded
 ```
 
-This will make your wireguard client to be connected to the server. Do you want to check your public IP?
+This made your wireguard client **(RPi) to be connected to the VPN server**.
+
+Do you want to check your RPi public IP? Just do:
 
 
 ```sh
@@ -129,11 +138,13 @@ sudo wg-quick down your_vpn_wireguard_configuration
 #sudo reboot (optional)
 ```
 
-2) Use this command to check which network interface your wireguard VPN has:
+2) Use this command to check which network interface your Wireguard VPN has:
 
 ```sh
 ifconfig
 ```
+
+> Remember to be connected to either Wireguard or any other VPN Client in the RPi **before using this command**, as before that the network interface
 
 3) This will be our new **bridge_wireguard.sh** script to route the WIFI to ethernet and provide VPN connection at the same time:
 
@@ -141,7 +152,7 @@ ifconfig
 sudo nano bridge_wireguard.sh
 ```
 
-And save this file:
+Just adapt the value of `your_vpn_wireguard_netw_interface` and **save the script**:
 
 ```sh
 #!/usr/bin/env bash
@@ -155,7 +166,7 @@ apt update && \
     dnsmasq netfilter-persistent iptables-persistent
 
 # Create and persist iptables rule.
-# Here's the change: we're using the WireGuard interface (your_vpn_wireguard_netw_interface) instead of the WiFi interface (wlan0).
+# The change: we're using the WireGuard interface (your_vpn_wireguard_netw_interface) instead of the WiFi interface (wlan0).
 iptables -t nat -A POSTROUTING -o your_vpn_wireguard_netw_interface -j MASQUERADE
 netfilter-persistent save
 
@@ -193,7 +204,7 @@ sudo bash bridge_wireguard.sh
 sudo reboot
 ```
 
-Now, when connecting your device via Ethernet to the RPI, you should see that the connectivity is VPN routed:
+Now, when connecting your device via Ethernet to the RPI, you should see that **now the Eth connectivity is VPN routed**:
 
 ```sh
 curl -sS https://ipinfo.io/json #the command to use
@@ -203,6 +214,7 @@ curl -sS https://ipinfo.io/json #the command to use
 #powershell -Command "(Invoke-WebRequest -Uri https://ipinfo.io/json).Content"
 ```
 
+> You can try similar project with a [RPi and RaspAP](https://jalcocert.github.io/RPi/posts/rpi-raspap/)
 
 ---
 
@@ -219,8 +231,28 @@ Original idea from [William Halley in his blog](https://www.willhaley.com/blog/r
 ### VPN Providers
 
 * https://mullvad.net/en/account
-* https://account.proton.me/u/0/vpn/dashboard
-* https://my.nordaccount.com/dashboard/
+* **ProtonVPN** https://account.protonvpn.com
+  * Downloads → WireGuard configuration - https://account.protonvpn.com/downloads#wireguard-configuration
+
+The (Wireguard) Configuration looks like:
+
+```yml
+[Interface]
+# Bouncing = 3
+# NAT-PMP (Port Forwarding) = off
+# VPN Accelerator = on
+PrivateKey = some_private_key
+Address = 10.2.0.2/32
+DNS = 10.2.0.1
+
+[Peer]
+# NL-FREE#208056
+PublicKey = some_public_key
+AllowedIPs = 0.0.0.0/0
+Endpoint = cool_ip:51820
+```
+
+* **NordVPN** - https://my.nordaccount.com/dashboard/
 
 ```sh
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
@@ -229,7 +261,8 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
 nordvpn --version
 
-#sudo usermod -aG nordvpn $USER
+#sudo usermod -aG nordvpn $USER #to get access to: /run/nordvpn/nordvpnd.sock.
+#sudo reboot
 ```
 
 You can see other **NordVPN commands** [here](https://support.nordvpn.com/hc/en-us/articles/20196094470929-Installing-NordVPN-on-Linux-distributions)
@@ -241,6 +274,7 @@ nordvpn login
 #nordvpn countries — see the country list.
 #nordvpn cities switzerland
 
+#DONT FORGET THIS ONE OR YOU WILL LOOSE SSH CONNECTIVITY
 nordvpn set lan-discovery enable #— enable/disable LAN discovery.
 
 nordvpn connect #https://nordvpn.com/servers/tools/
@@ -255,5 +289,44 @@ curl -sS https://ipinfo.io/json #the command to use
 ### How to Run your Wireguard VPN Server
 
 
-
 * PiVPN is a set of shell scripts developed to easily turn your Raspberry Pi™ into a VPN server using two free, open-source protocols: Wireguard & OpenVPN https://github.com/pivpn/pivpn
+
+### How to revert the Wifi2Ethernet Bridge
+
+Create a `revert_bridge.sh` file - remember to adapt the `your_vpn_wireguard_netw_interface` according to ifconfig:
+
+```sh
+#!/usr/bin/env bash
+
+set -e
+
+[ $EUID -ne 0 ] && echo "run as root" >&2 && exit 1
+
+# Remove the iptables rule.
+iptables -t nat -D POSTROUTING -o nordlynx -j MASQUERADE
+netfilter-persistent save
+
+# Disable ipv4 forwarding.
+sed -i'' s/net.ipv4.ip_forward=1/#net.ipv4.ip_forward=1/ /etc/sysctl.conf
+
+# Restore original eth0 configuration or remove custom settings.
+# Here you might need to replace this with the original configuration of eth0.
+rm /etc/network/interfaces.d/eth0
+
+# Remove the dnsmasq configuration file.
+rm /etc/dnsmasq.d/bridge.conf
+
+# Unmask networking.service if it was previously unmasked.
+systemctl unmask networking.service
+
+# Optional: Remove packages if they were not installed before.
+# apt-get remove --purge -y dnsmasq netfilter-persistent iptables-persistent
+
+echo "Revert completed."
+
+```
+
+```sh
+sudo bash revert_bridge.sh
+sudo reboot
+```
