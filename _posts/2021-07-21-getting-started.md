@@ -28,14 +28,19 @@ All of the services/projects that we can make the RPi to run, can be easily port
 
 First I would recommend you to install Raspbian to the RPi.
 
-Raspbian is based on Debian, a Linux distribution. But you dont have to be worried about this as I have created to onboard anyone to Linux and particularly to [Debian based distros here](https://jalcocert.github.io/Linux/debian/).
+Raspbian/Raspberry Pi OS is based on Debian, a Linux distribution.
 
-Under the **RPi Setup** section on this page, I will be including an extra explanation here where some specifics apply to the RPi.
+But you dont have to be worried about this as I have created to onboard anyone to Linux and particularly to [Debian based distros here](https://jalcocert.github.io/Linux/docs/debian/).
 
+If you are doing the **RPi Setup**, 99% of that information is applicable to our SBC.
+
+Install Raspbian from any computer with RPi Imager:
 
 ```sh
 apt update
 apt upgrade
+
+sudo snap install rpi-imager
 ```
 
 > There are [other Single Board Computers](https://fossengineer.com/testing-performance-orange-pi5-versus-raspberry-pi4/) out there that you can use to do similar projects.

@@ -14,12 +14,17 @@ render_with_liquid: false
 I was inspired by the awsome work of **[William Halley in his blog](https://www.willhaley.com/blog/raspberry-pi-wifi-ethernet-bridge/)**, where I was able to follow succesfully the option 2 that it is proposed: *to share Wifi through Ethernet on a separated subnet*.
 
 - [ ] What do we need? 🎯
-  + [x] A Raspberry Pi (Im using a Pi4 2gb, ARM32)
+  + [x] A Raspberry Pi (Im using a Pi4 2gb, ARM32) with [Raspberry Pi OS installed](https://jalcocert.github.io/RPi/posts/getting-started/#how-to-get-started-with-a-rpi)
+  + [x] A [custom script](#rpi-bridge-wifi-to-eth-with-vpn) to route our RPi Wifi connectivity to Ethernet and pass its VPN connectivity
   + [ ] A Wireguard Server: You can use any provider like [Mullvad VPN](https://fossengineer.com/selfhosting-qBittorrent-with-docker-and-VPN/), [Proton VPN](https://fossengineer.com/transmission-with-vpn-torrent/), NordVPN...or **create your own VPN Server**
   + [ ] An Ethernet Cable - Most likely you Router brought some
   + [ ] (Optional) USB-C to Ethernet or some HUB with multiple ports if your device does not have Ethernet
 
 ### Initial Setup: Option 2 - Separate Subnet
+
+This original approach does not require any VPN, as we are just providing the same internet connection that our RPi receives via Wifi, to our laptop/any other device, via ethernet.
+
+The Raspberry and your device will have the same connection details ☝️
 
 The script that is provided is this one (again, [credits to](#aknowledgments) William):
 
@@ -89,7 +94,7 @@ ifconfig
 The end result is that **the Raspberry Pi will act as a bridge between the WiFi connection and the Ethernet connection**, providing Internet access to devices connected via Ethernet- to the RPi.
 
 
-## Raspberry Pi Bridge: Wifi to Ethernet (With wireguard)
+### RPi Bridge: Wifi to Eth (With VPN)
 
 That was really great and I was really impressed and happy that it worked perfectly the first time I tried.
 
@@ -112,7 +117,6 @@ This will make your wireguard client to be connected to the server. Do you want 
 
 ```sh
 curl -sS https://ipinfo.io/json #the command to use
-
 ```
 
 And if you need, to disconnect from Wireguard, just:
