@@ -16,6 +16,7 @@ I was inspired by the awsome work of **[William Halley in his blog](https://www.
 - [ ] What do we need? 🎯
   + [x] A Raspberry Pi (Im using a Pi4 2gb, ARM32) with [Raspberry Pi OS installed](https://jalcocert.github.io/RPi/posts/getting-started/#how-to-get-started-with-a-rpi)
   + [x] A [custom script](#rpi-bridge-wifi-to-eth-with-vpn) to route our RPi Wifi connectivity to Ethernet and pass its VPN connectivity
+  + [x] (Optional) Change the Rpi DNS to a custom ones
   + [ ] A Wireguard Server: You can [use any provider](#vpn-providers) like [Mullvad VPN](https://fossengineer.com/selfhosting-qBittorrent-with-docker-and-VPN/), [Proton VPN](https://fossengineer.com/transmission-with-vpn-torrent/), NordVPN...or **create your own VPN Server**
   + [ ] An Ethernet Cable - Most likely you Router brought some
   + [ ] (Optional) USB-C to Ethernet or some HUB with multiple ports if your device does not have Ethernet
@@ -99,6 +100,15 @@ The end result is that **the Raspberry Pi will act as a bridge between the WiFi 
 That was really great and I was really impressed and happy that it worked perfectly the first time I tried.
 
 Then, I wondered...*if the Raspberry Pi would be having a VPN connection, could we provide to the ethernet connected device that same connection?*
+
+Before we start, I would recommend you to **change the RPi DNS Settings** (Optional):
+
+```sh
+#echo "nameserver 9.9.9.9" | sudo tee /etc/resolv.conf > /dev/null
+echo -e "\nnameserver 9.9.9.9\nnameserver 149.112.112.112" | sudo tee -a /etc/resolv.conf > /dev/null
+
+cat /etc/resolv.conf  #https://www.quad9.net/
+```
 
 I decided to try with **Wireguard** (you will need a working VPN server that generates Wireguard config) and surprisingly **it worked with some modification**:
 
@@ -328,5 +338,9 @@ echo "Revert completed."
 
 ```sh
 sudo bash revert_bridge.sh
+
+sudo iptables -F
+sudo iptables -t nat -F
+
 sudo reboot
 ```
