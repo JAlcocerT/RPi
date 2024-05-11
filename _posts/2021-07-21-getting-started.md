@@ -28,7 +28,8 @@ All of the services/projects that we can make the RPi to run, can be easily port
 
 First I would recommend you to install Raspbian to the RPi.
 
-Raspbian/Raspberry Pi OS is based on Debian, a Linux distribution.
+* **Raspbian/Raspberry Pi OS** is based on Debian, a Linux distribution.
+* You can also Try [Home Assistant OS](#home-assistant-os), with strong Focus on IoT Home Project, [even Android!](##other-oss)
 
 But you dont have to be worried about this as I have created to onboard anyone to Linux and particularly to [Debian based distros here](https://jalcocert.github.io/Linux/docs/debian/).
 
@@ -43,8 +44,21 @@ apt upgrade
 sudo snap install rpi-imager
 ```
 
-> There are [other Single Board Computers](https://fossengineer.com/testing-performance-orange-pi5-versus-raspberry-pi4/) out there that you can use to do similar projects.
+![rpi-imager](/img/rpi-imager.png)
+_Getting the OS ready at the RPi_
+
+Now plug the SD Card to the RPi and make sure to [enable SSH Access](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/).
+
+You can **pre-enable SSH Access** by:
+
+1. Open the boot partition of the SD card. This partition should be automatically accessible from any computer, as it is formatted in a standard FAT32 format.
+2. In the root (main) directory of the boot partition, create an empty file named `ssh`. Ensure the file has **no file extension** — it should not be ssh.txt or any other variant.
+
+> There are [other Single Board Computers](https://jalcocert.github.io/RPi/posts/pi-vs-orange/) out there that you can use to do similar projects.
 {: .prompt-info }
+
+<!-- How To Use Your Laptop As A Display For Your Raspberry Pi (with OBS + VIDEO CAPTURE KARTA)
+https://youtu.be/uO0XtSckHOM -->
 
 ### Other OS's
 
@@ -55,9 +69,14 @@ Yes, it is possible to run Android in our SBC.
 #### Lineage OS
 
 * Visit: <https://konstakang.com/devices/rpi4/>
-* Download the latest version: <https://konstakang.com/devices/rpi4/LineageOS20/>
-* Create a bootable SD card with the image and boot it
-* Download the **MindTheGapps** file that matches your Lineage version and reboot into recovery mode, then load that file and **Google Play Store** will be ready to use.
+  * Download the latest version: <https://konstakang.com/devices/rpi4/LineageOS20/>
+  * Create a bootable SD card with the image and boot it
+  * Download the **MindTheGapps** file that matches your Lineage version and reboot into recovery mode, then load that file and **Google Play Store** will be ready to use.
+
+### Light OS for Raspberry Pi
+
+* Raspberry Pi OS Lite
+* DietPi
 
 ### Home Assistant OS
 
@@ -99,23 +118,20 @@ You can also use it with the Cloud:
 * AWS IoT: <https://www.youtube.com/watch?v=hgQ-Ewrm48c>
 
 
-## Analytical Software for IoT Projects
+### Analytical Software for IoT Projects
 
 | Tool | FOSS | Pros | Cons |
 |------|------|------|------|
 | **Metabase** | Yes | Easy to use for creating dashboards and reports. Strong in data visualization and business intelligence. Supports a wide range of databases | Limited in advanced analytics capabilities. Not as flexible for custom data processing as some other tools |
 | **Apache Superset** | Yes | Open-source data visualization and data exploration platform. Supports SQL querying. Customizable and extensible | Requires technical knowledge for setup and customization. May have performance issues with very large datasets |
 | **Kibana** | Yes | Part of the Elastic Stack, excellent for visualizing Elasticsearch data. Great for log and time-series analytics. Real-time data visualization | Primarily tailored to Elasticsearch data. Can be complex to configure and optimize. Less versatile for non-Elasticsearch data |
-| **KNIME** | Yes | User-friendly, visual data pipeline design. Extensive plugin ecosystem. Good for non-programmers. Strong in data preprocessing and analysis | Can be less intuitive for complex, custom data analysis. Performance issues with very large datasets |
+<!-- | **KNIME** | Yes | User-friendly, visual data pipeline design. Extensive plugin ecosystem. Good for non-programmers. Strong in data preprocessing and analysis | Can be less intuitive for complex, custom data analysis. Performance issues with very large datasets |
 | **Python Libraries** (e.g., pandas, scikit-learn) | Yes | Highly flexible and powerful. Huge ecosystem and community. Ideal for custom, complex analysis | Requires programming knowledge. Steeper learning curve for non-programmers |
-| **R Libraries** (e.g., ggplot2, dplyr) | Yes | Excellent for statistical analysis and data visualization. Large number of packages for various analyses. Strong academic and research community support | Requires programming knowledge. Less intuitive for those unfamiliar with R |
+| **R Libraries** (e.g., ggplot2, dplyr) | Yes | Excellent for statistical analysis and data visualization. Large number of packages for various analyses. Strong academic and research community support | Requires programming knowledge. Less intuitive for those unfamiliar with R | -->
 
 * **Others**: Grafana, Redash, Node-Red, JS ([Epoch](https://epochjs.github.io/epoch/real-time/), [Plotly](https://plotly.com/javascript/streaming/), [chartjs](https://nagix.github.io/chartjs-plugin-streaming/1.9.0/))
 
-### Light OS for Raspberry Pi
 
-* Raspberry Pi OS Lite
-* DietPi
 
 ### How to BackUP a RPi
 

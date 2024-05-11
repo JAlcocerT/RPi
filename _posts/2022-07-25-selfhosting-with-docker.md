@@ -1,5 +1,5 @@
 ---
-title: Raspberry Pi - Self-Hosting anything with Docker
+title: Raspberry Pi & How to Self-Host anything
 author: JAlcocerT
 date: 2022-07-25 14:10:00 +0800
 categories: [RPi Setup]
@@ -7,7 +7,11 @@ tags: [Self-Hosting, Docker, RPi 101]
 render_with_liquid: false
 ---
 
-Self-Hosting can be simplified with Docker, thanks to the great work of the community that bundles a lot of Apps/services into docker images and make them available with their code.
+So you already have your [RPi and the OS Setup](https://jalcocert.github.io/RPi/posts/getting-started/)
+
+[Self-Hosting can be simplified](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/) with Docker.
+
+Thanks to the great work of the community that **bundles a lot of Apps/services** into docker container images and make them available, together with their code.
 
 ## Install Docker
 
