@@ -47,7 +47,7 @@ sudo snap install rpi-imager
 ![rpi-imager](/img/rpi-imager.png)
 _Getting the OS ready at the RPi_
 
-Now plug the SD Card to the RPi and make sure to [enable SSH Access](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/).
+Now plug the SD Card to the RPi and make sure to [enable SSH Access](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/) & open the related port 22.
 
 You can **pre-enable SSH Access** by:
 

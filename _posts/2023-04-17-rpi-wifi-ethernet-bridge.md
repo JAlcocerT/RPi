@@ -16,7 +16,7 @@ I was inspired by the awsome work of **[William Halley in his blog](https://www.
 - [ ] What do we need? 🎯
   + [x] A Raspberry Pi (Im using a Pi4 2gb, ARM32) with [Raspberry Pi OS installed](https://jalcocert.github.io/RPi/posts/getting-started/#how-to-get-started-with-a-rpi)
   + [x] A [custom script](#rpi-bridge-wifi-to-eth-with-vpn) to route our RPi Wifi connectivity to Ethernet and pass its VPN connectivity
-  + [ ] A Wireguard Server: You can use any provider like [Mullvad VPN](https://fossengineer.com/selfhosting-qBittorrent-with-docker-and-VPN/), [Proton VPN](https://fossengineer.com/transmission-with-vpn-torrent/), NordVPN...or **create your own VPN Server**
+  + [ ] A Wireguard Server: You can [use any provider](#vpn-providers) like [Mullvad VPN](https://fossengineer.com/selfhosting-qBittorrent-with-docker-and-VPN/), [Proton VPN](https://fossengineer.com/transmission-with-vpn-torrent/), NordVPN...or **create your own VPN Server**
   + [ ] An Ethernet Cable - Most likely you Router brought some
   + [ ] (Optional) USB-C to Ethernet or some HUB with multiple ports if your device does not have Ethernet
 
@@ -193,6 +193,17 @@ sudo bash bridge_wireguard.sh
 sudo reboot
 ```
 
+Now, when connecting your device via Ethernet to the RPI, you should see that the connectivity is VPN routed:
+
+```sh
+curl -sS https://ipinfo.io/json #the command to use
+#wget -qO- https://ipinfo.io/json
+
+#for windows you would use
+#powershell -Command "(Invoke-WebRequest -Uri https://ipinfo.io/json).Content"
+```
+
+
 ---
 
 ## FAQ
@@ -205,4 +216,44 @@ Original idea from [William Halley in his blog](https://www.willhaley.com/blog/r
   * [Novaspirit Tech](https://www.youtube.com/watch?v=qhe6KUw3D78)
   * How to SelfHost your [VPN with Docker and Gluetun](https://fossengineer.com/gluetun-vpn-docker/)
 
+### VPN Providers
+
+* https://mullvad.net/en/account
+* https://account.proton.me/u/0/vpn/dashboard
+* https://my.nordaccount.com/dashboard/
+
+```sh
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+# wget "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?nv_tri=TC_7139823260542166_1715430552755&nv_trs=1715430552756_1715430943116_1_25" -O nordvpn-release_1.0.0_all.deb
+# sudo dpkg -i nordvpn-release_1.0.0_all.deb
+
+nordvpn --version
+
+#sudo usermod -aG nordvpn $USER
+```
+
+You can see other **NordVPN commands** [here](https://support.nordvpn.com/hc/en-us/articles/20196094470929-Installing-NordVPN-on-Linux-distributions)
+
+```sh
+nordvpn login
+#nordvpn set dns 9.9.9.9 149.112.112.112 #https://www.quad9.net/service/service-addresses-and-features
+
+#nordvpn countries — see the country list.
+#nordvpn cities switzerland
+
+nordvpn set lan-discovery enable #— enable/disable LAN discovery.
+
+nordvpn connect #https://nordvpn.com/servers/tools/
+nordvpn connect switzerland
+#nordvpn status 
+
+curl -sS https://ipinfo.io/json #the command to use
+
+#nordvpn disconnect
+```
+
 ### How to Run your Wireguard VPN Server
+
+
+
+* PiVPN is a set of shell scripts developed to easily turn your Raspberry Pi™ into a VPN server using two free, open-source protocols: Wireguard & OpenVPN https://github.com/pivpn/pivpn
