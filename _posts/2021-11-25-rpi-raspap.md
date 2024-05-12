@@ -129,6 +129,7 @@ docker run --name raspap -it -d --privileged --network=host -v /sys/fs/cgroup:/s
 
 ### WIFI Repeaters for RaspAP
 
+Adapters working out of the box for Linux Kernel [here](https://github.com/morrownr/USB-WiFi)
 * TP-LINK Archer T3U Plus 
 * TPLINK: TL-WN821N 
 * Edimax EW-7611ULB (Recommended in the docs)
