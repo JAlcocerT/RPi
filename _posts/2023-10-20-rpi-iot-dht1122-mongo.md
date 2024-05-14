@@ -39,7 +39,7 @@ This is what we will be doing...🔜
   * Or to run the [Python script](#python-dht-to-mongo) in a 32bits RPi and Official Mongo with Docker image in ARM64/X86.
   * We can use unofficial **apcheamitru/arm32v7-mongo** image as well.
 
-* For [Metabase](#metabase) visualization, we need x86.
+* For [Metabase](#metabase-dht-sensor-visualization) visualization, we need x86.
 
 ![Desktop View](/img/RPi4-DHT22-FlowChart.png){: width="972" height="589" }
 _From DHT sensor to Metabase - Our Workflow_

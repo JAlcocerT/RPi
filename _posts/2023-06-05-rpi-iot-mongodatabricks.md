@@ -14,10 +14,17 @@ Raspberry Pi Project to collect and then send IoT Sensor Data to Mongo and use A
 
 ```mermaid
 sequenceDiagram
-    Job --> The Python Script
-    Job --> MongoDB Cloud Setup
-    Job --> Databricks
+    participant Job
+    participant PythonScript as The Python Script
+    participant MongoDBCloud as MongoDB Cloud Setup
+    participant Databricks
+
+    Job ->> PythonScript: Description
+    Job ->> MongoDBCloud: Description
+    Job ->> Databricks: Description
 ```
+
+> This diagram is generated with MermaidJS
 
 ```mermaid
  gantt
