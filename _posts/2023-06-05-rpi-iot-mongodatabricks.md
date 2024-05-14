@@ -5,6 +5,7 @@ date: 2023-06-05 14:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors,Python,MongoDB]
 render_with_liquid: false
+mermaid: true
 ---
 
 ## Raspberry Pi - Mongo and Databricks

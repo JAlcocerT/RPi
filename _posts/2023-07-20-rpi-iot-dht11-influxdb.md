@@ -12,12 +12,16 @@ image:
 ---
 
 
-We are going to read Temperature and Humidity data from the DHT11 sensor, save it into an InfluxDB (*say Hi to time-series DBs*). With that, you can feed the information to Home Assistant and let go your imagination.
+We are going to read **Temperature and Humidity** data from the **DHT11** sensor, save it into an **InfluxDB** (*say Hi to time-series DBs*). With that, you can feed the information to Home Assistant and let go your imagination.
 
-All of this with docker as well? Yes, let's put everything together and create a **[reliable Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml)** that we can share across any other RPi and forget about dependencies. Lets get to works.
+All of this with docker as well? Yes, let's put everything together and create a **[reliable Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml)** that we can share across any other RPi and forget about dependencies. Lets get to work.
 
 ## Before Starting
 
+- [ ] Send DHT Data to InfluxDB
+  + [x] Hardware Check
+  + [ ] Python Script
+  + [ ] The Database: InfluxDB
 
 If you already have a RPi at home and a DHT11 sensor, you can perfectly get started with this project.
 
@@ -53,17 +57,19 @@ _DHT11 connection to a Raspberry Pi 4_
 
 I prefer to use the 3.3V for the DHT11, and yet it will work perfectly with 5V as well.
 
-> In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. You can always go to the terminal and check with:
+> In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. 
+{: .prompt-info }
+
+You can always go to the terminal and check with:
 ```sh
 pinout
 ```
-{: .prompt-info }
 
 ### Why InfluxDB?
 
-* Performance: InfluxDB is designed to store and query time-series data quickly. This makes it a good choice for Home Assistant, which generates a lot of time-series data.
-* Scalability: InfluxDB can scale to handle large amounts of data. This is important for Home Assistant users who have a lot of devices or who generate a lot of data.
-* Reliability: InfluxDB is a reliable database that is designed to keep your data safe. This is important for Home Assistant users who rely on their data for important tasks, such as security and automation.
+* Performance: InfluxDB is designed to store and query **time-series data** quickly.
+* Scalability: InfluxDB can scale to handle large amounts of data. 
+* Reliability: InfluxDB is a reliable database that is designed to keep your data safe. 
 
 And...InfluxDB is free and [open source](https://github.com/influxdata/influxdb)
 

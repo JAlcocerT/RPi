@@ -12,33 +12,44 @@ render_with_liquid: false
 
 ## Raspberry IoT with MongoDB and Metabase
 
-In this IoT Project we will be collecting **Temperature and Humidity Data** from a DHT11 or a DHT22 Sensor working together with a Raspberry Pi.
+In this IoT Project we will be collecting **Temperature and Humidity Data** from a DHT11 or a DHT22 Sensor working together with a **Raspberry Pi**.
 
-The data store will be in MongoDB, which will live in a Docker container.
+The data store will be in **MongoDB**, which will live in a Docker container.
 
-Then, we will visualize the IoT data with Metabase.
+Then, we will visualize the IoT data with a **Metabase** dashboard.
+
+> In a rush? There is a [quick setup](#quick-setup)
 
 ### Before Starting
 
+This is what we will be doing...🔜
+
+- [ ] Send DHT Data to MongoDB and Visualize it in Metadata 
+  + [x] Hardware Check 👇
+  + [ ] [The code](#python-dht-to-mongo) - Python Script to push DHT data to MongoDB
+  + [ ] The Database: [MongoDB](#the-database-mongodb)
 
 | Hardware             | Code                  | Data Analytics Stack |
 |---------------------|:---------------------------------:|:-----------:|
-| `Raspberry Pi 4`  ✓  | Python           | MongoDB        |
+| `Raspberry Pi 4`  ✓  | Python  🐍         | MongoDB        |
 | `DHT11` or `DHT22`     ✓  | Dockerfile    | Metabase        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
 
+* To work out of the box can use Raspberry Pi 64 bits for this project (by default [MongoDB](#the-database-mongodb) Image is ARM64).
+  * Or to run the [Python script](#python-dht-to-mongo) in a 32bits RPi and Official Mongo with Docker image in ARM64/X86.
+  * We can use unofficial **apcheamitru/arm32v7-mongo** image as well.
+
+* For [Metabase](#metabase) visualization, we need x86.
+
 ![Desktop View](/img/RPi4-DHT22-FlowChart.png){: width="972" height="589" }
 _From DHT sensor to Metabase - Our Workflow_
-
->  We can use Raspberry Pi 64 bits for this project.
- Or to run the Python script in a 32bits RPi and Official Mongo with Docker image in ARM64/X86.
-We can use unofficial **apcheamitru/arm32v7-mongo** image as well.
-For Metabase visualization, we need x86.
+>  I have used [this Python Diagram script](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT-to-MongoDB/Diagram.py
+) to generate the flow above 😁
 {: .prompt-info }
 
-### The Sensor: DHT11 or DHT22
+## The Sensor - DHT
 
-Temperature and Humidity Data.
+Temperature and Humidity Data can be provided with DHT11 or DHT22 for this project:
 
 
 | Pins             | Description                  |
@@ -48,37 +59,39 @@ Temperature and Humidity Data.
 | `-`             | Ground (0V)   |
 
 
-#### Connecting a DHT to a Raspberry Pi 4
+### Connecting a DHT to a Raspberry Pi 4
 
-To connect the sensor to the Raspberry, you can follow this schema:
+To connect the DHT11 or DHT22 sensor to the Raspberry, you can follow this schema:
 
 ![Desktop View](/img/RPi4-DHT22.png){: width="972" height="589" }
 _DHT22 connection to a Raspberry Pi 4_
 
 I prefer to use the 3.3V for the DHT22, and yet it will work perfectly with 5V as well.
 
-> In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. You can always go to the terminal and check with:
+> In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. 
+{: .prompt-info }
+
+You can always go to the terminal and check with:
 ```sh
 pinout
 ```
-{: .prompt-info }
-
+<!-- 
 ### Why MongoDB?
 
 * Scalability: MongoDB is a scalable database that can handle large amounts of data. This is important for IoT projects, which can generate a lot of data from sensors and devices.
 * Flexibility: MongoDB is a document-oriented database, which means that it is flexible and can store a variety of data types. This is important for IoT projects, which can generate data from a variety of sensors and devices.
-* Performance: MongoDB is a performant database that can handle high read and write volumes. This is important for IoT projects, which can generate a lot of data in real time.  
+* Performance: MongoDB is a performant database that can handle high read and write volumes. This is important for IoT projects, which can generate a lot of data in real time.   -->
 
-### To Do list
+<!-- ### To Do list
 
 - [ ] Send DHT Data to MongoDB
   + [x] Hardware Check
   + [ ] Python Script
-  + [ ] The Database: MongoDB
+  + [ ] The Database: MongoDB -->
 
 
 
-## Python Script
+## Python DHT to Mongo
 
 We need to use the following libraries:
 
@@ -174,11 +187,11 @@ while True:
     time.sleep(3)
 ```
 
-> It is ready to detect the mongoDB configuration from our [Docker-Compose stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/). As well as the type of sensor that we are using DHT11 or DHT22.
+> It is ready to detect the mongoDB configuration from our [Docker-Compose stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT-to-MongoDB/Python2MongoDB-Stack.yml). As well as the type of sensor that we are using DHT11 or DHT22.
 {: .prompt-info }
 
 
-#### Building the container
+#### How ro Build the DHT to Mongo Image
 
 Let's put that code inside a Docker container, so that the dependencies will be covered forever.
 
@@ -189,12 +202,14 @@ docker build -t dht_sensor_mongo .
 - [ ] Send DHT Data to MongoDB
   + [x] Hardware Check
   + [x] Python Script: and even inside a Docker container!
-  + [ ] The Database: MongoDB
+  + [ ] The Database: MongoDB 👇
 
 
 ## The DataBase: MongoDB
 
-We will use the latest [Docker image of MongoDB](https://hub.docker.com/_/mongo)
+This is the database were Python will be storing the DHT sensor data.
+
+We will use the latest [Docker image of MongoDB](https://hub.docker.com/_/mongo):
 
 ```yml
 version: '3'
@@ -229,13 +244,36 @@ db.dht_sensor.find().sort({timestamp: -1}).limit(5)
 #show collections
 ```
 
+### Why MongoDB for IoT Projects?
+
+**Scalability**
+- **Sharding:** Enables distribution of data across multiple servers, crucial for handling vast IoT data.
+- **Load Balancing:** Manages large data volumes efficiently, ensuring performance stability.
+
+**Flexibility**
+- **Schema-less:** Stores data in JSON-like documents, ideal for the diverse data types in IoT.
+- **Data Aggregation:** Supports complex processing, enhancing data analysis capabilities.
+
+**Performance**
+- **Advanced Indexing:** Offers efficient data retrieval, critical for real-time IoT operations.
+- **High Throughput:** Maintains fast read and write speeds, vital for IoT data integrity.
+
+**Robust Ecosystem**
+- **Integration:** Works well with key IoT platforms and tools like Kafka and Spark.
+- **Strong Community:** Provides extensive support and resources for IoT development.
+
+**Real-Time Processing**
+- **Change Streams:** Allows applications to access real-time data changes, enabling immediate IoT responses.
 
 
 
+---
 
 ## Quick Setup
 
-We will be using the [Docker-Compose Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/) that consolidates the Python Code I have created, together with provisioning a MongoDB:
+We will be using the [Docker-Compose Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT-to-MongoDB/Python2MongoDB-Stack.yml) that consolidates the Python Code I have created, together with provisioning a MongoDB.
+
+> You will need to [build the image](#how-ro-build-the-dht-to-mongo-image) with the files from [this folder](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT-to-MongoDB)
 
 
 ```yml
@@ -284,9 +322,11 @@ volumes:
 _Sending Temp and Humidity data successfully from a Raspberry Pi 4 and DHT sensor to MongoDB_
 
 
-## Metabase
+### Metabase DHT Sensor Visualization
 
-What about the visualization? Let's give it a try to [Metabase](https://www.metabase.com/)
+What about the visualization? Let's give it a try to **Metabase** 
+
+<!-- [Metabase](https://www.metabase.com/) -->
 
 We can install it with Docker by using [this configuration](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT-to-MongoDB) below:
 
@@ -306,7 +346,7 @@ volumes:
   metabase_data:
 ```
 
-Acces it at: `http://localhost:3000` 
+Acces Metabase UI at: `http://localhost:3000` 
 
 ![Desktop View](/img/metabase-mongoDB.JPG){: width="972" height="589" }
 _Metabase Ready to Roll_
@@ -349,20 +389,21 @@ db.dht_sensor.find().sort({ timestamp: -1 }).limit(10);
 
 ### How to embed a Metabase Dashboard?
 
-Metabase provides an embedding code snippet that you can use to include a Metabase dashboard into your application. Here are the general steps to embed a Metabase dashboard:
+Metabase provides an **embedding code snippet** that you can use to include a Metabase dashboard into your application.
+
+* The general steps to embed a Metabase dashboard:
+  * First, create and configure the dashboard you want to embed within your Metabase instance.
+  * Generate an Embedding Code:
+    * Open the dashboard you want to embed.
+    * Click on the "Share this dashboard" button (it looks like a share icon).
+    * In the "Share Dashboard" dialog, click on the "Embed in another page" option.
+    * Customize the settings for your embedded dashboard, such as the width, height, and whether to show the Metabase header.
+    * Click the "Generate Embed Code" button.
+  * Metabase will provide you with an **HTML code snippet** that you can use to embed the dashboard into your web application.
+    * Copy the generated HTML code snippet and paste it into the HTML source code of your web application or webpage where you want the Metabase dashboard to appear.
 
 
-* First, create and configure the dashboard you want to embed within your Metabase instance.
-
-* Generate an Embedding Code:
-  * Open the dashboard you want to embed.
-  * Click on the "Share this dashboard" button (it looks like a share icon).
-  * In the "Share Dashboard" dialog, click on the "Embed in another page" option.
-  * Customize the settings for your embedded dashboard, such as the width, height, and whether to show the Metabase header.
-  * Click the "Generate Embed Code" button.
-
-* Metabase will provide you with an HTML code snippet that you can use to embed the dashboard into your web application.
-  * Copy the generated HTML code snippet and paste it into the HTML source code of your web application or webpage where you want the Metabase dashboard to appear.
+This is how the Metabase html will look like:
 
 ```html
 <div>
@@ -464,6 +505,5 @@ pip install Adafruit_DHT==1.4.0
 #deactivate
 ```
 
-Thanks to: <https://pimylifeup.com/raspberry-pi-humidity-sensor-dht22/> for inspiration of this project.
-
-And to: <https://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/python-setup>
+* Thanks to: <https://pimylifeup.com/raspberry-pi-humidity-sensor-dht22/> for inspiration of this project.
+  * And to: <https://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/python-setup>
