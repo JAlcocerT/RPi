@@ -3,7 +3,7 @@ title: RPi IoT Project - Sending Data (DHT22) to ElasticSearch
 author: JAlcocerT
 date: 2023-10-08 14:10:00 +0800
 categories: [IoT & Data Analytics]
-tags: [Sensors, Python, ElasticSearch, Docker]
+tags: [Sensors, Python, Dashboards, Docker]
 render_with_liquid: false
 ---
 

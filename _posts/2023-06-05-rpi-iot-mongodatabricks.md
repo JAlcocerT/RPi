@@ -1,9 +1,9 @@
 ---
-title: RPi IoT Project - Analizing sensors Data with MongoDB & Databricks
+title: Analizing DHT sensors Data with MongoDB & Databricks & Metabase
 author: JAlcocerT
 date: 2023-06-05 14:10:00 +0800
 categories: [IoT & Data Analytics]
-tags: [Sensors,Python,MongoDB]
+tags: [Sensors,Python,MongoDB,Dashboards]
 render_with_liquid: false
 mermaid: true
 ---

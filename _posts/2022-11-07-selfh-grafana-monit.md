@@ -3,7 +3,7 @@ title: RPi Monitoring - Eyes on Everything with Grafana
 author: JAlcocerT
 date: 2022-11-07 14:10:00 +0800
 categories: [IoT & Data Analytics]
-tags: [Self-Hosting,Docker,InfluxDB,Prometheus]
+tags: [Self-Hosting,Docker,InfluxDB,IoT]
 render_with_liquid: false
 ---
 

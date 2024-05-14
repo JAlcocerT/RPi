@@ -3,7 +3,7 @@ title: RPi IoT Project - Temperature and Humidity with DHT11 & InfluxDB
 author: JAlcocerT
 date: 2023-07-20 14:10:00 +0800
 categories: [IoT & Data Analytics]
-tags: [Sensors,Python,InfluxDB]
+tags: [Sensors,Python,InfluxDB, IoT]
 render_with_liquid: false
 image:
   path: /img/RPi-HomeAssistant-DHT11.png #If you want to add an image at the top of the post, please provide an image with a resolution of 1200 x 630.

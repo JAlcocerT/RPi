@@ -2,7 +2,7 @@
 title: PI's vs MiniPC for Home Server
 author: JAlcocerT
 date: 2024-03-15 00:34:00 +0800
-categories: [Make your Raspberry Useful]
+categories: [RPi Setup]
 tags: [Self-Hosting, Docker]
 ---
 
