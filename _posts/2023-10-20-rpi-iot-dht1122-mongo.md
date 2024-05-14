@@ -66,7 +66,7 @@ To connect the DHT11 or DHT22 sensor to the Raspberry, you can follow this schem
 ![Desktop View](/img/RPi4-DHT22.png){: width="972" height="589" }
 _DHT22 connection to a Raspberry Pi 4_
 
-I prefer to use the 3.3V for the DHT22, and yet it will work perfectly with 5V as well.
+I prefer to use the 3.3V for the DHT, and yet it will work perfectly with 5V as well.
 
 > In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. 
 {: .prompt-info }

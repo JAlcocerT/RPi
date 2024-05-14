@@ -9,6 +9,7 @@ image:
   path: /img/RPi-HomeAssistant-DHT11.png #If you want to add an image at the top of the post, please provide an image with a resolution of 1200 x 630.
   lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
   alt: IoT Project with Python, InfluxDB, Home Assistant and a DHT11.
+mermaid: true
 ---
 
 
@@ -34,6 +35,27 @@ If you already have a RPi at home and a DHT11 sensor, you can perfectly get star
 | `DHT11`     ✓  | Dockerfile    | HomeAssistant with InfluxDB Integration        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
 
+```mermaid
+mindmap
+  root((dht2influxdb))
+    Software
+      InfluxDB
+      ::icon(fa fa-book)
+      Python
+        Adafruit_DHT Package
+        InfluxDB Package
+      Dockerfile
+        Docker Compose Configuration
+    Hardware
+      Raspberry Pi 4
+        Uses
+            DHT11 Temp Sensor
+            Three wires
+            Argument mapping
+    Tools
+      Home Assistant
+      Docker
+```
 
 >  We can use Raspberry Pi 32/64 bits for this project.
 {: .prompt-info }

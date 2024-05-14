@@ -24,7 +24,7 @@ sequenceDiagram
     Job ->> Databricks: Description
 ```
 
-> This diagram is generated with MermaidJS
+> This diagram is generated with [MermaidJS](https://mermaid.js.org/syntax/sequenceDiagram.html)
 
 ```mermaid
  gantt

@@ -11,6 +11,8 @@ In this project we will be collecting **Temperature and Humidity Data** from a D
 
 The data store will be ElasticSearch, which will live in a Docker container.
 
+And we will visualize the DHT Sensor Data with **Kibana**.
+
 ## Before Starting
 
 
