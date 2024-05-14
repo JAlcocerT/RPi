@@ -45,6 +45,7 @@ mindmap
       InfluxDB
       ::icon(fas fa-database)
       Python
+      ::icon(fab fa-python)
         Adafruit_DHT Package
         InfluxDB Package
       Dockerfile
