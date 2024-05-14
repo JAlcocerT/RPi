@@ -25,8 +25,9 @@ All of this with docker as well? Yes, let's put everything together and create a
   + [x] Hardware Check
   + [ ] Python Script
   + [ ] The Database: InfluxDB
+- [ ] Connect InfluxDB with DHT11 Data to Home Assistant (optional)
 
-If you already have a RPi at home and a DHT11 sensor, you can perfectly get started with this project.
+If you already have a RPi at home and a DHT11 sensor, you can perfectly **get started** with this project.
 
 
 | Hardware             | Code                  | Data Analytics Stack |
@@ -35,12 +36,14 @@ If you already have a RPi at home and a DHT11 sensor, you can perfectly get star
 | `DHT11`     ✓  | Dockerfile    | HomeAssistant with InfluxDB Integration        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
 
+This is a mindmap of this IoT Project. All the code and configuration needed are in this post 👇
+
 ```mermaid
 mindmap
   root((dht2influxdb))
     Software
       InfluxDB
-      ::icon(fa fa-book)
+      ::icon(fas fa-database)
       Python
         Adafruit_DHT Package
         InfluxDB Package
@@ -48,10 +51,9 @@ mindmap
         Docker Compose Configuration
     Hardware
       Raspberry Pi 4
-        Uses
-            DHT11 Temp Sensor
-            Three wires
-            Argument mapping
+        DHT11 Temp Sensor
+        ::icon(fas fa-thermometer-three-quarters)
+        Three wires
     Tools
       Home Assistant
       Docker
@@ -97,7 +99,7 @@ pinout
 
 And...InfluxDB is free and [open source](https://github.com/influxdata/influxdb)
 
-## The Base Code: Python
+## The Base Code: Python with DHT11
 
 Execute this code (it prints the values as well) to know that everything works for you, or just go to the next step point.
 
