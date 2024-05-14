@@ -2,7 +2,7 @@
 title: The Raspberry Pi as a Portable router with RaspAP
 author: JAlcocerT
 date: 2021-11-25 14:10:00 +0800
-categories: [Networking]
+categories: [Make your Raspberry Useful, Networking]
 tags: [Networking]
 render_with_liquid: false
 ---

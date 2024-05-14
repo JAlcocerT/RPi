@@ -2,7 +2,7 @@
 title: RPi Monitoring - Quality of our Internet
 author: JAlcocerT
 date: 2022-11-10 14:10:00 +0800
-categories: [Networking]
+categories: [Make your Raspberry Useful, Networking]
 tags: [Self-Hosting,Docker,Networking]
 render_with_liquid: false
 ---

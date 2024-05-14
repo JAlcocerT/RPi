@@ -2,7 +2,7 @@
 title: Better Home Internet with PiHole, RaspAlert, Unbound and SearXNG
 author: JAlcocerT
 date: 2022-12-20 14:10:00 +0800
-categories: [Networking]
+categories: [Make your Raspberry Useful, Networking]
 tags: [Self-Hosting,Docker,Networking]
 render_with_liquid: false
 ---
