@@ -105,6 +105,12 @@ For reference, I [benchmarked *bigger* CPUs here](https://jalcocert.github.io/Li
 
 * Now you can have a *[DB Less Cloud](https://fossengineer.com/selfhosting-filebrowser-docker/)*
 
+<details>
+  <summary>Click to expand</summary>
+  <p>This is the content that was hidden, but now you see it!</p>
+</details>
+
+* Get the latest Kernel for the orange pi 5 - https://github.com/Joshua-Riek/ubuntu-rockchip/releases
 
 ### Why changing the MiniPC to Linux?
 
