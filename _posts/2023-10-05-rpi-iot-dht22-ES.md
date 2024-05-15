@@ -1,5 +1,5 @@
 ---
-title: RPi IoT Project - Sending Data (DHT22) to ElasticSearch
+title: How to Log DHT22 Data to ElasticSearch & Kibana
 author: JAlcocerT
 date: 2023-10-08 14:10:00 +0800
 categories: [IoT & Data Analytics]
