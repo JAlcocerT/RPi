@@ -201,6 +201,6 @@ phoronix-test-suite benchmark smallpt
 https://openbenchmarking.org/result/2403181-NE-TESTBENCH60
 https://openbenchmarking.org/result/2403181-NE-TESTORANG02 -->
 
-### How to 
-
-{% include embed/{youtube}.html id='{h1kyncK--vQ}' %}
+<!-- ### How to Monitor MiniPC Temperatures
+https://www.youtube.com/watch?v=h1kyncK--vQ
+{% include embed/{youtube}.html id='{h1kyncK--vQ}' %} -->

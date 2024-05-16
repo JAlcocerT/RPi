@@ -249,6 +249,20 @@ speedtest-cli
 
 > You can try similar project with a [RPi and RaspAP](https://jalcocert.github.io/RPi/posts/rpi-raspap/)
 
+<!-- ### How does the Ethernet Bridge Setup Looks?
+
+{%
+  include embed/video.html
+  src='/vid/.mp4'
+  types='ogg|mov'
+  poster='poster.png'
+  title='Wifi Ethernet Bridge'
+  autoplay=false
+  loop=false
+  muted=true
+%} -->
+
+
 ---
 
 ## FAQ

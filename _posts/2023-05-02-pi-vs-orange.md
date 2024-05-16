@@ -22,11 +22,13 @@ The Raspberry Pi 4 is a popular choice for academic projects and provides hands-
 
 ## The contender: Orange Pi 5
 
-In my recent journey towards self-hosting, I discovered the Orange Pi 5, a powerful single-board computer that has become an invaluable asset for my independence from cloud services, like [Google Cloud Run](https://fossengineer.com/dash-docker-gcr/).
+In my recent [journey towards self-hosting](https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/), I discovered the Orange Pi 5, a powerful single-board computer that has become an invaluable asset for my independence from cloud services, like [Google Cloud Run](https://fossengineer.com/dash-docker-gcr/).
 
-Migrating from Google Cloud Run to [self-hosting the Python DASH APP](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/) that allows any user to [plan trips according to weather patterns](https://fossengineer.com/tags/trip-planner/)
+<!-- Migrating from Google Cloud Run to [self-hosting the Python DASH APP](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/) that allows any user to [plan trips according to weather patterns](https://fossengineer.com/tags/trip-planner/) -->
 
-It has been an empowering experience [*as I also learnt how to expose the services securely with Cloudflare Tunnels*](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/), and the Orange Pi 5 has played a significant role in this transition. 
+It has been an empowering experience *as I also learnt how to expose the services [securely with Cloudflare Tunnels](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/)*.
+
+And the Orange Pi 5 has played a significant role in this transition as being **ARM64** makes it Compatible with Cloudflare Tunnels
 
 ### Orange Pi 5 Specs
 
