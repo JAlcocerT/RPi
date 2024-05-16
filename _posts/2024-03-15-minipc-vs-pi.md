@@ -97,7 +97,12 @@ _Intel N95 4 cores with phoronix Open Source Benchmark_
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/orangepi5-cpu-phoronix.png)
 _The Orange Pi 8 Cores is a beast scoring 38s_
 
-For reference, I [benchmarked *bigger* CPUs here](https://jalcocert.github.io/Linux/docs/linux__cloud/benchmark/). Plot twist, both CPUs (specially the Rockchip, has nothing to envy)
+For reference, I [benchmarked *bigger* CPUs here](https://jalcocert.github.io/Linux/docs/linux__cloud/benchmark/).
+
+> Plot twist, both CPUs, *specially the Rockchip*, has nothing to envy
+
+![BMAX B4 - Performance vs i5 gen 11](/img/minipc-vs-pis/i5-1135g7.png)
+_Performance of i51135g7 (Laptop CPU) with same Benchmark_
 
 ---
 
@@ -131,9 +136,9 @@ nmcli radio wifi off #on
 #nmcli radio help   
 ```
 
-> Here you improve by ~10% the power efficiency, aka: -1W 😜
+> Here you **improve by ~10%** the power efficiency, aka: -1W 😜
 
-And Bluetooth:
+And also, turnoff Bluetooth if you dont need it with:
 
 ```sh
 sudo service bluetooth stop #start
@@ -171,12 +176,12 @@ You can see how for the python question, which answer was pretty detailed, took 
 _BMAX B4 - MiniPC Performance while LLM inference_
 
 
-### How to Benchmark?
+### How to Benchmark the MiniPC?
 
 * Using Sysbench
 * [Monitor with Netdata](https://fossengineer.com/selfhosting-netdata/)
 
-#### with Phoronix Test Suite
+#### Benchmark MiniPC with Phoronix Test Suite
 
 We can have an idea by being part of [openbenchmarking](https://openbenchmarking.org/) by using the [F/OSS Phoronix Test Suite](https://github.com/phoronix-test-suite/phoronix-test-suite/releases)
 
@@ -196,8 +201,6 @@ phoronix-test-suite benchmark smallpt
 https://openbenchmarking.org/result/2403181-NE-TESTBENCH60
 https://openbenchmarking.org/result/2403181-NE-TESTORANG02 -->
 
+### How to 
 
-### Bmax B4 vs Laptop
-
-![BMAX B4 - Performance vs i5 gen 11](/img/minipc-vs-pis/i5-1135g7.png)
-_Performance of i51135g7 with same Benchmark_
+{% include embed/{youtube}.html id='{h1kyncK--vQ}' %}

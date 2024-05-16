@@ -12,22 +12,30 @@ image:
 ---
 
 
-The Orange Pi 5 is a versatile device suitable for high-end tablets, Home Assistant integration, edge computing, AI, cloud computing, AR/VR, and smart security. It caters to various AIoT industries and offers flexibility for different use cases. With its advanced 8nm LP fabrication technology and the Rockchip RK3588S chip, it provides exceptional performance and reduced power consumption.
+The Orange Pi 5 is a versatile device suitable for high-end tablets, Home Assistant integration, edge computing, AI, cloud computing, AR/VR, and smart security.
 
-On the other hand, the **Raspberry Pi 4** supports multimedia playback and video output, making it ideal for home media centers and retro gaming. It is also suitable for IoT projects, offers educational opportunities, and is compatible with various sensors and actuators. The Raspberry Pi 4 is a popular choice for academic projects and provides hands-on learning in programming, electronics, and computer concepts.
+With its advanced 8nm LP fabrication technology and the [Rockchip RK3588S chip](#orange-pi-5-specs), it provides exceptional performance and reduced power consumption.
+
+On the other hand, the **Raspberry Pi 4** supports multimedia playback and video output, making it ideal for home media centers and retro gaming. It is also [suitable for IoT projects](https://jalcocert.github.io/RPi/categories/iot-data-analytics/), offers educational opportunities, and is compatible with various sensors and actuators.
+
+The Raspberry Pi 4 is a popular choice for academic projects and provides hands-on learning in programming, electronics, and computer concepts.
 
 ## The contender: Orange Pi 5
 
-In my recent journey towards self-hosting, I discovered the Orange Pi 5, a powerful single-board computer that has become an invaluable asset in my quest for independence from cloud services, like [Google Cloud Run](https://fossengineer.com/dash-docker-gcr/).
+In my recent journey towards self-hosting, I discovered the Orange Pi 5, a powerful single-board computer that has become an invaluable asset for my independence from cloud services, like [Google Cloud Run](https://fossengineer.com/dash-docker-gcr/).
 
-Migrating from Google Cloud Run to [self-hosting the Python DASH APP](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/) that allows any user to [plan trips according to weather patterns](https://fossengineer.com/tags/trip-planner/), has been an empowering experience [*as I also learnt how to expose the services securely with Cloudflare Tunnels*](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/), and the Orange Pi 5 has played a significant role in this transition. 
+Migrating from Google Cloud Run to [self-hosting the Python DASH APP](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/) that allows any user to [plan trips according to weather patterns](https://fossengineer.com/tags/trip-planner/)
+
+It has been an empowering experience [*as I also learnt how to expose the services securely with Cloudflare Tunnels*](https://fossengineer.com/selfhosting-python-dash-apps-with-docker/), and the Orange Pi 5 has played a significant role in this transition. 
+
+### Orange Pi 5 Specs
 
 Its reliability and energy efficiency make it ideal for running my self-hosted services, offering a reliable and cost-effective alternative to cloud-based solutions.
 
-* Rockchip RK3588S that features eight Arm Cores (4xCortex-A76 @ 2.4GHz plus 4x1.8GHz Cortex-A55).
-    * The Rockchip SoC also features a Mali G510 MP4 graphics processor, which has open-source driver hope via the Panfrost driver stack - providing solid graphics processing capabilities.
+* **Rockchip RK3588S** that features **eight Arm Cores** (4xCortex-A76 @ 2.4GHz plus 4x1.8GHz Cortex-A55).
+    * The Rockchip SoC also features a **Mali G510 MP4** graphics processor, which has open-source driver hope via the Panfrost driver stack - providing solid graphics processing capabilities.
 
-> You can download OS for the Orange from the manufacturer website or from [this repo](https://github.com/Joshua-Riek/ubuntu-rockchip)
+> You can download **OS for the OrangePi** from the manufacturer website or from [this repo](https://github.com/Joshua-Riek/ubuntu-rockchip)
 
 ### Orange Pi 5 - CPU Benchmark
 
@@ -77,9 +85,9 @@ _RPi 4 - CPU Benchmark_
 
 ## Orange Pi vs Raspberry - Real CPU Test
 
-Recently, I have been working on my [Python Trip Planner with Weather](https://fossengineer.com/tags/trip-planner/) to have an open source tool that allows anyone to look for historical weather patterns with an interactive UI, so that [planning our next adventures](https://fossengineer.com/tags/cyclingthrougheurope/) can be easier.
+Recently, I have been working on my [Python Trip Planner with Weather](https://github.com/JAlcocerT/Py_Trip_Planner) to have an **open source tool** that allows anyone to look for **historical weather** patterns with an interactive UI.
 
-This provided me with the **perfect opportunity to test the CPU performance** of both, Raspberry Pi 4 and Orange Pi 5 in a real scenario - [building the docker containers](https://fossengineer.com/building-docker-container-images/#building-images-locally-x86-arm32-arm64) for that Python App.
+This provided me with the perfect opportunity to **test the CPU performance** of both, Raspberry Pi 4 and Orange Pi 5 in a real scenario - [building the docker containers](https://fossengineer.com/building-docker-container-images/#building-images-locally-x86-arm32-arm64) for that Python App.
 
 To check how both SBC's were keeping up with the temperatures and how the CPUs struggled, I used [netdata](https://fossengineer.com/selfhosting-server-monitoring-with-netdata-and-docker/).
 
