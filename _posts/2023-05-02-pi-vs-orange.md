@@ -2,7 +2,7 @@
 title: Battle of the Boards - Raspberry Pi 4 vs. Orange Pi 5
 author: JAlcocerT
 date: 2023-05-02 14:10:00 +0800
-categories: [RPi Setup]
+categories: [RPi Setup, Home Server]
 tags: [RPi 101]
 render_with_liquid: false
 image:
@@ -12,15 +12,17 @@ image:
 ---
 
 
-The Orange Pi 5 is a versatile device suitable for high-end tablets, Home Assistant integration, edge computing, AI, cloud computing, AR/VR, and smart security.
+[The Orange Pi 5](#exploring-the-orange-pi-5) is a versatile device suitable for high-end tablets, Home Assistant integration, edge computing, AI, cloud computing, AR/VR, and smart security.
 
 With its advanced 8nm LP fabrication technology and the [Rockchip RK3588S chip](#orange-pi-5-specs), it provides exceptional performance and reduced power consumption.
 
-On the other hand, the **Raspberry Pi 4** supports multimedia playback and video output, making it ideal for home media centers and retro gaming. It is also [suitable for IoT projects](https://jalcocert.github.io/RPi/categories/iot-data-analytics/), offers educational opportunities, and is compatible with various sensors and actuators.
+On the other hand, the **[Raspberry Pi 4](#the-raspberry-pi-4)** supports multimedia playback and video output, making it ideal for home media centers and retro gaming.
+
+It is also [suitable for IoT projects](https://jalcocert.github.io/RPi/categories/iot-data-analytics/), offers educational opportunities, and is compatible with various sensors and actuators.
 
 The Raspberry Pi 4 is a popular choice for academic projects and provides hands-on learning in programming, electronics, and computer concepts.
 
-## The contender: Orange Pi 5
+## Exploring the Orange Pi 5
 
 In my recent [journey towards self-hosting](https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/), I discovered the Orange Pi 5, a powerful single-board computer that has become an invaluable asset for my independence from cloud services, like [Google Cloud Run](https://fossengineer.com/dash-docker-gcr/).
 
@@ -36,6 +38,7 @@ Its reliability and energy efficiency make it ideal for running my self-hosted s
 
 * **Rockchip RK3588S** that features **eight Arm Cores** (4xCortex-A76 @ 2.4GHz plus 4x1.8GHz Cortex-A55).
     * The Rockchip SoC also features a **Mali G510 MP4** graphics processor, which has open-source driver hope via the Panfrost driver stack - providing solid graphics processing capabilities.
+* **Dimensions** -  100mm×62mm×18mm -> 0.1116L
 
 > You can download **OS for the OrangePi** from the manufacturer website or from [this repo](https://github.com/Joshua-Riek/ubuntu-rockchip)
 
@@ -72,8 +75,10 @@ max 85
 
 ## The Raspberry Pi 4
 
-* The Raspberry Pi 4 is powered by a quad-core ARM Cortex-A72 CPU, providing reliable performance for a range of applications.
+* The Raspberry Pi 4 is powered by a **quad-core ARM** Cortex-A72 CPU, providing reliable performance for a range of applications.
     * The Raspberry Pi 4 is equipped with a VideoCore VI GPU, ensuring smooth graphics rendering and multimedia performance.
+* RPi4 Model B Dimensions - 85.6mm×56.5mm×17mm - Which makes a volume of 82,096.8 mm³
+    * The Raspberry Pi 4 is approximately **26.44% smaller in volume** compared to the Orange Pi 5.
 
 ### Raspberry Pi 4 - CPU Benchmark
 

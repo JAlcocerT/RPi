@@ -2,23 +2,26 @@
 title: PI's vs MiniPC for Home Server
 author: JAlcocerT
 date: 2024-03-15 00:34:00 +0800
-categories: [RPi Setup]
+categories: [RPi Setup, Home Server]
 tags: [Self-Hosting, Docker]
 ---
 
+Let's compare some popular SBC Boards (RPi4 and [Orange Pi 5](https://jalcocert.github.io/RPi/posts/pi-vs-orange/)) with a MiniPC
+
+> Should I buy a Raspberry or a MiniPC? Lets have a look 👇
 
 ## PI's
 
 Some time ago I was making a [performance comparison between 2 popular ARM boards](https://jalcocert.github.io/RPi/posts/pi-vs-orange/).
 
-Now, it is the time to see how they stand when compared with a similar in cost mini-PC.
+Now, it is the time to see how these SBC's stand when compared with a **similar in cost mini-PC**.
 
-For benchmarking I've used:
-
-* Docker Building Image time for: <https://github.com/JAlcocerT/Py_Trip_Planner/>
-* Sysbench
-* Phoronix
-* Netdata
+* For benchmarking I've used:
+  * Real Scenario: Docker Building Image time for [my Python Trip Planner](https://github.com/JAlcocerT/Py_Trip_Planner/):
+  * Synthetic tests
+    * Sysbench
+    * Phoronix
+  * Netdata
 
 > The Orange Pi (8gb) idles ~ and the RPi 4 (2gb) ~
 
@@ -26,6 +29,7 @@ For benchmarking I've used:
 
 * Intel N95 (4 cores)
 * 16GB RAM 2600mhz
+* Dimensions - 12.5 cm (W) × 11.2 cm (L) × 4.4 cm (H) - **0,62L**
 
 ```sh
 lscpu
@@ -146,10 +150,11 @@ sudo service bluetooth stop #start
 ```
 
 
-### Using a MiniPC as Free Home Cloud
+### Projects for a MiniPC
 
-* <https://fossengineer.com/selfhosting-filebrowser-docker/>
-* <https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/>
+* MiniPC as a Free Home Cloud
+  * <https://fossengineer.com/selfhosting-filebrowser-docker/>
+  * <https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/>
 
 
 ### How to use LLMs in a MiniPC
@@ -205,4 +210,4 @@ https://openbenchmarking.org/result/2403181-NE-TESTORANG02 -->
 https://www.youtube.com/watch?v=h1kyncK--vQ
 -->
 
-{% include embed/{youtube}.html id='{h1kyncK--vQ}' %}
+<!-- {% include embed/{youtube}.html id='{h1kyncK--vQ}' %} -->

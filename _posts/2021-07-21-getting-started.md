@@ -2,7 +2,7 @@
 title: Getting Started with Raspberry Pi Projects
 author: JAlcocerT
 date: 2021-07-21 20:55:00 +0800
-categories: [RPi Setup]
+categories: [RPi Setup, Home Server]
 tags: [RPi 101]
 pin: true
 #img_path: '/posts/20180809'
