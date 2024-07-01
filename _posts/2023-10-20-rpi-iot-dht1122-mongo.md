@@ -35,6 +35,13 @@ This is what we will be doing...🔜
 | `DHT11` or `DHT22`     ✓  | Dockerfile    | Metabase        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
 
+<details>
+  <summary>Few things to Refresh</summary>
+  <p>We will be, among other tasks, selfhosting - Setup with - https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/</p>
+  <p>For Python - https://fossengineer.com/guide-python/</p>  
+  <p>Raspbian OS installed and ssh ready `ssh -V`</p>  
+</details>
+
 * To work out of the box can use Raspberry Pi 64 bits for this project (by default [MongoDB](#the-database-mongodb) Image is ARM64).
   * Or to run the [Python script](#python-dht-to-mongo) in a 32bits RPi and Official Mongo with Docker image in ARM64/X86.
   * We can use unofficial **apcheamitru/arm32v7-mongo** image as well.
