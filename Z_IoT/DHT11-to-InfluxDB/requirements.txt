@@ -1,0 +1,3 @@
+wheel
+Adafruit_DHT==1.4.0 #https://pypi.org/project/Adafruit-DHT/
+influxdb

@@ -15,7 +15,8 @@ COPY Python2InfluxDB.py /app/
 
 
 # Install additional dependencies
-RUN pip install Adafruit_DHT influxdb
+#RUN pip install Adafruit_DHT influxdb
+RUN pip install -r requirements.txt
 
 # Run the Python script
 #CMD ["python", "your_python_script.py"]
