@@ -60,9 +60,14 @@ mindmap
       Docker
 ```
 
->  We can use Raspberry Pi 32/64 bits for this project.
+> Use **Raspberry Pi 32/64 bits** running [Raspbian GNU/Linux 11 (**bullseye**)](https://archive.raspberrypi.org/debian/dists/) for this project.
 {: .prompt-info }
 
+* Make sure you have Python ready: `python --version` - I used 3.9.2
+* And also pip `pip --version` - For me it was 20.3.4
+* Check your Linux version with: `uname -a` - I used kernel 6.1
+* And make sure that you use Bullseye (I was getting error with DHT_Adafruit Installation in the newer v12 Bookworm)
+* (Optional) - `docker info` ->   buildx: Docker Buildx (Docker Inc., v0.15.1) and compose: Docker Compose (Docker Inc., v2.28.1)
 
 ### The Sensor: DHT11
 
@@ -122,7 +127,7 @@ pip install influxdb
 #pip show influxdb
 ```
 
-* This code will test that we get data and the the connections are working:
+* [This code](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT11-to-InfluxDB) will test that we get data and the the connections are working: `Python_DHT11_Test.py`
 
 
 ```py
@@ -174,19 +179,20 @@ You can also check (uncommenting the influxDB part) if a local instance of the D
 The [Python code](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/Python2InfluxDB.py) and the InfluxDB can be running directly in our Raspberry Pi, but I prefer to use Docker containers when possible to isolate dependencies and make the projects more resilient and easier to debug.
 
 * We will be using these base containers:
-    * The image to have our own InfluxDB in a container: <https://hub.docker.com/_/influxdb/tags>
-    * I have used this python base image to create a container with the code: <https://hub.docker.com/_/python>
+    * The image to have our own **InfluxDB in a container**: <https://hub.docker.com/_/influxdb/tags>
+    * I have used this **Python base image** to create a container with the code: <https://hub.docker.com/_/python>
 
 ### The artifacts we need
 
-Create an instance of the InfluxDB with Docker and this Docker-Compose:
+1. The [Python Code](#the-base-code-python-with-dht11) - We just saw how to
+2. Now: Create an instance of the **InfluxDB with Docker** and this Docker-Compose:
 
 ```yml
 version: '3'
 services:
 
   influxdb:
-    image: influxdb:1.8
+    image: influxdb:1.8 #v1.8 works for ARM32 #latest for ARM64 only
     container_name: influxdb
     ports:
       - "8086:8086"
@@ -199,6 +205,12 @@ services:
 
 volumes:
   influxdb_data:
+```
+
+Once InfluxDB is deployed, you can try to ping with:
+
+```sh
+curl -I http://127.0.0.1:8086/ping #if running locally
 ```
 
 We have 2 options for this to work:
@@ -215,13 +227,20 @@ We have 2 options for this to work:
 
 You have everything connected and want just a quick setup? Simply use this [docker-compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/Python2InfluxDB-Stack.yml) below:
 
+1. `git clone https://github.com/JAlcocerT/RPi`
+2. `cd ./RPi/Z_IoT/DHT11-to-InfluxDB`
+3. Build the Docker Image: `docker build -t dht11_python_to_influxdb .`
+4. Use the Docker-Compose below:
+* With CLI: `docker-compose -f Python2InfluxDB-Stack.yml up -d`
+* Or as a [Portainer Stack](https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/#installing-portainer) with GUI
+
 ```yml
 version: "3"
 services:
 
   python_dht:
     container_name: python_dht
-    image: fossengineer/dht11_python_to_influxdb  # Use the name of your pre-built Python image
+    image: dht11_python_to_influxdb #fossengineer/dht11_python_to_influxdb  # Use the name of your pre-built Python image
     privileged: true
     environment:
       - INFLUXDB_HOST=influxdb
@@ -235,7 +254,7 @@ services:
       - influxdb
 
   influxdb: #this is running in other device, so make sure that the container is running before executing the python one
-    image: influxdb:latest
+    image: influxdb:1.8 #latest (for ARM64 only)
     environment:
       - INFLUXDB_DB=sensor_data
       - INFLUXDB_ADMIN_USER=admin
@@ -243,20 +262,90 @@ services:
       - INFLUXDB_USER=user
       - INFLUXDB_USER_PASSWORD=userpass    
 ```
+
+## Displaying DHT11 Data on Dashboards
+
+* **Option 1** - With Grafana: Connect the InfluxDB to Grafana as a Data Source
+
+Grafana is not only good [for monitoring](https://jalcocert.github.io/RPi/posts/selfh-grafana-monit/), but also we can display IoT Data:
+
+```yml
+
+version: '3'
+services:
+  dht_sensor_app:
+    image: dht_sensor_app_influxdb
+    container_name: dht_sensor_app
+    privileged: true
+    depends_on:
+      - influxdb
+
+  influxdb:
+    image: influxdb:1.8 #for arm32/64 #latest for ARM64
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=sensor_data
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=mysecretpassword
+
+  grafana:
+    image: grafana/grafana:9.5.7 #was using this one instead of latest for stability
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana_data:/var/lib/grafana  # Add this line to specify the volume
+
+volumes:
+  influxdb_data:
+  grafana_data:  # Define the volume for Grafana
+```
+
+* Grafana Configuration with InfluxDB
+  * To access Grafana, you will need the creds: `admin/admin`
+  * Then add your first data source -> InfluxDB - Input the Databse name / User / Password as defined in the docker compose configuration.
+  * Dont forget to add the http url of our influxDB as: `http://192.168.3.130:8086` (Local IP of your RPI / The Container IP)
+
+* **Option 2** - With Home Assistant
+
+* **Option 3** - With Chronograph - https://github.com/influxdata/chronograf?tab=License-1-ov-file#readme
+
+
 ---
 
 ## FAQ
 
+### Quick Test
+
+1. `git clone https://github.com/JAlcocerT/RPi`
+2. `cd ./RPi/Z_IoT/DHT11-to-InfluxDB`
+3. Create a [Python venv](https://fossengineer.com/python-dependencies-for-ai/#venvs)
+
+```sh
+python -m venv dhtinflux
+```
+
+4. Activate the Python environment: `python -m venv dhtinflux`
+5. Install the dependencies: `pip install -r requirements.txt`
+5. Execute the Sample Code to check Wirings/ Sensor are Fine `python`
+
+
 ### How can I Query InfluxDBs with SQL?
 
 
-If you go inside the InfluxDB container, you can execute the following to check that everything is working as it should:
+If you go **inside the InfluxDB container**, you can execute the following to check that everything is working as it should: `docker exec -it influxdb /bin/bash`
 
 ```sh
 influx
 show databases
 use sensor_data
-show measurements
+show measurements #here we will have the dht_sensor Data that Python is Pushing
 ```
 
 Then, query your InfluxDB with:

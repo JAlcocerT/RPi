@@ -13,13 +13,11 @@ RUN apt-get update && \
 #COPY your_python_script.py /app/
 COPY Python2InfluxDB.py /app/
 
-
 # Install additional dependencies
-#RUN pip install Adafruit_DHT influxdb
-RUN pip install -r requirements.txt
+RUN pip install Adafruit_DHT influxdb
+#RUN pip install -r requirements.txt
 
 # Run the Python script
 #CMD ["python", "your_python_script.py"]
-
 
 #docker build -t dht11_python_to_influxdb .

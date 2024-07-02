@@ -67,10 +67,10 @@ networks: #optional
     external: true #optional
 ```    
 
-default creds: *admin/admin*
+default creds: `admin/admin`
 
 
-We will need the /etc/prometheus/prometheus.yml file
+We will need the `/etc/prometheus/prometheus.yml` file
 
 in this case here:
 
@@ -79,7 +79,7 @@ sudo nano /home/Docker/monitoringserver/prometheus/prometheus.yml
 ```
 
 
-Then, spin up the docker containers with: docker-compose up -d
+Then, spin up the docker containers with: `docker-compose up -d`
 
 <http://localhost:9090/graph?g0.expr=&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h>
 <http://localhost:3457/dashboards>

@@ -14,6 +14,12 @@ influx_dbname = os.getenv("INFLUXDB_DBNAME")
 influx_user = os.getenv("INFLUXDB_USER")
 influx_password = os.getenv("INFLUXDB_PASSWORD")
 
+# influx_host = os.getenv("INFLUXDB_HOST", "localhost")
+# influx_port = int(os.getenv("INFLUXDB_PORT", 8086))
+# influx_dbname = os.getenv("INFLUXDB_DBNAME", "sensor_data")
+# influx_user = os.getenv("INFLUXDB_USER", "admin")
+# influx_password = os.getenv("INFLUXDB_PASSWORD", "mysecretpassword")
+
 # Configure InfluxDB connection
 influx_client = InfluxDBClient(host=influx_host, port=influx_port,
                                username=influx_user, password=influx_password)
