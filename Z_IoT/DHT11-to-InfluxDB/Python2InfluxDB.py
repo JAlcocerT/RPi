@@ -1,24 +1,37 @@
 import Adafruit_DHT
-import time
-from influxdb import InfluxDBClient
-import os
 
-DHT_SENSOR = Adafruit_DHT.DHT22
-#DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 4
+from influxdb import InfluxDBClient
+
+import os
+import time
+
+DHT_SENSOR_TYPE = os.getenv('DHT_SENSOR_TYPE', 'DHT11')
+DHT_PIN = int(os.getenv('DHT_PIN', 4))
+
+if DHT_SENSOR_TYPE == 'DHT22':
+    DHT_SENSOR = Adafruit_DHT.DHT22
+elif DHT_SENSOR_TYPE == 'DHT11':
+    DHT_SENSOR = Adafruit_DHT.DHT11
+else:
+    raise ValueError('Unsupported sensor type')
+
+# DHT_SENSOR = Adafruit_DHT.DHT22
+# #DHT_SENSOR = Adafruit_DHT.DHT11
+# DHT_PIN = 4
+
+influx_host = os.getenv("INFLUXDB_HOST", "192.168.3.130")
+influx_port = int(os.getenv("INFLUXDB_PORT", 8086))
+influx_dbname = os.getenv("INFLUXDB_DBNAME", "sensor_data")
+influx_user = os.getenv("INFLUXDB_USER", "admin")
+influx_password = os.getenv("INFLUXDB_PASSWORD", "mysecretpassword")
 
 # Get InfluxDB credentials from environment variables
-influx_host = os.getenv("INFLUXDB_HOST")
-influx_port = int(os.getenv("INFLUXDB_PORT"))
-influx_dbname = os.getenv("INFLUXDB_DBNAME")
-influx_user = os.getenv("INFLUXDB_USER")
-influx_password = os.getenv("INFLUXDB_PASSWORD")
+# influx_host = os.getenv("INFLUXDB_HOST")
+# influx_port = int(os.getenv("INFLUXDB_PORT"))
+# influx_dbname = os.getenv("INFLUXDB_DBNAME")
+# influx_user = os.getenv("INFLUXDB_USER")
+# influx_password = os.getenv("INFLUXDB_PASSWORD")
 
-# influx_host = os.getenv("INFLUXDB_HOST", "localhost")
-# influx_port = int(os.getenv("INFLUXDB_PORT", 8086))
-# influx_dbname = os.getenv("INFLUXDB_DBNAME", "sensor_data")
-# influx_user = os.getenv("INFLUXDB_USER", "admin")
-# influx_password = os.getenv("INFLUXDB_PASSWORD", "mysecretpassword")
 
 # Configure InfluxDB connection
 influx_client = InfluxDBClient(host=influx_host, port=influx_port,
@@ -48,7 +61,7 @@ while True:
             }
         ]
         influx_client.write_points(data)
-        print("Data sent to InfluxDB")
+        print("Data sent to InfluxDB", temperature,humidity)
     else:
         print("Sensor failure. Check wiring.")
     time.sleep(3)

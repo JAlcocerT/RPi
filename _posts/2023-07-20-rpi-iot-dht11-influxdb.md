@@ -357,7 +357,7 @@ SELECT * FROM dht_sensor ORDER BY time DESC LIMIT 10
 
 ### How can I install Home Assistant?
 
-InfluxBD plays great with HomeAssistant, you can spin HA with this [Docker-Compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml):
+InfluxBD plays great with Home Assistant, you can spin HA with this [Docker-Compose](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml):
 
 ```yml
 version: "2.1"
@@ -381,7 +381,7 @@ services:
 
 *You can also install [HA as an OS](https://www.home-assistant.io/installation/raspberrypi) in a RaspberryPi*
 
-> The container will be exposed on port 8123, so you can access the Home Assistant web interface at http://localhost:8123
+> The container will be exposed on port 8123, so you can access the Home Assistant web interface at `http://localhost:8123`
 {: .prompt-info }
 
 ### Integrating Home Assistant with InfluxDB

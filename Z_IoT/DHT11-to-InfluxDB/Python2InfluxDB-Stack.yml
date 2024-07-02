@@ -13,7 +13,10 @@ services:
       - INFLUXDB_DBNAME=sensor_data
       - INFLUXDB_USER=admin
       - INFLUXDB_PASSWORD=mysecretpassword
-    command: ["python", "your_python_script.py"]
+      - DHT_SENSOR_TYPE=DHT22 #or DHT11
+      - DHT_PIN=4  #the Pin you connected the sensor on the RPi
+    command: ["python", "Python2InfluxDB.py"] #or whatever name you gave to the script
+    #command: tail -f /dev/null #keep it running    
 
   #   depends_on:
   #     - influxdb

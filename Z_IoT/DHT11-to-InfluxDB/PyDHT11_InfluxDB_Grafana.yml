@@ -10,7 +10,7 @@ services:
     command: ["python", "Python2InfluxDB.py"]
     #command: tail -f /dev/null #keep it running
     environment:
-      - INFLUXDB_HOST=http://127.0.0.1
+      - INFLUXDB_HOST=192.168.3.130
       - INFLUXDB_PORT=8086
       - INFLUXDB_DBNAME=sensor_data
       - INFLUXDB_USER=admin
