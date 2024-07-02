@@ -1,5 +1,6 @@
 # Use an official Python runtime as the base image
-FROM python:3.8-slim
+FROM python:3.9.19-slim-bullseye 
+#python:3.8-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -14,7 +15,7 @@ RUN apt-get update && \
 COPY Python2InfluxDB.py /app/
 
 # Install additional dependencies
-RUN pip install Adafruit_DHT influxdb
+RUN pip install Adafruit_DHT==1.4.0 influxdb
 #RUN pip install -r requirements.txt
 
 # Run the Python script

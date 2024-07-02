@@ -9,7 +9,7 @@ tags: ["Self-Hosting"]
 
 If you already have a RPi at home and a DHT11 sensor, you can perfectly get started with this project.
 
-We are going to read Temperature and Humidity data from the sensor, save it into an InfluxDB (*say Hi to time-series DBs*) and display the output in Grafana (*Because terminal is great, but we want to make a cool end to end project*).
+We are going to read **Temperature and Humidity data** from the sensor, save it into an InfluxDB (*say Hi to time-series DBs*) and display the output in Grafana (*Because terminal is great, but we want to make a cool end to end project*).
 
 And docker? yes, let's put everything together and create a reliable Stack that we can share across any other RPi and forget about dependencies. Lets get started.
 
