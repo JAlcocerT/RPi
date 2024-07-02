@@ -1,0 +1,41 @@
+version: "3"
+services:
+
+  python_dht:
+    container_name: python_dht
+    image: rpi:dht11_influxdb  # Use the name of your pre-built Python image
+    privileged: true
+    environment:
+      - INFLUXDB_HOST=192.168.3.130 #local IP of your RPi / influxdb or localhost did not work for me
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_DBNAME=sensor_data
+      - INFLUXDB_USER=admin
+      - INFLUXDB_PASSWORD=mysecretpassword
+      - DHT_SENSOR_TYPE=DHT22 #or DHT11
+      - DHT_PIN=4  #the Pin you connected the sensor on the RPi
+    command: ["python", "Python2InfluxDB.py"] #or whatever name you gave to the script
+
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    ports:
+      - 8086:8086
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=sensor_data
+      - INFLUXDB_USER=admin
+      - INFLUXDB_USER_PASSWORD=mysecretpassword
+
+  chronograf:
+    image: chronograf:latest #1.9.4 #https://hub.docker.com/_/chronograf/tags
+    container_name: chronograf
+    ports:
+      - 8888:8888
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_USERNAME=admin
+      - INFLUXDB_PASSWORD=mysecretpassword
+
+volumes:
+  influxdb_data:

@@ -1,0 +1,39 @@
+version: '3'
+services:
+  influxdb:
+    image: influxdb:1.8
+    volumes:
+      - influxdb:/var/lib/influxdb
+    ports:
+      - "8086:8086"
+
+  telegraf:
+    image: telegraf:latest #1.31 #https://hub.docker.com/_/telegraf/tags
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
+
+  chronograf:
+    image: chronograf:1.8 #1.9.4 #https://hub.docker.com/_/chronograf/tagss
+    ports:
+      - "8888:8888"
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
+
+  kapacitor:
+    image: kapacitor:1.5 #https://hub.docker.com/_/kapacitor/tags
+    volumes:
+      - kapacitor:/var/lib/kapacitor
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
+
+volumes:
+  influxdb:
+  kapacitor:

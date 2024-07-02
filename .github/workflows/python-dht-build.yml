@@ -29,8 +29,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        context: ./Z_IoT/DHT11-to-InfluxDB  # Replace this with the actual path to your folder
+        context: ./Z_IoT/DHT11-to-InfluxDB 
         push: true
-        platforms: linux/amd64,linux/arm64,linux/arm/v7  # Added linux/arm/v7
+        platforms: linux/arm64,linux/arm/v7  #linux/amd64,
         tags: |
           ghcr.io/jalcocert/rpi:dht11_influxdb
