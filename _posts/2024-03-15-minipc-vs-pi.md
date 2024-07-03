@@ -185,6 +185,8 @@ _BMAX B4 - MiniPC Performance while LLM inference_
 
 * Using Sysbench
 * [Monitor with Netdata](https://fossengineer.com/selfhosting-netdata/)
+* https://github.com/WebKit/Speedometer - Speedometer 3.0 for Browser Benchmark
+* With Phoronix Test Suite
 
 #### Benchmark MiniPC with Phoronix Test Suite
 

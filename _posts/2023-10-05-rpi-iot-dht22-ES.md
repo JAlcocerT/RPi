@@ -1,7 +1,7 @@
 ---
 title: How to Log DHT22 Data to ElasticSearch & Kibana
 author: JAlcocerT
-date: 2023-10-08 14:10:00 +0800
+date: 2023-10-05 14:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors, Python, Dashboards, Docker]
 render_with_liquid: false

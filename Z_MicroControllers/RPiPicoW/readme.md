@@ -12,3 +12,7 @@ screen /dev/ttyACM0
 MicroPython v1.20.0 on 2023-04-26; Raspberry Pi Pico W with RP2040.
 
 > To exit that terminal, press **k**
+
+## Projects
+
+* https://projects.raspberrypi.org/en/projects/introduction-to-the-pico/12
