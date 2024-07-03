@@ -12,6 +12,8 @@ Specific functionalities tailored to the application (e.g., motor control, senso
 
 * Example SOMS
     * Turing RK1 (Rockchip RK3588) - https://turingpi.com/product/turing-rk1/?attribute_ram=8+GB
+    * Mixtile Core 3588E - https://www.youtube.com/watch?v=EDDdnSUn3BI
+        * https://www.the-diy-life.com/mixtile-core-3588e-review/
     * Turing Pi (Broadcom BCM2711)- https://turingpi.com/product/turing-pi-2-5/
     * Raspberry Pi CM (Compute Module)
     
