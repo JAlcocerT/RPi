@@ -1,5 +1,7 @@
 # Raspberry Pi and IoT 101
 
+[![image](https://img.shields.io/badge/YouTube-Channel-red)](https://youtube.com/@JAlcocerTech)
+
 Start your journey with Raspberry Pi and explore its role in IoT, embedded computing, and data analytics, all on one compact board. 
 
 You can also [get started with Linux](https://jalcocert.github.io/Linux/) with a RPi.

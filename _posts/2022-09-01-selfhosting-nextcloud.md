@@ -42,7 +42,7 @@ services:
 #    networks: ["nginx_nginx_network"] #optional 
 
   app:
-    image: nextcloud #latest
+    image: nextcloud #latest #27.0.0
     container_name: nextcloud
     restart: always
     ports:
@@ -100,3 +100,40 @@ davs://nextcloud.yourgreatname.duckdns.org/nextcloud/remote.php/dav/files/USERNA
 > If your server connection is not HTTPS-secured, use dav:// instead of davs://.
 
 Alternatively - you can [try FileBrowser](https://fossengineer.com/selfhosting-filebrowser-docker/)
+
+### How to use a External Drive with NextCloud
+
+```sh
+lsblk
+lsblk -a
+lsblk -f
+sudo fdisk -l
+
+```
+
+Once you have identify the drive, format it (for example) with NTFS:
+
+```sh
+#sudo mkfs.ntfs /dev/sda1 #make sure it is /dev/sda1 as well for you
+#sudo mkfs.ntfs -Q /dev/sda1 #quick version
+```
+
+```sh
+sudo mkdir /usbdrive
+sudo mount /dev/sda1 /usbdrive
+```
+
+If you `df -h` - you will see the drive mounted.
+
+And you can always copy the data with:
+
+```sh
+#sudo cp -R ./files/* /mnt/mydrive/
+sudo rsync -avh --progress ./files/* /mnt/mydrive/ #with progress
+```
+
+And you can check the full size of the copied folder
+
+```sh
+du -sh ./files
+```
