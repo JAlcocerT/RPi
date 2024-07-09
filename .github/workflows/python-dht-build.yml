@@ -1,4 +1,4 @@
-name: CI/CD - Create Images for DHT-InfluxDB  
+name: CI/CD - DHT-InfluxDB  
 
 on:
   push:
