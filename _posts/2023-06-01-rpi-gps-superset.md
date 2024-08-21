@@ -195,3 +195,8 @@ https://www.youtube.com/watch?v=5HuN9iL-zxU
 * https://github.com/owntracks/recorder
 
 * https://github.com/traccar
+
+
+* CarPC RPi: <https://www.youtube.com/watch?v=pS8wbvQx0h4>
+<https://www.youtube.com/watch?v=odn8OfE5FdI>
+* OBD2 to RPi: <https://www.youtube.com/watch?v=DABytIdutKk>

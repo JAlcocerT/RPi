@@ -32,8 +32,6 @@ We just need to [have Docker installed](https://jalcocert.github.io/RPi/posts/se
 
 ### Master Node
 
-
-
 ```yml
 version: '3'
 services:

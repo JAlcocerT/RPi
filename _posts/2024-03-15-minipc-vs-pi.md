@@ -96,10 +96,10 @@ sudo stress --cpu  8 --timeout 120
 For Synthetic benchmarks I have used [phoronix](#how-to-benchmark-with-phoronix-test-suite):
 
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/n95-cpu-phoronix.png)
-_Intel N95 4 cores with phoronix Open Source Benchmark_
+_Intel N95 4 cores with phoronix Open Source Benchmark ~53s_
 
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/orangepi5-cpu-phoronix.png)
-_The Orange Pi 8 Cores is a beast scoring 38s_
+_The Orange Pi 8 Cores is a beast scoring ~38s_
 
 For reference, I [benchmarked *bigger* CPUs here](https://jalcocert.github.io/Linux/docs/linux__cloud/benchmark/).
 

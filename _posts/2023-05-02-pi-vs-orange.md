@@ -1,5 +1,5 @@
 ---
-title: Battle of the Boards - Raspberry Pi 4 vs. Orange Pi 5
+title: Battle of Boards - Raspberry Pi 4 (vs) Orange Pi 5
 author: JAlcocerT
 date: 2023-05-02 14:10:00 +0800
 categories: [RPi Setup, Home Server]
@@ -8,9 +8,8 @@ render_with_liquid: false
 image:
   path: /img/Orange-vs-Pi/Blog-Orange_vs_Rasp.png
   lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-  alt: Performance comparison of SBCs -  Raspberry Pi 4 versus Orange Pi 5..
+  alt: Performance comparison of SBCs - Raspberry Pi 4 versus Orange Pi 5.
 ---
-
 
 [The Orange Pi 5](#exploring-the-orange-pi-5) is a versatile device suitable for high-end tablets, Home Assistant integration, edge computing, AI, cloud computing, AR/VR, and smart security.
 
@@ -21,6 +20,8 @@ On the other hand, the **[Raspberry Pi 4](#the-raspberry-pi-4)** supports multim
 It is also [suitable for IoT projects](https://jalcocert.github.io/RPi/categories/iot-data-analytics/), offers educational opportunities, and is compatible with various sensors and actuators.
 
 The Raspberry Pi 4 is a popular choice for academic projects and provides hands-on learning in programming, electronics, and computer concepts.
+
+> Thanks to [iBug for inspiration on the post](https://ibug.io/blog/2019/09/raspberry-pi-4-review-benchmark/)
 
 ## Exploring the Orange Pi 5
 
@@ -138,6 +139,8 @@ _Orange Pi 5 - Temperature during Docker Build_
 ---
 
 ## FAQ 
+
+* Orange Pi [PWM Fan control](https://github.com/dejanstojanovic/orangepi-pwm)
 
 ### How to Run the Synthetic Benchmarks?
 

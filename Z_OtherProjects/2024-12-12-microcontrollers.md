@@ -14,6 +14,14 @@ render_with_liquid: false
 
 A basics on how to connect the parts: <https://www.youtube.com/watch?v=BS9IgyAp3I0>
 
+1. [ESP32]()
+2. [Pi Pico W](#pico-w)
+3. Pi Pico 2
+* A brand new model, with **ARM and RISC-V cores**
+
+
+
+A basics on how to connect the parts: <https://www.youtube.com/watch?v=BS9IgyAp3I0>
 
 
 ## Connecting ESP32 to Linux
@@ -29,8 +37,6 @@ tags: ["Self-Hosting"]
 
 IDE - Thonny
 
-
-
 Ideas for Readme's - https://github.com/STJRush/handycode/tree/master/Raspi%20Pico
 
 <https://picockpit.com/raspberry-pi/everything-about-the-raspberry-pi-pico/>
@@ -43,7 +49,6 @@ lsusb #Bus 003 Device 010: ID XYZ MicroPython Board in FS (File System) mode
 
 #ls /dev/tty*
 
-
 sudo apt-get install picocom
 sudo picocom -b 115200 /dev/ttyACM0
 
@@ -53,15 +58,20 @@ The schema: <https://docs.micropython.org/en/latest/rp2/quickref.html>
 
 W version (wifi): <https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh>
 
+## Pico W
+
+* Consumption: ~50-150mA and can be powered via a PC usb
+    * Compared to the RPi 4b 2gb: 5v3A which idles at 5V0.6A ~2/3w
+
 ## Pico and MicroPython
 
 Thanks to [core-electronics](https://core-electronics.com.au/guides/raspberry-pi-pico-w-connect-to-the-internet/)
 
-Hold the BOOTSEL button on the Pico W
-Connect the Pico W to your computer via the USB cable
-Release the BOOTSEL button -> you will see a new device in the PC.
+1. Hold the BOOTSEL button on the Pico W
+2. Connect the Pico W to your computer via the USB cable
+3. Release the BOOTSEL button -> you will see a new device in the PC.
 
-Download this and move it to the Pico folder. <https://github.com/micropython/micropython/releases>
+[Download a MicroPython Release](https://github.com/micropython/micropython/releases) and move it to the Pico folder:
 
 * Mip: <https://github.com/micropython/micropython-lib>
     * installing from fork: 
@@ -77,7 +87,7 @@ unplug usb and plug
 
 To install libraries, i have observed that recently **upip has been depricated in favour of mip**
 
-### Pico en vscode
+### Pico en VSCode
 
 <https://www.youtube.com/watch?v=Q1Kfg8k54jM>
 
@@ -499,3 +509,39 @@ I2C
 https://www.youtube.com/watch?v=eNF3X3D0cH4
 
 https://github.com/neeraj95575/Temperature-sensor-connect-to-raspberry-pi-pico
+
+
+### MPU6050
+
+
+There are many 3-axis accelerometers that you can use with the Raspberry Pi Pico. Some of the most popular options include:
+
+MPU-6050: This is a popular and versatile accelerometer that is also compatible with the Raspberry Pi Pico. It has a wide range of features, including a built-in gyroscope.
+
+
+**biblioman09**
+
+<https://www.youtube.com/watch?v=JXyHuZyqjxU>
+
+### KY-008
+
+Laser Transmitter Module Overview
+
+- **Remote Signaling**: Use the laser to send signals to a receiver module for remote controls or presence detection.
+- **Line Following**: Implement in robots to follow a laser-drawn path.
+- **Distance Measurement**: Measure distances by timing the laser reflection from objects.
+- **Obstacle Avoidance**: Detect and navigate around obstacles using the laser.
+- **Security Systems**: Set up alarms that trigger if the laser path is interrupted.
+
+### Usage Considerations
+- **Safety**: The laser can harm eyes; avoid direct exposure.
+- **Environment**: Operate in dim environments to minimize interference from sunlight or other bright lights.
+- **Alignment**: Ensure the path of the laser beam is clear of obstructions.
+- **Adjustability**: Modify beam intensity using the onboard resistor.
+
+Connecting KY-008 to Raspberry Pi Pico
+
+- **Power Requirements**: KY-008 operates with 5V, compatible with Pico’s 5V output.
+- **Connection**:
+  - `VCC` on KY-008 to `5V` on Pico
+  - `GND` on KY-008 to `GND` on Pico
