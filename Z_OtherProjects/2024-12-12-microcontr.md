@@ -5,6 +5,9 @@ draft: true
 tags: ["Self-Hosting"]
 ---
 
+
+## Raspberry Pi Pico W
+
 IDE - Thonny
 
 
@@ -450,3 +453,9 @@ TinyGo (?)
 CircuitPython (?)
 
 O.S FreeRTS ??? <https://www.youtube.com/watch?v=5pUY7xVE2gU>
+
+### Even with RUST?
+
+https://www.alexdwilson.dev/how-to-program-raspberry-pi-pico-with-rust
+
+https://www.youtube.com/watch?v=jZT8APrzvc4

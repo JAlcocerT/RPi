@@ -1,0 +1,11 @@
+version: '3'
+services:
+  streamer:
+    image: streamer:latest
+    container_name: streamer
+    ports:
+      - "9999:9999"
+    devices:
+      - "/dev/video0:/dev/video0"
+    stdin_open: true
+    tty: true

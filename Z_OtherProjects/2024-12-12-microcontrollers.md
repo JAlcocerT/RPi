@@ -28,16 +28,13 @@ A basics on how to connect the parts: <https://www.youtube.com/watch?v=BS9IgyAp3
 
 https://github.com/tio/tio
 
----
-title: "Raspberry Pi Pico W:"
-date: 2023-08-30T23:20:21+01:00
-draft: true
-tags: ["Self-Hosting"]
----
+
 
 IDE - Thonny
 
 Ideas for Readme's - https://github.com/STJRush/handycode/tree/master/Raspi%20Pico
+
+> you can visualize the pinout
 
 <https://picockpit.com/raspberry-pi/everything-about-the-raspberry-pi-pico/>
 
