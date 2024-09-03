@@ -23,7 +23,7 @@ https://github.com/adafruit/DHT-sensor-library
 
 
 
-in the main.cpp
+in the `main.cpp`
 
 #include <DHT.h>
 

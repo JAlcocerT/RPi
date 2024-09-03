@@ -1,4 +1,26 @@
-# Raspberry Pi and IoT 101
+<div align="center">
+  <h1>Raspberry Pi and IoT</h1>
+</div>
+
+<div align="center">
+  <h3>Get Started with Single Board Computers with these 101 Guides and Scripts</h3>
+</div>
+
+<div align="center">
+  <a href="https://github.com/JAlcocerT/RPi?tab=MIT-1-ov-file#readme" style="margin-right: 5px;">
+    <img alt="Code License" src="https://img.shields.io/badge/License-MIT-blue.svg" />
+  </a>
+  <a href="https://github.com/JAlcocerT/RPi/actions/workflows/jekyll-pages-deploy.yml" style="margin-right: 5px;">
+    <img alt="Jekyll Theme Workflow" src="https://github.com/JAlcocerT/RPi/actions/workflows/jekyll-pages-deploy.yml/badge.svg" />
+  </a>
+    <a href="https://github.com/JAlcocerT/RPi/actions/workflows/python-dht-build.yml" style="margin-right: 5px;">
+    <img alt="DHT CI/CD Workflow" src="https://github.com/JAlcocerT/RPi/actions/workflows/python-dht-build.yml/badge.svg" />
+  </a>
+  <a href="https://GitHub.com/JAlcocerT/RPi/graphs/commit-activity" style="margin-right: 5px;">
+    <img alt="Mantained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+
+</div>
 
 [![image](https://img.shields.io/badge/YouTube-Channel-red)](https://youtube.com/@JAlcocerTech)
 

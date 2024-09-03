@@ -12,179 +12,17 @@ render_with_liquid: false
 
 
 
-A basics on how to connect the parts: <https://www.youtube.com/watch?v=BS9IgyAp3I0>
 
-1. [ESP32]()
-2. [Pi Pico W](#pico-w)
-3. Pi Pico 2
-* A brand new model, with **ARM and RISC-V cores**
+## 
 
 
 
-A basics on how to connect the parts: <https://www.youtube.com/watch?v=BS9IgyAp3I0>
 
 
-## Connecting ESP32 to Linux
-
-https://github.com/tio/tio
-
-
-
-IDE - Thonny
-
-Ideas for Readme's - https://github.com/STJRush/handycode/tree/master/Raspi%20Pico
-
-> you can visualize the pinout
-
-<https://picockpit.com/raspberry-pi/everything-about-the-raspberry-pi-pico/>
-
-
-The chip: RP2040
-
-```sh
-lsusb #Bus 003 Device 010: ID XYZ MicroPython Board in FS (File System) mode
-
-#ls /dev/tty*
-
-sudo apt-get install picocom
-sudo picocom -b 115200 /dev/ttyACM0
-
-```
-
-The schema: <https://docs.micropython.org/en/latest/rp2/quickref.html>
-
-W version (wifi): <https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#raspberry-pi-pico-w-and-pico-wh>
 
 ## Pico W
 
-* Consumption: ~50-150mA and can be powered via a PC usb
-    * Compared to the RPi 4b 2gb: 5v3A which idles at 5V0.6A ~2/3w
 
-## Pico and MicroPython
-
-Thanks to [core-electronics](https://core-electronics.com.au/guides/raspberry-pi-pico-w-connect-to-the-internet/)
-
-1. Hold the BOOTSEL button on the Pico W
-2. Connect the Pico W to your computer via the USB cable
-3. Release the BOOTSEL button -> you will see a new device in the PC.
-
-[Download a MicroPython Release](https://github.com/micropython/micropython/releases) and move it to the Pico folder:
-
-* Mip: <https://github.com/micropython/micropython-lib>
-    * installing from fork: 
-
-```py    
-import mip
-mip.install(PACKAGE_NAME, index="https://USERNAME.github.io/micropython-lib/mip/BRANCH_NAME")
-```
-
-<https://micropython.org/download/rp2-pico-w/rp2-pico-w-latest.uf2>
-
-unplug usb and plug
-
-To install libraries, i have observed that recently **upip has been depricated in favour of mip**
-
-### Pico en VSCode
-
-<https://www.youtube.com/watch?v=Q1Kfg8k54jM>
-
-
-### Pico in Arduino IDE
-
-Tools -> Board -> Boards Manager -> Install Arduino MBed OS RP2040 Boards
-
-<https://www.youtube.com/watch?v=5YOEauk9bLo>
-
-### Pico with Thony
-
-
-
-#### using the built in led
-
-The led is the pin 25 as per the schema
-
-<https://www.youtube.com/watch?v=_ouzuI_ZPLs>
-
-Run -> Configure Interpreter -> Interpreter -> MicroPython (Raspberry Pi Pico)
-
-View -> files
-
-The Pico will look for a **main.py** to execute in loop
-View -> plotter
-
-CTRL+D for soft reboot and load the program
-
-
-```py
-from machine import Pin
-from time import sleep
-
-#led = Pin(25, Pin.OUT)
-led = Pin("LED", Pin.OUT) #For Pico W: Thanks to Easy Learning Video https://www.youtube.com/watch?v=PvH_yKwtoEA
-
-n=0
-
-while True:
-    led.toggle()
-    print("13 times {} is {}".format(n,13))
-    n = n+1
-    sleep(0.5)
-
-```
-
-
-#### Reading internal temp sensor:
-<https://www.youtube.com/watch?v=PYOaO1yW0rY>
-
-<https://pypi.org/project/machine/>
-
-```py
-import machine
-import utime
-sensor_temp = machine.ADC(4)
-conversion_factor = 3.3 / (65535) #pico's datasheet
-while True:
-    reading = sensor_temp.read_u16() * conversion_factor
-    temperature = 27 - (reading - 0.706)/0.001721
-    print(temperature)
-    utime.sleep(2)
-```
-
-#### Connecting the Pico to Wifi
-
-<https://www.youtube.com/watch?v=GiT3MzRzG48>
-
-Name the file different than main.py to avoid the automatic execution.
-
-```py
-# A simple example that:
-# - Connects to a WiFi Network defined by "ssid" and "password"
-# - Performs a GET request (loads a webpage)
-# - Queries the current time from a server
-
-import network   # handles connecting to WiFi
-import urequests # handles making and servicing network requests
-
-# Connect to network
-wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-
-# Fill in your network name (ssid) and password here:
-ssid = 'HUAWEI P30'
-password = 'mokradupa68'
-wlan.connect(ssid, password)
-
-
-# Example 1. Make a GET request for google.com and print HTML
-# Print the html content from google.com
-print("1. Querying the Web.com:")
-r = urequests.get("https://fossengineer.com")
-print(r.content)
-
-r = urequests.get("http://date.jsontest.com/")
-print(r.json())
-print(r.json()['time'])
-```
 
 ## Pico and MQTT
 
@@ -198,6 +36,7 @@ Message Queue Telemetry Transport
 <https://mqttx.app/>
 <https://github.com/emqx/MQTTX>
 
+```sh
 sudo apt install -y mosquitto
 sudo apt install -y mosquitto-clients
 
@@ -205,6 +44,7 @@ sudo apt install -y mosquitto-clients
 sudo pip3 install paho-mqtt
 
 sudo systemctl status mosquitto.service
+```
 
 In the absence of a direct configuration entry for the port, the port used by Mosquitto could be the default port (1883 for MQTT or 8883 for MQTT over TLS/SSL).
 

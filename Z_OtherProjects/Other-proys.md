@@ -240,3 +240,20 @@ GND (laser) ---> GND (Pico)
 Once the laser module is connected to the Pico, you can control it using software. There are many tutorials available online that show you how to do this.
 
 Please note that the laser beam emitted by the KY-008 sensor can be harmful to eyes, so it should be used with caution. It is important to make sure that the laser beam is not pointed directly at anyone.
+
+
+
+
+### DHT11 - Blink IoT Platform
+
+
+
+
+## ESP32 + MLX90614
+
+<https://www.youtube.com/watch?v=HpsvNIAtjm4>
+
+
+## car battery
+
+<https://www.youtube.com/watch?v=VnGRFwDrLHo>

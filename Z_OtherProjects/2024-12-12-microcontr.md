@@ -8,9 +8,6 @@ tags: ["Self-Hosting"]
 
 ## Raspberry Pi Pico W
 
-IDE - Thonny
-
-
 
 Ideas for Readme's - https://github.com/STJRush/handycode/tree/master/Raspi%20Pico
 
@@ -47,18 +44,7 @@ unplug usb and plug
 
 To install libraries, i have observed that recently **upip has been depricated in favour of mip**
 
-### Pico en vscode
 
-<https://www.youtube.com/watch?v=Q1Kfg8k54jM>
-
-
-### Pico in Arduino IDE
-
-Tools -> Board -> Boards Manager -> Install Arduino MBed OS RP2040 Boards
-
-<https://www.youtube.com/watch?v=5YOEauk9bLo>
-
-### Pico with Thony
 
 
 

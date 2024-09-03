@@ -35,14 +35,7 @@ https://github.com/esphome/esphome
 
 https://esphome.io/index.html
 
-### pico w web server
 
-pico w web server c - https://www.youtube.com/watch?v=C_O0MXGBHsw
-
-
-### ESP32 Web
-
-<https://www.youtube.com/watch?v=Ra3iWgOfveQ>
 
 
 Beginner DIY ESPHome mmWave Presence Sensor | HLK-LD2450 + ESP32
