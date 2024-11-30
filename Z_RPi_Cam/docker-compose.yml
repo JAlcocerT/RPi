@@ -9,3 +9,4 @@ services:
       - "/dev/video0:/dev/video0"
     stdin_open: true
     tty: true
+    restart: always

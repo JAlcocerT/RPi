@@ -1,10 +1,11 @@
-* https://jalcocert.github.io/JAlcocerT/blog/tinker-rpi-cv/
+* Further info at:
+	* https://jalcocert.github.io/JAlcocerT/blog/tinker-rpi-cv/
+	* https://github.com/JAlcocerT/rpi-mjpg-streamer
 
 ```sh
 git clone https://github.com/meinside/rpi-mjpg-streamer #https://github.com/JAlcocerT/rpi-mjpg-streamer
 cd rpi-mjpg-streamer
 ```
-
 
 Build the image:
 
