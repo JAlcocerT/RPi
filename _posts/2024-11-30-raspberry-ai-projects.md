@@ -31,7 +31,7 @@ These are **LLM related AI projects** that you can play with.
 
 ```mermaid
 mindmap
-  root((AIwithRPi))
+  root((AI with RPi))
     AI
       APIs
       ::icon(fas fa-robot)
@@ -92,7 +92,7 @@ If you have the **API keys** and [Docker](#faq) installed...
 * https://console.groq.com/keys
 * https://console.anthropic.com/settings/keys
 
-Just use this configuration to spin the 3 AI services:
+Just use [this **configuration**](https://github.com/JAlcocerT/Docker/blob/main/AI_Gen/Project_AIs/docker-compose.yml) to spin the 3 AI services:
 
 
 ```yml
@@ -155,6 +155,10 @@ volumes:
 
 Get **Docker** ready for [SelfHosting, like so](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/).
 
+You can also try the projects separately with just Python and the required API's.
+
+Make sure to setup a **proper [Python Venv](https://jalcocert.github.io/JAlcocerT/useful-python-stuff/)**.
+
 More [**Vector DataBases** - Docker Config Files](https://github.com/JAlcocerT/Docker/tree/main/AI_Gen/Z_VectorDBs)
 
-The diagram has been possible thanks to MermaidJS Jekyll Integration and the [Fontawsome Icons](https://fontawesome.com/v5/search?o=r&m=free)
+The **diagram** has been possible thanks to [MermaidJS](https://jalcocert.github.io/JAlcocerT/ai-useful-yet-simple/#diagrams-with-ai) Jekyll Integration and the [Fontawsome Icons](https://fontawesome.com/v5/search?o=r&m=free)
