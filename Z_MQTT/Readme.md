@@ -1,4 +1,4 @@
-
+Wrote about **MQTT [here](https://jalcocert.github.io/RPi/posts/rpi-mqtt/)**
 
 * Edge Computing - https://github.com/qijianpeng/awesome-edge-computing
 * Domotica para pobres - https://forocoches.com/foro/showthread.php?t=6655749

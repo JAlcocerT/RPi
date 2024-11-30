@@ -1,3 +1,9 @@
+**Relates to:**
+* [GPS Superser / PhyPhox](https://jalcocert.github.io/RPi/posts/rpi-gps-superset/#phyphox)
+* [Video Edition](https://jalcocert.github.io/JAlcocerT/dji-osmo-action-5-pro/) - Extracting GoPro MetaData
+
+---
+
 ## OBD2
 
 * Deconding Can Bus - https://www.youtube.com/watch?v=270c1bkf2Ck
@@ -26,4 +32,4 @@
 
 ### GoPro
 
-goprotelemetryextractor.com (there is free tier) - Extract tge GPS Data stored as metadata in the GOPROvideo
+goprotelemetryextractor.com (there is free tier) - Extract the GPS Data stored as metadata in the GOPROvideo

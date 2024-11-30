@@ -17,7 +17,13 @@ We are going to read **Temperature and Humidity** data from the **DHT11** sensor
 
 With that, you can feed the DHT [sensor information to Home Assistant](#how-can-i-install-home-assistant) and let go your imagination.
 
-All of this with docker as well? Yes, let's put everything together and create a **[reliable Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml)** that we can share across any other RPi and forget about dependencies. Lets get to work.
+All of this with docker as well?
+
+Yes, let's put everything together and create a **[reliable Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml)** that we can share across any other RPi and forget about dependencies.
+
+You can also use **this project with [HA](#how-can-i-install-home-assistant)** as well!
+
+Lets get to work.
 
 >  All the code/configurations are in this post and the [related source code](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT11-to-InfluxDB) 👇
 {: .prompt-info }
@@ -28,7 +34,7 @@ All of this with docker as well? Yes, let's put everything together and create a
   + [x] Hardware Check
   + [ ] Python [Script](#the-base-code-python-with-dht11)
   + [ ] The Database: [InfluxDB](#pushing-data-from-python-to-influxdb)
-- [ ] Connect InfluxDB with DHT11 Data to Home Assistant (optional)
+- [ ] Connect InfluxDB with DHT11 Data to **Home Assistant** (optional)
 
 If you already have a RPi at home and a DHT11 sensor, you can perfectly **get started** with this project.
 

@@ -1,10 +1,18 @@
+**Related Posts** for these IoT Projects:
+
+1. [DHT11/22 + MongoDB](https://jalcocert.github.io/RPi/posts/rpi-iot-dht1122-mongo/)
+2. [DHT22 + ES/Kibana](https://jalcocert.github.io/RPi/posts/rpi-iot-dht22-ES/)
+3. [MLX90614 + Influx/Grafana](https://jalcocert.github.io/RPi/posts/rpi-iot-MLX90614/)
+4. [DSB18B20 + TimeScale/Superset](https://jalcocert.github.io/RPi/posts/rpi-iot-ds18b20/)
+
+
+---
+
 # The IoT Stack
 
 
-
-RPi router
-<https://github.com/pilotak/docker-rpi-fan>
-email por satelite <https://forocoches.com/foro/showthread.php?t=9528243>
+* RPi router - <https://github.com/pilotak/docker-rpi-fan>
+* email por satelite <https://forocoches.com/foro/showthread.php?t=9528243>
 
 ## Zabix
 
@@ -12,7 +20,9 @@ email por satelite <https://forocoches.com/foro/showthread.php?t=9528243>
 <https://github.com/zabbix/zabbix-docker>
 <https://www.zabbix.com/>
 
-## Stack
+
+
+## More Stacks
 
 Previously, I showed how to have Netdata, Grafana with cadvisor and Prometheus....
 
@@ -54,6 +64,8 @@ How to Set Up the DHT11 Humidity Sensor on the Raspberry Pi
 
 * ESP8266 | Gas, Temperature, & Pressure 
     BMP180 https://www.youtube.com/watch?v=ItDDDXpToD0
+
+---
 
 ## Technical Stuff
 

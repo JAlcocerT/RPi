@@ -1,1 +1,1 @@
-More docker configurations: <https://github.com/JAlcocerT/Docker>
+**More docker configurations**: <https://github.com/JAlcocerT/Docker>

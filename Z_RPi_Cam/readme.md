@@ -1,6 +1,7 @@
-* Further info at:
+* Further **info** at::
 	* https://jalcocert.github.io/JAlcocerT/blog/tinker-rpi-cv/
 	* https://github.com/JAlcocerT/rpi-mjpg-streamer
+	* Related to DJI Cam Drone
 
 ```sh
 git clone https://github.com/meinside/rpi-mjpg-streamer #https://github.com/JAlcocerT/rpi-mjpg-streamer

@@ -10,6 +10,9 @@ Let's compare some popular SBC Boards (RPi4 and [Orange Pi 5](https://jalcocert.
 
 > Should I buy a Raspberry or a MiniPC? Lets have a look 👇
 
+> If you are curious about Cloud Computing - See [this Comparison](https://jalcocert.github.io/Linux/docs/linux__cloud/cloud/)
+{: .prompt-info }
+
 ## PI's
 
 Some time ago I was making a [performance comparison between 2 popular ARM boards](https://jalcocert.github.io/RPi/posts/pi-vs-orange/).
