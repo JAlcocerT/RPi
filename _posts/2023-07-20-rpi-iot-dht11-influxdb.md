@@ -19,12 +19,15 @@ With that, you can feed the DHT [sensor information to Home Assistant](#how-can-
 
 All of this with docker as well? Yes, let's put everything together and create a **[reliable Stack](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT11-to-InfluxDB/DHT11HomeAssistant-Stack.yml)** that we can share across any other RPi and forget about dependencies. Lets get to work.
 
+>  All the code/configurations are in this post and the [related source code](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT11-to-InfluxDB) 👇
+{: .prompt-info }
+
 ## Before Starting
 
 - [ ] Send DHT Data to InfluxDB
   + [x] Hardware Check
-  + [ ] Python Script
-  + [ ] The Database: InfluxDB
+  + [ ] Python [Script](#the-base-code-python-with-dht11)
+  + [ ] The Database: [InfluxDB](#pushing-data-from-python-to-influxdb)
 - [ ] Connect InfluxDB with DHT11 Data to Home Assistant (optional)
 
 If you already have a RPi at home and a DHT11 sensor, you can perfectly **get started** with this project.
@@ -36,7 +39,8 @@ If you already have a RPi at home and a DHT11 sensor, you can perfectly **get st
 | `DHT11`     ✓  | Dockerfile    | HomeAssistant with InfluxDB Integration        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
 
-This is a mindmap of this IoT Project. All the code and configuration needed are in this post 👇
+This is **a [MermaidJS](https://jalcocert.github.io/JAlcocerT/ai-useful-yet-simple/#diagrams-with-ai) Mindmap** of this IoT Project.
+
 
 ```mermaid
 mindmap
@@ -87,7 +91,7 @@ To connect the sensor to the Raspberry, you can follow this schema:
 ![Desktop View](/img/RPi4-DHT11.png){: width="972" height="589" }
 _DHT11 connection to a Raspberry Pi 4_
 
-I prefer to use the 3.3V for the DHT11, and yet it will work perfectly with 5V as well.
+I prefer to use the **3.3V for the DHT11**, and yet it will work perfectly with 5V as well.
 
 > In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. 
 {: .prompt-info }
@@ -265,6 +269,8 @@ services:
 
 ## Displaying DHT11 Data on Dashboards
 
+For visualizations there are several tools out there.
+
 * **Option 1** - With Grafana: Connect the InfluxDB to Grafana as a Data Source
 
 Grafana is not only good [for monitoring](https://jalcocert.github.io/RPi/posts/selfh-grafana-monit/), but also we can display IoT Data:
@@ -307,12 +313,12 @@ volumes:
   grafana_data:  # Define the volume for Grafana
 ```
 
-* Grafana Configuration with InfluxDB
+* [Grafana Configuration](https://github.com/JAlcocerT/Docker/tree/main/IoT/Grafana) with InfluxDB
   * To access Grafana, you will need the creds: `admin/admin`
   * Then add your first data source -> InfluxDB - Input the Databse name / User / Password as defined in the docker compose configuration.
   * Dont forget to add the http url of our influxDB as: `http://192.168.3.130:8086` (Local IP of your RPI / The Container IP)
 
-* **Option 2** - With Home Assistant
+* **Option 2** - With [Home Assistant](#how-can-i-install-home-assistant)
 
 * **Option 3** - With Chronograph - https://github.com/influxdata/chronograf?tab=License-1-ov-file#readme
 
@@ -442,8 +448,9 @@ Traceback (most recent call last):
 RuntimeError: Error accessing GPIO.
 ```
 
+### More about HA
 
-### HA Integrations
+#### HA Integrations
 
 You can check more HA integrations in the [official page](https://www.home-assistant.io/integrations/).
 
@@ -474,7 +481,7 @@ We have used the [InfluxDB integration](https://www.home-assistant.io/integratio
 > When buyind Iot devices, check that their integration is [classified as local push or local polling](https://www.home-assistant.io/blog/2016/02/12/classifying-the-internet-of-things/#classifiers) to avoid dependencies with 3rd Party clouds.
 
 * You might be interested to look for **[Tasmota compatible devices](https://templates.blakadder.com/sensors.html)** *- a firmware for micro-controllers*.
-* Or to any device compatible with **[ESPHome](<https://devices.esphome.io/)**
+* Or to any device compatible with **[ESPHome](https://devices.esphome.io/)**
 * Also, **Zegbee** will be useful: <https://www.zigbee2mqtt.io/>
 
 Both are great to create a fully local IoT Home.
@@ -484,11 +491,11 @@ Both are great to create a fully local IoT Home.
 
 You can find them here: <https://hacs.xyz/>
 
-### HA add-ons
+#### HA add-ons
 
 [HA Add-ons](https://www.home-assistant.io/addons/) are different concept than integrations.
 
 Check them here: <https://community.home-assistant.io/tag/hassio-repository>
 
-> Remember that Add-ons are only available if you've used the Home Assistant Operating System or Home Assistant Supervised installation method. 
+> Remember that **Add-ons are only available** if you've used the **Home Assistant Operating System** or Home Assistant Supervised installation method. 
 {: .prompt-info }

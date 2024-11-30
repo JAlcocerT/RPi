@@ -9,7 +9,11 @@ render_with_liquid: false
 
 So you have your Raspberry Pi [ready to SelfHost with Docker](https://jalcocert.github.io/RPi/posts/selfhosting-with-docker/) and you are looking for some YT alternatives.
 
-Here you have few of them - Get your RPi's to work!
+Here you have few of them - **Get your RPi's to work!**
+
+>  Use your Raspberry with [other **Media services** with docker](https://github.com/JAlcocerT/Docker/tree/main/Media)
+{: .prompt-info }
+
 
 ## Youtube-DL Material
 
@@ -82,7 +86,7 @@ I have done it with [Ansible *and Docker*](https://jalcocert.github.io/Linux/doc
 
 ### How to use RSS to subscribe to YT channels?
 
-<https://fossengineer.com/selfhosting-freshrss-with-docker>
+Just setup [FreshRSS](https://fossengineer.com/selfhosting-freshrss-with-docker)
 
 ### Other Alternative Youtube Front Ends
 

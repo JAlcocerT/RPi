@@ -8,6 +8,7 @@ image:
   path: /img/metabase.png
   alt: IoT Project with Python, MongoDB, DHT11/22 sensors and Metabase.
 render_with_liquid: false
+pin: true
 ---
 
 ## Raspberry IoT with MongoDB and Metabase
@@ -31,14 +32,14 @@ This is what we will be doing...🔜
 
 | Hardware             | Code                  | Data Analytics Stack |
 |---------------------|:---------------------------------:|:-----------:|
-| `Raspberry Pi 4`  ✓  | Python  🐍         | MongoDB        |
-| `DHT11` or `DHT22`     ✓  | Dockerfile    | Metabase        |
+| `Raspberry Pi 4`  ✓  | Python  🐍         | [MongoDB](#the-database-mongodb)        |
+| `DHT11` or `DHT22`     ✓  | Dockerfile    | [Metabase](#metabase-dht-sensor-visualization)        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
 
 <details>
   <summary>Few things to Refresh</summary>
   <p>We will be, among other tasks, selfhosting - Setup with - https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/</p>
-  <p>For Python - https://fossengineer.com/guide-python/</p>  
+  <p>For Python - https://jalcocert.github.io/JAlcocerT/guide-python/</p>  
   <p>Raspbian OS installed and ssh ready `ssh -V`</p>  
 </details>
 
@@ -68,12 +69,12 @@ Temperature and Humidity Data can be provided with DHT11 or DHT22 for this proje
 
 ### Connecting a DHT to a Raspberry Pi 4
 
-To connect the DHT11 or DHT22 sensor to the Raspberry, you can follow this schema:
+To connect the DHT11 or DHT22 sensor to the Raspberry, you can **follow this schema**:
 
 ![Desktop View](/img/RPi4-DHT22.png){: width="972" height="589" }
 _DHT22 connection to a Raspberry Pi 4_
 
-I prefer to use the 3.3V for the DHT, and yet it will work perfectly with 5V as well.
+I prefer to use the **3.3V for the DHT sensor** (will work perfectly with 5V as well)
 
 > In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. 
 {: .prompt-info }
@@ -394,7 +395,9 @@ db.dht_sensor.find()
 db.dht_sensor.find().sort({ timestamp: -1 }).limit(10);
 ```
 
-### How to embed a Metabase Dashboard?
+### More about Metabase
+
+#### How to embed a Metabase Dashboard?
 
 Metabase provides an **embedding code snippet** that you can use to include a Metabase dashboard into your application.
 
@@ -428,15 +431,17 @@ This is how the Metabase html will look like:
 
 
 
-### Metabase and Satic Web Pages?
+#### Metabase and Satic Web Pages?
 
 Yes, you can use the **Metabase embedding feature in a [Static Web Page](https://fossengineer.com/tags/web/)**.
 
-The static webpage will remain static (*yeah*), and you can embed a Metabase dashboard within it. The embedded dashboard will be loaded dynamically into the static page, allowing you to display live data and visualizations without the need for server-side scripting.
+The [**static** webpage](https://jalcocert.github.io/JAlcocerT/portfolio-websites/) will remain static (*yeah*), and you can embed a Metabase dashboard within it.
+
+The embedded dashboard will be loaded dynamically into the static page, allowing you to **display live data** and visualizations without the need for server-side scripting.
 
 To achieve this, follow the steps mentioned earlier to generate the embedding code from Metabase. You will receive an HTML code snippet that you can include in your static webpage's source code.
 
-Here's a simplified example of how you can embed a Metabase dashboard in a static HTML page:
+Example of how you can **embed a Metabase dashboard** in a static HTML page:
 
 
 ```html
@@ -474,10 +479,6 @@ Mongo Express allows us to interact with MongoDB database through the browser.
 ### Installing Adafruit_DHT
 
 
-
-> More About [Adafruit_DHT](https://pypi.org/project/Adafruit-DHT/#description) and in [Github](https://github.com/adafruit/Adafruit_Python_DHT). **Replaced with** [Adafruit_CircuitPython_DHT](https://github.com/adafruit/Adafruit_CircuitPython_DHT).
-{: .prompt-info }
-
 If you are getting problems to install the old Adafuit_DHT, you can try to do it from source:
 
 
@@ -488,6 +489,9 @@ python3 setup.py install --force-pi
 
 #This will bypass any issues you may encounter when doing pip install Adafuit_DHT==1.4.0
 ```
+
+> More About [Adafruit_DHT](https://pypi.org/project/Adafruit-DHT/#description) and in [Github](https://github.com/adafruit/Adafruit_Python_DHT). **Replaced with** [Adafruit_CircuitPython_DHT](https://github.com/adafruit/Adafruit_CircuitPython_DHT).
+{: .prompt-info }
 
 Generally, you should just switch to the [Adafruit DHT Circuit Python](https://docs.circuitpython.org/projects/dht/en/latest/examples.html)
 
@@ -514,3 +518,6 @@ pip install Adafruit_DHT==1.4.0
 
 * Thanks to: <https://pimylifeup.com/raspberry-pi-humidity-sensor-dht22/> for inspiration of this project.
   * And to: <https://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/python-setup>
+
+> Related Code for this IoT Project with Metabase is [here](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT-to-MongoDB)
+{: .prompt-info }

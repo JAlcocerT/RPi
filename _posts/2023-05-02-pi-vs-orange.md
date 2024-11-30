@@ -13,7 +13,7 @@ image:
 
 [The Orange Pi 5](#exploring-the-orange-pi-5) is a versatile device suitable for high-end tablets, Home Assistant integration, edge computing, AI, cloud computing, AR/VR, and smart security.
 
-With its advanced 8nm LP fabrication technology and the [Rockchip RK3588S chip](#orange-pi-5-specs), it provides exceptional performance and reduced power consumption.
+With its advanced 8nm LP fabrication technology and the [Rockchip **RK3588S** chip](#orange-pi-5-specs), it provides exceptional performance and reduced power consumption.
 
 On the other hand, the **[Raspberry Pi 4](#the-raspberry-pi-4)** supports multimedia playback and video output, making it ideal for home media centers and retro gaming.
 

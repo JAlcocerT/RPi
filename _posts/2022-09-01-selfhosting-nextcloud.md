@@ -7,17 +7,28 @@ tags: [Self-Hosting, Docker]
 render_with_liquid: false
 ---
 
-To install nextcloud in RPi, we need to include MariaDB in the installation (it supports ARM processors, not like mysql).
+To install nextcloud in RPi, we need to include a DB.
+
+For example, lets use MariaDB in the installation (it supports ARM/x86 processors, not like mysql).
 
 
 ## Installing Docker Stuff
 
-First things first. [Get Docker](https://fossengineer.com/docker-first-steps-guide-for-data-analytics/) and Docker-Compose ready in your Rpi.
+First things first.
+
+[Get Docker](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/) and Docker-Compose ready in your Rpi.
+
+
+
+
+
 
 ## Deploy Nextcloud with Docker
 
-Let's use **Docker-Compose** to have nextcloud server installed without any complications:
+Let's use **Docker-Compose** to have nextcloud server installed without any complications.
 
+>  See the **Nextcloud config file** and more [here](https://github.com/JAlcocerT/Docker/tree/main/Backups/NextCloud)
+{: .prompt-info }
 
 ```yml
 version: '2'

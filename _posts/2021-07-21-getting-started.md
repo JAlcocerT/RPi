@@ -12,7 +12,7 @@ image:
   alt: A Raspberry Pi Guide for Everyone.
 ---
 
-# A journey with the Rpi
+A journey with the Raspberry Pi.
 
 Fuel your curiosity with Raspberry Pi - the single board computer that's redefining the future of technology.
 
@@ -20,16 +20,22 @@ Fuel your curiosity with Raspberry Pi - the single board computer that's redefin
 
 The Raspberry Pi is a tiny computer, low power consumption (ARM based) that you can use to learn programming through fun, practical projects and also allow us to have our own server to run 24/7 tasks that don’t require the expensive hardware of a PC.
 
-It can run Linux distributions like: Debian, OpenMediaVault or most commonly Raspbian OS. It can also run Android.
+It can run Linux distributions like: Debian, OpenMediaVault or most commonly Raspbian OS.
 
-All of the services/projects that we can make the RPi to run, can be easily ported to some cloud service, VPS and so on. So it serves as an entry point to learn also about that as well.
+It can also run [Android](#android-in-a-raspberry-pi).
+
+All of the services/projects that we can make the RPi to run, can be easily ported to some cloud service, VPS and so on.
+
+So it serves as an entry point to learn also about Cloud/Linux/Docker as well.
+
+And ofc, the IoT: sensors, electronic...with its great GPIO.
 
 ## How to Get Started with a RPi?
 
 First I would recommend you to install Raspbian to the RPi.
 
 * **Raspbian/Raspberry Pi OS** is based on Debian, a Linux distribution.
-* You can also Try [Home Assistant OS](#home-assistant-os), with strong Focus on IoT Home Project, [even Android!](##other-oss)
+* You can also Try [Home Assistant OS](#home-assistant-os), with strong Focus on IoT Home Project, [even Android!](#other-oss)
 
 But you dont have to be worried about this as I have created to onboard anyone to Linux and particularly to [Debian based distros here](https://jalcocert.github.io/Linux/docs/debian/).
 

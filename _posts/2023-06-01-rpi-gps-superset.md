@@ -1,7 +1,7 @@
 ---
 title: RPi IoT Project - GPS Data (VK-162) with Apache Superset
 author: JAlcocerT
-date: 2024-06-01 00:10:00 +0800
+date: 2023-06-01 00:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors,Python,MongoDB]
 # image:
@@ -10,8 +10,19 @@ tags: [Sensors,Python,MongoDB]
 render_with_liquid: false
 ---
 
+I want to be better at racing.
+
+And also better at IoT.
+
+How about building something to track and measure lap time to improve over that?
+
+> I have explored [GPS Data at this Repo](https://github.com/JAlcocerT/Py_RouteTracker/tree/main/Data_PhyPhox)
+{: .prompt-info }
+
+Inspiration
+
 * <https://www.youtube.com/watch?v=Z7cJ59sixpk&t=197s>
-<https://www.youtube.com/watch?v=3ysOqliO6F8>
+* <https://www.youtube.com/watch?v=3ysOqliO6F8>
 
 ## ToDo list
 
@@ -25,6 +36,9 @@ render_with_liquid: false
 ## Apache Superset Setup
 
 Apache Superset is a [Free BI Web Tool](https://superset.apache.org/docs/intro/) that we can [use with our RPi projects locally](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/).
+
+> My [Superset configuration with docker](https://github.com/JAlcocerT/Docker/blob/main/IoT/Superset/docker-compose.yml)
+{: .prompt-info }
 
 
 ```sh
@@ -181,7 +195,10 @@ volumes:
   * And [also for Arduino](https://github.com/phyphox/phyphox-arduino)
 
 
-  https://www.youtube.com/watch?v=LY1thW1N56E
+* https://www.youtube.com/watch?v=LY1thW1N56E
+
+> I have explored [PhyPhox at this Repo](https://github.com/JAlcocerT/Py_RouteTracker/tree/main/Data_PhyPhox)
+{: .prompt-info }
 
 #### Kalman Filter
 

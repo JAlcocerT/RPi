@@ -18,14 +18,18 @@ And we will visualize the DHT Sensor Data with **Kibana**.
 
 | Hardware             | Code                  | Data Analytics Stack |
 |---------------------|:---------------------------------:|:-----------:|
-| `Raspberry Pi 4`  ✓  | Python           | Elastic Search        |
-| `DHT22`     ✓  | Dockerfile    | Kibana        |
+| `Raspberry Pi 4`  ✓  | Python           | [Elastic Search](#why-elasticsearch)        |
+| `DHT22`     ✓  | Dockerfile    | [Kibana](#how-to-visualize-elasticsearch-data)        |
 | `Wires`        ✓      | Docker-compose Stack   | Docker Container  |
 
+> Related Code for this IoT Projectis also public, [here](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT22-to-ElasticSearch)
+{: .prompt-info }
 
 ### The Sensor: DHT22
 
-Temperature and Humidity Data.
+Temperature and Humidity Data, right?
+
+We need a sensor then: the DHT22 (you can build similar project with a DHT11)
 
 
 | Pins             | Description                  |
@@ -42,7 +46,7 @@ To connect the sensor to the Raspberry, you can follow this schema:
 ![Desktop View](/img/RPi4-DHT22.png){: width="972" height="589" }
 _DHT22 connection to a Raspberry Pi 4_
 
-I prefer to use the 3.3V for the DHT22, and yet it will work perfectly with 5V as well.
+I prefer to use the **3.3V for the DHT22** (works perfectly with 5V as well).
 
 > In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. You can always go to the terminal and check with:
 ```sh
@@ -52,24 +56,28 @@ pinout
 
 ### Why ElasticSearch?
 
-Elasticsearch is a distributed, RESTful search and analytics engine built on top of Apache Lucene. It allows you to store, search, and analyze large volumes of data in real-time. Elasticsearch is known for its speed, scalability, and powerful search capabilities, making it suitable for a wide range of use cases, from full-text search to log and event data analysis.
+Elasticsearch is a distributed, RESTful search and analytics engine built on top of Apache Lucene.
+
+It allows you to store, search, and analyze large volumes of **data in real-time**.
+
+Elasticsearch is known for its speed, scalability, and powerful search capabilities, making it suitable for a wide range of use cases, from full-text search to log and **event data analysis**.
 
 Yes, Elasticsearch is open source software. It is released under the Apache 2.0 open source license.
 
-Please note that the Elasticsearch ecosystem also includes other components like Kibana (for data visualization and exploration) and Logstash (for data collection and transformation), often referred to as the "ELK stack" when used together for log and event data analysis.
+Please note that the Elasticsearch ecosystem also includes other components like [Kibana (for data visualization and exploration)](#how-to-visualize-elasticsearch-data) and Logstash (for data collection and transformation), often referred to as **the "ELK stack"** when used together for log and event data analysis.
 
 ## The Base Code: Python
 
 
 To query the DHT22 and see if everything works with Python, there are 2 simple steps:
 
-* We need to install the Adafruit_DHT library:
+* We need to install the `Adafruit_DHT` library:
 
 ```py
 pip install Adafruit_DHT
 ```
 
-* And then you can use this code to test that we get data:
+* And then you can use this script/code to test that we get data from the sensor:
 
 ```py
 import Adafruit_DHT
@@ -106,7 +114,9 @@ And you can run it by executing: **[python dht22.py](https://github.com/JAlcocer
 ### Python to ES
 
 
-To push data to Elasticsearch from Python, you can use the official Elasticsearch Python client library, which provides a convenient way to interact with Elasticsearch from Python. We can install it with:
+To push data to Elasticsearch from Python, you can use the official Elasticsearch Python client library, which provides a convenient way to interact with Elasticsearch from Python.
+
+We can install it with:
 
 ```sh
 pip install elasticsearch
@@ -132,12 +142,14 @@ es.index(index=index_name, doc_type='_doc', body=doc)
 ```
 
 
-In the code above, we first initialize an Elasticsearch client, specifying the host and port where Elasticsearch is running. Then, we create a sample document and push it to an Elasticsearch index named 'my_index'.
+In the code above, we first initialize an Elasticsearch client, specifying the host and port where Elasticsearch is running.
+
+Then, we create a sample document and push it to an **Elasticsearch index** named `my_index`.
 
 
 ### Pushing DHT22 Data to ES
 
-We will be using this code to send the DHT22's temperature and humidity data to ElasticSearch.
+We will be using [this code](https://github.com/JAlcocerT/RPi/blob/main/Z_IoT/DHT22-to-ElasticSearch/Python2ElasticSearch.py) to send the DHT22's temperature and humidity data to ElasticSearch.
 
 
 ```py
@@ -198,20 +210,22 @@ except KeyboardInterrupt:
 
 ## Pushing Data from Python to ES
 
-We will be using 2 existing containers:
+We will be using 2 existing **container images**:
 * <https://hub.docker.com/_/influxdb/tags>
 * <https://hub.docker.com/_/python>
 
 We have 3 mandatory components for this to work:
 
-* The adjusted Python code that pushed data: <https://github.com/JAlcocerT/RPi/Z_IoT/DHT22-to-ElasticSearch/Python2ElasticSearch.py>
-* https://github.com/JAlcocerT/RPi/Z_IoT/DHT22-to-ElasticSearch/Python2ElasticSearch-Stack.yml
-* The docker image that isolates all of this and allow us to deploy easier: <https://hub.docker.com/r/fossengineer/iot/tags>
-    * The tag is: dht22_sensor_to_elasticsearch
+1. The adjusted Python code that pushed data: <https://github.com/JAlcocerT/RPi/Z_IoT/DHT22-to-ElasticSearch/Python2ElasticSearch.py>
+2. The [docker-compose stack](https://github.com/JAlcocerT/RPi/Z_IoT/DHT22-to-ElasticSearch/Python2ElasticSearch-Stack.yml)
+3. The docker image that isolates all of this and allow us to deploy easier: <https://hub.docker.com/r/fossengineer/iot/tags>
+* The tag is: dht22_sensor_to_elasticsearch
 
 And another one if you want to replicate the docker build process:
 
 * The https://github.com/JAlcocerT/RPi/Z_IoT/Python2ElasticSearch/Dockerfile>
+
+---
 
 ## FAQ
 
@@ -274,5 +288,9 @@ curl -X GET "http://192.168.3.200:9200/sensor_data/_search?pretty" -H "Content-T
 
 ### How to Visualize ElasticSearch Data?
 
-* You can use **Kibana** for visualizations.
-* Or add the ES as a Data Source to Grafana
+There are several ways to do this.
+
+* You can use **Kibana** for visualizations - This is the *native way*
+  * **DockerCompose** for [Elastic Search + kibana](https://github.com/JAlcocerT/Docker/blob/main/IoT/Kibana-ES/Docker-compose.yml)
+* Or add the ES as a Data Source [to Grafana](https://jalcocert.github.io/posts/selfh-grafana-monit/)
+  * This is the [docker-compose for Grafana](https://github.com/JAlcocerT/Docker/blob/main/IoT/Grafana/Docker-compose.yml)

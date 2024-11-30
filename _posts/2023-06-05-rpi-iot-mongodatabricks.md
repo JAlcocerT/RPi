@@ -1,7 +1,7 @@
 ---
 title: RPi IoT Project - Temperature Data with MongoDB, Databricks & Metabase
 author: JAlcocerT
-date: 2023-06-05 14:10:00 +0800
+date: 2023-11-05 14:10:00 +0800
 categories: [IoT & Data Analytics]
 tags: [Sensors,Python,MongoDB,Dashboards]
 render_with_liquid: false
@@ -26,20 +26,26 @@ sequenceDiagram
 
 > This diagram is generated with [MermaidJS](https://mermaid.js.org/syntax/sequenceDiagram.html) and [FontAwsome](https://fontawesome.com/v5/search?o=r&m=free)
 
+<!-- 
 ```mermaid
  gantt
   title  Adding GANTT diagram functionality to mermaid
   apple :a, 2017-07-20, 1w
   banana :crit, b, 2017-07-23, 1d
   cherry :active, c, after b a, 1d
-```
+``` 
+-->
 
 ### ToDo list
 
+We have already used Mongo with a DHT sensor.
+
+How about pushing the data to the cloud and analyze it there with Databricks?
+
 - [ ] Job
   + [x] The Python Script - Pushing Data from Python to Mongo is Done already - From [Project: Py to Mongo To Metabase](https://jalcocert.github.io/RPi/posts/rpi-iot-dht1122-mongo/)
-  + [ ] MongoDB Cloud Setup
-  + [ ] Databricks
+  + [ ] [MongoDB](#mongodb-cloud-setup) Cloud Setup
+  + [ ] [Databricks](#databricks)
 
 
 ## MongoDB Cloud Setup
@@ -69,13 +75,15 @@ Get the hostname with:
 curl -sS https://ipinfo.io/json #the command to use
 ```
 
-Make sure that the MongoDB port is ready to accept connections, by default is 27017 TCP.
+Make sure that the **MongoDB port** is ready to accept connections, by default is `27017 TCP`.
 
 
 ## The Python Script
 
+>  The [related source code](https://github.com/JAlcocerT/RPi/tree/main/Z_IoT/DHT11-to-InfluxDB) 👇
+{: .prompt-info }
 
-Make your Raspberry Pi run this container
+Make your Raspberry Pi run this container:
 
 ```yml
 version: '3'
@@ -132,7 +140,7 @@ db.dht_sensor.findOne();
 
 ## Databricks
 
-The unified Analytics platform: <https://community.cloud.databricks.com/>
+The Unified **Analytics Platform** - Databricks: <https://community.cloud.databricks.com/>
 
 
 ```py
@@ -143,7 +151,7 @@ database="sample_supplies"
 collection="sales"
 ```
 
-
+```sh
 db.dht_sensor.findOne();
 {
   _id: ObjectId("65324697e3578aaa6690a953"),
@@ -151,3 +159,4 @@ db.dht_sensor.findOne();
   temperature: 21.700000762939453,
   humidity: 52.599998474121094
 }
+```

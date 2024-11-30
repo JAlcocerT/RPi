@@ -9,9 +9,12 @@ render_with_liquid: false
 
 So you already have your [RPi and the OS Setup](https://jalcocert.github.io/RPi/posts/getting-started/)
 
-[Self-Hosting can be simplified](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/) with Docker.
+[**Self-Hosting** can be simplified](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/) with Docker.
 
-Thanks to the great work of the community that **bundles a lot of Apps/services** into docker container images and make them available, together with their code.
+>  Use your Raspberry with [other **services** with docker](https://github.com/JAlcocerT/Docker)
+{: .prompt-info }
+
+Thanks to the great work of the community that **bundles a lot of Apps/services** into container images and make them available, together with their code.
 
 ## Install Docker
 
@@ -56,7 +59,7 @@ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /va
 
 ## Trying *any* App with Docker
 
-Remember that the RPi works with an **ARM processors**, so expect some changes in the .yml configuration files when another compatible image has to be used.
+Remember that the RPi works with an **ARM processors**, so expect some changes in the `.yml` configuration files when another compatible image has to be used.
 
 When pulling the images, docker will find the one that suits your machine (if no specific version is specified) when available. 
 
@@ -85,7 +88,13 @@ services:
 #docker run --publish 5000:5000 --detach --name whoogle benbusby/whoogle-search:latest
 ```
 
-### Several Apps - Raspberry Pi Media server: Docker Stack with NextCloud, Photoview, Navidrome
+### Several Apps - Raspberry Pi Media server
+
+[Docker Stack](https://github.com/JAlcocerT/Docker/tree/main/Z_Dockge/stacks) with: NextCloud, Photoview, Navidrome,...
+
+
+
+
 
 ```yml
 version: "3"
@@ -218,13 +227,16 @@ volumes:
   db:    
 ```
 
+---
+
 ## FAQ
 
 ### Looking Forward to Self-Host other Apps?
 
-* I have been consolidating a list of docker-compose files to deploy several F/OSS Apps in [my Docker repository](https://github.com/JAlcocerT/Docker)
-* Also, I have created **detailed guides** of some of them in my Tech blog: <https://fossengineer.com/tags/self-hosting/>
+I have been consolidating a list of docker-compose files to deploy several F/OSS Apps in [my Docker repository](https://github.com/JAlcocerT/Docker)
+
+* See more **detailed guides** [here](https://fossengineer.com/tags/self-hosting)
 
 ### Monitoring the server performance?
 
-You can have a look on how the things are going with [Netdata and Docker](https://fossengineer.com/selfhosting-server-monitoring-with-netdata-and-docker/).
+You can have a look on how the things are going with [**Netdata** and Docker](https://fossengineer.com/selfhosting-server-monitoring-with-netdata-and-docker/).

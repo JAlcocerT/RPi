@@ -8,8 +8,9 @@ render_with_liquid: false
 ---
 
 
-A collection of some of the checks that I needed to do regarding Linux and Firmware versions.
+A collection of some of the checks that I needed to do regarding **Linux and Firmware versions**.
 
+If you just got a Pi and are new to Linux, this can be beneficial to follow.
 
 ## Firmware version
 
@@ -18,7 +19,9 @@ A collection of some of the checks that I needed to do regarding Linux and Firmw
 
 This command is used to update the Raspberry Pi's bootloader and EEPROM (Electrically Erasable Programmable Read-Only Memory) firmware.
 
-The EEPROM firmware includes the firmware responsible for booting the Raspberry Pi, as well as other critical system functions. It is typically used for updating low-level firmware that is responsible for the initial boot process and hardware initialization.
+The **EEPROM firmware** includes the firmware responsible for booting the Raspberry Pi, as well as other critical system functions.
+
+It is typically used for updating low-level firmware that is responsible for the initial boot process and hardware initialization.
 
 It's a more focused update for the bootloader and EEPROM and is less likely to introduce compatibility issues with the operating system and software.
 
@@ -45,7 +48,9 @@ reboot -r now
 
 This command is used to update the Raspberry Pi's kernel and firmware, which includes device drivers, firmware for peripherals, and other software-related components.
 
-It updates the higher-level software components of the Raspberry Pi's firmware. It can include updates to the Linux kernel and various device drivers, and it may also update userland software packages.
+It updates the higher-level software components of the Raspberry Pi's firmware.
+
+It can include updates to the Linux kernel and various device drivers, and it may also update userland software packages.
 
 While it can bring new features and improvements, it has a greater potential to introduce compatibility issues with the operating system and software compared to rpi-eeprom-update.
 
@@ -126,9 +131,13 @@ $sudo apt update && sudo apt upgrade
 {: .prompt-info }
 
 
+---
 
+## Just Getting Started with a Pi
 
-## Configure a VNC server
+### Configure a VNC server
+
+Use your PI from another computer:
 
 ```sh
 $ sudo apt-get install tightvncserver
@@ -138,14 +147,14 @@ $ vncserver
 Remember that VNC default port is 5901.
 
 
-## Checking the Raspberry Pi’s Temperature
+### Checking the Raspberry Pi’s Temperature
 
 We can do this with one alias.
 
 ```sh
 $  nano ~/.bash_aliases
 ```
-Add this line to know the RPi’s temperature by typing ‘temp’ on the terminal:
+Add this line to know the **RPi’s temperature** by typing ‘temp’ on the terminal:
 
 
 

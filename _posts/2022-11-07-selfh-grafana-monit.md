@@ -14,14 +14,20 @@ Its been a while that I have been talking about self-hosting.
 
 At some point, we can be wondering how our devices (probably small Raspberry Pi's or old laptops) are doing with all of that workload.
 
-This is the moment where you will be interested to know about Grafana.
+This is the moment where you will be interested to know **about Grafana**.
 
 * <https://github.com/JAlcocerT/Docker/tree/main/IoT>
 * <https://hub.docker.com/r/grafana/grafana-oss>
 * This video was of great help to me: <https://www.youtube.com/watch?v=IoD3vFuep64&t=370s>
 
 
-## Grafana: with Prometheus and Node Exporter
+## Grafana Stacks
+
+Grafana plays well with several DBs around there.
+
+Lets see some popular timeseries and stacks with Grafana.
+
+### Grafana: with Prometheus and Node Exporter
 
 * <https://github.com/starsliao/Prometheus>
 * <https://grafana.com/grafana/dashboards/11074-node-exporter-for-prometheus-dashboard-en-v20201010/>
@@ -67,12 +73,12 @@ networks: #optional
     external: true #optional
 ```    
 
-default creds: `admin/admin`
+Default **creds**: `admin/admin`
 
 
 We will need the `/etc/prometheus/prometheus.yml` file
 
-in this case here:
+In this case here:
 
 ```sh
 sudo nano /home/Docker/monitoringserver/prometheus/prometheus.yml
@@ -81,14 +87,14 @@ sudo nano /home/Docker/monitoringserver/prometheus/prometheus.yml
 
 Then, spin up the docker containers with: `docker-compose up -d`
 
-<http://localhost:9090/graph?g0.expr=&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h>
-<http://localhost:3457/dashboards>
+* <http://localhost:9090/graph?g0.expr=&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h>
+* <http://localhost:3457/dashboards>
 
 * #Add Prometheus as grafana data source ---> http://localhost:9090
 http://127.0.0.1:3457/connections/your-connections/datasources
 http://127.0.0.1:3457/connections/your-connections/datasources/edit/d8d34b8f-1618-45ad-922c-53bbb9a19f90
 
-* Import existing dashboard with its ID:
+* **Import existing Grafana dashboard with its ID**:
     * <https://grafana.com/grafana/dashboards/11074-node-exporter-for-prometheus-dashboard-en-v20201010/>
     * Use the prometheus DB
 
@@ -99,7 +105,9 @@ http://127.0.0.1:3457/connections/your-connections/datasources/edit/d8d34b8f-161
 
 
 
-## Grafana with: InfluxDB and Telegraph
+### Grafana with: InfluxDB and Telegraph
+
+The TIG stack!
 
 This resources were of great help to me to understand this topic:
 
@@ -110,15 +118,12 @@ This resources were of great help to me to understand this topic:
 
 We will need:
 
-<https://github.com/jmlcas/grafana-influxdb-telegraf>
-
-<https://github.com/JAlcocerT/Docker/blob/main/IoT/Grafana_InfluxDB_Telegraf_docker-compose.yaml>
-
-<https://hub.docker.com/_/telegraf/tags>
-<https://hub.docker.com/_/influxdb/tags>
+1. TIG Stack [Docker Compose](https://github.com/JAlcocerT/Docker/blob/main/IoT/Grafana_InfluxDB_Telegraf_docker-compose.yaml)
+2. [Telegraph Container image](https://hub.docker.com/_/telegraf/tags)
+3. [InfluxDB Container Image](https://hub.docker.com/_/influxdb/tags)
 
 
-
+* Thanks to <https://github.com/jmlcas/grafana-influxdb-telegraf>
 
 ```yml
 version: '3.6'
@@ -221,7 +226,7 @@ sudo nano /home/Docker/Monitoring_TIG/telegraf.conf
 ```
 
 
-## Grafana with: Prometheus, nodexp and Cadvisor
+### Grafana with: Prometheus, nodexp and Cadvisor
 
 <https://grafana.com/grafana/dashboards/15120-docker-and-os-metrics-for-raspberry-pi/>
 

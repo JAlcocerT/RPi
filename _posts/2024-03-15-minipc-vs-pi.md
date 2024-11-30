@@ -93,7 +93,7 @@ sudo stress --cpu  8 --timeout 120
 
 #### Phoronix
 
-For Synthetic benchmarks I have used [phoronix](#how-to-benchmark-with-phoronix-test-suite):
+For Synthetic benchmarks I have used [phoronix](#benchmark-minipc-with-phoronix-test-suite):
 
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/n95-cpu-phoronix.png)
 _Intel N95 4 cores with phoronix Open Source Benchmark ~53s_
@@ -101,9 +101,9 @@ _Intel N95 4 cores with phoronix Open Source Benchmark ~53s_
 ![BMAX B4 - Temperature during Docker Build](/img/minipc-vs-pis/orangepi5-cpu-phoronix.png)
 _The Orange Pi 8 Cores is a beast scoring ~38s_
 
-For reference, I [benchmarked *bigger* CPUs here](https://jalcocert.github.io/Linux/docs/linux__cloud/benchmark/).
+For reference, I [benchmarked *bigger* CPUs here](https://jalcocert.github.io/JAlcocerT/asrock-x300-home-server/).
 
-> Plot twist, both CPUs, *specially the Rockchip*, has nothing to envy
+> Plot twist, both CPUs, *specially the RockChip*, has nothing to envy
 
 ![BMAX B4 - Performance vs i5 gen 11](/img/minipc-vs-pis/i5-1135g7.png)
 _Performance of i51135g7 (Laptop CPU) with same Benchmark_
@@ -112,14 +112,10 @@ _Performance of i51135g7 (Laptop CPU) with same Benchmark_
 
 ## FAQ
 
-* Now you can have a *[DB Less Cloud](https://fossengineer.com/selfhosting-filebrowser-docker/)*
+Now you can have a *[DB Less Cloud](https://fossengineer.com/selfhosting-filebrowser-docker/)*
 
-<details>
-  <summary>Click to expand</summary>
-  <p>This is the content that was hidden, but now you see it!</p>
-</details>
 
-* Get the latest Kernel for the orange pi 5 - https://github.com/Joshua-Riek/ubuntu-rockchip/releases
+* Get the **latest Kernel** for the orange pi 5 - https://github.com/Joshua-Riek/ubuntu-rockchip/releases
 
 ### Why changing the MiniPC to Linux?
 
@@ -127,7 +123,9 @@ In this case, the BMAX B4 came with W11 fully activated by default - which for t
 
 I tried it and it moved daily tasks fluently, but the task manager was showing quite high CPU loads the next day (just installed docker with couple containers).
 
-That's why I decided to switch to [a lighter Linux Distribution](https://jalcocert.github.io/Linux/docs/#what-is-the-best-linux-for-low-resources) - Lubuntu starts at ~800mb RAM, instead of the 2.8GB of W11.
+That's why I decided to switch to [a lighter Linux Distribution](https://jalcocert.github.io/Linux/docs/#what-is-the-best-linux-for-low-resources).
+
+Lubuntu starts at ~800mb RAM, instead of the 2.8GB of W11.
 
 > The max consumption registered was ~15w in this case
 
@@ -204,12 +202,3 @@ Then, just use:
 phoronix-test-suite benchmark smallpt
 #phoronix-test-suite system-info
 ```
-<!-- 
-https://openbenchmarking.org/result/2403181-NE-TESTBENCH60
-https://openbenchmarking.org/result/2403181-NE-TESTORANG02 -->
-
-<!-- ### How to Monitor MiniPC Temperatures
-https://www.youtube.com/watch?v=h1kyncK--vQ
--->
-
-<!-- {% include embed/{youtube}.html id='{h1kyncK--vQ}' %} -->

@@ -9,11 +9,24 @@ render_with_liquid: false
 
 The good thing about Single Board Computers like the Raspberry, is that additionally to our Iot Projects we can learn about networking as well.
 
-The benefit of this? We can have a better and safer home internet. Let's have a look which free and open source services can help us.
+The benefit of this?
+
+We can have a better and safer home internet.
+
+
+
+> Related Docker [Configurations for Privacy/Security](https://github.com/JAlcocerT/Docker/tree/main/Security). **Linux** [DNS overview](https://jalcocert.github.io/Linux/docs/privacy/).
+{: .prompt-info }
+
+Let's have a look which free and open source services can help us.
 
 ## Pi-Hole
 
-Pi-hole is a network-wide ad blocker that acts as a DNS sink. This means that it intercepts DNS queries from all devices on your network and blocks any queries to known ad-serving domains. Pi-hole can [block ads on all devices on your network](https://fossengineer.com/selfhosting-PiHole-docker/), including computers, smartphones, tablets, smart TVs, and even gaming consoles.
+**Pi-hole** is a network-wide ad blocker that **acts as a DNS sink**.
+
+This means that it intercepts DNS queries from all devices on your network and blocks any queries to known ad-serving domains.
+
+Pi-hole can [block ads on all devices on your network](https://fossengineer.com/selfhosting-PiHole-docker/), including computers, smartphones, tablets, smart TVs...
 
 
 ```yml
@@ -124,7 +137,7 @@ sudo systemctl stop systemd-resolved
 #systemctl list-units --type=service | grep 'running'
 ```
 
-And what's my current DNS?
+And what's my **current DNS**?
 
 ```sh
 ip a #get netwk interface to check, something like eth0, wlan...
@@ -139,6 +152,11 @@ cat /etc/resolv.conf
 
 * <https://dnscheck.tools/>
 * <https://cmdns.dev.dns-oarc.net/>
+
+
+---
+
+## More Tricks
 
 ### Deploy PiHole with Unbound
 
@@ -236,11 +254,16 @@ services:
 ```
 
 
-## SearXNG
+### SearXNG - Private Web Search
 
-The [SearXNG project](https://github.com/searxng/searxng) is developing and maintaining a self-hosted **metasearch engine**. This means that anyone can install and run their own Searx instance, and **customize it** to their liking. 
+The [SearXNG project](https://github.com/searxng/searxng) is developing and maintaining a self-hosted **metasearch engine**.
 
-You can spin it with this simple docker-compose:
+This means that anyone can install and run their own Searx instance, and **customize it** to their liking. 
+
+> More Private [Web Search with Docker](https://github.com/JAlcocerT/Docker/tree/main/Security/Search)
+{: .prompt-info }
+
+You can spin it with this simple **docker-compose**:
 
 ```yml
 
