@@ -9,13 +9,13 @@ mermaid: true
 
 These year the Pi5 was launched.
 
-What a perfect oportunity that was to get finally a Raspbery Pi 4 with a good price and do some AI projects with it.
+What a perfect oportunity that was to get finally a **Raspbery Pi 4 with a reasonable price** and do some **AI projects with it**.
 
 This time I got a 4GB Pi4, ARM64!
 
 Let's do some cool stuff with it.
 
-- [ ] Raspberry Pi can do more than IoT. Go AI with a RPi
+- [ ] Raspberry Pi can do more than IoT. **Go AI with a RPi**
   + [x] [Python](#faq) Checks 👇
   + [ ] [Docker](#faq) Checks
   + [ ] Third Party APIs: OpenAI, Anthropic, Groq, also Ollama!
@@ -23,35 +23,35 @@ Let's do some cool stuff with it.
 
 | Project             | Code                  | Use Case |
 |---------------------|:---------------------:|:-----------:|
-| `Streamlit Multi-Chat`  ✓  | [Source Code](https://github.com/JAlcocerT/Streamlit-MultiChat)  🐍 [Container](https://github.com/JAlcocerT/phidata/pkgs/container/phidata)      | Chat with Several LLMs via APIs. See [Blog](https://jalcocert.github.io/JAlcocerT/create-streamlit-chatgpt/#a-multichat-with-streamlit)       |
-| `Youtube Groq Summaries`     ✓  | [Source Code](https://github.com/JAlcocerT/phidata)  🐍[Container](https://github.com/JAlcocerT/Streamlit-MultiChat/pkgs/container/streamlit-multichat)  | Quick Summaries of YT Videos with a Streamlit App. [Blog](https://jalcocert.github.io/JAlcocerT/summarize-yt-videos/)      |
-| `Chat with PDF`        ✓      | [Source Code](https://github.com/JAlcocerT/ask-multiple-pdfs) 🐍  [Container](https://github.com/JAlcocerT/ask-multiple-pdfs/pkgs/container/ask-multiple-pdfs) | Chat with PDFs with OpenAI. [Blog](https://jalcocert.github.io/JAlcocerT/how-to-chat-with-pdfs/) |
+| `Streamlit Multi-Chat`  ✓  | [Source Code](https://github.com/JAlcocerT/Streamlit-MultiChat)  🐍 [Container](https://github.com/JAlcocerT/phidata/pkgs/container/phidata)      | Chat with Several LLMs (APIs). See [Blog](https://jalcocert.github.io/JAlcocerT/create-streamlit-chatgpt/#a-multichat-with-streamlit)       |
+| `Youtube Groq Summaries`     ✓  | [Source Code](https://github.com/JAlcocerT/phidata)  🐍[Container](https://github.com/JAlcocerT/Streamlit-MultiChat/pkgs/container/streamlit-multichat)  | Summaries of YT Videos with Groq. [Blog](https://jalcocert.github.io/JAlcocerT/summarize-yt-videos/)      |
+| `Chat with PDF`        ✓      | [Source Code](https://github.com/JAlcocerT/ask-multiple-pdfs) 🐍  [Container](https://github.com/JAlcocerT/ask-multiple-pdfs/pkgs/container/ask-multiple-pdfs) | Chat with PDFs (OpenAI). [Blog](https://jalcocert.github.io/JAlcocerT/how-to-chat-with-pdfs/) |
 
 These are **LLM related AI projects** that you can play with.
 
 ```mermaid
 mindmap
-  root((dht2influxdb))
-    Software
-      InfluxDB
-      ::icon(fas fa-database)
-      Python
-      ::icon(fab fa-python)
-        Adafruit_DHT Package
-        InfluxDB Package
-      Dockerfile
-        Docker Compose Configuration
+  root((AIwithRPi))
+    AI
+      APIs
+      ::icon(fas fa-robot)
+        OpenAI
+        Anthropic
+        Groq
+      Docker Compose Configuration
     Hardware
       Raspberry Pi 4
-        DHT11 Temp Sensor
-        ::icon(fas fa-thermometer-three-quarters)
-        Three wires
-    Tools
-      Home Assistant
-      Docker
+        ::icon(fab fa-raspberry-pi)
+    DevTools
+      Python
+      ::icon(fab fa-python)
+      Docker Containers
+      ::icon(fab fa-docker)
+      GithubActions
+      ::icon(fas fa-code-branch)
 ```
 
-> These projects have working container images for x86/ARM64. Feel free to run them not only with RPi's
+> These projects have working container images for x86/ARM64.
 {: .prompt-info }
 
 
@@ -81,8 +81,18 @@ docker pull ghcr.io/jalcocert/streamlit-multichat:latest #https://github.com/JAl
 sudo docker pull ghcr.io/jalcocert/ask-multiple-pdfs:v1.0 #https://github.com/JAlcocerT/ask-multiple-pdfs/pkgs/container/ask-multiple-pdfs
 ```
 
+
+
 ## AI Stack
 
+
+If you have the **API keys** and [Docker](#faq) installed...
+
+* https://platform.openai.com/api-keys
+* https://console.groq.com/keys
+* https://console.anthropic.com/settings/keys
+
+Just use this configuration to spin the 3 AI services:
 
 
 ```yml
@@ -143,4 +153,8 @@ volumes:
 
 ## FAQ
 
+Get **Docker** ready for [SelfHosting, like so](https://jalcocert.github.io/Linux/docs/linux__cloud/selfhosting/).
+
 More [**Vector DataBases** - Docker Config Files](https://github.com/JAlcocerT/Docker/tree/main/AI_Gen/Z_VectorDBs)
+
+The diagram has been possible thanks to MermaidJS Jekyll Integration and the [Fontawsome Icons](https://fontawesome.com/v5/search?o=r&m=free)
