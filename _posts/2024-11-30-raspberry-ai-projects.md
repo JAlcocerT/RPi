@@ -111,11 +111,15 @@ If you want to **try just one of them**, you can use a quick **Docker CLI** like
 ```sh
 docker run -d \
   --name phidata_yt_groq \
-  -p 8502:8501 \
+  -p 8509:8501 \
   -e GROQ_API_KEY=your_api_key_here \
-  ghcr.io/jalcocert/phidata:yt-groq \
-  tail -f /dev/null
+  phidata_yt_groq \
+  streamlit run cookbook/llms/groq/video_summary/app.py
+
+#ifconfig #to get to know the device local IP
 ```
+
+You will see the Youtube Groq summarizer at: `http://devicelocalip:8509`
 
 
 This is a realiable and **DIY way of trying cool projects** out there! 
@@ -201,5 +205,4 @@ More [**Vector DataBases** - Docker Config Files](https://github.com/JAlcocerT/D
 
 The **diagram** has been possible thanks to [MermaidJS](https://jalcocert.github.io/JAlcocerT/ai-useful-yet-simple/#diagrams-with-ai) Jekyll Integration and the [Fontawsome Icons](https://fontawesome.com/v5/search?o=r&m=free)
 
-
-{% include embed/{youtube}.html id='{e9hJZrT7HLw}' %}
+Youtube Video - e9hJZrT7HLw
