@@ -33,12 +33,13 @@ These are **LLM related AI projects** that you can play with.
 mindmap
   root((AI with RPi))
     AI
+    ::icon(fas fa-robot)
       APIs
-      ::icon(fas fa-robot)
         OpenAI
         Anthropic
         Groq
       Docker Compose Configuration
+      Portainer UI
     Hardware
       Raspberry Pi 4
         ::icon(fab fa-raspberry-pi)
@@ -81,6 +82,43 @@ docker pull ghcr.io/jalcocert/streamlit-multichat:latest #https://github.com/JAl
 sudo docker pull ghcr.io/jalcocert/ask-multiple-pdfs:v1.0 #https://github.com/JAlcocerT/ask-multiple-pdfs/pkgs/container/ask-multiple-pdfs
 ```
 
+You can goahead and deploy with a [Docker-Compose/Portainer](#ai-stack).
+
+Or if you are now with Docker/Containers, let me guide you through the build process:
+
+1. Lets clone each repository
+2. Use each `Dockerfile` to build the container images from source
+3. Tweak the [AI Stack](#ai-stack) with the name of the local image
+
+> You will need **Docker installed**. And [Portainer UI](https://fossengineer.com/selfhosting-portainer-docker/) will be beneficial.
+{: .prompt-info }
+
+```sh
+git clone https://github.com/JAlcocerT/phidata
+git clone https://github.com/JAlcocerT/Streamlit-MultiChat
+git clone https://github.com/JAlcocerT/ask-multiple-pdfs
+
+
+cd ./phidata && sudo docker build -t phidata_yt_groq . && cd ..
+
+cd ./Streamlit-MultiChat && sudo docker build -t streamlit-multichat . && cd ..
+
+cd ./ask-multiple-pdfs && sudo docker build -t ask-multiple-pdfs . && cd ..
+```
+
+If you want to **try just one of them**, you can use a quick **Docker CLI** like so, when the image is build:
+
+```sh
+docker run -d \
+  --name phidata_yt_groq \
+  -p 8502:8501 \
+  -e GROQ_API_KEY=your_api_key_here \
+  ghcr.io/jalcocert/phidata:yt-groq \
+  tail -f /dev/null
+```
+
+
+This is a realiable and **DIY way of trying cool projects** out there! 
 
 
 ## AI Stack
@@ -133,12 +171,12 @@ services:
     #restart: always   
 
   phidata_yt_groq:
-    image: ghcr.io/jalcocert/phidata:yt-groq #phidata:yt_summary_groq
+    image: ghcr.io/jalcocert/phidata:yt-groq #phidata_yt_groq
     container_name: phidata_yt_groq
     ports:
       - "8502:8501"    
     environment:
-      - GROQ_API_KEY=your_api_key_here # your_api_key_here 🖕
+      - GROQ_API_KEY=your_api_key_here # your_api_key_here
     command: tail -f /dev/null #streamlit run cookbook/llms/groq/video_summary/app.py
     restart: unless-stopped
 
@@ -162,3 +200,6 @@ Make sure to setup a **proper [Python Venv](https://jalcocert.github.io/JAlcocer
 More [**Vector DataBases** - Docker Config Files](https://github.com/JAlcocerT/Docker/tree/main/AI_Gen/Z_VectorDBs)
 
 The **diagram** has been possible thanks to [MermaidJS](https://jalcocert.github.io/JAlcocerT/ai-useful-yet-simple/#diagrams-with-ai) Jekyll Integration and the [Fontawsome Icons](https://fontawesome.com/v5/search?o=r&m=free)
+
+
+{% include embed/{youtube}.html id='{e9hJZrT7HLw}' %}

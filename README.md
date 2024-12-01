@@ -35,9 +35,9 @@ Start your journey with a **Raspberry Pi and explore its role in IoT**, embedded
 
 You can also [get started with **Linux**](https://jalcocert.github.io/Linux/) with a RPi. Also with [Docker](https://github.com/JAlcocerT/Docker).
 
-The guides are available in Web version on: <https://jalcocert.github.io/RPi/>
+See the guides in **Web version** on Github Pages: <https://jalcocert.github.io/RPi/>
 
-> The web generated with the files of this repository and GH Actions.
+> The web is generated and [hosted thanks to GH Actions](https://jalcocert.github.io/JAlcocerT/how-to-use-github-pages/).
 
 ## Guides Structure
 
