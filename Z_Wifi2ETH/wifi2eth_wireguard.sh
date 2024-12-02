@@ -10,7 +10,7 @@ apt update && \
 
 # Create and persist iptables rule.
 # The change: we're using the WireGuard interface (your_vpn_wireguard_netw_interface) instead of the WiFi interface (wlan0).
-iptables -t nat -A POSTROUTING -o proton -j MASQUERADE
+iptables -t nat -A POSTROUTING -o proton_or_some_VPN -j MASQUERADE
 netfilter-persistent save
 
 # Enable ipv4 forwarding.

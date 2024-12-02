@@ -4,5 +4,6 @@
 * Also wrote about it here: <https://jalcocert.github.io/JAlcocerT/raspberry-pi-networking/>
 
 2. Setup a **Custom WG Server on a VPS** + Use the `wifi2eth_wireguard` script: <https://jalcocert.github.io/JAlcocerT/how-to-use-wg-easy-with-a-vps/>
+* [**VPS**'s Setup & Reviews](https://jalcocert.github.io/Linux/docs/linux__cloud/cloud/#other-clouds)
 
 ---

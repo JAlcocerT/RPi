@@ -52,7 +52,7 @@ mindmap
       ::icon(fas fa-code-branch)
 ```
 
-> These projects have working container images for x86/ARM64.
+> These projects can have working container images for x86/ARM64.
 {: .prompt-info }
 
 
@@ -106,7 +106,7 @@ cd ./Streamlit-MultiChat && sudo docker build -t streamlit-multichat . && cd ..
 cd ./ask-multiple-pdfs && sudo docker build -t ask-multiple-pdfs . && cd ..
 ```
 
-If you want to **try just one of them**, you can use a quick **Docker CLI** like so, when the image is build:
+If you want to **try just [one of them](#ai-projects-quick-cli-setup)**, you can use a quick **Docker CLI** like so, when the image is build:
 
 ```sh
 docker run -d \
@@ -128,7 +128,7 @@ This is a realiable and **DIY way of trying cool projects** out there!
 ## AI Stack
 
 
-If you have the **API keys** and [Docker](#faq) installed...
+If you have the **API Keys** and [Docker](#faq) installed...
 
 * https://platform.openai.com/api-keys
 * https://console.groq.com/keys
@@ -136,22 +136,31 @@ If you have the **API keys** and [Docker](#faq) installed...
 
 Just use [this **configuration**](https://github.com/JAlcocerT/Docker/blob/main/AI_Gen/Project_AIs/docker-compose.yml) to spin the 3 AI services:
 
+```sh
+curl -o docker-compose.yml https://raw.githubusercontent.com/JAlcocerT/Docker/main/AI_Gen/Project_AIs/docker-compose.yml
+
+docker-compose up -d
+
+```
+
+You can use it as well via Portainer UI as a Stack:
+
 
 ```yml
 version: '3'
 
 services:
-  streamlit-chat-pdfs:
-    image: ghcr.io/jalcocert/ask-multiple-pdfs:v1.0 
-    container_name: chat_multiple_pdf
-    volumes:
-      - ai_chat_multiple_pdf:/app
-    working_dir: /app  # Set the working directory to /app
-    command: /bin/sh -c "export OPENAI_API_KEY='your_api_key_here' && streamlit run appv3_pass.py"    
-    #command: tail -f /dev/null
-    ports:
-      - "8501:8501"    
-    restart: unless-stopped
+  # streamlit-chat-pdfs:
+  #   image: ghcr.io/jalcocert/ask-multiple-pdfs:v1.0  #BUILD IT FOR ARM64 First
+  #   container_name: chat_multiple_pdf
+  #   volumes:
+  #     - ai_chat_multiple_pdf:/app
+  #   working_dir: /app  # Set the working directory to /app
+  #   command: /bin/sh -c "export OPENAI_API_KEY='your_api_key_here' && streamlit run appv3_pass.py"    
+  #   #command: tail -f /dev/null
+  #   ports:
+  #     - "8501:8501"    
+  #   restart: unless-stopped
 
   streamlit-multichat:
     image: ghcr.io/jalcocert/streamlit-multichat #:v1.0
@@ -191,6 +200,16 @@ volumes:
   ai_chat_multiple_pdf:
 ```
 
+See how each AI Project is consuming resources:
+
+```sh
+htop
+sudo docker stats streamlit_multichat
+```
+
+> With 4GB its more than enough! I got **~400mb/3.71GB of RAM**
+{: .prompt-info }
+
 ---
 
 ## FAQ
@@ -206,3 +225,45 @@ More [**Vector DataBases** - Docker Config Files](https://github.com/JAlcocerT/D
 The **diagram** has been possible thanks to [MermaidJS](https://jalcocert.github.io/JAlcocerT/ai-useful-yet-simple/#diagrams-with-ai) Jekyll Integration and the [Fontawsome Icons](https://fontawesome.com/v5/search?o=r&m=free)
 
 Youtube Video - e9hJZrT7HLw
+
+
+### AI Projects Quick CLI Setup
+
+```sh
+sudo docker run -d \
+  --name chat_multiple_pdf \
+  -v ai_chat_multiple_pdf:/app \
+  -w /app \
+  -e OPENAI_API_KEY=your_api_key_here \
+  -p 8501:8501 \
+  ghcr.io/jalcocert/ask-multiple-pdfs:v1.0 \
+  /bin/sh -c "streamlit run appv3_pass.py"
+```
+
+For the MultiChat Project:
+
+```sh
+export OPENAI_API_KEY="sk-proj-openaiAPIhere"
+export GROQ_API_KEY="gsk_groqAPIhere"
+export ANTHROPIC_API_KEY="sk-ant-yourANTHROPICapihere"
+export MODEL_API_KEY="sk-proj-openaiAPIhere"
+```
+
+Then:
+
+```sh
+sudo docker run -d \
+  --name streamlit_multichat \
+  -v ai_streamlit_multichat:/app \
+  -w /app \
+  -p 8501:8501 \
+  -e MODEL="gpt-4o-mini" \
+  -e TEMPERATURE="0" \
+  ghcr.io/jalcocert/streamlit-multichat \
+  /bin/sh -c "\
+    mkdir -p /app/.streamlit && \
+    echo 'OPENAI_API_KEY = \"$OPENAI_API_KEY\"' > /app/.streamlit/secrets.toml && \
+    echo 'GROQ_API_KEY = \"$GROQ_API_KEY\"' >> /app/.streamlit/secrets.toml && \
+    echo 'ANTHROPIC_API_KEY = \"$ANTHROPIC_API_KEY\"' >> /app/.streamlit/secrets.toml && \
+    streamlit run Z_multichat.py"
+```
