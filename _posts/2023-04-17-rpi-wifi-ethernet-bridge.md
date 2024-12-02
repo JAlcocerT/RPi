@@ -23,9 +23,11 @@ I was inspired by the awsome work of **[William Halley in his blog](https://www.
 
 ### Initial Setup: Option 2 - Separate Subnet
 
-This original approach does not require any VPN, as we are just providing the same internet connection that our RPi receives via Wifi, to our laptop/any other device, via ethernet.
+This original approach **does not require any VPN**, as we are just providing the same internet connection that our RPi receives via Wifi, to our laptop/any other device, via ethernet.
 
 The Raspberry and your device will have the same connection details ☝️
+
+> For passing VPN connecting we have [this](#rpi-bridge-wifi-to-eth-with-vpn)
 
 The script that is provided is this one (again, [credits to](#aknowledgments) William):
 
