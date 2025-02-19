@@ -55,10 +55,6 @@ mindmap
 > These projects can have working container images for x86/ARM64.
 {: .prompt-info }
 
-
-<!-- ![BMAX B4 - Sysbench Test](/img/minipc-vs-pis/sysbench_bmaxb4.png)
-_BMAX B4 - Sysbench Test_ -->
-
 ![Understanding LangChain with PDF Project](https://raw.githubusercontent.com/JAlcocerT/ask-multiple-pdfs/main/docs/PDF-LangChain.jpg)
 _Credits to AlejandroAO for The Diagram and Initial Project which I forked_
 
@@ -119,7 +115,7 @@ docker run -d \
 #ifconfig #to get to know the device local IP
 ```
 
-You will see the Youtube Groq summarizer at: `http://devicelocalip:8509`
+You will see the [Youtube Groq summarizer](https://jalcocert.github.io/JAlcocerT/summarize-yt-videos/) at: `http://devicelocalip:8509`
 
 
 This is a realiable and **DIY way of trying cool projects** out there! 
@@ -127,6 +123,7 @@ This is a realiable and **DIY way of trying cool projects** out there!
 
 ## AI Stack
 
+These custom AI apps can run on Raspberry Pi4 (ARM64).
 
 If you have the **API Keys** and [Docker](#faq) installed...
 
@@ -140,15 +137,12 @@ Just use [this **configuration**](https://github.com/JAlcocerT/Docker/blob/main/
 curl -o docker-compose.yml https://raw.githubusercontent.com/JAlcocerT/Docker/main/AI_Gen/Project_AIs/docker-compose.yml
 
 docker-compose up -d
-
 ```
 
-You can use it as well via Portainer UI as a Stack:
+You can use it as well via **Portainer UI as a Stack**:
 
 
 ```yml
-version: '3'
-
 services:
   # streamlit-chat-pdfs:
   #   image: ghcr.io/jalcocert/ask-multiple-pdfs:v1.0  #BUILD IT FOR ARM64 First
@@ -224,10 +218,21 @@ More [**Vector DataBases** - Docker Config Files](https://github.com/JAlcocerT/D
 
 The **diagram** has been possible thanks to [MermaidJS](https://jalcocert.github.io/JAlcocerT/ai-useful-yet-simple/#diagrams-with-ai) Jekyll Integration and the [Fontawsome Icons](https://fontawesome.com/v5/search?o=r&m=free)
 
-Youtube Video - e9hJZrT7HLw
+![Streamlit MultiChat Image](https://raw.githubusercontent.com/JAlcocerT/Streamlit-MultiChat/main/streamlit-multichat.png)
 
 
 ### AI Projects Quick CLI Setup
+
+Some of these projects require APIs:
+
+```sh
+export OPENAI_API_KEY="sk-proj-openaiAPIhere"
+export GROQ_API_KEY="gsk_groqAPIhere"
+export ANTHROPIC_API_KEY="sk-ant-yourANTHROPICapihere"
+export MODEL_API_KEY="sk-proj-openaiAPIhere"
+```
+
+1. You can [chat with PDFs thanks to this Streamlit App](https://jalcocert.github.io/JAlcocerT/how-to-chat-with-pdfs/):
 
 ```sh
 sudo docker run -d \
@@ -240,16 +245,7 @@ sudo docker run -d \
   /bin/sh -c "streamlit run appv3_pass.py"
 ```
 
-For the MultiChat Project:
-
-```sh
-export OPENAI_API_KEY="sk-proj-openaiAPIhere"
-export GROQ_API_KEY="gsk_groqAPIhere"
-export ANTHROPIC_API_KEY="sk-ant-yourANTHROPICapihere"
-export MODEL_API_KEY="sk-proj-openaiAPIhere"
-```
-
-Then:
+2. For the [Streamlit MultiChat Project](https://jalcocert.github.io/JAlcocerT/create-streamlit-chatgpt/):
 
 ```sh
 sudo docker run -d \

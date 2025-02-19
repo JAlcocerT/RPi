@@ -14,9 +14,6 @@
   <a href="https://github.com/JAlcocerT/RPi/actions/workflows/pages-deploy.yml" style="margin-right: 5px;">
     <img alt="Jekyll Theme Workflow" src="https://github.com/JAlcocerT/RPi/actions/workflows/pages-deploy.yml/badge.svg" />
   </a>
-  <a href="https://github.com/JAlcocerT/RPi/actions/workflows/python-dht-build.yml" style="margin-right: 5px;">
-    <img alt="DHT CI/CD Workflow" src="https://github.com/JAlcocerT/RPi/actions/workflows/python-dht-build.yml/badge.svg" />
-  </a>
   <a href="https://GitHub.com/JAlcocerT/RPi/graphs/commit-activity" style="margin-right: 5px;">
     <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>

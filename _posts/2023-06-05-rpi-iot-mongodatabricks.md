@@ -12,6 +12,9 @@ mermaid: true
 
 Raspberry Pi Project to collect and then send IoT Sensor Data to Mongo and use Analyze it with Databricks.
 
+>  [Databricks](https://jalcocert.github.io/JAlcocerT/big-data-tools-for-data-analytics/#databricks)? Its a unified analytics platform!
+{: .prompt-info }
+
 ```mermaid
 sequenceDiagram
     participant Job

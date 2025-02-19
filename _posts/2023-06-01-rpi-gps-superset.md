@@ -197,7 +197,7 @@ volumes:
 
 * https://www.youtube.com/watch?v=LY1thW1N56E
 
-> I have explored [PhyPhox at this Repo](https://github.com/JAlcocerT/Py_RouteTracker/tree/main/Data_PhyPhox)
+> I have explored [PhyPhox at this Repo](https://github.com/JAlcocerT/Py_RouteTracker/tree/main/Data_PhyPhox) and at [this post](https://jalcocert.github.io/JAlcocerT/blog/tinker-phyphox/)
 {: .prompt-info }
 
 #### Kalman Filter
