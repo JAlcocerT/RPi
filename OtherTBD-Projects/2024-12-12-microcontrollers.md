@@ -73,9 +73,8 @@ wlan.active(True)
 
 # Fill in your network name (ssid) and password here:
 ssid = 'HUAWEI P30'
-password = 'mokradupa68'
+password = 'yourpassword' #adapt this!
 wlan.connect(ssid, password)
-
 
 #install libraries for mqtt
 
@@ -251,18 +250,6 @@ https://www.youtube.com/watch?v=ybCMXqsQyDw&t=19s
 <https://www.youtube.com/watch?v=ufK_knxWn08>
 
 and also <https://www.youtube.com/watch?v=AK8UYh7pMGM>
-
-## Pico and Solar Panel + Battery
-
-
-
-
-
-
-
-
-
-## PicoW with DHT11
 
 
 

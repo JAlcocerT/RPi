@@ -115,10 +115,10 @@ cat /etc/resolv.conf  #https://www.quad9.net/
 I decided to try with **Wireguard** (you will need a working VPN server that generates Wireguard config) and surprisingly **it worked with some modification**:
 
 
-1) First, we need to have wireguard installed:
+1) First, we need to have **wireguard installed**:
 
 * This approach will work for any Wireguard protocol compatible VPNs like Mullvad or ProtonVPN
-  * Mullvad -> 
+  * Mullvad
   * ProtonVPN -> I got `proton` same as the conf used
   * YOur own Wireguard VPN Server somwhere in the world
 * If you are using NordVPN, which just allow OpenVPN protocol, you can use [NordVPN propietary VPN App](#vpn-providers) in the RPi (and you can skip installing the Wireguard Client below - All steps are valid, just use whatever VPN Internet configuration name you are getting with ifconfig)

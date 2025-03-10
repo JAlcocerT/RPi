@@ -10,9 +10,9 @@ mermaid: true
 
 ## Raspberry Pi - Mongo and Databricks
 
-Raspberry Pi Project to collect and then send IoT Sensor Data to Mongo and use Analyze it with Databricks.
+Raspberry Pi Project to collect and then send IoT Sensor Data to Mongo and Analyze it with Databricks.
 
->  [Databricks](https://jalcocert.github.io/JAlcocerT/big-data-tools-for-data-analytics/#databricks)? Its a unified analytics platform!
+>  [Databricks](https://jalcocert.github.io/JAlcocerT/big-data-tools-for-data-analytics/#databricks)? Its a unified **analytics platform**!
 {: .prompt-info }
 
 ```mermaid
@@ -70,10 +70,8 @@ docker run -d \
   mongo:latest
 ```
 
-
-
-
 Get the hostname with: 
+
 ```sh
 curl -sS https://ipinfo.io/json #the command to use
 ```
@@ -143,7 +141,7 @@ db.dht_sensor.findOne();
 
 ## Databricks
 
-The Unified **Analytics Platform** - Databricks: <https://community.cloud.databricks.com/>
+The Unified **Analytics Platform** - Databricks Community Edition: <https://community.cloud.databricks.com/>
 
 
 ```py

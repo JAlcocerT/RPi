@@ -6,7 +6,7 @@ categories: [RPi Setup, Home Server]
 tags: [Self-Hosting, Docker]
 ---
 
-Let's compare some popular SBC Boards (RPi4 and [Orange Pi 5](https://jalcocert.github.io/RPi/posts/pi-vs-orange/)) with a MiniPC
+Let's compare some **popular SBC Boards** (RPi4 and [Orange Pi 5](https://jalcocert.github.io/RPi/posts/pi-vs-orange/)) with a **MiniPC**
 
 > Should I buy a Raspberry or a MiniPC? Lets have a look 👇
 
@@ -29,6 +29,9 @@ Now, it is the time to see how these SBC's stand when compared with a **similar 
 > The Orange Pi (8gb) idles ~ and the RPi 4 (2gb) ~
 
 ## The Mini PC - BMAX B4
+
+> After few benchmarking iterations, I have created [these guidelies](https://jalcocert.github.io/JAlcocerT/benchmarking-computers/) to follow across all my devices
+{: .prompt-info }
 
 * Intel N95 (4 cores)
 * 16GB RAM 2600mhz

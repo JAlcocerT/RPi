@@ -11,20 +11,26 @@ So you have your Raspberry Pi [ready to SelfHost with Docker](https://jalcocert.
 
 Here you have few of them - **Get your RPi's to work!**
 
->  Use your Raspberry with [other **Media services** with docker](https://github.com/JAlcocerT/Docker/tree/main/Media)
+>  Use your Raspberry with [other **Media services** with docker](https://github.com/JAlcocerT/Docker/tree/main/Media). Particularly, the [video section](https://github.com/JAlcocerT/Docker/tree/main/Media/Video)
 {: .prompt-info }
 
 
 ## Youtube-DL Material
 
-It will allow you to Download YT Videos / Music - Even to Subscribe to your favourite Channels without a Google account..
+It will allow you to **Download YT Videos / Music**...
+
+Even to Subscribe to your favourite Channels without a Google account..
+
+Im talking about YT-DL:
 
 ```sh
 #curl -L https://github.com/Tzahi12345/YoutubeDL-Material/releases/latest/download/docker-compose.yml -o docker-compose.yml
 ```
 
+The **config file** is:
+
 ```yml
-version: "2"
+#version: "2"
 services:
     ytdl_material:
         environment: 
@@ -60,7 +66,7 @@ if you want to get to know more about the project: <https://tzahi12345.github.io
 
 ## Piped
 
-Another front end for Youtube:
+Another front end for Youtube, **Piped**:
 
 ```sh
 git clone https://github.com/TeamPiped/Piped-Docker
@@ -71,18 +77,23 @@ cd Piped-Docker
 docker compose up -d
 ```
 
+> The project is public at [Github](https://github.com/TeamPiped/Piped).
 
-The project is public at [Github](https://github.com/TeamPiped/Piped).
+## MeTube
 
-## My Favourite - MeTube
+My favourite!
 
 ANd you can have [MeTube setup on your Raspberry](https://jalcocert.github.io/Linux/docs/linux__cloud.md/ansible/#ansible-like-a-pro) really quick.
+
+> Also with this [**config file**](https://github.com/JAlcocerT/Docker/blob/main/Media/Video/metube_docker-compose.yml)
 
 I have done it with [Ansible *and Docker*](https://jalcocert.github.io/Linux/docs/linux__cloud.md/ansible/)
 
 ---
 
 ## FAQ
+
+See also: [MetaTube](https://github.com/JAlcocerT/Docker/blob/main/Media/Video/metatube_docker-compose.yml), [PeerTube](https://github.com/JAlcocerT/Docker/blob/main/Media/Video/PeerTube_Docker-compose.yml)
 
 ### How to use RSS to subscribe to YT channels?
 

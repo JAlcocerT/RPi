@@ -7,20 +7,20 @@ tags: [Self-Hosting,Docker,Networking]
 render_with_liquid: false
 ---
 
-The good thing about Single Board Computers like the Raspberry, is that additionally to our Iot Projects we can learn about networking as well.
+The good thing about Single Board Computers like the Raspberry, is that additionally to [our Iot Projects](https://jalcocert.github.io/RPi/categories/iot-data-analytics/) we can **learn about networking** as well.
 
 The benefit of this?
 
-We can have a better and safer home internet.
-
-
+We can have a **better and safer** home internet.
 
 > Related Docker [Configurations for Privacy/Security](https://github.com/JAlcocerT/Docker/tree/main/Security). **Linux** [DNS overview](https://jalcocert.github.io/Linux/docs/privacy/).
 {: .prompt-info }
 
 Let's have a look which free and open source services can help us.
 
-## Pi-Hole
+## Home Internet with a Pi
+
+### Pi-Hole
 
 **Pi-hole** is a network-wide ad blocker that **acts as a DNS sink**.
 
@@ -60,12 +60,16 @@ services:
 > Add ipv6 support with: https://danielrampelt.com/blog/install-pihole-raspberry-pi-docker-ipv6/
 
 
-## Pi-Alert
+### Pi-Alert
 
-A project that offers us a  WIFI / LAN intruder detector. Check the devices connected and alert you with unknown devices. It also warns of the disconnection of "always connected" devices
+A project that offers us a **WIFI / LAN intruder detector**.
+
+Check the devices connected and alert you with unknown devices.
+
+It also warns of the disconnection of "always connected" devices
 
 ```yml
-version: "3.7"
+#version: "3.7"
 
 services:
   pialert:
@@ -87,12 +91,13 @@ depends_on:
     - pialert_scanner
 ```
 
-You can customize the Pi.Alert configuration by editing the files in the ./config directory. For more information on how to configure Pi.Alert, please see the Pi.Alert documentation: <https://github.com/pucherot/Pi.Alert>.
+You can customize the Pi.Alert configuration by editing the files in the `./config directory`.
 
-## Unbound DNS
+For more information on how to configure Pi.Alert, please see the Pi.Alert documentation: <https://github.com/pucherot/Pi.Alert>.
 
+### Unbound DNS
 
-We can also use Unbound as an alternative DNS with this [docker-compose](https://github.com/JAlcocerT/Docker/blob/main/Security/unbound_docker-compose.yml):
+We can also use **Unbound as an alternative DNS** with this [docker-compose](https://github.com/JAlcocerT/Docker/blob/main/Security/unbound_docker-compose.yml):
 
 ```yml
 version: "3.7"
@@ -114,9 +119,14 @@ depends_on:
 
 ```
 
-You can customize the unbound DNS configuration by editing the unbound.conf file in the unbound DNS container.
+> See Unbound DNS [config file](https://github.com/JAlcocerT/Docker/tree/main/Security/DNS). Also Bind9 can be Selfhosted.
+{: .prompt-info }
 
-If you are using unbound DNS as your DNS server, you may need to flush the DNS cache on your devices. You can do this by running the following command on your devices:
+You can customize the unbound DNS configuration by editing the `unbound.conf` file in the unbound DNS container.
+
+If you are using unbound DNS as your DNS server, you may need to flush the DNS cache on your devices. 
+
+You can do this by running the following command on your devices:
 
 ```sh
 dscacheutil -flushcache
@@ -154,11 +164,9 @@ cat /etc/resolv.conf
 * <https://cmdns.dev.dns-oarc.net/>
 
 
----
-
-## More Tricks
-
 ### Deploy PiHole with Unbound
+
+**More DNS Tricks**: Use Pihole together with Unbound!s
 
 Go to: `http://192.168.3.200:85/admin/login.php`
 
@@ -253,8 +261,9 @@ services:
     restart: unless-stopped
 ```
 
+---
 
-### SearXNG - Private Web Search
+## SearXNG - Private Web Search
 
 The [SearXNG project](https://github.com/searxng/searxng) is developing and maintaining a self-hosted **metasearch engine**.
 

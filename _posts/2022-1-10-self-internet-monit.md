@@ -7,9 +7,9 @@ tags: [Self-Hosting,Docker,Networking]
 render_with_liquid: false
 ---
 
-Some services that we can use in our Raspberry Pi's (or any computer) to monitor our internet Status and Speed.
+Some services that we can use in our Raspberry Pi's (or any computer) to **monitor our internet Status and Speed**.
 
-> Lan Monitoring Tools with [docker](https://github.com/JAlcocerT/Docker/tree/main/Security/Lan_Monitoring)
+> Lan Monitoring Tools with [docker **compose** config files](https://github.com/JAlcocerT/Docker/tree/main/Security/Lan_Monitoring) and [here](https://github.com/JAlcocerT/Docker/tree/main/IoT/InternetQuality)
 {: .prompt-info }
 
 

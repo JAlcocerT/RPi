@@ -33,6 +33,9 @@ It has been an empowering experience *as I also learnt how to expose the service
 
 And the Orange Pi 5 has played a significant role in this transition as being **ARM64** makes it Compatible with Cloudflare Tunnels
 
+> After few benchmarking iterations, I have created [these guidelies](https://jalcocert.github.io/JAlcocerT/benchmarking-computers/) to follow across all my devices
+{: .prompt-info }
+
 ### Orange Pi 5 Specs
 
 Its reliability and energy efficiency make it ideal for running my self-hosted services, offering a reliable and cost-effective alternative to cloud-based solutions.

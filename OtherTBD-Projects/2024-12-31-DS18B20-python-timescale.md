@@ -243,7 +243,7 @@ docker push docker.io/fossengineer/iot:dsb_sensor_to_timescale
 Check it at <https://hub.docker.com/repository/docker/fossengineer/iot/general>
 
 
-
+```sh
 docker run -it --rm --network=dsbtimescale_dsb_network postgres psql -h timescaledb_dsb_container -U myuser -d mydb --username=myuser
 
 \l
@@ -251,6 +251,7 @@ docker run -it --rm --network=dsbtimescale_dsb_network postgres psql -h timescal
 psql -U myuser -d mydb
 
 \d
+```
 
 ```sql
 SELECT * FROM ds18b20_sensor;

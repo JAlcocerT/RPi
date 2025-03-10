@@ -94,7 +94,6 @@ git clone https://github.com/JAlcocerT/phidata
 git clone https://github.com/JAlcocerT/Streamlit-MultiChat
 git clone https://github.com/JAlcocerT/ask-multiple-pdfs
 
-
 cd ./phidata && sudo docker build -t phidata_yt_groq . && cd ..
 
 cd ./Streamlit-MultiChat && sudo docker build -t streamlit-multichat . && cd ..
@@ -123,7 +122,7 @@ This is a realiable and **DIY way of trying cool projects** out there!
 
 ## AI Stack
 
-These custom AI apps can run on Raspberry Pi4 (ARM64).
+These **custom AI apps** can run on Raspberry Pi4 (ARM64).
 
 If you have the **API Keys** and [Docker](#faq) installed...
 
@@ -140,7 +139,6 @@ docker-compose up -d
 ```
 
 You can use it as well via **Portainer UI as a Stack**:
-
 
 ```yml
 services:

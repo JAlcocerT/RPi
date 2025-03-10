@@ -49,7 +49,7 @@ curl -sL https://install.raspap.com | bash
 ```
 
 
-The built in wlan0, will be generating our hotspot (by default)
+The **built in wlan0**, will be generating our hotspot (by default)
 
 Following a reboot, the wireless AP network will be configured as follows:
 
@@ -63,7 +63,7 @@ SSID: raspi-webgui
 Password: ChangeMe
 ```
 
-You can check the status of the services with:
+You can check the **status of the services** with:
 
 ```sh
 #sudo systemctl status
@@ -76,7 +76,7 @@ sudo systemctl status dnsmasq #provides DNS and DHCP services, including handing
 sudo systemctl status lighttpd #web interface running
 ```
 
-The wireless interface should also be ready:
+The **wireless interface** should also be ready:
 
 ```sh
 ip a

@@ -92,17 +92,20 @@ Temperature and Humidity Data.
 
 #### Connecting a DHT11 to a Raspberry Pi 4
 
-To connect the sensor to the Raspberry, you can follow this schema:
+To connect the DHT sensor to the Raspberry, you can **follow this schema**:
 
 ![Desktop View](/img/RPi4-DHT11.png){: width="972" height="589" }
 _DHT11 connection to a Raspberry Pi 4_
 
-I prefer to use the **3.3V for the DHT11**, and yet it will work perfectly with 5V as well.
+I prefer to use the **3.3V for the DHT11**.
+
+And yet, it will work perfectly with 5V too!
 
 > In the [RPi Official web](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) you can find the original **GPIO schema**. 
 {: .prompt-info }
 
 You can always go to the terminal and check with:
+
 ```sh
 pinout
 ```
@@ -124,7 +127,9 @@ Execute this code (it prints the values as well) to know that everything works f
 
 I have adapted it so that instead of printing the values, it will push the Temperature and Humidity to an InfluxDB that we are going to self-host as well.
 
-* We need to install the [Adafruit_DHT](https://github.com/adafruit/Adafruit_Blinka) library:
+Remember to create proper [Python Dependency Management](https://jalcocert.github.io/JAlcocerT/useful-python-stuff/#python-virtual-envs)
+
+* We need to install the [Adafruit_DHT](https://github.com/adafruit/Adafruit_Blinka) Python library:
 
 ```py
 pip install Adafruit_DHT

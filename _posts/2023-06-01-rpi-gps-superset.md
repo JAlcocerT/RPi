@@ -202,8 +202,21 @@ volumes:
 
 #### Kalman Filter
 
-https://www.youtube.com/watch?v=5HuN9iL-zxU
 
+
+A Kalman filter is an **algorithm that estimates the state of a system** (like its position or velocity) based on noisy measurements. 
+
+Essentially, it:
+
+* **Predicts:** Uses a mathematical model to predict the system's future state.
+* **Updates:** Combines the prediction with actual measurements, giving more weight to the more reliable information.
+* **Reduces Noise:** Effectively filters out noise and uncertainty from the measurements, providing a more accurate estimate.
+
+> In short, it's a way to **get the best possible guess*8 of a system's true state, even when your measurements are imperfect.
+
+This is obviously resonating with GPS measures!
+
+https://www.youtube.com/watch?v=5HuN9iL-zxU
 
 ### Other Projects
 

@@ -23,17 +23,22 @@ This is the moment where you will be interested to know **about Grafana**.
 
 ## Grafana Stacks
 
-Grafana plays well with several DBs around there.
+Grafana plays well with [several DBs](https://jalcocert.github.io/JAlcocerT/setup-databases-docker/) around there.
 
 Lets see some popular timeseries and stacks with Grafana.
 
+>  See the **[config files](https://github.com/JAlcocerT/Docker/tree/main/IoT)**
+{: .prompt-info }
+
 ### Grafana: with Prometheus and Node Exporter
+
+Grafana and prometheous container setup.
 
 * <https://github.com/starsliao/Prometheus>
 * <https://grafana.com/grafana/dashboards/11074-node-exporter-for-prometheus-dashboard-en-v20201010/>
 
 ```yml
-version: '3'
+#version: '3'
 
 volumes:
   prometheus-data:
