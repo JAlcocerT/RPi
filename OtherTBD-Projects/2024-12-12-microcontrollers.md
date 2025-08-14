@@ -13,12 +13,6 @@ render_with_liquid: false
 
 
 
-## 
-
-
-
-
-
 
 ## Pico W
 
@@ -95,7 +89,7 @@ mip.install("umqtt.simple")
 then the code <https://github.com/donskytech/micropython-raspberry-pi-pico/tree/main/umqtt.simple>
 
 
-boot.py
+`boot.py`
 
 ```py
 # boot.py -- run on boot-up

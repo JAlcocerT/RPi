@@ -1,11 +1,14 @@
 
+
+---
+
 * <https://github.com/getredash/redash>
     * <https://redash.io/help/data-sources/querying/supported-data-sources>
 
 * <https://hub.docker.com/r/redash/redash/tags?page=1>
 
 
-https://github.com/getredash/redash
+* https://github.com/getredash/redash
 
 
 ```sh
@@ -24,4 +27,4 @@ chmod +x setup.sh
 
 `localhost:5000`
 
-https://redash.io/help/user-guide/visualizations
+* https://redash.io/help/user-guide/visualizations

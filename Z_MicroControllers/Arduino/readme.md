@@ -1,4 +1,6 @@
-Technically Not a Microcontroller: Strictly speaking, Arduino itself is not a microcontroller. An Arduino board is a development board that typically includes:
+Technically Not a Microcontroller: Strictly speaking, Arduino itself is not a microcontroller.
+
+An Arduino board is a development board that typically includes:
 
 Microcontroller: This is the core programmable chip responsible for processing and controlling functions. Common microcontrollers used on Arduino boards include the Atmel AVR and Atmel SAM series.
 Support circuitry: Additional electronic components like voltage regulators, USB interface chips, and input/output (I/O) pins to connect sensors and actuators.

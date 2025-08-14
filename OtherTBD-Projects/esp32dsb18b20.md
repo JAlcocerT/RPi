@@ -1,7 +1,7 @@
 ---
 title: "ESP32: Sensors with TimescaleDB & Grafana"
-date: 2023-08-30T23:20:21+01:00
-draft: true
+date: 2025-08-13T23:20:21+01:00
+draft: false
 tags: ["Self-Hosting"]
 ---
 
