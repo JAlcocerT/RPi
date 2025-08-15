@@ -18,3 +18,25 @@ networks:
     external: true
 volumes:
   mongodb_data:
+
+
+# version: '3'
+# services:
+#   mongodb:
+#     image: mongo:7
+#     container_name: mongodb
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: yourusername
+#       MONGO_INITDB_ROOT_PASSWORD: yourpassword
+#     volumes:
+#       - mongodb_data:/data/db
+#     ports:
+#       - "27017:27017"
+#     restart: always
+#     command: ["mongod"]
+
+# networks:
+#   cloudflare_tunnel:
+#     external: true
+# volumes:
+#   mongodb_data:
