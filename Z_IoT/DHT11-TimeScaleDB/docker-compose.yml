@@ -1,0 +1,30 @@
+version: '3'
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg13 # Adjust the image tag as needed
+    container_name: timescaledb_container
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+
+  dht_sensor_timescale:
+    image: dht_sensor_timescale # Use your pre-built image name
+    container_name: dht_sensor_timescale_container
+    privileged: true  # Run the container in privileged mode (GPIO access)
+    depends_on:
+      - timescaledb
+    networks:
+      - app_network
+
+networks:
+  app_network:
+
+volumes:
+  timescaledb_data:
