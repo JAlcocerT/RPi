@@ -8,7 +8,8 @@ def on_publish(client, userdata, mid):
 
 client = mqtt.Client("rpi_client2") #this name should be unique
 client.on_publish = on_publish
-client.connect('127.0.0.1',1883)
+client.connect('192.168.1.11',1883)
+#client.connect('127.0.0.1',1883)
 # start a new thread
 client.loop_start()
 
