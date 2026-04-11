@@ -1,0 +1,12 @@
+services:
+  esphome:
+    image: ghcr.io/esphome/esphome
+    container_name: esphome
+    ports:
+      - "6052:6052"
+    volumes:
+      - ./config:/config
+    environment:
+      - TZ=Europe/Madrid
+    restart: unless-stopped
+    network_mode: host  # needed for mDNS device discovery and OTA flashing

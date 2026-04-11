@@ -1,54 +1,53 @@
-## Pico W with MLX90614
+# MLX90614 — IR Non-Contact Temperature Sensor
 
-GND is pin38
-3v3 out is pin 36
+Reads object (IR) and ambient temperature from an MLX90614 sensor via I2C and prints to the serial console.
 
-11 (GP8) is I2C0 SDA
-12 (GP9) is I2C0 SCL
+## Wiring
 
-<https://www.youtube.com/watch?v=FsdSkhdfOqY&t=24s> and they are giving their own library: <https://github.com/embeddedclub/micropython>
+| MLX90614 Pin | Pico W Pin |
+|---|---|
+| VCC | 3.3V (pin 36) |
+| GND | GND (pin 38) |
+| SDA | GP8 (pin 11) |
+| SCL | GP9 (pin 12) |
 
-we need to install: <https://github.com/mcauser/micropython-mlx90614>
-it is not available in mip, the new package manager
+> No resistors or level shifters needed — the MLX90614 runs at 3.3V natively.
 
-so cloned the repo and copied into `/lib/mlx/mlx90614.py` (i did not compiled it into .mpy) the .py file of the repo
+## Library
 
-in this way, we can import with from mlx.mlx90614 import MLX90614 (we import the class)
+Not available via `mip` — install manually:
 
-
-```py
-from machine import Pin, Timer, I2C, SoftI2C
-#from aphanum import ALPHANUM_I2C
-from mlx90614 import MLX90614_I2C
-
-
-i2c2 = SoftI2C(scl=Pin(9),sda=Pin(8),freq=100000)
-
-print("I2C Comm Success")
-
-# d = i2c2.scan()
-# print(hex(d[0])
-# print(hex(d[1])
-# alph = ALPHANUM_I2C(i2c2,0x70,000,15)
-# print("Alpha display init")
-
-irtemp = MLX90614_I2C(i2c2,0x5A)
-
-led1 = Pin(25, Pin.OUT)
-
-timer1 = Timer()
-
-def tick_timer(timer):
-    global led1
-    led1.toggle()
-    t1 = irtemp.get_temperature(0)
-    t2 = irtemp.get_temperature(1)
-    print("T1 = %f", t1)
-    print("T2 = %f", t2)
-    alph.set_digit(int(t2*100),2);
-timer1.init(freq=2,mode=Timer.PERIODIC,callback=tick_timer)
-
+```sh
+git clone https://github.com/mcauser/micropython-mlx90614
 ```
 
+Copy `mlx90614.py` into `/lib/mlx90614.py` on the Pico W using Thonny's file panel.
 
+## Verify sensor is detected
 
+Run this in the Thonny shell before flashing `main.py`:
+
+```python
+from machine import Pin, SoftI2C
+i2c = SoftI2C(scl=Pin(9), sda=Pin(8), freq=100000)
+print([hex(a) for a in i2c.scan()])  # should print ['0x5a']
+```
+
+## Output
+
+```
+T1 (ambient) = 23.450000
+T2 (object)  = 36.120000
+```
+
+## Files
+
+| File | Description |
+|------|-------------|
+| `main.py` | Reads ambient + object temperature every 500 ms via I2C and prints to console |
+
+## References
+
+* [YouTube walkthrough](https://www.youtube.com/watch?v=FsdSkhdfOqY&t=24s)
+* [Driver library](https://github.com/mcauser/micropython-mlx90614)
+* [embeddedclub MicroPython examples](https://github.com/embeddedclub/micropython)
