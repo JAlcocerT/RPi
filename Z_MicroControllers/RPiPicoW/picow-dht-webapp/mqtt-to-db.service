@@ -1,0 +1,14 @@
+[Unit]
+Description=MQTT to TimescaleDB subscriber (Pico W DHT22)
+After=network.target
+
+[Service]
+Type=simple
+User=jalcocert
+WorkingDirectory=/home/jalcocert/RPi/Z_MicroControllers/RPiPicoW/picow-dht-webapp
+ExecStart=uv run mqtt_to_db.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

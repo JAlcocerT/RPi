@@ -1,3 +1,5 @@
 fastapi
 uvicorn
 asyncpg
+paho-mqtt
+psycopg2-binary
