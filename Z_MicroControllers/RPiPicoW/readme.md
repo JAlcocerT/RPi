@@ -1,10 +1,14 @@
-I wrote about the PicoW and these scrips [here](https://jalcocert.github.io/JAlcocerT/pico-w/)
+I wrote about the PicoW and these scrips:
+
+* [here](https://jalcocert.github.io/JAlcocerT/electronics-101/#quick-iot-samples)
+* and [here](https://jalcocert.github.io/JAlcocerT/pico-w/)
 
 ---
 
 Connecting the RPi to a [RPi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pico-1-family):
 
 ```sh
+#pnputil /enum-devices /class Ports
 ls /dev/tty*
 
 sudo apt-get update

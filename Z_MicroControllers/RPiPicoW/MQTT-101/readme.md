@@ -1,4 +1,6 @@
-This code is a Python script that uses the **`paho.mqtt` library** to publish messages to an MQTT broker. Unlike the previous MicroPython script for the Pico W, this code is designed to run on a more powerful system, like a Raspberry Pi 4, a personal computer, or a server.
+This code is a Python script that uses the **`paho.mqtt` library** to publish messages to an MQTT broker. 
+
+Unlike the previous MicroPython script for the Pico W, this code is designed to run on a more powerful system, like a Raspberry Pi 4, a personal computer, or a server.
 
 ***
 
@@ -31,4 +33,6 @@ This code is a Python script that uses the **`paho.mqtt` library** to publish me
 * **`print(pubMsg.is_published())`**: This prints `True` to the console, confirming that the message was sent.
 * **`time.sleep(2)`**: The loop pauses for 2 seconds before publishing the next message.
 
-In essence, this script is a simple MQTT publisher that sends a sequential number (from 1 to 20, repeating) to the `rpi/broadcast` topic every two seconds. It’s a great example of how to use a standard Python library to publish data to a broker.
+In essence, this script is a simple MQTT publisher that sends a sequential number (from 1 to 20, repeating) to the `rpi/broadcast` topic every two seconds.
+
+It’s a great **example** of how to use a standard Python library to **publish data to a broker**.
