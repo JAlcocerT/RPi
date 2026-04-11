@@ -1,6 +1,8 @@
 *.venv/
 settings.local.json
 
+esp32-internal-temp-mqtt2.cpp
+
 ruby-3.2.0.tar.gz
 ruby-3.2.-/
 

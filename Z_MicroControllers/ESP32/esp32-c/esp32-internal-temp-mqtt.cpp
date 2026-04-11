@@ -19,12 +19,17 @@ uint8_t temprature_sens_read();  // built-in ROM function (yes, typo is intentio
 }
 #endif
 
+// ---- LED ----
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 2  // GPIO2 on most ESP32 dev boards
+#endif
+
 // ---- Configuration ----
-#define WIFI_SSID     "your-wifi"
-#define WIFI_PASSWORD "your-password"
-#define MQTT_BROKER   "192.168.1.2"
-#define MQTT_PORT     1883
-#define PUBLISH_MS    5000
+const char* WIFI_SSID     = "your-wifi";
+const char* WIFI_PASSWORD = "your-password";
+const char* MQTT_BROKER   = "192.168.1.2";
+const int   MQTT_PORT     = 1883;
+const int   PUBLISH_MS    = 5000;
 
 // ---- MQTT Topic ----
 const char* TOPIC_CHIP_TEMP = "esp32/temperature/internal";
@@ -40,12 +45,15 @@ float getInternalTempC() {
 }
 
 void connectWifi() {
-  Serial.printf("Connecting to %s", WIFI_SSID);
+  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.printf("Connecting to '%s'\n", WIFI_SSID);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));  // blink while connecting
     delay(500);
     Serial.print(".");
   }
+  digitalWrite(LED_BUILTIN, HIGH);  // solid ON once connected
   Serial.printf("\nConnected — IP: %s\n", WiFi.localIP().toString().c_str());
 }
 
