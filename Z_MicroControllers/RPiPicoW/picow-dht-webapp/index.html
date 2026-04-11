@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pico W — DHT22 Live</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; max-width: 800px; margin: 24px auto; padding: 0 16px; background: #0f172a; color: #e2e8f0; }
+    h1   { font-size: 1.4rem; margin-bottom: 4px; }
+    .cards { display: flex; gap: 12px; margin: 20px 0; }
+    .card { flex: 1; background: #1e293b; border-radius: 10px; padding: 16px 10px; text-align: center; }
+    .card .label { font-size: 0.75rem; color: #94a3b8; margin-bottom: 6px; }
+    .card .value { font-size: 2rem; font-weight: bold; }
+    .temp  { color: #f97316; }
+    .humi  { color: #38bdf8; }
+    .chip  { color: #a78bfa; }
+    canvas { background: #1e293b; border-radius: 10px; padding: 10px; width: 100% !important; }
+    #status { font-size: 0.75rem; color: #64748b; margin-top: 8px; }
+    @media (max-width: 480px) {
+      .cards { flex-direction: column; }
+      .card { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; }
+      .card .label { font-size: 0.85rem; margin-bottom: 0; text-align: left; }
+      .card .value { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Pico W — DHT22 Live</h1>
+  <div id="status">Connecting...</div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="label">DHT22 Temperature</div>
+      <div class="value temp" id="val-temp">--</div>
+      <div>°C</div>
+    </div>
+    <div class="card">
+      <div class="label">Humidity</div>
+      <div class="value humi" id="val-humi">--</div>
+      <div>%</div>
+    </div>
+    <div class="card">
+      <div class="label">Chip Temperature</div>
+      <div class="value chip" id="val-chip">--</div>
+      <div>°C</div>
+    </div>
+  </div>
+
+  <canvas id="chart"></canvas>
+
+  <script>
+    const MAX_POINTS = 40;
+    const labels = [];
+    const tempData = [], humiData = [], chipData = [];
+
+    const ctx = document.getElementById("chart").getContext("2d");
+    const chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          { label: "DHT22 Temp (°C)", data: tempData, borderColor: "#f97316", tension: 0.3, pointRadius: 2 },
+          { label: "Humidity (%)",    data: humiData, borderColor: "#38bdf8", tension: 0.3, pointRadius: 2 },
+          { label: "Chip Temp (°C)",  data: chipData, borderColor: "#a78bfa", tension: 0.3, pointRadius: 2 },
+        ]
+      },
+      options: {
+        animation: false,
+        scales: { x: { ticks: { maxTicksLimit: 8, color: "#94a3b8" } }, y: { color: "#94a3b8" } },
+        plugins: { legend: { labels: { color: "#e2e8f0" } } }
+      }
+    });
+
+    function push(ts, topic, value) {
+      const time = new Date(ts).toLocaleTimeString();
+      if (topic === "pico/temperature/dht22")  { tempData.push(value); document.getElementById("val-temp").textContent = value.toFixed(1); }
+      if (topic === "pico/humidity/dht22")     { humiData.push(value); document.getElementById("val-humi").textContent = value.toFixed(1); }
+      if (topic === "pico/temperature/internal") { chipData.push(value); document.getElementById("val-chip").textContent = value.toFixed(1); }
+      labels.push(time);
+      if (labels.length > MAX_POINTS) { labels.shift(); tempData.shift(); humiData.shift(); chipData.shift(); }
+      chart.update();
+    }
+
+    const ws = new WebSocket(`ws://${location.host}/ws`);
+    ws.onopen  = () => document.getElementById("status").textContent = "Connected";
+    ws.onclose = () => document.getElementById("status").textContent = "Disconnected — reload to reconnect";
+    ws.onmessage = ({ data }) => {
+      const msg = JSON.parse(data);
+      if (msg.type === "history") msg.data.forEach(r => push(r.ts, r.topic, r.value));
+      if (msg.type === "reading") push(msg.data.ts, msg.data.topic, msg.data.value);
+    };
+  </script>
+</body>
+</html>
