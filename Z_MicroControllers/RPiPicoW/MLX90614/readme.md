@@ -11,7 +11,7 @@ GND is pin38
 we need to install: <https://github.com/mcauser/micropython-mlx90614>
 it is not available in mip, the new package manager
 
-so cloned the repo and copied into /lib/mlx/mlx90614.py (i did not compiled it into .mpy) the .py file of the repo
+so cloned the repo and copied into `/lib/mlx/mlx90614.py` (i did not compiled it into .mpy) the .py file of the repo
 
 in this way, we can import with from mlx.mlx90614 import MLX90614 (we import the class)
 

@@ -10,6 +10,8 @@ Pico W → EMQX → mqtt_to_db.py → TimescaleDB
                                    Browser
 ```
 
+![alt text](fastapi-timescaledb.png)
+
 > See `MQTT-DHT22/` for the Pico W side and EMQX setup.
 
 ## Files
