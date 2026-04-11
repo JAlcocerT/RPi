@@ -30,16 +30,19 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.send_text(json.dumps({"type": "history", "data": history}))
 
     # Listen for new inserts via NOTIFY
-    async def handle_notify(conn, pid, channel, payload):
-        await queue.put(payload)
+    def handle_notify(conn, pid, channel, payload):
+        queue.put_nowait(payload)
 
     await conn.add_listener("new_reading", handle_notify)
 
     try:
         while True:
-            payload = await asyncio.wait_for(queue.get(), timeout=30)
-            await websocket.send_text(json.dumps({"type": "reading", "data": json.loads(payload)}))
-    except (asyncio.TimeoutError, WebSocketDisconnect):
+            try:
+                payload = await asyncio.wait_for(queue.get(), timeout=30)
+                await websocket.send_text(json.dumps({"type": "reading", "data": json.loads(payload)}))
+            except asyncio.TimeoutError:
+                continue  # no data for 30s, keep waiting
+    except WebSocketDisconnect:
         pass
     finally:
         await conn.remove_listener("new_reading", handle_notify)
