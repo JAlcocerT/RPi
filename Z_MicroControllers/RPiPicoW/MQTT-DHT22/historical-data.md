@@ -99,6 +99,96 @@ client.loop_forever()
 
 ---
 
+## Strategy 4 — Python subscriber writing to TimescaleDB (PostgreSQL)
+
+Best of both worlds: standard SQL interface with time-series performance. TimescaleDB is a PostgreSQL extension — if you already run Postgres, this is a natural fit.
+
+```
+Pico W → EMQX → Python subscriber → TimescaleDB (PostgreSQL) → Grafana
+```
+
+**Docker Compose:**
+
+```yaml
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: timescaledb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pico
+      POSTGRES_PASSWORD: pico
+      POSTGRES_DB: sensors
+    restart: always
+```
+
+**Create the hypertable (run once):**
+
+```sql
+CREATE TABLE readings (
+    ts          TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    topic       TEXT        NOT NULL,
+    value       DOUBLE PRECISION NOT NULL
+);
+
+SELECT create_hypertable('readings', 'ts');
+```
+
+**Python subscriber:**
+
+```python
+import psycopg2
+import paho.mqtt.client as mqtt
+
+conn = psycopg2.connect(
+    host="192.168.1.2", dbname="sensors",
+    user="pico", password="pico"
+)
+conn.autocommit = True
+
+def on_message(client, userdata, msg):
+    value = float(msg.payload.decode())
+    with conn.cursor() as cur:
+        cur.execute(
+            "INSERT INTO readings (topic, value) VALUES (%s, %s)",
+            (msg.topic, value)
+        )
+    print(f"{msg.topic}: {value}")
+
+client = mqtt.Client()
+client.on_message = on_message
+client.connect("192.168.1.2", 1883)
+client.subscribe("pico/#")
+client.loop_forever()
+```
+
+**Install dependencies:**
+
+```sh
+pip install paho-mqtt psycopg2-binary
+```
+
+**Query examples:**
+
+```sql
+-- Last 10 readings
+SELECT * FROM readings ORDER BY ts DESC LIMIT 10;
+
+-- Average temp per hour (last 24h)
+SELECT time_bucket('1 hour', ts) AS hour,
+       AVG(value) AS avg_temp
+FROM readings
+WHERE topic = 'pico/temperature/dht22'
+  AND ts > NOW() - INTERVAL '24 hours'
+GROUP BY hour ORDER BY hour;
+```
+
+**Pros:** standard SQL, Grafana-ready (PostgreSQL datasource), scales well, familiar tooling  
+**Cons:** heavier than SQLite; TimescaleDB extension required
+
+---
+
 ## Comparison
 
 | Strategy | Extra services | Code needed | Query / visualize |
@@ -106,6 +196,7 @@ client.loop_forever()
 | Telegraf + InfluxDB | Telegraf, InfluxDB | None (config only) | Grafana |
 | Python + SQLite | None | ~20 lines | pandas, custom |
 | Python + InfluxDB | InfluxDB | ~20 lines | Grafana |
+| Python + TimescaleDB | TimescaleDB (PostgreSQL) | ~20 lines | Grafana, plain SQL |
 
 ---
 
@@ -114,3 +205,4 @@ client.loop_forever()
 - **Just want to get started fast?** → Strategy 2 (SQLite). Single script, runs anywhere.
 - **Want dashboards and long-term storage?** → Strategy 1 (Telegraf + InfluxDB + Grafana). Most scalable.
 - **Already have InfluxDB but not Telegraf?** → Strategy 3.
+- **Already run PostgreSQL or prefer SQL?** → Strategy 4 (TimescaleDB). Best query flexibility.

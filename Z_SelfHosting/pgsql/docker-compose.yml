@@ -1,0 +1,11 @@
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: timescaledb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pico
+      POSTGRES_PASSWORD: pico
+      POSTGRES_DB: sensors
+    restart: always
