@@ -1,6 +1,8 @@
 # ESP32
 
-Collection of ESP32 projects. The ESP32 is a step up from the Pico W — dual-core, more RAM, Bluetooth, and a larger ecosystem of Arduino libraries.
+Collection of ESP32 projects. 
+
+The ESP32 is a step up from the Pico W — dual-core, more RAM, Bluetooth, and a larger ecosystem of Arduino libraries.
 
 ## Existing scripts
 
@@ -10,8 +12,6 @@ Collection of ESP32 projects. The ESP32 is a step up from the Pico W — dual-co
 | `esp32-c/esp32-dht11-mqtt.cpp` | **Improved** — reads DHT11 and publishes to MQTT broker every 5s. Drop-in for the same stack as `MQTT-DHT22`. |
 | `esp32-c/wifi-blink.cpp` | Connect to WiFi, blink LED until connected. |
 | `esp32-c/ESP_32_WebSocket_Test.cpp` | Minimal AsyncWebSocket server on the ESP32 itself. |
-| `esp32-c/esp32-internal-temp-mqtt.cpp` | Reads ESP32 built-in chip temperature sensor and publishes to MQTT. No wiring needed. |
-| `esp32-c/esp32-voltage-mqtt.cpp` | Reads supply/battery voltage via a resistor voltage divider on GPIO35 and publishes to MQTT. |
 | `esp32-c/dht11-arduino-cloud.cpp` | DHT11 → Arduino IoT Cloud (requires Arduino Cloud account). |
 
 ## Does the DHT11 script work?
@@ -57,12 +57,11 @@ Then set Thonny interpreter to **MicroPython (ESP32)** — works exactly like th
 
 | Topic | Value |
 |-------|-------|
-| `esp32/temperature/dht11` | DHT11 temperature (°C) |
-| `esp32/humidity/dht11` | DHT11 humidity (%) |
-| `esp32/temperature/internal` | ESP32 chip temperature (°C) |
-| `esp32/voltage/supply` | Supply/battery voltage (V) |
+| `esp32/temperature/dht11` | Temperature (°C) |
+| `esp32/humidity/dht11` | Humidity (%) |
 
 Subscribe to verify:
+
 ```sh
 mosquitto_sub -h 192.168.1.2 -t "esp32/#" -v
 ```
@@ -70,6 +69,7 @@ mosquitto_sub -h 192.168.1.2 -t "esp32/#" -v
 ## Arduino IDE — required libraries
 
 Install via **Tools → Manage Libraries**:
+
 - `DHT sensor library for ESPx` by beegee-tokyo
 - `PubSubClient` by Nick O'Leary
 
