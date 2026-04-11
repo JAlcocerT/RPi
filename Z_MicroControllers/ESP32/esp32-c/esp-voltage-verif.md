@@ -6,7 +6,10 @@ How to read supply or battery voltage on an ESP32 and why each design decision w
 
 ## Why you can't read VCC directly
 
-The ESP32 ADC pins accept **0–3.3V maximum**. If you connect a LiPo battery (up to 4.2V) or a USB 5V rail directly to an ADC pin you will damage the ESP32. You need to scale the voltage down first.
+The ESP32 ADC pins accept **0–3.3V maximum**. If you connect a LiPo battery (up to 4.2V) or a USB 5V rail directly to an ADC pin you will damage the ESP32.
+
+
+You need to scale the voltage down first.
 
 ---
 

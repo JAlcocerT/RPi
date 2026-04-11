@@ -20,9 +20,7 @@ uint8_t temprature_sens_read();  // built-in ROM function (yes, typo is intentio
 #endif
 
 // ---- LED ----
-#ifndef LED_BUILTIN
-#define LED_BUILTIN 2  // GPIO2 on most ESP32 dev boards
-#endif
+#define LED_BUILTIN 4  // GPIO4 — GPIO2 reserved on ESP32-WROOM-DA
 
 // ---- Configuration ----
 const char* WIFI_SSID     = "your-wifi";
