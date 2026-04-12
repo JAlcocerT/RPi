@@ -2,6 +2,8 @@
 
 Multi-sensor dashboard for Pico W (DHT22) and ESP32 (DHT11) data via MQTT → TimescaleDB → FastAPI → Browser.
 
+![alt text](dht-webapp.png)
+
 ---
 
 ## Files
