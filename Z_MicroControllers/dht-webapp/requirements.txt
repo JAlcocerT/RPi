@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+asyncpg
+paho-mqtt
+psycopg2-binary
+websockets

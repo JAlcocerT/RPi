@@ -64,6 +64,7 @@ Subscribe to verify:
 
 ```sh
 mosquitto_sub -h 192.168.1.2 -t "esp32/#" -v
+#mosquitto_sub -h 192.168.1.2 -t "esp32/temperature/dht11"
 ```
 
 ## Arduino IDE — required libraries

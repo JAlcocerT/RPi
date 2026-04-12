@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensor Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f172a;
+      --surface:  #1e293b;
+      --border:   #334155;
+      --text:     #e2e8f0;
+      --muted:    #94a3b8;
+      --pico-t:   #f97316;
+      --pico-h:   #38bdf8;
+      --esp-t:    #f43f5e;
+      --esp-h:    #34d399;
+      --chip:     #a78bfa;
+      --accent:   #6366f1;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px 16px 40px;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    header h1 { font-size: 1.3rem; font-weight: 600; letter-spacing: -.3px; }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #475569;
+      transition: background .3s;
+    }
+    .dot.ok  { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+    .dot.err { background: #ef4444; }
+
+    /* ── Controls ── */
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .pill-group { display: flex; gap: 4px; }
+    .pill {
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .pill:hover { border-color: var(--accent); color: var(--text); }
+    .pill.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .controls-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ── Cards ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 12px;
+      text-align: center;
+      transition: opacity .2s;
+    }
+    .card.hidden { opacity: .25; }
+    .card-label { font-size: 0.68rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .06em; }
+    .card-value { font-size: 1.9rem; font-weight: 700; line-height: 1; }
+    .card-unit  { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .card-ts    { font-size: 0.62rem; color: var(--border); margin-top: 6px; }
+
+    /* ── Charts ── */
+    .chart-section { margin-bottom: 16px; }
+    .chart-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: 8px;
+      padding-left: 4px;
+    }
+    .chart-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 12px 10px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 380px) {
+      .cards { grid-template-columns: 1fr 1fr; }
+      .card-value { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Sensor Dashboard</h1>
+    <div class="status">
+      <div class="dot" id="dot"></div>
+      <span id="status-text">Connecting...</span>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div>
+      <div class="controls-label">Sensor</div>
+      <div class="pill-group" id="sensor-group">
+        <button class="pill active" data-sensor="all">All</button>
+        <button class="pill" data-sensor="picow">Pico W</button>
+        <button class="pill" data-sensor="esp32">ESP32</button>
+      </div>
+    </div>
+    <div>
+      <div class="controls-label">Range</div>
+      <div class="pill-group" id="range-group">
+        <button class="pill active" data-hours="1">1h</button>
+        <button class="pill" data-hours="6">6h</button>
+        <button class="pill" data-hours="24">24h</button>
+        <button class="pill" data-hours="168">7d</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card" id="card-pico-t">
+      <div class="card-label">Pico W Temp</div>
+      <div class="card-value" style="color:var(--pico-t)" id="val-pico-t">--</div>
+      <div class="card-unit">°C</div>
+      <div class="card-ts" id="ts-pico-t"></div>
+    </div>
+    <div class="card" id="card-pico-h">
+      <div class="card-label">Pico W Humi</div>
+      <div class="card-value" style="color:var(--pico-h)" id="val-pico-h">--</div>
+      <div class="card-unit">%</div>
+      <div class="card-ts" id="ts-pico-h"></div>
+    </div>
+    <div class="card" id="card-esp-t">
+      <div class="card-label">ESP32 Temp</div>
+      <div class="card-value" style="color:var(--esp-t)" id="val-esp-t">--</div>
+      <div class="card-unit">°C</div>
+      <div class="card-ts" id="ts-esp-t"></div>
+    </div>
+    <div class="card" id="card-esp-h">
+      <div class="card-label">ESP32 Humi</div>
+      <div class="card-value" style="color:var(--esp-h)" id="val-esp-h">--</div>
+      <div class="card-unit">%</div>
+      <div class="card-ts" id="ts-esp-h"></div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-title">Temperature (°C)</div>
+    <div class="chart-wrap"><canvas id="chart-temp"></canvas></div>
+  </div>
+  <div class="chart-section">
+    <div class="chart-title">Humidity (%)</div>
+    <div class="chart-wrap"><canvas id="chart-humi"></canvas></div>
+  </div>
+
+</div>
+<script>
+// ── Topic metadata ──────────────────────────────────────────────
+const TOPICS = {
+  'pico/temperature/dht22':   { card: 'pico-t', chart: 'temp', color: getComputedStyle(document.documentElement).getPropertyValue('--pico-t').trim(), label: 'Pico W (DHT22)' },
+  'pico/humidity/dht22':      { card: 'pico-h', chart: 'humi', color: getComputedStyle(document.documentElement).getPropertyValue('--pico-h').trim(), label: 'Pico W (DHT22)' },
+  'esp32/temperature/dht11':  { card: 'esp-t',  chart: 'temp', color: getComputedStyle(document.documentElement).getPropertyValue('--esp-t').trim(),  label: 'ESP32 (DHT11)' },
+  'esp32/humidity/dht11':     { card: 'esp-h',  chart: 'humi', color: getComputedStyle(document.documentElement).getPropertyValue('--esp-h').trim(),  label: 'ESP32 (DHT11)' },
+};
+
+const SENSOR_CARDS = {
+  all:   ['card-pico-t','card-pico-h','card-esp-t','card-esp-h'],
+  picow: ['card-pico-t','card-pico-h'],
+  esp32: ['card-esp-t','card-esp-h'],
+};
+
+const CHART_OPTIONS = {
+  animation: false,
+  spanGaps: true,
+  interaction: { mode: 'index', intersect: false },
+  scales: {
+    x: { ticks: { maxTicksLimit: 8, color: '#94a3b8', maxRotation: 0 }, grid: { color: '#1e3a5f22' } },
+    y: { ticks: { color: '#94a3b8' }, grid: { color: '#33415522' } },
+  },
+  plugins: {
+    legend: { labels: { color: '#e2e8f0', boxWidth: 12, padding: 16 } },
+    tooltip: { backgroundColor: '#1e293b', titleColor: '#94a3b8', bodyColor: '#e2e8f0', borderColor: '#334155', borderWidth: 1 },
+  },
+};
+
+// ── Create charts ───────────────────────────────────────────────
+function makeChart(id, datasets) {
+  return new Chart(document.getElementById(id).getContext('2d'), {
+    type: 'line',
+    data: { labels: [], datasets },
+    options: { ...CHART_OPTIONS },
+  });
+}
+
+const charts = {
+  temp: makeChart('chart-temp', [
+    { label: 'Pico W (DHT22)', data: [], borderColor: '#f97316', backgroundColor: '#f9731622', tension: 0.3, pointRadius: 1, fill: false },
+    { label: 'ESP32 (DHT11)',  data: [], borderColor: '#f43f5e', backgroundColor: '#f43f5e22', tension: 0.3, pointRadius: 1, fill: false },
+  ]),
+  humi: makeChart('chart-humi', [
+    { label: 'Pico W (DHT22)', data: [], borderColor: '#38bdf8', backgroundColor: '#38bdf822', tension: 0.3, pointRadius: 1, fill: false },
+    { label: 'ESP32 (DHT11)',  data: [], borderColor: '#34d399', backgroundColor: '#34d39922', tension: 0.3, pointRadius: 1, fill: false },
+  ]),
+};
+
+// chart dataset index per topic
+const DATASET_IDX = {
+  'pico/temperature/dht22':  { chart: 'temp', idx: 0 },
+  'esp32/temperature/dht11': { chart: 'temp', idx: 1 },
+  'pico/humidity/dht22':     { chart: 'humi', idx: 0 },
+  'esp32/humidity/dht11':    { chart: 'humi', idx: 1 },
+};
+
+// ── State ───────────────────────────────────────────────────────
+let currentSensor = 'all';
+let currentHours  = 1;
+
+// ── Helpers ─────────────────────────────────────────────────────
+function formatTs(isoStr, hours) {
+  const d = new Date(isoStr);
+  if (hours >= 168) return d.toLocaleDateString([], { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  if (hours >= 24)  return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: hours <= 1 ? '2-digit' : undefined });
+}
+
+function updateCard(topic, value, ts) {
+  const meta = TOPICS[topic];
+  if (!meta) return;
+  const el = document.getElementById('val-' + meta.card);
+  const tsEl = document.getElementById('ts-' + meta.card);
+  if (el) el.textContent = value.toFixed(1);
+  if (tsEl) tsEl.textContent = new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
+function updateCardVisibility(sensor) {
+  const show = new Set(SENSOR_CARDS[sensor] || SENSOR_CARDS.all);
+  ['card-pico-t','card-pico-h','card-esp-t','card-esp-h'].forEach(id => {
+    document.getElementById(id).classList.toggle('hidden', !show.has(id));
+  });
+}
+
+function updateChartVisibility(sensor) {
+  // dataset 0 = Pico W, dataset 1 = ESP32
+  const showPico  = sensor === 'all' || sensor === 'picow';
+  const showEsp32 = sensor === 'all' || sensor === 'esp32';
+  for (const chart of Object.values(charts)) {
+    chart.data.datasets[0].hidden = !showPico;
+    chart.data.datasets[1].hidden = !showEsp32;
+    chart.update();
+  }
+}
+
+// ── Load history from REST endpoint ─────────────────────────────
+async function loadHistory(hours, sensor) {
+  const res = await fetch(`/history?hours=${hours}&sensor=${sensor}`);
+  const rows = await res.json();
+
+  // Collect unique timestamps
+  const tsSet = new Set(rows.map(r => r.ts));
+  const labels = [...tsSet].sort().map(ts => formatTs(ts, hours));
+  const tsList  = [...tsSet].sort();
+
+  // Build per-topic value maps
+  const byTopic = {};
+  for (const r of rows) {
+    if (!byTopic[r.topic]) byTopic[r.topic] = {};
+    byTopic[r.topic][r.ts] = r.value;
+  }
+
+  // Update both charts
+  for (const [topic, info] of Object.entries(DATASET_IDX)) {
+    const chart = charts[info.chart];
+    chart.data.labels = labels;
+    chart.data.datasets[info.idx].data = tsList.map(ts => byTopic[topic]?.[ts] ?? null);
+  }
+  for (const chart of Object.values(charts)) chart.update();
+
+  // Update cards with the latest value per topic
+  for (const [topic, tsMap] of Object.entries(byTopic)) {
+    const latestTs = [...Object.keys(tsMap)].sort().at(-1);
+    if (latestTs) updateCard(topic, tsMap[latestTs], latestTs);
+  }
+}
+
+// ── WebSocket (live card updates only) ──────────────────────────
+function connectWs() {
+  const ws = new WebSocket(`ws://${location.host}/ws`);
+  const dot  = document.getElementById('dot');
+  const text = document.getElementById('status-text');
+
+  ws.onopen = () => { dot.className = 'dot ok'; text.textContent = 'Live'; };
+  ws.onclose = () => {
+    dot.className = 'dot err';
+    text.textContent = 'Disconnected — retrying...';
+    setTimeout(connectWs, 3000);
+  };
+  ws.onmessage = ({ data }) => {
+    const msg = JSON.parse(data);
+    if (msg.type === 'reading') {
+      const { ts, topic, value } = msg.data;
+      updateCard(topic, value, ts);
+    }
+  };
+}
+
+// ── Pill button wiring ───────────────────────────────────────────
+document.getElementById('sensor-group').addEventListener('click', e => {
+  if (!e.target.dataset.sensor) return;
+  document.querySelectorAll('#sensor-group .pill').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  currentSensor = e.target.dataset.sensor;
+  updateCardVisibility(currentSensor);
+  updateChartVisibility(currentSensor);
+  loadHistory(currentHours, currentSensor);
+});
+
+document.getElementById('range-group').addEventListener('click', e => {
+  if (!e.target.dataset.hours) return;
+  document.querySelectorAll('#range-group .pill').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  currentHours = parseInt(e.target.dataset.hours);
+  loadHistory(currentHours, currentSensor);
+});
+
+// ── Init ─────────────────────────────────────────────────────────
+loadHistory(currentHours, currentSensor);
+setInterval(() => loadHistory(currentHours, currentSensor), 30_000);
+connectWs();
+</script>
+</body>
+</html>
