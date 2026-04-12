@@ -1,7 +1,7 @@
 // ESP32 + DHT11 → MQTT
 // Improved version of esp32-dht11.cpp — adds WiFi + MQTT publishing
-// Board: ESP32 Dev Module
-// Libraries needed (Arduino IDE / PlatformIO):
+// Board: ESP32 Dev Module  ← use this profile, not ESP32-WROOM-DA
+// Libraries needed (Arduino IDE):
 //   - DHTesp      (beegee-tokyo/DHT-sensor-library-for-ESPx)
 //   - PubSubClient (knolleary/pubsubclient)
 
@@ -9,13 +9,16 @@
 #include <PubSubClient.h>
 #include "DHTesp.h"
 
+// ---- LED ----
+#define LED_BUILTIN 4  // GPIO4 — GPIO2 reserved on ESP32-WROOM-DA
+
 // ---- Configuration ----
-#define WIFI_SSID     "your-wifi"
-#define WIFI_PASSWORD "your-password"
-#define MQTT_BROKER   "192.168.1.2"
-#define MQTT_PORT     1883
-#define DHT_PIN       15
-#define PUBLISH_MS    5000  // publish interval in milliseconds
+const char* WIFI_SSID     = "your-wifi";
+const char* WIFI_PASSWORD = "your-password";  // const char* handles special chars ($, @, etc.)
+const char* MQTT_BROKER   = "192.168.1.2";
+const int   MQTT_PORT     = 1883;
+const int   DHT_PIN       = 15;
+const int   PUBLISH_MS    = 5000;
 
 // ---- MQTT Topics ----
 const char* TOPIC_TEMP = "esp32/temperature/dht11";
@@ -28,12 +31,15 @@ PubSubClient mqtt(espClient);
 unsigned long lastPublish = 0;
 
 void connectWifi() {
-  Serial.printf("Connecting to %s", WIFI_SSID);
+  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.printf("Connecting to '%s'\n", WIFI_SSID);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));  // blink while connecting
     delay(500);
     Serial.print(".");
   }
+  digitalWrite(LED_BUILTIN, HIGH);  // solid ON once connected
   Serial.printf("\nConnected — IP: %s\n", WiFi.localIP().toString().c_str());
 }
 
