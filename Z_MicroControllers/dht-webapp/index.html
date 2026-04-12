@@ -306,7 +306,9 @@ function updateChartVisibility(sensor) {
 // ── Load history from REST endpoint ─────────────────────────────
 async function loadHistory(hours, sensor) {
   const res = await fetch(`/history?hours=${hours}&sensor=${sensor}`);
+  if (!res.ok) { console.error('History fetch failed:', res.status, await res.text()); return; }
   const rows = await res.json();
+  console.log(`History: ${rows.length} rows for sensor=${sensor} hours=${hours}`);
 
   // Collect unique timestamps
   const tsSet = new Set(rows.map(r => r.ts));

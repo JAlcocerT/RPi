@@ -21,6 +21,7 @@ SENSOR_TOPICS = {
 }
 
 # TimescaleDB bucket size per requested hour range
+# Safe whitelist — values never come from user input
 BUCKET = {1: "1 minute", 6: "5 minutes", 24: "15 minutes", 168: "1 hour"}
 
 
@@ -47,18 +48,18 @@ async def history(hours: int = 1, sensor: str = "all"):
     bucket = BUCKET.get(hours, "15 minutes")
 
     async with pool.acquire() as conn:
+        # bucket is from a hardcoded whitelist — safe to inline
         rows = await conn.fetch(
-            """
-            SELECT time_bucket($1::interval, ts) AS t,
+            f"""
+            SELECT time_bucket('{bucket}', ts) AS t,
                    topic,
                    AVG(value) AS value
             FROM readings
-            WHERE topic = ANY($2)
-              AND ts > NOW() - $3
+            WHERE topic = ANY($1)
+              AND ts > NOW() - $2
             GROUP BY t, topic
             ORDER BY t
             """,
-            bucket,
             topics,
             timedelta(hours=hours),
         )
