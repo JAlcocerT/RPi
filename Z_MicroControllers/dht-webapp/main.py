@@ -1,6 +1,5 @@
 import asyncio
 import json
-from datetime import timedelta
 import asyncpg
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
@@ -48,7 +47,7 @@ async def history(hours: int = 1, sensor: str = "all"):
     bucket = BUCKET.get(hours, "15 minutes")
 
     async with pool.acquire() as conn:
-        # bucket is from a hardcoded whitelist — safe to inline
+        # bucket and hours are from hardcoded whitelists — safe to inline
         rows = await conn.fetch(
             f"""
             SELECT time_bucket('{bucket}', ts) AS t,
@@ -56,12 +55,11 @@ async def history(hours: int = 1, sensor: str = "all"):
                    AVG(value) AS value
             FROM readings
             WHERE topic = ANY($1)
-              AND ts > NOW() - $2
+              AND ts > NOW() - INTERVAL '{hours} hours'
             GROUP BY t, topic
             ORDER BY t
             """,
             topics,
-            timedelta(hours=hours),
         )
 
     return [
