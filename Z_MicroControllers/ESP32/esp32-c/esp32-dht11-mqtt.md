@@ -18,7 +18,7 @@ GND    →     GND
 | DHT11 Pin | ESP32 Pin | Notes |
 |-----------|-----------|-------|
 | VCC (pin 1) | 3.3V | Do not use 5V — damages sensor |
-| DATA (pin 2) | GPIO15 | No pull-up resistor needed — DHTesp handles it internally |
+| DATA (pin 2) | GPIO4 (D4) | Best category — no boot functions, confirmed working on WROOM-DA |
 | NC (pin 3) | — | Not connected |
 | GND (pin 4) | GND | |
 

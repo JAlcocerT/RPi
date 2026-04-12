@@ -9,15 +9,12 @@
 #include <PubSubClient.h>
 #include "DHTesp.h"
 
-// ---- LED ----
-#define LED_BUILTIN 4  // GPIO4 — GPIO2 reserved on ESP32-WROOM-DA
-
 // ---- Configuration ----
 const char* WIFI_SSID     = "your-wifi";
 const char* WIFI_PASSWORD = "your-password";  // const char* handles special chars ($, @, etc.)
 const char* MQTT_BROKER   = "192.168.1.2";
 const int   MQTT_PORT     = 1883;
-const int   DHT_PIN       = 15;
+const int   DHT_PIN       = 4;   // GPIO4 (D4) — best category, no special boot functions
 const int   PUBLISH_MS    = 5000;
 
 // ---- MQTT Topics ----
@@ -29,19 +26,7 @@ WiFiClient espClient;
 PubSubClient mqtt(espClient);
 
 unsigned long lastPublish = 0;
-
-void connectWifi() {
-  pinMode(LED_BUILTIN, OUTPUT);
-  Serial.printf("Connecting to '%s'\n", WIFI_SSID);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  while (WiFi.status() != WL_CONNECTED) {
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));  // blink while connecting
-    delay(500);
-    Serial.print(".");
-  }
-  digitalWrite(LED_BUILTIN, HIGH);  // solid ON once connected
-  Serial.printf("\nConnected — IP: %s\n", WiFi.localIP().toString().c_str());
-}
+bool isConnected = false;
 
 void connectMqtt() {
   mqtt.setServer(MQTT_BROKER, MQTT_PORT);
@@ -59,12 +44,30 @@ void connectMqtt() {
 
 void setup() {
   Serial.begin(115200);
+  pinMode(LED_BUILTIN, OUTPUT);
   dht.setup(DHT_PIN, DHTesp::DHT11);
-  connectWifi();
-  connectMqtt();
+
+  Serial.printf("Connecting to '%s'\n", WIFI_SSID);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 }
 
 void loop() {
+  // ---- LED + WiFi state (from wifi-blink.cpp pattern) ----
+  if (WiFi.status() == WL_CONNECTED && !isConnected) {
+    Serial.printf("\nConnected — IP: %s\n", WiFi.localIP().toString().c_str());
+    digitalWrite(LED_BUILTIN, HIGH);  // solid ON
+    isConnected = true;
+    connectMqtt();
+  }
+
+  if (WiFi.status() != WL_CONNECTED) {
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));  // blink while disconnected
+    delay(500);
+    isConnected = false;
+    return;
+  }
+
+  // ---- MQTT + sensor (only runs when WiFi connected) ----
   if (!mqtt.connected()) connectMqtt();
   mqtt.loop();
 
