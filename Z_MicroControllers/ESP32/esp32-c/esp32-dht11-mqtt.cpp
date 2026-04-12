@@ -9,6 +9,10 @@
 #include <PubSubClient.h>
 #include "DHTesp.h"
 
+#ifndef LED_BUILTIN
+#define LED_BUILTIN 2  // GPIO2 — onboard LED on ESP32 Dev Module
+#endif
+
 // ---- Configuration ----
 const char* WIFI_SSID     = "your-wifi";
 const char* WIFI_PASSWORD = "your-password";  // const char* handles special chars ($, @, etc.)
