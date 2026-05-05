@@ -5,7 +5,10 @@ const TOPIC = {
   CHIP: 'pico/temperature/internal',
 };
 
-const MAX_POINTS = 120;
+// Cap raised — long windows (7d, 30d) can hold thousands of bucketed points.
+// Server downsamples via time_bucket so we never blow past HARD_CAP=5000 anyway.
+const MAX_POINTS = 6000;
+let currentMinutes = 60;
 
 // State
 const series = {
@@ -155,7 +158,63 @@ function pushPoint(ts, topic, value) {
   }
 }
 
-// WebSocket
+// Reset all in-memory state — used when switching range so old samples don't
+// linger on the chart.
+function clearSeries() {
+  series.ts.length = 0;
+  series.temp.length = 0;
+  series.humi.length = 0;
+  series.chip.length = 0;
+  series.vpd.length = 0;
+  last = { temp: null, humi: null, chip: null };
+  prev = { temp: null, humi: null, chip: null };
+}
+
+function fmtRange(min) {
+  if (min < 60)   return `${min} min`;
+  if (min < 1440) return `${min / 60} h`;
+  return `${min / 1440} d`;
+}
+
+async function loadRange(minutes) {
+  currentMinutes = minutes;
+  // Highlight active button
+  document.querySelectorAll('.range-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.min, 10) === minutes);
+    b.disabled = true;
+  });
+  document.getElementById('range-info').textContent = `loading ${fmtRange(minutes)}…`;
+
+  try {
+    const r = await fetch(`/api/history?minutes=${minutes}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const { rows, bucketMin, downsampled, count } = await r.json();
+
+    clearSeries();
+    chartTH.update('none');
+    chartVPD.update('none');
+
+    rows.forEach(row => pushPoint(row.ts, row.topic, row.value));
+
+    const tag = downsampled ? `${bucketMin}-min buckets` : 'raw';
+    document.getElementById('range-info').textContent =
+      `${fmtRange(minutes)} · ${count} pts · ${tag}`;
+  } catch (e) {
+    document.getElementById('range-info').textContent = `load error: ${e.message}`;
+  } finally {
+    document.querySelectorAll('.range-btn').forEach(b => { b.disabled = false; });
+  }
+}
+
+document.getElementById('range-bar').addEventListener('click', (e) => {
+  const btn = e.target.closest('.range-btn');
+  if (!btn) return;
+  const min = parseInt(btn.dataset.min, 10);
+  if (min === currentMinutes) return;
+  loadRange(min);
+});
+
+// WebSocket — live readings only. History comes from /api/history on demand.
 function connect() {
   const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
   const ws = new WebSocket(`${proto}//${location.host}/ws`);
@@ -167,11 +226,11 @@ function connect() {
   ws.onmessage = ({ data }) => {
     let msg;
     try { msg = JSON.parse(data); } catch { return; }
-    if (msg.type === 'history') {
-      msg.data.forEach(r => pushPoint(r.ts, r.topic, r.value));
-    } else if (msg.type === 'reading') {
+    if (msg.type === 'reading') {
       pushPoint(msg.data.ts, msg.data.topic, msg.data.value);
     }
   };
 }
-connect();
+
+// Initial load: default 1h window, then open WS for live appends.
+loadRange(currentMinutes).then(connect);

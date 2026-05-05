@@ -12,6 +12,8 @@ Pico W → EMQX → server.js (mqtt sub) → TimescaleDB
                                          Browser
 ```
 
+![alt text](dht22-vpd.png)
+
 ## Stack
 
 | Piece | Tech |

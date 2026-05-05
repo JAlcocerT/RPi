@@ -81,30 +81,59 @@ await startListener();
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Range query — accepts ?minutes=N (default 60). Auto-downsamples past HARD_CAP
+// rows using TimescaleDB time_bucket so 7d views stay snappy.
+const HARD_CAP = 5000;
+
+function pickBucketMinutes(minutes) {
+  if (minutes <= 60)    return 0;     // raw
+  if (minutes <= 360)   return 1;     // 6h → 1m buckets
+  if (minutes <= 1440)  return 5;     // 24h → 5m buckets
+  if (minutes <= 10080) return 30;    // 7d → 30m buckets
+  return 60;                          // > 7d → 1h buckets
+}
+
 app.get('/api/history', async (req, res) => {
-  const limit = Math.min(parseInt(req.query.limit || HISTORY, 10), 5000);
-  const { rows } = await pool.query(
-    'SELECT ts, topic, value FROM readings ORDER BY ts DESC LIMIT $1',
-    [limit]
-  );
-  res.json(rows.reverse());
+  const minutes = Math.max(1, Math.min(parseInt(req.query.minutes || '60', 10), 60 * 24 * 90));
+  const bucketMin = pickBucketMinutes(minutes);
+
+  try {
+    if (bucketMin === 0) {
+      const { rows } = await pool.query(
+        `SELECT ts, topic, value
+         FROM readings
+         WHERE ts >= NOW() - ($1::int * INTERVAL '1 minute')
+         ORDER BY ts ASC
+         LIMIT $2`,
+        [minutes, HARD_CAP]
+      );
+      return res.json({ rows, minutes, bucketMin: 0, downsampled: false, count: rows.length });
+    }
+    const { rows } = await pool.query(
+      `SELECT time_bucket(($1::int * INTERVAL '1 minute'), ts) AS ts,
+              topic,
+              AVG(value)::float8 AS value
+       FROM readings
+       WHERE ts >= NOW() - ($2::int * INTERVAL '1 minute')
+       GROUP BY 1, topic
+       ORDER BY 1 ASC`,
+      [bucketMin, minutes]
+    );
+    res.json({ rows, minutes, bucketMin, downsampled: true, count: rows.length });
+  } catch (e) {
+    console.error('History err', e.message);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 const server = createServer(app);
 const wss = new WebSocketServer({ server, path: '/ws' });
 
-wss.on('connection', async (ws) => {
+// WS only streams live readings — history is fetched on demand via /api/history
+// so the client controls the time window.
+wss.on('connection', (ws) => {
   wsClients.add(ws);
   ws.on('close', () => wsClients.delete(ws));
-  try {
-    const { rows } = await pool.query(
-      'SELECT ts, topic, value FROM readings ORDER BY ts DESC LIMIT $1',
-      [HISTORY]
-    );
-    ws.send(JSON.stringify({ type: 'history', data: rows.reverse() }));
-  } catch (e) {
-    console.error('History err', e.message);
-  }
 });
 
 server.listen(PORT, '0.0.0.0', () => console.log(`Listening on http://0.0.0.0:${PORT}`));

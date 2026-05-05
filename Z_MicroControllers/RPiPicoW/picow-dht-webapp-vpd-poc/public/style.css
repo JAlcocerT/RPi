@@ -122,6 +122,38 @@ main {
 .section-title h2 { font-size: 0.95rem; font-weight: 600; margin: 0; letter-spacing: 0.4px; text-transform: uppercase; color: #c7d0f0; }
 .muted { color: var(--muted); font-size: 0.8rem; }
 
+.range-bar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px;
+}
+.range-btn {
+  flex: 1;
+  min-width: 60px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.range-btn:hover { background: var(--bg-elev-2); color: var(--text); }
+.range-btn.active {
+  background: var(--bg-elev-2);
+  color: var(--vpd);
+  border-color: rgba(52,211,153,0.4);
+  box-shadow: 0 0 0 1px rgba(52,211,153,0.15) inset;
+}
+.range-btn:disabled { opacity: 0.5; cursor: wait; }
+
 .vpd-bar {
   position: relative;
   height: 64px;
