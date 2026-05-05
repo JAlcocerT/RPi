@@ -18,17 +18,12 @@ cameras:
           input_args: preset-rtsp-restream
           roles:
             - detect
-            - record
     detect:
       width: 640
       height: 360
       fps: 5
     record:
-      enabled: true
-      continuous:
-        days: 0
-      motion:
-        days: 2
+      enabled: false
     snapshots:
       enabled: true
       retain:
