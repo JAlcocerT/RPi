@@ -19,7 +19,7 @@ services:
     build: .
     container_name: picow-vpd-webapp
     ports:
-      - "8001:8000"
+      - "8078:8000"
     environment:
       PG_DSN: postgresql://vpd:vpd@timescaledb-vpd:5432/vpd_sensors
       MQTT_URL: mqtt://192.168.1.2:1883
