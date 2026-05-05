@@ -1,0 +1,42 @@
+mqtt:
+  enabled: false
+
+detectors:
+  cpu1:
+    type: cpu
+    num_threads: 2
+
+ffmpeg:
+  hwaccel_args: preset-rpi-64-h264
+
+cameras:
+  picam:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://host.docker.internal:8654/picam
+          input_args: preset-rtsp-restream
+          roles:
+            - detect
+            - record
+    detect:
+      width: 640
+      height: 360
+      fps: 5
+    record:
+      enabled: true
+      continuous:
+        days: 0
+      motion:
+        days: 2
+    snapshots:
+      enabled: true
+      retain:
+        default: 2
+    motion:
+      threshold: 30
+
+objects:
+  track:
+    - person
+version: 0.17-0
