@@ -1,0 +1,15 @@
+logLevel: info
+rtspAddress: :8654
+rtmp: no
+hls: no
+webrtc: no
+srt: no
+
+paths:
+  picam:
+    source: rpiCamera
+    rpiCameraWidth: 1280
+    rpiCameraHeight: 720
+    rpiCameraFPS: 15
+    rpiCameraHFlip: false
+    rpiCameraVFlip: false
