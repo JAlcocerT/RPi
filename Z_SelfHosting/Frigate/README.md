@@ -11,6 +11,8 @@ Self-hosted NVR with motion-based recording for the Pi camera module, running en
                                                         Frigate (bridge net) -> UI :5000
 ```
 
+> `http://192.168.1.18:5000/`
+
 - **mediamtx** uses its native `rpiCamera` source (libcamera under the hood) to grab the CSI camera and republish it as H264 RTSP. Runs in `network_mode: host` because libcamera needs direct access to `/dev` and `/run/udev`.
 - **Frigate** consumes the RTSP stream over the host gateway (`host.docker.internal`), runs CPU-based detection at low fps, and records motion segments at full fps.
 

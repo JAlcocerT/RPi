@@ -1,3 +1,5 @@
+> See ../Z_SelfHosting/Frigate for the updated pi camera working as per a [newer May 2026 blog post](https://jalcocert.github.io/JAlcocerT/plants-103-inspiration/#monitoring-plants-while-travelling)
+
 * Further **info** at::
 	* https://jalcocert.github.io/JAlcocerT/blog/tinker-rpi-cv/
 	* https://github.com/JAlcocerT/rpi-mjpg-streamer
