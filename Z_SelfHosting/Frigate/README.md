@@ -1,6 +1,6 @@
 # Frigate on Raspberry Pi (CSI camera)
 
-Self-hosted NVR with motion-based recording for the Pi camera module, running entirely in Docker on a Pi 4/5 with 64-bit Debian (tested on Trixie).
+Live view + object detection for the Pi camera module, running entirely in Docker on a Pi 4/5 with 64-bit Debian (tested on Trixie). Recording is disabled by default (this is a view-only setup, not an NVR) — see "Enabling recording" below if you want it.
 
 ## Architecture
 
@@ -12,7 +12,7 @@ Self-hosted NVR with motion-based recording for the Pi camera module, running en
 ```
 
 - **mediamtx** uses its native `rpiCamera` source (libcamera under the hood) to grab the CSI camera and republish it as H264 RTSP. Runs in `network_mode: host` because libcamera needs direct access to `/dev` and `/run/udev`.
-- **Frigate** consumes the RTSP stream over the host gateway (`host.docker.internal`), runs CPU-based detection at low fps, and records motion segments at full fps.
+- **Frigate** consumes the RTSP stream over the host gateway (`host.docker.internal`) and runs CPU-based detection at low fps. Recording is **disabled** in this config — it's a live-view + detection setup, not an NVR. Snapshots on detection events are still saved (small, JPEG only). To enable continuous recording later, see the "Enabling recording" section below.
 
 This split avoids the dead-end of trying to run libcamera *inside* the Frigate container — the Frigate image is Debian-based and does not ship libcamera or rpicam binaries, so `go2rtc exec:libcamera-vid` recipes you find online don't work out of the box.
 
@@ -20,8 +20,8 @@ This split avoids the dead-end of trying to run libcamera *inside* the Frigate c
 
 - `docker-compose.yaml` — both services, `extra_hosts` maps `host.docker.internal` so the Frigate container can reach mediamtx on the host loopback.
 - `mediamtx.yml` — Pi camera grabber config. RTSP on `:8654` (avoids collision with anything else on the default `:8554`, e.g. Home Assistant's go2rtc).
-- `config/config.yml` — Frigate config. CPU detector, detect at 640x360@5fps, record 1280x720@15fps with motion-based 2-day retention, person tracking only.
-- `storage/` — recordings/clips/exports. **Bind-mount this to a USB SSD before running long-term.** SD cards die fast under continuous video writes.
+- `config/config.yml` — Frigate config. CPU detector, detect at 640x360@5fps, recording disabled, snapshots enabled, person tracking only.
+- `storage/` — Frigate's data dir (snapshots, db, etc). Recordings would also live here if enabled. Gitignored.
 
 ## Run
 
@@ -33,12 +33,18 @@ sudo docker compose logs -f frigate
 
 UI at `http://<pi-ip>:5000`. On first run Frigate auto-generates an `admin` password and prints it to the logs — capture it and change it in the UI.
 
-## Stop / restart
+## Stop / start
+
+Run from inside `Z_SelfHosting/Frigate/`:
 
 ```bash
-sudo docker compose down
-sudo docker compose up -d
+sudo docker compose stop      # stop both containers (keeps them, fast restart)
+sudo docker compose start     # start them again
+sudo docker compose down      # stop + remove containers (network too)
+sudo docker compose up -d     # recreate from compose files (use after editing them)
 ```
+
+Use `stop`/`start` for a quick on-off. Use `down` + `up -d` after you change `docker-compose.yaml`, `mediamtx.yml`, or want a clean recreate. Config-only changes inside `config/config.yml` just need `sudo docker compose restart frigate`.
 
 ## Gotchas we hit (in order)
 
@@ -110,14 +116,36 @@ A `version: 0.17-0` line at the bottom of `config.yml` is required.
 
 Modern Compose ignores it and warns. Removed.
 
-## Verifying it's recording
+## Enabling recording (later, if you want it)
+
+This config has recording disabled. To turn it back on, edit `config/config.yml`:
+
+```yaml
+cameras:
+  picam:
+    ffmpeg:
+      inputs:
+        - path: rtsp://host.docker.internal:8654/picam
+          input_args: preset-rtsp-restream
+          roles:
+            - detect
+            - record       # <- add this back
+    record:
+      enabled: true        # <- flip to true
+      continuous:
+        days: 0
+      motion:
+        days: 2
+```
+
+Then `sudo docker compose restart frigate`. Frigate writes ~10s mp4 segments and prunes by retention (above keeps only motion clips for 2 days). **Move `storage/` to a USB SSD before enabling — continuous video writes destroy SD cards quickly.**
+
+Verify with:
 
 ```bash
 sudo find storage/recordings -name "*.mp4" | head
 sudo du -sh storage/recordings
 ```
-
-Frigate writes ~10s mp4 segments continuously, then prunes by retention rule (we keep motion clips for 2 days, no continuous retention).
 
 ## Performance notes (Pi 4/5, no Coral)
 
@@ -128,7 +156,7 @@ Frigate writes ~10s mp4 segments continuously, then prunes by retention rule (we
 
 ## Things still to do
 
-- [ ] Move `storage/` to a USB SSD bind mount.
 - [ ] Change the admin password from the auto-generated one.
 - [ ] Optional: enable MQTT in `config.yml` and wire to Home Assistant for notifications.
 - [ ] Optional: add a Coral TPU and switch detector type.
+- [ ] Optional: enable recording (see section above) — move `storage/` to a USB SSD first.
