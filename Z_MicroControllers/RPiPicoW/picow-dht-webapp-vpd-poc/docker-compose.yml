@@ -1,0 +1,33 @@
+services:
+  timescaledb-vpd:
+    image: timescale/timescaledb:latest-pg16
+    container_name: timescaledb-vpd
+    ports:
+      # Host port 5433 to avoid colliding with the existing
+      # Z_SelfHosting/pgsql container on 5432.
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: vpd
+      POSTGRES_PASSWORD: vpd
+      POSTGRES_DB: vpd_sensors
+    volumes:
+      - timescaledb_vpd_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    restart: always
+
+  webapp:
+    build: .
+    container_name: picow-vpd-webapp
+    ports:
+      - "8001:8000"
+    environment:
+      PG_DSN: postgresql://vpd:vpd@timescaledb-vpd:5432/vpd_sensors
+      MQTT_URL: mqtt://192.168.1.2:1883
+      MQTT_TOPIC: pico/#
+      PORT: "8000"
+    depends_on:
+      - timescaledb-vpd
+    restart: always
+
+volumes:
+  timescaledb_vpd_data:

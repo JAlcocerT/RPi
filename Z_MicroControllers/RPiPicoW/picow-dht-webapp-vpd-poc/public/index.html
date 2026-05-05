@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pico W — DHT22 + VPD Live</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">●</span>
+      <h1>Pico&nbsp;W · DHT22 · VPD</h1>
+    </div>
+    <div id="status" class="status status--pending">connecting…</div>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card card--temp">
+        <div class="card__label">Air Temperature</div>
+        <div class="card__value"><span id="val-temp">--</span><span class="unit">°C</span></div>
+        <div class="card__trend" id="trend-temp">—</div>
+      </div>
+      <div class="card card--humi">
+        <div class="card__label">Relative Humidity</div>
+        <div class="card__value"><span id="val-humi">--</span><span class="unit">%</span></div>
+        <div class="card__trend" id="trend-humi">—</div>
+      </div>
+      <div class="card card--vpd">
+        <div class="card__label">VPD</div>
+        <div class="card__value"><span id="val-vpd">--</span><span class="unit">kPa</span></div>
+        <div class="card__trend" id="vpd-zone">—</div>
+      </div>
+      <div class="card card--chip">
+        <div class="card__label">Chip Temp</div>
+        <div class="card__value"><span id="val-chip">--</span><span class="unit">°C</span></div>
+        <div class="card__trend" id="trend-chip">—</div>
+      </div>
+    </section>
+
+    <section class="vpd-bar-section">
+      <div class="section-title">
+        <h2>VPD Zone</h2>
+        <span class="muted" id="vpd-readout">—</span>
+      </div>
+      <div class="vpd-bar" id="vpd-bar">
+        <div class="vpd-bar__zone z1" data-range="0.0–0.4"><span>Danger<br><small>too humid</small></span></div>
+        <div class="vpd-bar__zone z2" data-range="0.4–0.8"><span>Propagation<br><small>clones / seedlings</small></span></div>
+        <div class="vpd-bar__zone z3" data-range="0.8–1.2"><span>Vegetative<br><small>early growth</small></span></div>
+        <div class="vpd-bar__zone z4" data-range="1.2–1.6"><span>Flowering<br><small>late bloom</small></span></div>
+        <div class="vpd-bar__zone z5" data-range="1.6+"><span>Stress<br><small>too dry</small></span></div>
+        <div class="vpd-bar__marker" id="vpd-marker"></div>
+      </div>
+    </section>
+
+    <section class="charts">
+      <div class="chart-wrap">
+        <div class="section-title"><h2>Temperature &amp; Humidity</h2><span class="muted" id="chart-window">last —</span></div>
+        <canvas id="chart-th"></canvas>
+      </div>
+      <div class="chart-wrap">
+        <div class="section-title"><h2>VPD Trend</h2><span class="muted">kPa over time</span></div>
+        <canvas id="chart-vpd"></canvas>
+      </div>
+    </section>
+
+    <section class="info">
+      <h2>How to read VPD</h2>
+      <p>
+        <strong>Vapor Pressure Deficit</strong> is the gap between how much water the air <em>could</em> hold
+        at the current temperature and how much it <em>actually</em> holds. It controls plant transpiration
+        and is a much better climate target than humidity alone.
+      </p>
+      <ul class="info-grid">
+        <li><span class="dot z1"></span><b>0.0–0.4 kPa · Danger.</b> Air saturated. Mold, mildew, poor nutrient uptake.</li>
+        <li><span class="dot z2"></span><b>0.4–0.8 kPa · Propagation.</b> Soft tissue, weak roots — keep humid.</li>
+        <li><span class="dot z3"></span><b>0.8–1.2 kPa · Vegetative.</b> Healthy transpiration, fast growth.</li>
+        <li><span class="dot z4"></span><b>1.2–1.6 kPa · Flowering.</b> Strong transpiration, dense fruit/bloom.</li>
+        <li><span class="dot z5"></span><b>1.6+ kPa · Stress.</b> Stomata close, growth stalls.</li>
+      </ul>
+      <details>
+        <summary>Formula</summary>
+        <pre>SVP(T) = 0.6108 · exp( 17.27·T / (T + 237.3) )    [kPa]
+VPD    = SVP(T) · (1 − RH/100)                   [kPa]</pre>
+        <p class="muted">Air-VPD approximation (assumes leaf temp ≈ air temp). For leaf-VPD subtract ~2 °C from <code>T</code> when computing SVP for the leaf.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <span class="muted">TimescaleDB · LISTEN/NOTIFY · WebSocket</span>
+  </footer>
+</body>
+</html>
