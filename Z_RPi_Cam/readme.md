@@ -1,7 +1,8 @@
 * Further **info** at::
 	* https://jalcocert.github.io/JAlcocerT/blog/tinker-rpi-cv/
 	* https://github.com/JAlcocerT/rpi-mjpg-streamer
-	* Related to DJI Cam Drone
+	( https://jalcocert.github.io/JAlcocerT/raspberry-pi-camera-setup/)
+	* Related to [DJI Cam Drone](https://jalcocert.github.io/JAlcocerT/dji-tello-python-programming/)
 
 ```sh
 git clone https://github.com/meinside/rpi-mjpg-streamer #https://github.com/JAlcocerT/rpi-mjpg-streamer
@@ -28,3 +29,18 @@ Deploy the image:
 ```sh
 docker run -p 9999:9999 --device /dev/video0 -it streamer:latest
 ```
+
+
+---
+
+## Pre-Requisites
+
+Get a Rpi and [install the OS](https://github.com/raspberrypi/rpi-imager/releases/tag/v2.0.8) and docker:
+
+```sh
+choco install rpi-imager
+```
+
+![alt text](rpi-imager.png)
+
+I2C has to be enabled!
