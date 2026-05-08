@@ -1,0 +1,1 @@
+Running agentic CLI with a Pi.
