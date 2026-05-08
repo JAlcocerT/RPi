@@ -11,7 +11,10 @@ Pairs with `../../Z_RPi_Cam/homelab-selfhosting.sh`.
 ```bash
 #git clone https://github.com/JAlcocerT/RPi
 #cd ./RPi/Z_SelfHosting/agentic-pi
-sudo ./check-hardening.sh           # full report
+#chmod +x check-hardening.sh install-agents.sh
+#sudo ./check-hardening.sh                        
+#Or run via interpreter without chmod:
+sudo bash check-hardening.sh # full report
 sudo ./check-hardening.sh --quiet   # only failures + summary
 ```
 
@@ -31,18 +34,23 @@ sudo ./install-agents.sh --skip-check   # bypass hardening pre-check
 Flow:
 
 1. Runs `check-hardening.sh --quiet` (gate). Bypass with `--skip-check`.
-2. Checks Node.js >= 20. Installs `setup_22.x` from NodeSource if missing/old.
-3. Prompts yes/no for each agent:
+2. Shows responsibility warning. Requires explicit `yes` consent — anything else aborts.
+3. Checks Node.js >= 20. Installs `setup_22.x` from NodeSource if missing/old.
+4. Prompts yes/no for each agent:
 
-   | Label | Package | Binary |
-   |---|---|---|
-   | OpenCode AI | `opencode-ai` | `opencode` |
-   | Google Gemini CLI | `@google/gemini-cli` | `gemini` |
-   | Claude Code | `@anthropic-ai/claude-code` | `claude` |
-   | OpenAI Codex | `@openai/codex` | `codex` |
+   | Label | Source | Package / Image | Binary |
+   |---|---|---|---|
+   | OpenCode AI | npm | `opencode-ai` | `opencode` |
+   | Google Gemini CLI | npm | `@google/gemini-cli` | `gemini` |
+   | Claude Code | npm | `@anthropic-ai/claude-code` | `claude` |
+   | OpenAI Codex | npm | `@openai/codex` | `codex` |
+   | Hermes Agent | Docker | `nousresearch/hermes-agent` | container |
 
-4. Already-installed agents prompt before reinstalling.
-5. Prints summary (installed / skipped / failed) + version dump.
+   Hermes requires Docker (install via `homelab-selfhosting.sh`).
+   State persists in `~/.hermes` (mounted at `/opt/data` inside container).
+
+5. Already-installed agents prompt before reinstalling.
+6. Prints summary (installed / skipped / failed) + version dump.
 
 Exit code = 0 if no failures.
 

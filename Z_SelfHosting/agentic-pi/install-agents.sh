@@ -13,6 +13,53 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+
+### Responsibility warning ###
+
+cat <<'WARNING'
+
+================================================================================
+  WARNING — AGENTIC CLI INSTALL
+================================================================================
+
+You are about to install AI coding agents that can:
+
+  - Read, modify, create, and DELETE files on this system
+  - Execute shell commands (some agents auto-run commands without confirmation)
+  - Send code, prompts, and file contents to third-party APIs
+  - Incur API charges based on token usage
+
+By proceeding, you acknowledge:
+
+  1. You have read each agent's documentation and security model.
+  2. You will use these tools ONLY in environments you own or are
+     authorized to operate in.
+  3. You accept full responsibility for any damage, data loss, leaked
+     secrets, unwanted API charges, or other consequences resulting
+     from agent actions.
+  4. You will not run agents with elevated privileges (root) unless
+     strictly necessary, and never against production systems without
+     explicit approval.
+  5. Neither this script nor its author provide any warranty.
+
+================================================================================
+
+WARNING
+
+printf "Do you understand and agree? (yes/no): "
+read -r consent
+case $consent in
+    [yY]|[yY][eE][sS])
+        echo "Consent recorded. Proceeding..."
+        ;;
+    *)
+        echo "Consent not given. Aborting."
+        exit 1
+        ;;
+esac
+echo ""
+
+
 log() {
     echo "[$(date +'%Y-%m-%d %H:%M:%S')] $*"
 }
@@ -165,6 +212,41 @@ run_agent "OpenCode AI"      "opencode-ai"             "opencode"
 run_agent "Google Gemini CLI" "@google/gemini-cli"      "gemini"
 run_agent "Claude Code"       "@anthropic-ai/claude-code" "claude"
 run_agent "OpenAI Codex"      "@openai/codex"           "codex"
+
+
+### Hermes (Docker-based) ###
+
+install_hermes() {
+    if ! command_exists docker; then
+        log "Error: Docker not installed. Install Docker first (run homelab-selfhosting.sh)."
+        return 1
+    fi
+
+    local target_user="${SUDO_USER:-$USER}"
+    local home_dir
+    home_dir=$(getent passwd "$target_user" | cut -d: -f6)
+    local hermes_dir="${home_dir}/.hermes"
+
+    log "Creating $hermes_dir..."
+    mkdir -p "$hermes_dir"
+    chown "$target_user:$target_user" "$hermes_dir"
+
+    log "Pulling and running hermes-agent setup..."
+    log "Note: 'setup' is interactive — follow prompts."
+    docker run -it --rm \
+        -v "${hermes_dir}:/opt/data" \
+        nousresearch/hermes-agent setup
+}
+
+if prompt_yn "Install Hermes Agent (Nous Research, Docker-based)?"; then
+    if install_hermes; then
+        INSTALLED+=("Hermes Agent")
+    else
+        FAILED+=("Hermes Agent")
+    fi
+else
+    SKIPPED+=("Hermes Agent")
+fi
 
 
 ### Summary ###
