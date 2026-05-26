@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DHT11 MQTT Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">ESP32 + EMQX + SQLite</p>
+          <h1>DHT11 Telemetry</h1>
+          <p class="subhead">Live readings stored from MQTT and plotted as local time series.</p>
+        </div>
+        <div class="status-panel">
+          <div class="status-row">
+            <span>Broker</span>
+            <strong id="broker-status">Checking...</strong>
+          </div>
+          <div class="status-row">
+            <span>Last error</span>
+            <strong id="broker-error">none</strong>
+          </div>
+          <div class="status-row">
+            <span>Window</span>
+            <label>
+              <select id="hours-select">
+                <option value="1">Last 1 hour</option>
+                <option value="6">Last 6 hours</option>
+                <option value="24" selected>Last 24 hours</option>
+                <option value="168">Last 7 days</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <section class="cards">
+        <article class="card metric-card">
+          <p class="card-label">Temperature</p>
+          <h2 id="temp-value">--</h2>
+          <p id="temp-time" class="card-meta">No data yet</p>
+        </article>
+        <article class="card metric-card">
+          <p class="card-label">Humidity</p>
+          <h2 id="humi-value">--</h2>
+          <p id="humi-time" class="card-meta">No data yet</p>
+        </article>
+      </section>
+
+      <section class="charts">
+        <article class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <p class="card-label">Temperature series</p>
+              <h3>Degrees Celsius</h3>
+            </div>
+          </div>
+          <canvas id="temp-chart" width="960" height="320"></canvas>
+        </article>
+
+        <article class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <p class="card-label">Humidity series</p>
+              <h3>Relative humidity</h3>
+            </div>
+          </div>
+          <canvas id="humi-chart" width="960" height="320"></canvas>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+  </html>

@@ -1,0 +1,14 @@
+{
+  "name": "mqtt-dht11-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EMQX MQTT subscriber storing DHT11 readings in SQLite with a simple dashboard.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "mqtt": "^5.13.3"
+  }
+}

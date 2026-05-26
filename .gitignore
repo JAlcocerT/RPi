@@ -1,5 +1,6 @@
 tech-talk/
 
+readings.*
 *.venv/
 settings.local.json
 

@@ -1,0 +1,158 @@
+:root {
+  color-scheme: light;
+  --bg: #f3efe6;
+  --ink: #182126;
+  --muted: #5c666c;
+  --panel: rgba(255, 251, 245, 0.82);
+  --line: rgba(24, 33, 38, 0.1);
+  --temp: #d4552d;
+  --humi: #177e89;
+  --shadow: 0 18px 50px rgba(40, 32, 19, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(212, 85, 45, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(23, 126, 137, 0.16), transparent 25%),
+    linear-gradient(180deg, #f8f4ed 0%, var(--bg) 100%);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.eyebrow,
+.card-label {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: clamp(2.2rem, 4vw, 4.6rem);
+  line-height: 0.95;
+}
+
+.subhead {
+  max-width: 40rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.status-panel,
+.card {
+  background: var(--panel);
+  border: 1px solid rgba(24, 33, 38, 0.08);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.status-panel {
+  padding: 18px 18px 8px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.status-row:last-child {
+  border-bottom: 0;
+}
+
+select {
+  border: 1px solid rgba(24, 33, 38, 0.15);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.cards,
+.charts {
+  display: grid;
+  gap: 20px;
+}
+
+.cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 20px;
+}
+
+.metric-card {
+  padding: 22px 24px;
+}
+
+.metric-card h2 {
+  margin-bottom: 8px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.card-meta {
+  color: var(--muted);
+}
+
+.chart-card {
+  padding: 18px;
+}
+
+.chart-header {
+  margin-bottom: 14px;
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+}
+
+@media (max-width: 820px) {
+  .hero,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .page {
+    padding: 20px 14px 32px;
+  }
+}
