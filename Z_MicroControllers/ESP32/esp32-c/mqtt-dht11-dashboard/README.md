@@ -6,6 +6,8 @@ Small local Node app that:
 - stores every MQTT reading in SQLite
 - serves a browser dashboard with both time series
 
+![alt text](dht11-telemetry.png)
+
 ## Run
 
 ```sh
